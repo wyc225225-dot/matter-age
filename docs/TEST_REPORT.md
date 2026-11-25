@@ -53,3 +53,5 @@
 ## 手机实验台选料改版（2026-11-25）
 
 新增 mobile-lab.spec.ts，覆盖空槽打开选择、连续选水和铁、已选槽位常驻、搜索、完成返回、滚到底部执行凝固、重开选择查看新物质、Escape关闭及滚动锁恢复、切回桌面仓库。更新360px反馈测试适配选料面板。12组端到端用例均通过（首轮10组通过，修正两处测试名称定位后相关3组通过）；224单元测试、数据校验、构建与格式检查通过。截图 output/playwright/mobile-material-picker.png 与 mobile-workbench.png 已人工查看。尚未真机测试。
+
+最终完整重跑：12/12通过。Pages部署后线上390×844触控浏览器选料与凝固流程通过，无运行时错误；截图 output/playwright/github-pages-mobile.png。
