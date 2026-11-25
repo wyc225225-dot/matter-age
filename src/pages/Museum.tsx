@@ -129,6 +129,82 @@ function ExhibitGraphic({
             )),
           )}
         </g>
+      ) : item.iconKind === "urea_vial" ? (
+        <g stroke={stroke} strokeWidth="2" fill="none">
+          <rect
+            x="42"
+            y="30"
+            width="36"
+            height="56"
+            rx="8"
+            fill={unlocked ? `${item.accentColor}22` : "none"}
+          />
+          <line x1="46" y1="26" x2="74" y2="26" />
+          <line x1="52" y1="76" x2="58" y2="48" />
+          <line x1="60" y1="78" x2="62" y2="44" />
+          <line x1="68" y1="76" x2="64" y2="50" />
+        </g>
+      ) : item.iconKind === "voltameter" ? (
+        <g stroke={stroke} strokeWidth="2" fill="none">
+          <rect x="36" y="28" width="16" height="58" rx="4" />
+          <rect x="68" y="28" width="16" height="58" rx="4" />
+          <line x1="52" y1="74" x2="68" y2="74" />
+          <line x1="44" y1="42" x2="44" y2="78" strokeWidth="1.5" />
+          <line x1="76" y1="54" x2="76" y2="78" strokeWidth="1.5" />
+        </g>
+      ) : item.iconKind === "electroscope" ? (
+        <g stroke={stroke} strokeWidth="2" fill="none">
+          <circle
+            cx="60"
+            cy="58"
+            r="26"
+            fill={unlocked ? `${item.accentColor}1c` : "none"}
+          />
+          <line x1="60" y1="22" x2="60" y2="56" />
+          <line x1="60" y1="56" x2="48" y2="74" />
+          <line x1="60" y1="56" x2="72" y2="74" />
+          <circle cx="60" cy="22" r="5" fill={stroke} />
+        </g>
+      ) : item.iconKind === "atom_foil" ? (
+        <g stroke={stroke} strokeWidth="1.9" fill="none">
+          <circle cx="60" cy="56" r="5" fill={stroke} />
+          <ellipse
+            cx="60"
+            cy="56"
+            rx="28"
+            ry="12"
+            transform="rotate(30 60 56)"
+          />
+          <ellipse
+            cx="60"
+            cy="56"
+            rx="28"
+            ry="12"
+            transform="rotate(-30 60 56)"
+          />
+          <ellipse
+            cx="60"
+            cy="56"
+            rx="28"
+            ry="12"
+            transform="rotate(90 60 56)"
+          />
+        </g>
+      ) : item.iconKind === "reactor" ? (
+        <g stroke={stroke} strokeWidth="2" fill="none">
+          <rect
+            x="40"
+            y="26"
+            width="40"
+            height="60"
+            rx="12"
+            fill={unlocked ? `${item.accentColor}22` : "none"}
+          />
+          <line x1="28" y1="44" x2="40" y2="44" />
+          <line x1="80" y1="44" x2="92" y2="44" />
+          <line x1="80" y1="68" x2="92" y2="68" />
+          <line x1="92" y1="44" x2="92" y2="68" />
+        </g>
       ) : (
         <g
           stroke={stroke}

@@ -30,9 +30,9 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
   await expect(
     page.getByRole("button", { name: "3. 经典实验" }),
   ).toBeDisabled();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page.getByRole("button", { name: /助燃气体将显著增强燃烧/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
 
   // Do 2 tests, then RELOAD browser to verify persistent resumable session!
   await page
@@ -71,25 +71,28 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     .click();
 
   await page
-    .getByRole("combobox", { name: "气瓶甲气体指认" })
-    .selectOption("carbon_dioxide");
+    .getByRole("radiogroup", { name: "气瓶甲气体指认" })
+    .getByRole("radio", { name: /二氧化碳/ })
+    .click();
   await page
-    .getByRole("combobox", { name: "气瓶乙气体指认" })
-    .selectOption("oxygen");
+    .getByRole("radiogroup", { name: "气瓶乙气体指认" })
+    .getByRole("radio", { name: /氧气/ })
+    .click();
   await page
-    .getByRole("combobox", { name: "气瓶丙气体指认" })
-    .selectOption("nitrogen");
+    .getByRole("radiogroup", { name: "气瓶丙气体指认" })
+    .getByRole("radio", { name: /氮气/ })
+    .click();
   await page.getByRole("button", { name: "提交实验检验" }).click();
   await expect(page.locator(".stage-feedback")).toContainText("准确鉴别");
   await page.screenshot({
     path: "output/playwright/history-polish/desktop-ch01-gas.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   await page
     .getByRole("button", { name: /外观相同的无色气体具有截然不同/ })
     .click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await expect(page.getByText(/氧气的发现与化学革命序幕/)).toBeVisible();
   await page.screenshot({
     path: "output/playwright/history-polish/desktop-ch01-discovery.png",
@@ -104,9 +107,9 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     .getByRole("button", { name: /进入历史现场/ })
     .click();
   await page.getByRole("button", { name: "进阶定量模式" }).click();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page.getByRole("button", { name: /天平总示数保持不变/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
 
   // Weigh both open-system trials
   const weighBtns = page.getByRole("button", {
@@ -124,7 +127,10 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
   await page
     .getByRole("spinbutton", { name: "逸散二氧化碳质量" })
     .fill("0.044");
-  await page.getByRole("combobox", { name: "质量单位" }).selectOption("kg");
+  await page
+    .getByRole("radiogroup", { name: "质量单位" })
+    .getByRole("radio", { name: /kg/ })
+    .click();
   await page.getByRole("button", { name: "提交实验检验" }).click();
   await expect(page.locator(".stage-feedback")).toContainText(
     "单位核算全部通过",
@@ -133,11 +139,11 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     path: "output/playwright/history-polish/desktop-ch02-mass-advanced.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   await page
     .getByRole("button", { name: /分析质量变化必须先界定体系边界/ })
     .click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await expect(
     page.getByRole("heading", { name: /质量守恒定律/ }),
   ).toBeVisible();
@@ -149,22 +155,22 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     .filter({ hasText: "水的真正身份" })
     .getByRole("button", { name: /进入历史现场/ })
     .click();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page
     .getByRole("button", { name: /既能由两种不同气体化合生成纯水/ })
     .click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   await page
     .getByRole("button", { name: /执行共享反应：氢氧点燃合成水/ })
     .click();
   await page.getByRole("button", { name: "氢气 : 氧气 = 2 : 1" }).click();
   await page.getByRole("button", { name: "提交实验检验" }).click();
   await expect(page.locator(".stage-feedback")).toContainText("组成判断通过");
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   await page
     .getByRole("button", { name: /证明了传统「四元素」中的水/ })
     .click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await expect(
     page.getByRole("heading", { name: /古典四元素说终结/ }),
   ).toBeVisible();
@@ -176,9 +182,9 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     .filter({ hasText: "人类的第一块电池" })
     .getByRole("button", { name: /进入历史现场/ })
     .click();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page.getByRole("button", { name: /必须由两种不同金属/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   await page.getByRole("button", { name: /锌 \+ 银（1800 历史原型）/ }).click();
   for (let i = 0; i < 2; i++) {
     await page.getByRole("button", { name: "+ 锌片 (Zn)" }).click();
@@ -193,11 +199,11 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     path: "output/playwright/history-polish/desktop-ch04-voltaic.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   await page
     .getByRole("button", { name: /它首次提供了持续可控的直流电流/ })
     .click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await page.getByRole("button", { name: /返回 10 章时间线/ }).click();
 
   // === CHAPTER 07: 尚未发现的元素 (via Deep Link #history/hist_07) ===
@@ -205,11 +211,11 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
   await expect(
     page.getByRole("heading", { name: "尚未发现的元素", exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page
     .getByRole("button", { name: /坚持同族化学性质一致的原则/ })
     .click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
 
   // Place all 4 cards + explicitly mark gap under Al
   await page.getByRole("button", { name: /Na 钠/ }).click();
@@ -228,9 +234,9 @@ test("Challenge History full 5-chapter real walkthrough (incl. Ch02 Advanced + r
     path: "output/playwright/history-polish/desktop-ch07-periodic.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   await page.getByRole("button", { name: /门捷列夫因大胆留白/ }).click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await expect(page.getByText(/1875 年布瓦博德朗发现的镓/)).toBeVisible();
 
   // Jump directly from Stage 5 reward CTA to Science Museum and verify all 5 historical exhibits unlocked!

@@ -15,6 +15,7 @@ import { useGame } from "../stores/game";
 import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { PageHeading, fmt } from "../components/Shared";
+import { CompactSelect } from "../components/CompactSelect";
 
 export default function DiscoveryTree({
   setDetail,
@@ -406,29 +407,32 @@ export default function DiscoveryTree({
                 同实体关联
               </span>
               <div className="tree-controls">
-                <select
-                  aria-label="发现网络类别"
+                <CompactSelect
+                  ariaLabel="发现网络类别"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {["全部", ...new Set(substances.map((s) => s.group))].map(
-                    (g) => (
-                      <option key={g}>{g}</option>
-                    ),
-                  )}
-                </select>
-                <select
-                  aria-label="聚焦物质合成路径"
+                  layout="grid"
+                  options={[
+                    "全部",
+                    ...new Set(substances.map((s) => s.group)),
+                  ].map((g) => ({ value: g, label: g }))}
+                  onChange={setCategory}
+                />
+                <CompactSelect
+                  ariaLabel="聚焦物质合成路径"
                   value={focusId}
-                  onChange={(e) => setFocusId(e.target.value)}
-                >
-                  <option value="">全部已知网络</option>
-                  {discoveredIds.map((id) => (
-                    <option key={id} value={id}>
-                      合成路径：{byId[id].name}
-                    </option>
-                  ))}
-                </select>
+                  layout="list"
+                  searchable={discoveredIds.length > 6}
+                  searchPlaceholder="搜索已发现物质…"
+                  options={[
+                    { value: "", label: "全部已知网络" },
+                    ...discoveredIds.map((id) => ({
+                      value: id,
+                      label: `合成路径：${byId[id].name}`,
+                      searchText: `${byId[id].name} ${byId[id].formula ?? ""}`,
+                    })),
+                  ]}
+                  onChange={setFocusId}
+                />
                 <label className="tree-toggle">
                   <input
                     type="checkbox"
@@ -504,29 +508,32 @@ export default function DiscoveryTree({
                     <i className="legend-dot purple-dot" /> 实体
                   </span>
                 </div>
-                <select
-                  aria-label="发现网络类别"
+                <CompactSelect
+                  ariaLabel="发现网络类别"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {["全部", ...new Set(substances.map((s) => s.group))].map(
-                    (g) => (
-                      <option key={g}>{g}</option>
-                    ),
-                  )}
-                </select>
-                <select
-                  aria-label="聚焦物质合成路径"
+                  layout="grid"
+                  options={[
+                    "全部",
+                    ...new Set(substances.map((s) => s.group)),
+                  ].map((g) => ({ value: g, label: g }))}
+                  onChange={setCategory}
+                />
+                <CompactSelect
+                  ariaLabel="聚焦物质合成路径"
                   value={focusId}
-                  onChange={(e) => setFocusId(e.target.value)}
-                >
-                  <option value="">全部已知网络</option>
-                  {discoveredIds.map((id) => (
-                    <option key={id} value={id}>
-                      合成路径：{byId[id].name}
-                    </option>
-                  ))}
-                </select>
+                  layout="list"
+                  searchable={discoveredIds.length > 6}
+                  searchPlaceholder="搜索已发现物质…"
+                  options={[
+                    { value: "", label: "全部已知网络" },
+                    ...discoveredIds.map((id) => ({
+                      value: id,
+                      label: `合成路径：${byId[id].name}`,
+                      searchText: `${byId[id].name} ${byId[id].formula ?? ""}`,
+                    })),
+                  ]}
+                  onChange={setFocusId}
+                />
                 <div className="tree-toggle-row">
                   <label className="tree-toggle">
                     <input

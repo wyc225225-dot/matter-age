@@ -86,7 +86,7 @@ test("Inner pages & workbench polish: mobile landscape warehouse usable, portrai
   await page.getByRole("button", { name: "完成选择", exact: true }).click();
   await page.getByRole("button", { name: "混合", exact: true }).click();
   await page
-    .getByRole("group", { name: "快捷选择催化剂" })
+    .getByRole("group", { name: "选择催化剂" })
     .getByRole("button", { name: "二氧化锰", exact: true })
     .click();
   await expect(page.locator(".catalyst-active-pill")).toContainText("二氧化锰");
@@ -139,9 +139,9 @@ test("Inner pages & workbench polish: mobile landscape warehouse usable, portrai
 
   // === 4. HISTORY CH.04, BOOK (Lv.2 badge non-overlap), WORLD, KNOWLEDGE ===
   await page.goto("/#history/hist_04");
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page.getByRole("button", { name: /必须由两种不同金属/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   await page.screenshot({
     path: `${SHOT_DIR}/portrait-390-history-ch04.png`,
   });

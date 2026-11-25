@@ -67,6 +67,7 @@ import { useGame } from "../stores/game";
 import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula, fmt } from "../components/Shared";
+import { CompactSelect } from "../components/CompactSelect";
 import "../styles/mobile-laboratory.css";
 
 const knowledgeSpecies =
@@ -777,14 +778,15 @@ export default function Laboratory({
             <span className="catalyst-empty-note">
               暂未解锁催化剂（解锁二氧化锰等后可选）
             </span>
-          ) : (
+          ) : availableCatalysts.length <= 4 ? (
             <div
               className="catalyst-chips"
               role="group"
-              aria-label="快捷选择催化剂"
+              aria-label="选择催化剂"
             >
               <button
                 type="button"
+                aria-pressed={catalyst.length === 0}
                 className={`cat-chip ${catalyst.length === 0 ? "active" : ""}`}
                 onClick={() => setCatalyst([])}
               >
@@ -796,6 +798,7 @@ export default function Laboratory({
                   <button
                     type="button"
                     key={id}
+                    aria-pressed={active}
                     className={`cat-chip ${active ? "active" : ""}`}
                     onClick={() => setCatalyst(active ? [] : [id])}
                   >
@@ -805,26 +808,23 @@ export default function Laboratory({
                 );
               })}
             </div>
+          ) : (
+            <CompactSelect
+              ariaLabel="选择催化剂"
+              value={catalyst[0] || ""}
+              layout="grid"
+              searchable={availableCatalysts.length > 8}
+              searchPlaceholder="搜索催化剂…"
+              options={[
+                { value: "", label: "不使用催化剂" },
+                ...availableCatalysts.map((id) => ({
+                  value: id,
+                  label: byId[id].name,
+                })),
+              ]}
+              onChange={(next) => setCatalyst(next ? [next] : [])}
+            />
           )}
-          <select
-            className={
-              availableCatalysts.length <= 4
-                ? "catalyst-select-sync"
-                : "catalyst-select-visible"
-            }
-            aria-label="选择催化剂"
-            value={catalyst[0] || ""}
-            onChange={(e) =>
-              setCatalyst(e.target.value ? [e.target.value] : [])
-            }
-          >
-            <option value="">不使用催化剂</option>
-            {availableCatalysts.map((id) => (
-              <option value={id} key={id}>
-                {byId[id].name}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
       <div className="experiment-actions">
@@ -1080,17 +1080,19 @@ export default function Laboratory({
                     >
                       <ChevronLeft size={14} />
                     </button>
-                    <select
-                      aria-label="选择配平方程式"
+                    <CompactSelect
+                      ariaLabel="选择配平方程式"
                       value={activeBalancingReaction?.id || ""}
-                      onChange={(e) => setSelectedBalanceId(e.target.value)}
-                    >
-                      {balancingPool.map((r) => (
-                        <option key={r.id} value={r.id}>
-                          {r.id.toUpperCase()} · {r.name}
-                        </option>
-                      ))}
-                    </select>
+                      layout="list"
+                      searchable
+                      searchPlaceholder="搜索编号或反应名称（如 R006 / 氢）"
+                      options={balancingPool.map((r) => ({
+                        value: r.id,
+                        label: `${r.id.toUpperCase()} · ${r.name}`,
+                        searchText: `${r.id} ${r.equation}`,
+                      }))}
+                      onChange={(nextId) => setSelectedBalanceId(nextId)}
+                    />
                     <button
                       type="button"
                       className="secondary small balancing-nav-btn"
@@ -1286,8 +1288,9 @@ export default function Laboratory({
               {isMobile && (
                 <button
                   type="button"
-                  className="warehouse-sort-pill"
+                  className={`warehouse-sort-pill ${sort === "name" ? "active" : ""}`}
                   aria-label="切换物质排序"
+                  aria-pressed={sort === "name"}
                   onClick={() => setSort(sort === "recent" ? "name" : "recent")}
                 >
                   <ArrowUpDown size={12} />
@@ -1341,6 +1344,7 @@ export default function Laboratory({
                     <button
                       type="button"
                       key={c}
+                      aria-pressed={category === c}
                       className={category === c ? "active" : ""}
                       onClick={() => setCategory(c)}
                     >
@@ -1351,27 +1355,30 @@ export default function Laboratory({
               </div>
             ) : (
               <div className="warehouse-selects">
-                <select
-                  aria-label="物质类别"
+                <CompactSelect
+                  ariaLabel="物质类别"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {["全部", ...new Set(substances.map((s) => s.group))].map(
-                    (c) => (
-                      <option key={c}>{c}</option>
-                    ),
-                  )}
-                </select>
-                <select
-                  aria-label="物质排序"
+                  layout="grid"
+                  options={[
+                    "全部",
+                    ...new Set(substances.map((s) => s.group)),
+                  ].map((c) => ({ value: c, label: c }))}
+                  onChange={setCategory}
+                />
+                <CompactSelect
+                  ariaLabel="物质排序"
                   value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                >
-                  <option value="recent">
-                    {qRun ? "份数最多" : run ? "最新合成" : "最近发现"}
-                  </option>
-                  <option value="name">名称排序</option>
-                </select>
+                  layout="list"
+                  minPopoverWidth={148}
+                  options={[
+                    {
+                      value: "recent",
+                      label: qRun ? "份数最多" : run ? "最新合成" : "最近发现",
+                    },
+                    { value: "name", label: "名称排序" },
+                  ]}
+                  onChange={setSort}
+                />
               </div>
             )}
             <div className="warehouse-grid">

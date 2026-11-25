@@ -271,7 +271,12 @@ export type HistoryPuzzleType =
   | "mass_conservation_compare"
   | "water_composition_balance"
   | "voltaic_pile_assembly"
-  | "periodic_table_prediction";
+  | "periodic_table_prediction"
+  | "urea_isomer_analysis"
+  | "faraday_electrolysis_lab"
+  | "radioactivity_data_analysis"
+  | "rutherford_scattering_model"
+  | "haber_bosch_process";
 
 export interface HistoricalFigureDef {
   id: string;
@@ -375,6 +380,108 @@ export interface HistoryExperimentConfig {
     options: { label: string; correct: boolean; explanation: string }[];
     advancedWeightRange?: [number, number];
     advancedOxideOptions?: { label: string; correct: boolean }[];
+  };
+  // Ch 05: Wöhler 1828 urea synthesis & isomer analysis
+  ureaConfig?: {
+    reactionStepLabel: string;
+    reactionResultNote: string;
+    evaporationStepLabel: string;
+    evaporationResultNote: string;
+    tests: {
+      id: string;
+      label: string;
+      observation: string;
+      evidenceLine: string;
+    }[];
+    conclusionPrompt: string;
+    conclusionOptions: { label: string; correct: boolean; feedback: string }[];
+    advancedIsomerPrompt: string;
+    advancedIsomerOptions: {
+      label: string;
+      correct: boolean;
+      feedback: string;
+    }[];
+  };
+  // Ch 06: Faraday 1833–1834 laws of electrolysis
+  faradayConfig?: {
+    modelNote: string;
+    electrolytes: {
+      id: "water_h2" | "cuso4_cu" | "agno3_ag";
+      name: string;
+      productName: string;
+      halfReaction: string;
+      electronsPerUnit: number;
+    }[];
+    currentsA: number[];
+    durationsUnit: number[];
+    lawPrompt: string;
+    lawOptions: { label: string; correct: boolean; feedback: string }[];
+    advancedSeriesPrompt: string;
+    advancedExpectedCuPortions: number;
+  };
+  // Ch 08: Curies 1898 pitchblende ionization virtual data analysis
+  radioactivityConfig?: {
+    safetyAndModelNote: string;
+    samples: {
+      id: string;
+      label: string;
+      compositionNote: string;
+      relativeIntensity: number;
+      readingDisplay: string;
+      spectrumNote: string;
+    }[];
+    anomalyPrompt: string;
+    anomalyOptions: { label: string; correct: boolean; feedback: string }[];
+    advancedModelPrompt: string;
+    advancedModelOptions: {
+      label: string;
+      correct: boolean;
+      feedback: string;
+    }[];
+  };
+  // Ch 09: Geiger-Marsden 1909 & Rutherford 1911 gold-foil scattering teaching model
+  scatteringConfig?: {
+    nuclearModelNote: string;
+    angles: {
+      id: "forward" | "side" | "backscatter";
+      label: string;
+      rangeLabel: string;
+      fractionDisplay: string;
+      observation: string;
+    }[];
+    modelPrompt: string;
+    modelOptions: { label: string; correct: boolean; feedback: string }[];
+    advancedMechanismPrompt: string;
+    advancedMechanismOptions: {
+      label: string;
+      correct: boolean;
+      feedback: string;
+    }[];
+  };
+  // Ch 10: Haber-Bosch 1909–1913 ammonia synthesis abstract industrial equilibrium model
+  haberConfig?: {
+    modelBoundaryNote: string;
+    tempOptions: {
+      id: "low" | "mid" | "high";
+      label: string;
+      detail: string;
+    }[];
+    pressureOptions: {
+      id: "low" | "mid" | "high";
+      label: string;
+      detail: string;
+    }[];
+    catalystOptions: {
+      id: "none" | "iron" | "osmium";
+      label: string;
+      detail: string;
+    }[];
+    advancedRatioPrompt: string;
+    advancedRatioOptions: {
+      label: string;
+      correct: boolean;
+      feedback: string;
+    }[];
   };
 }
 
@@ -591,6 +698,52 @@ export interface HistoryPuzzleSessionData {
   periodicGapChoice?: number | null;
   periodicWeightGuess?: string;
   periodicOxideChoice?: number | null;
+  // Ch 05: Urea synthesis
+  ureaReacted?: boolean;
+  ureaEvaporated?: boolean;
+  ureaTestedIds?: string[];
+  ureaConclusionChoice?: number | null;
+  ureaIsomerChoice?: number | null;
+  // Ch 06: Faraday electrolysis
+  faradayElectrolyte?: "water_h2" | "cuso4_cu" | "agno3_ag";
+  faradayCurrent?: number;
+  faradayDuration?: number;
+  faradayLogs?: {
+    electrolyteId: "water_h2" | "cuso4_cu" | "agno3_ag";
+    currentA: number;
+    duration: number;
+    chargeQ: number;
+    yieldMol: number;
+  }[];
+  faradayLawChoice?: number | null;
+  faradaySeriesAnswer?: string;
+  // Ch 08: Radioactivity data analysis
+  radioMeasuredIds?: string[];
+  radioAnomalyChoice?: number | null;
+  radioModelChoice?: number | null;
+  // Ch 09: Rutherford scattering
+  scatterModelView?: "plum_pudding" | "nuclear";
+  scatterComparedBoth?: boolean;
+  scatterObservedAngles?: string[];
+  scatterModelChoice?: number | null;
+  scatterMechanismChoice?: number | null;
+  // Ch 10: Haber-Bosch
+  haberTemp?: "low" | "mid" | "high";
+  haberPressure?: "low" | "mid" | "high";
+  haberCatalyst?: "none" | "iron" | "osmium";
+  haberRecycle?: boolean;
+  haberTrialCount?: number;
+  haberTrialHistory?: {
+    temp: "low" | "mid" | "high";
+    pressure: "low" | "mid" | "high";
+    catalyst: "none" | "iron" | "osmium";
+    recycle: boolean;
+    rateScore: number;
+    eqYieldPct: number;
+    outputScore: number;
+    feasible: boolean;
+  }[];
+  haberRatioChoice?: number | null;
 }
 
 export interface HistorySessionState {

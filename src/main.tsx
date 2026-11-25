@@ -6,6 +6,7 @@ import "./styles/v16.css";
 import "./styles/mobile-ux.css";
 import "./styles/mobile-simplify.css";
 import "./styles/inner-polish.css";
+import "./styles/compact-select.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />

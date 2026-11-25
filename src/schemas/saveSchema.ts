@@ -205,6 +205,67 @@ const historyPuzzleSessionSchema = z
     periodicGapChoice: z.number().int().nonnegative().nullable().optional(),
     periodicWeightGuess: z.string().max(40).optional(),
     periodicOxideChoice: z.number().int().nonnegative().nullable().optional(),
+    // Ch 05
+    ureaReacted: z.boolean().optional(),
+    ureaEvaporated: z.boolean().optional(),
+    ureaTestedIds: z.array(id).max(10).optional(),
+    ureaConclusionChoice: z.number().int().nonnegative().nullable().optional(),
+    ureaIsomerChoice: z.number().int().nonnegative().nullable().optional(),
+    // Ch 06
+    faradayElectrolyte: z.enum(["water_h2", "cuso4_cu", "agno3_ag"]).optional(),
+    faradayCurrent: z.number().positive().max(20).optional(),
+    faradayDuration: z.number().positive().max(20).optional(),
+    faradayLogs: z
+      .array(
+        z.object({
+          electrolyteId: z.enum(["water_h2", "cuso4_cu", "agno3_ag"]),
+          currentA: z.number().positive(),
+          duration: z.number().positive(),
+          chargeQ: z.number().positive(),
+          yieldMol: z.number().nonnegative(),
+        }),
+      )
+      .max(20)
+      .optional(),
+    faradayLawChoice: z.number().int().nonnegative().nullable().optional(),
+    faradaySeriesAnswer: z.string().max(40).optional(),
+    // Ch 08
+    radioMeasuredIds: z.array(id).max(10).optional(),
+    radioAnomalyChoice: z.number().int().nonnegative().nullable().optional(),
+    radioModelChoice: z.number().int().nonnegative().nullable().optional(),
+    // Ch 09
+    scatterModelView: z.enum(["plum_pudding", "nuclear"]).optional(),
+    scatterComparedBoth: z.boolean().optional(),
+    scatterObservedAngles: z.array(id).max(10).optional(),
+    scatterModelChoice: z.number().int().nonnegative().nullable().optional(),
+    scatterMechanismChoice: z
+      .number()
+      .int()
+      .nonnegative()
+      .nullable()
+      .optional(),
+    // Ch 10
+    haberTemp: z.enum(["low", "mid", "high"]).optional(),
+    haberPressure: z.enum(["low", "mid", "high"]).optional(),
+    haberCatalyst: z.enum(["none", "iron", "osmium"]).optional(),
+    haberRecycle: z.boolean().optional(),
+    haberTrialCount: z.number().int().nonnegative().max(100).optional(),
+    haberTrialHistory: z
+      .array(
+        z.object({
+          temp: z.enum(["low", "mid", "high"]),
+          pressure: z.enum(["low", "mid", "high"]),
+          catalyst: z.enum(["none", "iron", "osmium"]),
+          recycle: z.boolean(),
+          rateScore: z.number(),
+          eqYieldPct: z.number(),
+          outputScore: z.number(),
+          feasible: z.boolean(),
+        }),
+      )
+      .max(20)
+      .optional(),
+    haberRatioChoice: z.number().int().nonnegative().nullable().optional(),
   })
   .default({});
 

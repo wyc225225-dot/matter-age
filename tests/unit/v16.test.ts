@@ -246,10 +246,10 @@ describe("V1.6 P0: Economy, Inventory Isolation, Tech DAG, Equipment & Lab Progr
   });
 });
 
-describe("V1.6 P1: Challenge History (5 Playable Distinct Puzzles), Museum (16) & Achievements (+22)", () => {
-  it("maintains 10-chapter timeline with 5 playable pending chapters & multi-contributor historical figures", () => {
+describe("V1.6 P1: Challenge History (10 Playable Distinct Puzzles), Museum (21) & Achievements", () => {
+  it("maintains 10-chapter timeline with all 10 playable pending chapters & multi-contributor historical figures", () => {
     expect(historyChapters.length).toBe(10);
-    expect(historyChapters.filter((c) => c.playable).length).toBe(5);
+    expect(historyChapters.filter((c) => c.playable).length).toBe(10);
     expect(historyChapters.every((c) => c.reviewStatus === "pending")).toBe(
       true,
     );

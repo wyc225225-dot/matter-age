@@ -91,9 +91,8 @@ test("V1.5 real preview advanced mode: 3H2+2O2, balancing, finite catalyst chall
 
   // 4. Real Equation Balancing Studio on r006: proportional (4:2 -> 4) then simplest (2:1 -> 2)
   await page.getByRole("button", { name: "方程式配平研究" }).click();
-  await page
-    .getByRole("combobox", { name: "选择配平方程式" })
-    .selectOption("r006");
+  await page.getByRole("combobox", { name: "选择配平方程式" }).click();
+  await page.getByRole("option", { name: /R006/ }).click();
   await page.getByRole("spinbutton", { name: "氢气反应物系数" }).fill("4");
   await page.getByRole("spinbutton", { name: "氧气反应物系数" }).fill("2");
   await page.getByRole("spinbutton", { name: "水产物系数" }).fill("4");
@@ -118,8 +117,9 @@ test("V1.5 real preview advanced mode: 3H2+2O2, balancing, finite catalyst chall
   await page.getByRole("spinbutton", { name: "过氧化氢投入份数" }).fill("4");
   await page.getByRole("button", { name: "混合", exact: true }).click();
   await page
-    .getByRole("combobox", { name: "选择催化剂" })
-    .selectOption("manganese_dioxide");
+    .getByRole("group", { name: "选择催化剂" })
+    .getByRole("button", { name: "二氧化锰", exact: true })
+    .click();
   await page.getByRole("button", { name: "执行定量实验" }).click();
   await page.getByRole("button", { name: "跳过动画" }).click();
 
@@ -134,7 +134,10 @@ test("V1.5 real preview advanced mode: 3H2+2O2, balancing, finite catalyst chall
   await page.getByRole("spinbutton", { name: "氧气投入份数" }).fill("2");
   await page.getByRole("button", { name: "混合", exact: true }).click();
   await page.getByRole("button", { name: "点燃", exact: true }).click();
-  await page.getByRole("combobox", { name: "选择催化剂" }).selectOption("");
+  await page
+    .getByRole("group", { name: "选择催化剂" })
+    .getByRole("button", { name: "不使用", exact: true })
+    .click();
   await page.getByRole("button", { name: "执行定量实验" }).click();
   await expect(page.getByText(/定量挑战达成/)).toBeVisible();
 

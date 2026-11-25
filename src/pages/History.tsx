@@ -5,6 +5,7 @@ import {
   Award,
   BookOpen,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Cpu,
@@ -41,10 +42,15 @@ import {
   canAccessHistoryStage,
   createHistorySession,
   DEFAULT_MAX_HISTORY_REPEAT_REWARDS,
+  evaluateFaradayElectrolysis,
   evaluateGasIdentification,
+  evaluateHaberBosch,
   evaluateHistoryRating,
   evaluateMassComparison,
   evaluatePeriodicPrediction,
+  evaluateRadioactivityData,
+  evaluateRutherfordScattering,
+  evaluateUreaSynthesis,
   evaluateVoltaicPile,
   evaluateWaterComposition,
   HISTORY_STAGE_ORDER,
@@ -53,6 +59,7 @@ import {
   type VoltaicDisc,
 } from "../engine/historyEngine";
 import { SubstanceIcon } from "../components/SubstanceIcon";
+import { HistoryExtraDesks } from "../components/HistoryExtraDesks";
 import {
   HistoryChapterScene,
   ScientistMedallion,
@@ -85,6 +92,7 @@ export default function History({
     "all",
   );
   const [infoOpen, setInfoOpen] = useState(false);
+  const [factsOpen, setFactsOpen] = useState(false);
   const [mobileGasTab, setMobileGasTab] = useState<number>(0);
   const [mobileMassTab, setMobileMassTab] = useState<"trials" | "conclusion">(
     "trials",
@@ -100,8 +108,9 @@ export default function History({
   const [lastRatingBreakdown, setLastRatingBreakdown] = useState<string[]>([]);
   const handledDeepRef = useRef<string | null>(null);
 
-  // Deep link support (#history/hist_04) — handle each distinct deep link once so returning to timeline never re-opens it
+  // Deep link support (#history/hist_04) — wait until IndexedDB save hydrates, and handle each distinct deep link once so returning to timeline never re-opens it
   useEffect(() => {
+    if (!game.ready) return;
     if (!deepChapterId) {
       handledDeepRef.current = null;
       return;
@@ -114,12 +123,22 @@ export default function History({
         game.openHistoryChapter(ch.id);
       }
     }
-  }, [deepChapterId, game, save.activeHistoryChapterId]);
+  }, [game.ready, deepChapterId, game, save.activeHistoryChapterId]);
 
   const activeChapter =
     historyChapters.find(
       (c) => c.id === save.activeHistoryChapterId && c.playable,
     ) ?? null;
+
+  useEffect(() => {
+    setFactsOpen(false);
+  }, [activeChapter?.id]);
+
+  useEffect(() => {
+    if (vp.isMobileLandscape) {
+      window.scrollTo(0, 0);
+    }
+  }, [vp.isMobileLandscape, activeChapter?.id]);
   const activeProg = activeChapter
     ? save.historyProgress[activeChapter.id]
     : undefined;
@@ -196,7 +215,9 @@ export default function History({
       Boolean(resProg?.session) && resProg?.session?.stage !== "discovery";
 
     const displayedChapters =
-      timelineFilter === "playable" ? playableChapters : historyChapters;
+      timelineFilter === "playable"
+        ? playableChapters.filter((c) => !save.historyProgress[c.id]?.completed)
+        : historyChapters;
 
     return (
       <div
@@ -207,16 +228,18 @@ export default function History({
             <p className="eyebrow">CHALLENGE HISTORY · SCIENTIFIC ARCHIVES</p>
             <h1>挑战历史：化学史时间线</h1>
             <p>
-              进入不同历史时期的实验现场，在当时知识与仪器限制下完成推理与发现。10
-              章科学史时间线中，第 01 / 02 / 03 / 04 / 07
-              章已完整可玩，支持随时离开与刷新续玩、简单/进阶双难度。
+              进入不同历史时期的实验现场，在当时知识与仪器限制下完成推理与发现。全部{" "}
+              {playableChapters.length}{" "}
+              章科学史时间线已完整可玩，支持随时离开与刷新续玩、简单/进阶双难度。
             </p>
           </div>
           <div className="mgmt-quick-stats">
             <div className="stat-chip copper">
               <ScrollText size={15} />
-              <strong>{playableDone} / 5</strong>
-              <span>可玩章节通关</span>
+              <strong>
+                {playableDone} / {playableChapters.length}
+              </strong>
+              <span>历史章节通关</span>
             </div>
             <div className="stat-chip gold">
               <Star size={15} />
@@ -225,7 +248,7 @@ export default function History({
                   (s, c) => s + (save.historyProgress[c.id]?.bestStars ?? 0),
                   0,
                 )}{" "}
-                / 15
+                / {playableChapters.length * 3}
               </strong>
               <span>历史星级</span>
             </div>
@@ -305,7 +328,7 @@ export default function History({
                     setTimelineFilter("all");
                   }}
                 >
-                  10 章时间线（5 章可玩 / 5 章预告）
+                  全部 {historyChapters.length} 章时间线
                 </button>
                 {vp.isMobile && (
                   <button
@@ -323,7 +346,7 @@ export default function History({
                       setTimelineFilter("playable");
                     }}
                   >
-                    仅看 5 章可玩
+                    未通关 ({playableChapters.length - playableDone})
                   </button>
                 )}
                 <button
@@ -332,7 +355,8 @@ export default function History({
                   className={viewTab === "archives" ? "active" : ""}
                   onClick={() => setViewTab("archives")}
                 >
-                  科学家档案与历史手稿（已解锁 {completedChapters.length}/5）
+                  科学家档案与历史手稿（已解锁 {completedChapters.length}/
+                  {playableChapters.length}）
                 </button>
               </div>
             </div>
@@ -727,6 +751,135 @@ export default function History({
           ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
           : cur.evidenceCollected,
       }));
+      return;
+    }
+
+    if (exp.puzzleType === "urea_isomer_analysis") {
+      const res = evaluateUreaSynthesis(
+        activeChapter,
+        {
+          reacted: Boolean(pz.ureaReacted),
+          evaporated: Boolean(pz.ureaEvaporated),
+          testedIds: pz.ureaTestedIds ?? [],
+          conclusionChoice: pz.ureaConclusionChoice ?? null,
+          isomerChoice: pz.ureaIsomerChoice ?? null,
+        },
+        session.difficulty,
+      );
+      patchSession((cur) => ({
+        ...cur,
+        experimentAttempts: nextAttempts,
+        feedback: res.message,
+        stageCompleted: {
+          ...cur.stageCompleted,
+          experiment: cur.stageCompleted.experiment || res.passed,
+        },
+        evidenceCollected: res.passed
+          ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
+          : cur.evidenceCollected,
+      }));
+      return;
+    }
+
+    if (exp.puzzleType === "faraday_electrolysis_lab") {
+      const seriesNum =
+        (pz.faradaySeriesAnswer ?? "").trim() === ""
+          ? null
+          : Number(pz.faradaySeriesAnswer);
+      const res = evaluateFaradayElectrolysis(
+        activeChapter,
+        pz.faradayLogs ?? [],
+        pz.faradayLawChoice ?? null,
+        seriesNum,
+        session.difficulty,
+      );
+      patchSession((cur) => ({
+        ...cur,
+        experimentAttempts: nextAttempts,
+        feedback: res.message,
+        stageCompleted: {
+          ...cur.stageCompleted,
+          experiment: cur.stageCompleted.experiment || res.passed,
+        },
+        evidenceCollected: res.passed
+          ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
+          : cur.evidenceCollected,
+      }));
+      return;
+    }
+
+    if (exp.puzzleType === "radioactivity_data_analysis") {
+      const res = evaluateRadioactivityData(
+        activeChapter,
+        pz.radioMeasuredIds ?? [],
+        pz.radioAnomalyChoice ?? null,
+        pz.radioModelChoice ?? null,
+        session.difficulty,
+      );
+      patchSession((cur) => ({
+        ...cur,
+        experimentAttempts: nextAttempts,
+        feedback: res.message,
+        stageCompleted: {
+          ...cur.stageCompleted,
+          experiment: cur.stageCompleted.experiment || res.passed,
+        },
+        evidenceCollected: res.passed
+          ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
+          : cur.evidenceCollected,
+      }));
+      return;
+    }
+
+    if (exp.puzzleType === "rutherford_scattering_model") {
+      const res = evaluateRutherfordScattering(
+        activeChapter,
+        pz.scatterObservedAngles ?? [],
+        Boolean(pz.scatterComparedBoth),
+        pz.scatterModelChoice ?? null,
+        pz.scatterMechanismChoice ?? null,
+        session.difficulty,
+      );
+      patchSession((cur) => ({
+        ...cur,
+        experimentAttempts: nextAttempts,
+        feedback: res.message,
+        stageCompleted: {
+          ...cur.stageCompleted,
+          experiment: cur.stageCompleted.experiment || res.passed,
+        },
+        evidenceCollected: res.passed
+          ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
+          : cur.evidenceCollected,
+      }));
+      return;
+    }
+
+    if (exp.puzzleType === "haber_bosch_process") {
+      const res = evaluateHaberBosch(
+        activeChapter,
+        {
+          temp: pz.haberTemp ?? "low",
+          pressure: pz.haberPressure ?? "low",
+          catalyst: pz.haberCatalyst ?? "none",
+          recycle: Boolean(pz.haberRecycle),
+          trialCount: pz.haberTrialCount ?? 0,
+          ratioChoice: pz.haberRatioChoice ?? null,
+        },
+        session.difficulty,
+      );
+      patchSession((cur) => ({
+        ...cur,
+        experimentAttempts: nextAttempts,
+        feedback: res.message,
+        stageCompleted: {
+          ...cur.stageCompleted,
+          experiment: cur.stageCompleted.experiment || res.passed,
+        },
+        evidenceCollected: res.passed
+          ? [...new Set([...cur.evidenceCollected, ...res.evidence])]
+          : cur.evidenceCollected,
+      }));
     }
   }
 
@@ -825,7 +978,7 @@ export default function History({
             }))
           }
         >
-          进入阶段 2：提出科学假设
+          开始提出假设
           <ChevronRight size={16} />
         </button>
       )}
@@ -841,7 +994,7 @@ export default function History({
             }))
           }
         >
-          进入阶段 3：重现经典实验
+          开始实验
           <ChevronRight size={16} />
         </button>
       )}
@@ -865,7 +1018,7 @@ export default function History({
                 }))
               }
             >
-              进入第 4/5 步：证据分析
+              整理证据与结论
               <ChevronRight size={15} />
             </button>
           </div>
@@ -880,7 +1033,7 @@ export default function History({
           disabled={!session.stageCompleted.analysis}
           onClick={handleFinishAnalysis}
         >
-          完成推理并揭晓历史真相
+          揭晓历史真相
           <Award size={16} />
         </button>
       )}
@@ -931,7 +1084,7 @@ export default function History({
               onClick={() => setInfoOpen((v) => !v)}
             >
               <Info size={14} />
-              <span>背景 ▾</span>
+              <span>资料 ▾</span>
             </button>
           </div>
           {stageStepper}
@@ -1000,26 +1153,29 @@ export default function History({
           <div className="page-heading">
             <div>
               <p className="eyebrow">
-                {activeChapter.en} · {activeChapter.eraYear} · 待审校（pending）
+                CH.{String(activeChapter.number).padStart(2, "0")} ·{" "}
+                {activeChapter.eraYear} · {activeChapter.knowledgeTheme}
               </p>
               <h1>{activeChapter.title}</h1>
               <p>{activeChapter.subtitle}</p>
             </div>
-            <div className="chapter-materials-strip">
-              <span className="muted">
-                本章独立实验材料（与经营库存隔离）：
-              </span>
-              <div className="yield-chips">
-                {exp.chapterMaterials.map((id) =>
-                  byId[id] ? (
-                    <span key={id} className="yield-chip">
-                      <SubstanceIcon s={byId[id]} size={18} />
-                      {byId[id].name}
-                    </span>
-                  ) : null,
-                )}
+            {exp.chapterMaterials.length > 0 && (
+              <div className="chapter-materials-strip">
+                <span className="muted">
+                  本章独立实验材料（与经营库存隔离）：
+                </span>
+                <div className="yield-chips">
+                  {exp.chapterMaterials.map((id) =>
+                    byId[id] ? (
+                      <span key={id} className="yield-chip">
+                        <SubstanceIcon s={byId[id]} size={18} />
+                        {byId[id].name}
+                      </span>
+                    ) : null,
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <HistoryChapterScene chapterId={activeChapter.id} />
@@ -1029,7 +1185,7 @@ export default function History({
             <span>
               {session.stage === "discovery"
                 ? activeChapter.factDistinctionNote
-                : "科学史教学声明（pending 待审校）：实验环节为教学模拟与独立推理过程，最终历史人物贡献与现代对照将于第 5 阶段「历史揭晓」完整呈现。"}
+                : "本关实验为教学模拟与独立推理，历史人物与史实对照将在通关后揭晓。"}
             </span>
           </div>
 
@@ -1084,30 +1240,32 @@ export default function History({
               </button>
             </div>
             <HistoryChapterScene chapterId={activeChapter.id} />
-            <div
-              className="chapter-materials-strip"
-              style={{ margin: "10px 0" }}
-            >
-              <span className="muted">
-                本章独立实验材料（与经营库存隔离）：
-              </span>
-              <div className="yield-chips">
-                {exp.chapterMaterials.map((id) =>
-                  byId[id] ? (
-                    <span key={id} className="yield-chip">
-                      <SubstanceIcon s={byId[id]} size={18} />
-                      {byId[id].name}
-                    </span>
-                  ) : null,
-                )}
+            {exp.chapterMaterials.length > 0 && (
+              <div
+                className="chapter-materials-strip"
+                style={{ margin: "10px 0" }}
+              >
+                <span className="muted">
+                  本章独立实验材料（与经营库存隔离）：
+                </span>
+                <div className="yield-chips">
+                  {exp.chapterMaterials.map((id) =>
+                    byId[id] ? (
+                      <span key={id} className="yield-chip">
+                        <SubstanceIcon s={byId[id]} size={18} />
+                        {byId[id].name}
+                      </span>
+                    ) : null,
+                  )}
+                </div>
               </div>
-            </div>
+            )}
             <div className="fact-notice">
               <BookOpen size={15} />
               <span>
                 {session.stage === "discovery"
                   ? activeChapter.factDistinctionNote
-                  : "科学史教学声明（pending 待审校）：实验环节为教学模拟与独立推理过程，最终历史人物贡献与现代对照将于第 5 阶段「历史揭晓」完整呈现。"}
+                  : "本关实验为教学模拟与独立推理，历史人物与史实对照将在通关后揭晓。"}
               </span>
             </div>
             <div className="stage-actions">
@@ -1149,30 +1307,68 @@ export default function History({
 
       <div className="history-stage-shell">
         <div className="history-stage-main">
-          {/* ==================== STAGE 1: BACKGROUND (Spoiler-Free) ==================== */}
+          {/* ==================== STAGE 1: BACKGROUND (Spoiler-Free, Concise Opening) ==================== */}
           {session.stage === "background" && (
-            <section className="panel history-stage-panel">
-              <div className="research-question-box">
-                <span className="eyebrow">
-                  RESEARCH QUESTION · 核心研究问题
-                </span>
+            <section className="panel history-stage-panel history-opening-panel">
+              <div className="history-opening-lead">
+                <div className="history-opening-meta">
+                  <span className="history-era-tag">
+                    {activeChapter.eraYear}
+                  </span>
+                  <span className="history-theme-tag">
+                    {activeChapter.knowledgeTheme}
+                  </span>
+                </div>
                 <h2>{st.background.researchQuestion}</h2>
+                <p className="history-context-lead">
+                  {st.background.contextSummary}
+                </p>
               </div>
-              <p>{st.background.contextSummary}</p>
-              <div className="history-facts-box">
-                <h3>时代背景线索（最终人物归属与结论将在完成实验后揭晓）</h3>
-                <ul>
-                  {st.background.historicalFacts.map((fact) => (
-                    <li key={fact}>{fact}</li>
-                  ))}
-                </ul>
-              </div>
-              {st.background.teachingDialogue.map((d, i) => (
-                <blockquote key={i} className="teaching-dialogue">
-                  <strong>{d.speaker}</strong>
-                  <p>「{d.line}」</p>
-                </blockquote>
-              ))}
+
+              {st.background.teachingDialogue[0]?.line && (
+                <div className="history-task-callout">
+                  <div className="history-task-label">
+                    <FlaskConical size={14} />
+                    <span>本关任务</span>
+                  </div>
+                  <p>{st.background.teachingDialogue[0].line}</p>
+                </div>
+              )}
+
+              {st.background.historicalFacts.length > 0 && (
+                <div
+                  className={`history-facts-disclosure ${factsOpen ? "is-open" : ""}`}
+                >
+                  <button
+                    type="button"
+                    className="history-facts-toggle"
+                    aria-expanded={factsOpen}
+                    onClick={() => setFactsOpen((v) => !v)}
+                  >
+                    <span className="history-facts-toggle-title">
+                      <BookOpen size={14} />
+                      时代背景
+                    </span>
+                    <span className="history-facts-toggle-meta">
+                      {factsOpen
+                        ? "收起"
+                        : `${st.background.historicalFacts.length} 条史实`}
+                      <ChevronDown
+                        size={14}
+                        className="history-facts-chevron"
+                      />
+                    </span>
+                  </button>
+                  {factsOpen && (
+                    <ul className="history-facts-list">
+                      {st.background.historicalFacts.map((fact) => (
+                        <li key={fact}>{fact}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+
               {!vp.isMobile && (
                 <div className="stage-actions">
                   <button
@@ -1189,7 +1385,7 @@ export default function History({
                       }))
                     }
                   >
-                    进入阶段 2：提出科学假设
+                    开始提出假设
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -1243,7 +1439,7 @@ export default function History({
                       }))
                     }
                   >
-                    进入阶段 3：重现经典实验
+                    开始实验
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -1396,36 +1592,55 @@ export default function History({
                               );
                             })}
                           </div>
-                          <label className="guess-select">
+                          <div className="guess-select">
                             <span>限定候选池指认：</span>
-                            <select
+                            <div
+                              className="gas-choice-list"
+                              role="radiogroup"
                               aria-label={`${sample.label}气体指认`}
-                              value={pz.gasGuesses?.[sample.id] ?? ""}
-                              onChange={(e) =>
-                                patchSession((cur) => ({
-                                  ...cur,
-                                  puzzle: {
-                                    ...cur.puzzle,
-                                    gasGuesses: {
-                                      ...(cur.puzzle.gasGuesses ?? {}),
-                                      [sample.id]: e.target.value,
-                                    },
-                                  },
-                                }))
-                              }
                             >
-                              <option value="">-- 收集充分证据后选择 --</option>
-                              <option value="oxygen">
-                                助燃气体（氧气 O₂）
-                              </option>
-                              <option value="carbon_dioxide">
-                                使石灰水浑浊气体（二氧化碳 CO₂）
-                              </option>
-                              <option value="nitrogen">
-                                空气主要惰性组分（氮气 N₂）
-                              </option>
-                            </select>
-                          </label>
+                              {(
+                                [
+                                  ["oxygen", "助燃气体（氧气 O₂）"],
+                                  [
+                                    "carbon_dioxide",
+                                    "使石灰水浑浊气体（二氧化碳 CO₂）",
+                                  ],
+                                  ["nitrogen", "空气主要惰性组分（氮气 N₂）"],
+                                ] as const
+                              ).map(([val, label]) => {
+                                const checked =
+                                  (pz.gasGuesses?.[sample.id] ?? "") === val;
+                                return (
+                                  <button
+                                    type="button"
+                                    key={val}
+                                    role="radio"
+                                    aria-checked={checked}
+                                    className={`gas-choice-btn ${checked ? "active" : ""}`}
+                                    onClick={() =>
+                                      patchSession((cur) => ({
+                                        ...cur,
+                                        puzzle: {
+                                          ...cur.puzzle,
+                                          gasGuesses: {
+                                            ...(cur.puzzle.gasGuesses ?? {}),
+                                            [sample.id]: val,
+                                          },
+                                        },
+                                      }))
+                                    }
+                                  >
+                                    <span
+                                      className="gas-choice-dot"
+                                      aria-hidden="true"
+                                    />
+                                    <span>{label}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
                         </div>
                       ))}
                   </div>
@@ -1664,24 +1879,42 @@ export default function History({
                                       }))
                                     }
                                   />
-                                  <select
+                                  <div
+                                    className="unit-seg"
+                                    role="radiogroup"
                                     aria-label="质量单位"
-                                    value={pz.massUnit ?? "g"}
-                                    onChange={(e) =>
-                                      patchSession((cur) => ({
-                                        ...cur,
-                                        puzzle: {
-                                          ...cur.puzzle,
-                                          massUnit: e.target.value as
-                                            "g" | "kg" | "mg",
-                                        },
-                                      }))
-                                    }
                                   >
-                                    <option value="g">g（克）</option>
-                                    <option value="kg">kg（千克）</option>
-                                    <option value="mg">mg（毫克）</option>
-                                  </select>
+                                    {(
+                                      [
+                                        ["g", "g（克）"],
+                                        ["kg", "kg（千克）"],
+                                        ["mg", "mg（毫克）"],
+                                      ] as const
+                                    ).map(([unitVal, unitLabel]) => {
+                                      const active =
+                                        (pz.massUnit ?? "g") === unitVal;
+                                      return (
+                                        <button
+                                          type="button"
+                                          key={unitVal}
+                                          role="radio"
+                                          aria-checked={active}
+                                          className={active ? "active" : ""}
+                                          onClick={() =>
+                                            patchSession((cur) => ({
+                                              ...cur,
+                                              puzzle: {
+                                                ...cur.puzzle,
+                                                massUnit: unitVal,
+                                              },
+                                            }))
+                                          }
+                                        >
+                                          {unitLabel}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
                                 </div>
                               </label>
                             </div>
@@ -2250,8 +2483,7 @@ export default function History({
                     {(!vp.isMobilePortrait || mobilePeriodicTab === "grid") && (
                       <>
                         <h4>
-                          步骤 A：点选 1869
-                          元素卡片，再点击下方周期网格归位（触屏友好）
+                          步骤 A：点选 1869 元素卡片，再点击下方周期网格归位
                         </h4>
                         <div className="periodic-tray">
                           {exp.periodicCards.map((card) => {
@@ -2536,6 +2768,14 @@ export default function History({
                   </div>
                 )}
 
+              {/* ---------- PUZZLES 5-10: CH.05 / CH.06 / CH.08 / CH.09 / CH.10 ---------- */}
+              <HistoryExtraDesks
+                chapter={activeChapter}
+                session={session}
+                patchSession={patchSession}
+                isMobilePortrait={vp.isMobilePortrait}
+              />
+
               {!vp.isMobile && session.feedback && (
                 <p className="stage-feedback">{session.feedback}</p>
               )}
@@ -2556,7 +2796,7 @@ export default function History({
                       }))
                     }
                   >
-                    进入阶段 4：证据分析
+                    整理证据与结论
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -2618,7 +2858,7 @@ export default function History({
                     disabled={!session.stageCompleted.analysis}
                     onClick={handleFinishAnalysis}
                   >
-                    完成推理并揭晓历史真相
+                    揭晓历史真相
                     <Award size={16} />
                   </button>
                 </div>
@@ -2629,7 +2869,6 @@ export default function History({
           {/* ==================== STAGE 5: HISTORICAL REVEAL & TANGIBLE REWARDS ==================== */}
           {session.stage === "discovery" && (
             <section className="panel history-stage-panel discovery-celebration">
-              <span className="eyebrow">HISTORICAL MILESTONE REVEALED</span>
               <h2>
                 <Sparkles size={20} /> {st.discovery.milestoneTitle}
               </h2>
@@ -2685,7 +2924,7 @@ export default function History({
               {/* Tangible Unlocked Rewards & Evaluation Breakdown */}
               {activeChapter.archiveRewards && (
                 <div className="note-box reward-showcase-box">
-                  <h4>本章已解锁实际内容奖励（幂等账本防重放）</h4>
+                  <h4>本章解锁收藏</h4>
                   <div className="reward-showcase-grid">
                     <div>
                       <strong>历史手稿：</strong>

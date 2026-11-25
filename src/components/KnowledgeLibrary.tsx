@@ -15,6 +15,7 @@ import { conditionName, reactions, substances } from "../data";
 import { summarizeKnowledgeCoverage } from "../engine/knowledgeCoverage";
 import { useViewport } from "../hooks/useViewport";
 import { Formula } from "./Shared";
+import { CompactSelect } from "./CompactSelect";
 import { ArchiveTabs, type ArchiveView } from "./ArchiveTabs";
 import {
   formatKnowledgeActivation,
@@ -216,29 +217,50 @@ export function KnowledgeLibrary({
                 />
                 <span className="archive-inline-count">{total} 条</span>
               </label>
-              {view !== "species" && (
-                <select
-                  aria-label="知识库筛选"
+              {view === "elements" && (
+                <CompactSelect
+                  ariaLabel="知识库筛选"
                   value={category}
-                  onChange={(e) => {
-                    setCategory(e.target.value);
+                  layout="grid"
+                  options={[
+                    "全部",
+                    ...new Set(elements.map((e) => e.groupName)),
+                  ].map((c) => ({ value: c, label: c }))}
+                  onChange={(next) => {
+                    setCategory(next);
                     setPage(0);
                     setSelected(null);
                   }}
+                />
+              )}
+              {view === "transformations" && (
+                <div
+                  className="kb-filter-pills mobile-scroll-strip"
+                  role="group"
+                  aria-label="知识库筛选"
                 >
-                  {(view === "elements"
-                    ? ["全部", ...new Set(elements.map((e) => e.groupName))]
-                    : [
-                        "全部",
-                        "已开放实验台",
-                        "资料路径（未开放模拟）",
-                        "含变化情境",
-                        "仅方程式资料",
-                      ]
-                  ).map((c) => (
-                    <option key={c}>{c}</option>
+                  {[
+                    "全部",
+                    "已开放实验台",
+                    "资料路径（未开放模拟）",
+                    "含变化情境",
+                    "仅方程式资料",
+                  ].map((c) => (
+                    <button
+                      type="button"
+                      key={c}
+                      aria-pressed={category === c}
+                      className={category === c ? "active" : ""}
+                      onClick={() => {
+                        setCategory(c);
+                        setPage(0);
+                        setSelected(null);
+                      }}
+                    >
+                      {c}
+                    </button>
                   ))}
-                </select>
+                </div>
               )}
             </div>
           )}

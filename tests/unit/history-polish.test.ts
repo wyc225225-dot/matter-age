@@ -8,15 +8,22 @@ import {
 import { initialSave, validateSave } from "../../src/database";
 import {
   canAccessHistoryStage,
+  computeFaradayTrial,
   createHistorySession,
+  evaluateFaradayElectrolysis,
   evaluateGasIdentification,
+  evaluateHaberBosch,
   evaluateHistoryRating,
   evaluateMassComparison,
   evaluatePeriodicPrediction,
+  evaluateRadioactivityData,
+  evaluateRutherfordScattering,
+  evaluateUreaSynthesis,
   evaluateVoltaicPile,
   evaluateWaterComposition,
   recordHistoryCompletion,
   runHistoryWaterSharedReaction,
+  simulateHaberProcess,
   switchHistorySessionDifficulty,
 } from "../../src/engine/historyEngine";
 
@@ -39,8 +46,15 @@ describe("Challenge History Deepening: 10-Chapter Alignment, 5 Distinct Puzzles,
       "hist_02",
       "hist_03",
       "hist_04",
+      "hist_05",
+      "hist_06",
       "hist_07",
+      "hist_08",
+      "hist_09",
+      "hist_10",
     ]);
+    expect(historyChapters.every((c) => Boolean(c.museumUnlockId))).toBe(true);
+    expect(historyChapters.every((c) => Boolean(c.archiveRewards))).toBe(true);
     expect(historyChapterById.hist_05.title).toContain("生命物质的边界");
     expect(historyChapterById.hist_06.title).toContain("电流的化学法则");
     expect(historyChapterById.hist_08.title).toContain("矿石中的未知信号");
@@ -378,5 +392,207 @@ describe("Challenge History Deepening: 10-Chapter Alignment, 5 Distinct Puzzles,
     expect(
       restored.historyProgress.hist_02.session?.puzzle.massMeasured,
     ).toEqual(["trial_open_caco3"]);
+  });
+
+  it("CH.05–10 remaining five chapters: pure evaluators enforce evidence gates, simple vs advanced rules, save v3 roundtrip, and idempotent rewards", () => {
+    // CH.05 Urea
+    const ch5 = historyChapterById.hist_05;
+    expect(
+      evaluateUreaSynthesis(
+        ch5,
+        {
+          reacted: true,
+          evaporated: false,
+          testedIds: ["elemental", "reactivity"],
+          conclusionChoice: 0,
+          isomerChoice: null,
+        },
+        "simple",
+      ).passed,
+    ).toBe(false);
+    expect(
+      evaluateUreaSynthesis(
+        ch5,
+        {
+          reacted: true,
+          evaporated: true,
+          testedIds: ["elemental", "reactivity", "crystal"],
+          conclusionChoice: 0,
+          isomerChoice: 0,
+        },
+        "advanced",
+      ).passed,
+    ).toBe(true);
+
+    // CH.06 Faraday
+    const ch6 = historyChapterById.hist_06;
+    const t1 = computeFaradayTrial(ch6, "agno3_ag", 1, 1);
+    const t2 = computeFaradayTrial(ch6, "agno3_ag", 2, 1);
+    const t3 = computeFaradayTrial(ch6, "cuso4_cu", 2, 1);
+    expect(t1.yieldMol).toBe(1);
+    expect(t2.yieldMol).toBe(2);
+    expect(t3.yieldMol).toBe(1);
+    expect(
+      evaluateFaradayElectrolysis(ch6, [t1, t2], 0, null, "simple").passed,
+    ).toBe(false);
+    expect(
+      evaluateFaradayElectrolysis(ch6, [t1, t2, t3], 0, 1, "advanced").passed,
+    ).toBe(false);
+    expect(
+      evaluateFaradayElectrolysis(ch6, [t1, t2, t3], 0, 2, "advanced").passed,
+    ).toBe(true);
+
+    // CH.08 Radioactivity virtual data analysis
+    const ch8 = historyChapterById.hist_08;
+    expect(
+      evaluateRadioactivityData(
+        ch8,
+        ["pure_uranium", "bismuth_fraction"],
+        0,
+        null,
+        "simple",
+      ).passed,
+    ).toBe(false);
+    expect(
+      evaluateRadioactivityData(
+        ch8,
+        [
+          "pure_uranium",
+          "pitchblende_ore",
+          "bismuth_fraction",
+          "barium_fraction",
+        ],
+        0,
+        0,
+        "advanced",
+      ).passed,
+    ).toBe(true);
+
+    // CH.09 Rutherford scattering teaching model
+    const ch9 = historyChapterById.hist_09;
+    expect(
+      evaluateRutherfordScattering(ch9, ["forward"], false, 0, null, "simple")
+        .passed,
+    ).toBe(false);
+    expect(
+      evaluateRutherfordScattering(
+        ch9,
+        ["forward", "side", "backscatter"],
+        false,
+        0,
+        0,
+        "advanced",
+      ).passed,
+    ).toBe(false);
+    expect(
+      evaluateRutherfordScattering(
+        ch9,
+        ["forward", "side", "backscatter"],
+        true,
+        0,
+        0,
+        "advanced",
+      ).passed,
+    ).toBe(true);
+
+    // CH.10 Haber-Bosch process
+    const ch10 = historyChapterById.hist_10;
+    const osmiumRun = simulateHaberProcess({
+      temp: "mid",
+      pressure: "mid",
+      catalyst: "osmium",
+      recycle: true,
+    });
+    expect(osmiumRun.feasible).toBe(false);
+    const optimalRun = simulateHaberProcess({
+      temp: "mid",
+      pressure: "mid",
+      catalyst: "iron",
+      recycle: true,
+    });
+    expect(optimalRun.optimalIndustrial).toBe(true);
+    expect(
+      evaluateHaberBosch(
+        ch10,
+        {
+          temp: "mid",
+          pressure: "mid",
+          catalyst: "iron",
+          recycle: false,
+          trialCount: 2,
+          ratioChoice: 0,
+        },
+        "advanced",
+      ).passed,
+    ).toBe(false);
+    expect(
+      evaluateHaberBosch(
+        ch10,
+        {
+          temp: "mid",
+          pressure: "mid",
+          catalyst: "iron",
+          recycle: true,
+          trialCount: 2,
+          ratioChoice: 0,
+        },
+        "advanced",
+      ).passed,
+    ).toBe(true);
+
+    // Save v3 roundtrip & idempotent first-reward + museum unlock for new chapters
+    let s = initialSave();
+    const sess10 = createHistorySession("advanced", 9000);
+    sess10.stage = "experiment";
+    sess10.stageCompleted.background = true;
+    sess10.stageCompleted.hypothesis = true;
+    sess10.puzzle.haberTemp = "mid";
+    sess10.puzzle.haberPressure = "mid";
+    sess10.puzzle.haberCatalyst = "iron";
+    sess10.puzzle.haberRecycle = true;
+    sess10.puzzle.haberTrialCount = 2;
+    s.activeHistoryChapterId = "hist_10";
+    s.historyProgress.hist_10 = {
+      unlocked: true,
+      currentStage: "experiment",
+      completed: false,
+      bestStars: 0,
+      bestDifficulty: "advanced",
+      attempts: 1,
+      hintsUsed: 0,
+      evidenceLog: [],
+      session: sess10,
+    };
+    const roundtripped = validateSave(JSON.parse(JSON.stringify(s)));
+    expect(
+      roundtripped.historyProgress.hist_10.session?.puzzle.haberRecycle,
+    ).toBe(true);
+
+    const comp1 = recordHistoryCompletion(
+      roundtripped,
+      ch10,
+      3,
+      "advanced",
+      1,
+      0,
+      ["ev"],
+    );
+    expect(comp1.isFirstCompletion).toBe(true);
+    expect(comp1.advancedBonusGranted).toBe(true);
+    expect(comp1.save.museumUnlocked.mus_haber_reactor).toBeDefined();
+    // Replay 3 times -> repeat #1, repeat #2, then 0 coins/RP cap
+    const r1 = recordHistoryCompletion(comp1.save, ch10, 3, "advanced", 1, 0, [
+      "ev",
+    ]);
+    const r2 = recordHistoryCompletion(r1.save, ch10, 3, "advanced", 1, 0, [
+      "ev",
+    ]);
+    const r3 = recordHistoryCompletion(r2.save, ch10, 3, "advanced", 1, 0, [
+      "ev",
+    ]);
+    expect(r1.advancedBonusGranted).toBe(false);
+    expect(r3.repeatCapReached).toBe(true);
+    expect(r3.reward.coins).toBe(0);
+    expect(r3.reward.researchPoints).toBe(0);
   });
 });

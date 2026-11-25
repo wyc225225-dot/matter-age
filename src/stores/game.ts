@@ -76,6 +76,8 @@ export interface ActionFeedback {
   message: string;
 }
 
+let initPromise: Promise<void> | null = null;
+
 export const useGame = create<{
   save: Save;
   ready: boolean;
@@ -146,14 +148,19 @@ export const useGame = create<{
   ready: false,
   error: "",
   init: async () => {
-    try {
-      set({ save: await loadSave(), ready: true });
-    } catch {
-      set({
-        ready: true,
-        error: "存档读取失败，当前进度仅保存在内存中。请导出备份。",
-      });
-    }
+    if (get().ready) return;
+    if (initPromise) return initPromise;
+    initPromise = (async () => {
+      try {
+        set({ save: await loadSave(), ready: true });
+      } catch {
+        set({
+          ready: true,
+          error: "存档读取失败，当前进度仅保存在内存中。请导出备份。",
+        });
+      }
+    })();
+    return initPromise;
   },
   update: (fn) => {
     let save = fn(structuredClone(get().save));

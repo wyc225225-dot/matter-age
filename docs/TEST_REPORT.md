@@ -177,3 +177,69 @@
 
 - 新增 `tests/e2e/inner-pages.spec.ts`：覆盖手机横屏（`844×390`）仓库卡片高度校验与直接点选投料冷却发现冰、手机竖屏（`390×844`）首屏条件+催化剂同屏、选料类别胶囊、标本补给搜索领取过氧化氢/二氧化锰、一键催化剂胶囊执行分解、进阶槽位与配平上下题切换、挑战三模式无截断、特殊挑战聚焦态无双层头部/重复返回按钮、Ch.04 伏打电堆、图鉴/知识库/世界探索及桌面（`1280×800`）简单/进阶主执行按钮免滚动首屏可见。
 - 逐张审阅 `output/playwright/inner-polish/` 全部 16 张前后对照截图，并针对初轮审阅发现的 3 项细节（桌面 `1280×800` 催化剂栏换行导致主按钮贴底 24px 截断、原生 number 输入框右侧微调箭头挤压数字左偏、标本搜索占位符在 390px 略长）现场修复并二次全量复跑通过。详见 `docs/AGY_INNER_PAGES_RESULT.md`。
+
+---
+
+## 全站移动端原生 `<select>` 替换 + 挑战历史文案与开篇排版精简验证（2026-11-25）
+
+### 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 8 个测试文件，**256 / 256** 通过（含历史五阶段纯引擎门禁与全部 5 章评估） |
+| 数据与逻辑校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**（131 物质 / 149 规则 / 87 挑战 / 24 科技 / 10 章历史 Schema / 102 步经营闭环 / 532 中文物质 / 435 转化） |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 严格阻断 `pending` 科学、知识库与科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite + Workbox 预缓存 22 项资产 |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+| 端到端与展开态回归 | `npm run test:e2e` | **通过（exit 0）** | **20 / 20** Playwright 用例全通过（18 组既有回归适配真实可访问交互与动作按钮语义 + 新增 `tests/e2e/native-select-mobile.spec.ts` 2 组竖/横屏展开态与历史开篇专项） |
+
+### 2. 新增真实展开态与历史开篇回归 + 目视截图审阅（`output/playwright/native-select-fix/`）
+
+- 新增 `tests/e2e/native-select-mobile.spec.ts`（2 组长链路，分别运行于竖屏 `390×844` 与横屏 `844×390`）：
+  - 逐页断言 DOM 中原生 `<select>` 数量为 **0**（涵盖实验台、选料面板、配平研究、图鉴、知识库元素与转化、发现网络、挑战历史 Ch.01/Ch.02）；
+  - 真实点击展开 `CompactSelect` 浮层，校验其 `boundingBox` 完整落在视口内、避让横屏 58px 左轨、高度小于视口 72%（保持上下文可见）且不生成冲突遮罩层；
+  - 实测键盘 `ArrowDown` 展开、实时搜索过滤 `R005` + `Enter` 选中、`Escape` 关闭浮层并验证焦点精确恢复至触发按钮、以及筛选/排序状态持久生效；
+  - 新增挑战历史 Ch.01 开篇专项断言：校验统一年代 `1770 年代` 展示、无 `虚构教学旁白` / `时代背景线索（` / `RESEARCH QUESTION` / `18 世纪 70 年代` 残留、`时代背景` 默认折叠（`aria-expanded="false"`）且点击可展开查阅史实、`开始提出假设` 主按钮首屏可见。
+- 逐张目视审阅全部 **13** 张截图（竖屏 9 张 + 横屏 4 张，含 10 张选控展开态与 3 张历史开篇收起/展开/横屏），并在首轮测试与审阅中当场定位并修复 **3** 项真实缺陷后全量复跑通过：
+  1. `CompactSelect` 120ms 淡入动画导致首帧呈现半透明背景透字 → 移除透明度淡入改为实色高对比深底（`#122331`）与清晰边框投影，首帧即完全不透底；
+  2. 横屏 `844×390` 下 `.balancing-picker` 因 flex 收缩导致「选择研究方程式」顶部轻度裁切 → 增加 `flex-shrink: 0` 与横屏紧凑内边距彻底消除；
+  3. 搜索过滤后紧接按 `Enter` 时 `useEffect` 尚未重置 `activeIndex` 导致未选中首项 → 改为输入 `onChange` 同步归零并在 `Enter`/`Space` 做边界兜底。
+- **验证边界声明**：本轮所有竖屏 `390×844` 与横屏 `844×390` 端到端测试与截图均基于 Windows 上 Playwright Chromium 视口模拟，不能等同于 Android Chrome / 微信内置浏览器 / iOS Safari 真机系统弹窗与触控实测；真机仍需线上部署刷新后实测验收。详见 `docs/AGY_NATIVE_SELECT_RESULT.md`。
+
+---
+
+## 挑战历史剩余 5 章（CH.05/06/08/09/10）全量可玩实装与全项目回归验证（2026-11-25）
+
+### 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 8 个测试文件，**257 / 257** 通过（`history-polish.test.ts` 新增 5 章纯引擎评估、简/进模式差异、复玩上限与 v3 会话往返覆盖） |
+| 数据与逻辑校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**；**10 / 10** 历史章节可玩（均 `pending`）、**21** 件博物馆藏品、131 物质 / 149 规则 / 87 挑战 / 24 科技 DAG / 102 步经营闭环 / 532 中文物质与 435 转化 |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 严格阻断 `pending` 科学、知识库与全部 10 章科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite 构建 + Workbox 预缓存 22 项资产 |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+| 端到端与视觉验证 | `npm run test:e2e` | **通过（exit 0）** | **21 / 21** Playwright 用例全通过（20 组既有回归零破坏 + 新增 `tests/e2e/history-remaining.spec.ts` 全链路） |
+
+### 2. 新增端到端回归（`tests/e2e/history-remaining.spec.ts`）
+
+- **CH.05 生命物质的边界（桌面 `1280×800`）**：通过冷启动深链 `/#history/hist_05` 直接入章，验证统一年代 `1828 年` 与无 `虚构教学旁白` / `时代背景线索（` 残留；执行合成与蒸发步骤后触发 `page.reload()` 验证中途会话进度恢复，再完成 3 项对照检验、结论分析与历史揭晓；
+- **CH.06 电流的化学法则（桌面 `1280×800` 进阶定量）**：切换「进阶定量模式」，采集 3 组对照通电数据（`Ag⁺` 1A/2A 与 `Cu²⁺` 2A）、归纳双定律并填入串联析出铜份数 `2` 通关；
+- **CH.08 矿石中的未知信号（手机竖屏 `390×844`）**：验证 0 原生 `<select>` 与零横向溢出，依次测定 4 组虚拟压电石英验电器电离读数、切换「2. 信号推断」完成新元素推断与揭晓；
+- **CH.09 原子内部的世界（竖屏 `390×844` + 横屏 `844×390`）**：验证 0 原生 `<select>`、零横向溢出、模型示意切换与直穿/大角度反弹观测采集；旋转至 `844×390` 横屏验证已采集观测状态不丢失并完成核模型推断；
+- **CH.10 来自空气的农业革命（竖屏 `390×844` + 横屏 `844×390`）**：完成基线试车与「中高温 + 中高压 + 铁基促进催化剂 + 原料气循环」工业试车，横屏核验四项 KPI 指标与「成本可控」并完整通关；
+- **首奖幂等不重发与博物馆联动**：通关 5 章后复玩 CH.05（重置本章 → 重新通关），验证提示显示「复玩完成」且金币仅增加复玩档 `+26`（绝不重放 `+130` 首通奖励）；跳转 `#museum` 核验全部 5 件新展品均已点亮。
+
+### 3. 测试与目视截图审阅发现并现场修复的真实缺陷（`output/playwright/history-remaining/`）
+
+逐张审阅全部 **7** 张截图（`desktop-ch05-urea.png`、`desktop-ch06-faraday.png`、`portrait-390-ch08-radioactivity.png`、`portrait-390-ch09-scattering.png`、`landscape-844-ch09-scattering.png`、`portrait-390-ch10-haber.png`、`landscape-844-ch10-haber.png`），累计定位并修复 **5** 项真实问题并复拍确认：
+1. **React StrictMode 冷启动深链竞态（逻辑缺陷）**：`/#history/hist_05` 冷加载时双次 `useGame.init()` 导致第二次异步读档覆写 `activeHistoryChapterId` 回 `null` → 在 `src/stores/game.ts` 为 `init()` 增加模块级单飞 `initPromise` 与 `if (get().ready) return;` 守卫，并在 `History.tsx` 深链 effect 增加 `if (!game.ready) return;`，彻底消除冷启动深链闪退回时间线问题；
+2. **横屏右侧 `.dock-feedback` 裁切**：`landscape-844-ch10-haber.png` 中多行试车反馈受 `max-height: 60px` 限制底部截断 → 调整为 `flex: 1 1 auto; max-height: 175px; overflow-y: auto;`，完整展示全部诊断文本；
+3. **竖屏切横屏后外层页面残留纵向滚动偏移**：`landscape-844-ch09-scattering.png` 转屏后顶栏滚出视口 → 在 `History.tsx` 监听 `vp.isMobileLandscape` 时调用 `window.scrollTo(0, 0)`，确保横屏双栏稳固对齐顶部；
+4. **横屏 `.toast` 遮挡底部提交栏与舞台**：在横屏媒体查询将 `.toast` 移至右上非阻塞定位（`top: 48px; right: 12px; pointer-events: none;`），不再遮挡实验台与提交按钮；
+5. **竖屏 CH.09/CH.10 三选项单列过长**：将 `.param-pill-row` 在竖屏保留 3 列紧凑布局，CH.09 观测角与 CH.10 温度/压强/催化剂 3×3 选控全部首屏同屏可见且零横向溢出；同步压缩横屏 `.step-pill` 避免长标题下 `5. 历史揭晓` 贴边。
+
+### 4. 诚实验证边界
+
+- 所有 5 个新章节与其余 5 章、13 位人物、131 物质、149 规则、532 知识库条目均保持 `reviewStatus: "pending"`，未伪造人工科学或科学史审核；
+- 移动竖屏（`390×844`）与横屏（`844×390`）验证均基于 Windows Playwright Chromium 模拟，不能替代真实 Android/iOS 手机的触控手感、安全区与浏览器行为验收。详细交付报告见 `docs/AGY_HISTORY_REMAINING_RESULT.md`。

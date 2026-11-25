@@ -283,6 +283,204 @@ export function HistoryChapterScene({ chapterId }: { chapterId: string }) {
               伏打电堆 · 叠层电流台
             </text>
           </g>
+        ) : chapterId === "hist_05" ? (
+          /* 1828 Wöhler evaporating dish & needle urea crystals */
+          <g>
+            <ellipse
+              cx="235"
+              cy="118"
+              rx="86"
+              ry="18"
+              fill="rgba(126,224,192,0.12)"
+              stroke="#7ee0c0"
+              strokeWidth="2"
+            />
+            <path
+              d="M150,114 Q235,148 320,114"
+              fill="none"
+              stroke="url(#copperGrad)"
+              strokeWidth="2.4"
+            />
+            {[188, 212, 236, 260, 282].map((x, idx) => (
+              <line
+                key={x}
+                x1={x}
+                y1={116}
+                x2={x + (idx % 2 === 0 ? -10 : 12)}
+                y2={72 + (idx % 3) * 8}
+                stroke="#bdf5e3"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+            ))}
+            <text x="382" y="68" fill="#e6be8a" fontSize="11" fontWeight="700">
+              ARCHIVE 1828
+            </text>
+            <text x="382" y="88" fill="#c7b299" fontSize="10">
+              蒸发皿针状结晶 · 同分异构对照
+            </text>
+          </g>
+        ) : chapterId === "hist_06" ? (
+          /* 1830s Faraday voltameter dual-tube electrolysis & ammeter */
+          <g>
+            {[170, 285].map((x, idx) => (
+              <g key={x}>
+                <rect
+                  x={x}
+                  y="38"
+                  width="76"
+                  height="92"
+                  rx="8"
+                  fill="rgba(111,211,232,0.12)"
+                  stroke="#6fd3e8"
+                  strokeWidth="1.8"
+                />
+                <rect x={x + 14} y="56" width="8" height="58" fill="#d9874f" />
+                <rect x={x + 54} y="56" width="8" height="58" fill="#9fb3c8" />
+                <text
+                  x={x + 38}
+                  y="146"
+                  textAnchor="middle"
+                  fill="#b8d9ea"
+                  fontSize="10"
+                >
+                  {idx === 0 ? "Ag⁺ (1e⁻)" : "Cu²⁺ (2e⁻)"}
+                </text>
+              </g>
+            ))}
+            <line
+              x1="246"
+              y1="56"
+              x2="285"
+              y2="56"
+              stroke="#f0c38e"
+              strokeWidth="2"
+            />
+            <text x="404" y="68" fill="#e6be8a" fontSize="11" fontWeight="700">
+              ARCHIVE 1830s
+            </text>
+            <text x="404" y="88" fill="#c7b299" fontSize="10">
+              串联电解槽 · 定量电量计
+            </text>
+          </g>
+        ) : chapterId === "hist_08" ? (
+          /* 1898 Piezo-quartz electroscope & ionization signal trace */
+          <g>
+            <rect
+              x="128"
+              y="36"
+              width="220"
+              height="96"
+              rx="8"
+              fill="#111d29"
+              stroke="#c9935b"
+              strokeOpacity="0.55"
+            />
+            <rect
+              x="148"
+              y="106"
+              width="26"
+              height="16"
+              rx="2"
+              fill="#6d90a8"
+            />
+            <rect x="192" y="84" width="26" height="38" rx="2" fill="#f4b95a" />
+            <rect x="236" y="54" width="26" height="68" rx="2" fill="#7ee0c0" />
+            <rect x="280" y="42" width="26" height="80" rx="2" fill="#ff9e5e" />
+            <text x="386" y="68" fill="#e6be8a" fontSize="11" fontWeight="700">
+              ARCHIVE 1898
+            </text>
+            <text x="386" y="88" fill="#c7b299" fontSize="10">
+              石英验电器 · 虚拟电离信号分析
+            </text>
+          </g>
+        ) : chapterId === "hist_09" ? (
+          /* 1909-1911 Gold foil alpha scattering schematic */
+          <g>
+            <line
+              x1="248"
+              y1="26"
+              x2="248"
+              y2="142"
+              stroke="#f4d58d"
+              strokeWidth="4"
+            />
+            <circle cx="248" cy="84" r="6" fill="#ff8f6b" />
+            <line
+              x1="112"
+              y1="52"
+              x2="368"
+              y2="52"
+              stroke="#83cde9"
+              strokeWidth="1.8"
+            />
+            <line
+              x1="112"
+              y1="116"
+              x2="368"
+              y2="116"
+              stroke="#83cde9"
+              strokeWidth="1.8"
+            />
+            <path
+              d="M112,84 L236,84 Q242,84 234,76 L142,40"
+              fill="none"
+              stroke="#ff9e5e"
+              strokeWidth="2.2"
+              strokeDasharray="4 3"
+            />
+            <text x="404" y="68" fill="#e6be8a" fontSize="11" fontWeight="700">
+              ARCHIVE 1909–1911
+            </text>
+            <text x="404" y="88" fill="#c7b299" fontSize="10">
+              金箔散射观测室 · 原子核模型
+            </text>
+          </g>
+        ) : chapterId === "hist_10" ? (
+          /* 1909-1913 Haber-Bosch high-pressure reactor & gas recycle loop */
+          <g>
+            <rect
+              x="210"
+              y="32"
+              width="76"
+              height="104"
+              rx="14"
+              fill="rgba(255,158,94,0.14)"
+              stroke="url(#copperGrad)"
+              strokeWidth="2.6"
+            />
+            <path
+              d="M136,64 L210,64 M286,64 L350,64 L350,116 L286,116"
+              fill="none"
+              stroke="#83cde9"
+              strokeWidth="2"
+            />
+            <text
+              x="248"
+              y="80"
+              textAnchor="middle"
+              fill="#f4d58d"
+              fontSize="11"
+              fontWeight="700"
+            >
+              Fe 催化
+            </text>
+            <text
+              x="248"
+              y="98"
+              textAnchor="middle"
+              fill="#c5deed"
+              fontSize="9.5"
+            >
+              450°C · 200 atm
+            </text>
+            <text x="394" y="68" fill="#e6be8a" fontSize="11" fontWeight="700">
+              ARCHIVE 1909–1913
+            </text>
+            <text x="394" y="88" fill="#c7b299" fontSize="10">
+              高压催化反应釜 · 原料气循环
+            </text>
+          </g>
         ) : (
           /* 1869 Periodic manuscript cards & glowing empty prediction slot */
           <g>

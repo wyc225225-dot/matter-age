@@ -115,10 +115,10 @@ test("V1.6 full real gameplay loop: Lobby, World Exploration, Management, Tech T
     .getByRole("button", { name: /进入历史现场/ })
     .click();
   // Stage 1 -> Stage 2
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   // Stage 2: select correct hypothesis
   await page.getByRole("button", { name: /必须由两种不同金属/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   // Stage 3: Build 2 valid Zn -> Brine -> Cu cells
   for (let i = 0; i < 2; i++) {
     await page.getByRole("button", { name: "+ 锌片 (Zn)" }).click();
@@ -133,12 +133,12 @@ test("V1.6 full real gameplay loop: Lobby, World Exploration, Management, Tech T
     path: "output/playwright/v16/desktop-history-voltaic.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /进入阶段 4/ }).click();
+  await page.getByRole("button", { name: "整理证据与结论" }).click();
   // Stage 4: Analysis
   await page
     .getByRole("button", { name: /它首次提供了持续可控的直流电流/ })
     .click();
-  await page.getByRole("button", { name: /完成推理并揭晓历史真相/ }).click();
+  await page.getByRole("button", { name: "揭晓历史真相" }).click();
   await expect(page.getByText(/电化学时代开启/)).toBeVisible();
 
   // 6. Science Museum: verify Voltaic Pile exhibit is unlocked by real history completion

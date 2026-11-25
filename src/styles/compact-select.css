@@ -1,0 +1,503 @@
+/* ==================== Accessible CompactSelect & Mobile-Friendly Inline Pickers ====================
+ * Eliminates native <select> full-screen white radio dialogs on Android/iOS across all pages,
+ * matching each control to its option count & context without multi-layer backdrop conflicts.
+ */
+
+/* ---------- 1. CompactSelect Trigger & Anchored Popover ---------- */
+.compact-select {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.compact-select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #385568;
+  background: #142430;
+  color: #e4f3fc;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: left;
+  transition:
+    border-color 0.14s ease,
+    background 0.14s ease,
+    box-shadow 0.14s ease;
+  touch-action: manipulation;
+}
+
+.compact-select-trigger:hover:not(:disabled) {
+  border-color: #5b87a0;
+  background: #192e3d;
+}
+
+.compact-select-trigger:focus-visible {
+  outline: 2px solid #83cde9;
+  outline-offset: 2px;
+}
+
+.compact-select.is-open .compact-select-trigger {
+  border-color: #83cde9;
+  background: #1a3242;
+  box-shadow: 0 0 0 2px rgba(131, 205, 233, 0.2);
+}
+
+.compact-select-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact-select-chevron {
+  flex-shrink: 0;
+  color: #8eb3c8;
+  transition: transform 0.16s ease;
+}
+
+.compact-select.is-open .compact-select-chevron {
+  transform: rotate(180deg);
+  color: #a9e2f8;
+}
+
+/* Portal Popover: compact, solid opaque, anchored, zero dimming backdrop conflict */
+.compact-select-popover {
+  z-index: 160;
+  background: #122331;
+  border: 1px solid #5e9bb8;
+  border-radius: 12px;
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.78),
+    0 0 0 1px rgba(131, 205, 233, 0.22);
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #e4f3fc;
+}
+
+.compact-select-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #355064;
+  background: #0e1c27;
+  color: #87abc0;
+  flex-shrink: 0;
+}
+
+.compact-select-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #ebf6ff;
+  font-size: 13px;
+  outline: none;
+  padding: 0;
+}
+
+.compact-select-search input::placeholder {
+  color: #6c8da3;
+}
+
+.compact-select-clear {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a8c7da;
+  flex-shrink: 0;
+}
+
+.compact-select-list {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+  scrollbar-width: thin;
+}
+
+.compact-select-list.layout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.compact-select-list.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.compact-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #bdd5e5;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease;
+  touch-action: manipulation;
+}
+
+.compact-select-list.layout-grid .compact-select-option {
+  min-height: 34px;
+  padding: 6px 8px;
+  background: rgba(26, 44, 58, 0.6);
+  border-color: rgba(66, 98, 118, 0.35);
+}
+
+.compact-select-option:hover,
+.compact-select-option.active {
+  background: rgba(58, 102, 128, 0.36);
+  border-color: rgba(131, 205, 233, 0.45);
+  color: #f0f9ff;
+}
+
+.compact-select-option.selected {
+  background: linear-gradient(
+    155deg,
+    rgba(64, 131, 162, 0.48),
+    rgba(31, 69, 90, 0.72)
+  );
+  border-color: #83cde9;
+  color: #f4fbff;
+  font-weight: 700;
+}
+
+.compact-select-option-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact-select-check {
+  flex-shrink: 0;
+  color: #8ae0ff;
+}
+
+.compact-select-empty {
+  padding: 14px 8px;
+  text-align: center;
+  font-size: 12px;
+  color: #7d9cb0;
+}
+
+/* ---------- 2. Context-Specific Layout Integration ---------- */
+
+/* Laboratory warehouse desktop/tablet selects & mobile active sort feedback */
+.warehouse-selects .compact-select {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.warehouse-selects .compact-select-trigger {
+  min-height: 34px;
+  font-size: 11.5px;
+  padding: 5px 8px;
+}
+
+.warehouse-sort-pill.active {
+  border-color: #83cde9;
+  background: rgba(131, 205, 233, 0.22);
+  color: #eef9ff !important;
+  font-weight: 700;
+}
+
+/* Laboratory Balancing picker */
+.balancing-picker {
+  flex-shrink: 0;
+}
+
+.balancing-picker-row .compact-select {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.balancing-picker-row .compact-select-trigger {
+  min-height: 36px;
+  font-size: 12.5px;
+}
+
+/* Encyclopedia: Category CompactSelect + 2-option Sort Segmented Control */
+.book-select-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-select-row .compact-select {
+  flex: 1 1 0;
+  min-width: 124px;
+}
+
+.book-sort-seg {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid #355064;
+  background: #101f2b;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.book-sort-seg button {
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #93b0c4;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.book-sort-seg button.active {
+  background: rgba(131, 205, 233, 0.22);
+  border-color: rgba(131, 205, 233, 0.52);
+  color: #eef9ff;
+  font-weight: 700;
+}
+
+/* KnowledgeLibrary: Transformation 5-option horizontal pill strip & Elements CompactSelect */
+.archive-toolbar .compact-select {
+  min-width: 148px;
+  flex-shrink: 0;
+}
+
+.kb-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 0;
+  width: 100%;
+}
+
+.kb-filter-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.kb-filter-pills button {
+  flex-shrink: 0;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #314b5e;
+  background: #152532;
+  color: #93afc2;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.kb-filter-pills button.active {
+  border-color: #83cde9;
+  background: rgba(131, 205, 233, 0.22);
+  color: #eef9ff;
+  font-weight: 700;
+}
+
+/* DiscoveryTree: Portrait/Desktop & Landscape CompactSelects */
+.tree-controls .compact-select {
+  min-width: 128px;
+}
+
+.tree-landscape-controls .compact-select {
+  width: 100%;
+}
+
+.tree-landscape-controls .compact-select-trigger {
+  min-height: 32px;
+  padding: 4px 8px;
+  font-size: 11.5px;
+}
+
+/* History Ch.01: Inline 3-gas radio cards (no popup over evidence!) */
+.gas-choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.gas-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #344d5f;
+  background: rgba(17, 31, 43, 0.85);
+  color: #b4cde0;
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: left;
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
+  touch-action: manipulation;
+}
+
+.gas-choice-btn:hover {
+  border-color: #5d8aa3;
+  color: #eaf6ff;
+}
+
+.gas-choice-btn.active {
+  border-color: #83cde9;
+  background: linear-gradient(
+    155deg,
+    rgba(64, 131, 162, 0.45),
+    rgba(28, 63, 82, 0.78)
+  );
+  color: #f4fbff;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(131, 205, 233, 0.35);
+}
+
+.gas-choice-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #5f8198;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.gas-choice-btn.active .gas-choice-dot {
+  border-color: #8ae0ff;
+  background: #8ae0ff;
+  color: #0e1d29;
+}
+
+/* History Ch.02: Inline 3-unit segmented control (g / kg / mg) */
+.unit-seg {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid #355064;
+  background: #0f1d28;
+  gap: 2px;
+}
+
+.unit-seg button {
+  min-height: 34px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #9ab5c8;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.unit-seg button.active {
+  border-color: #83cde9;
+  background: rgba(131, 205, 233, 0.24);
+  color: #f2faff;
+}
+
+/* ---------- 3. Mobile Portrait & Landscape Polish ---------- */
+@media (max-width: 760px) and (min-height: 521px), (max-width: 479px) {
+  .book-select-row {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .book-select-row .compact-select {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .book-sort-seg button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .archive-toolbar .compact-select {
+    width: 100%;
+  }
+
+  .tree-controls .compact-select {
+    flex: 1 1 44%;
+    min-width: 0;
+  }
+
+  .unit-input-group {
+    align-items: center;
+  }
+
+  .unit-input-group input {
+    flex: 1 1 110px;
+    min-width: 96px;
+  }
+}
+
+@media (max-height: 520px) and (min-width: 480px) and (max-width: 960px) {
+  .lab.lab-landscape-mode .balancing-picker {
+    padding: 8px 12px;
+    gap: 5px;
+  }
+
+  .compact-select-popover {
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .compact-select-option {
+    min-height: 30px;
+    padding: 4px 8px;
+    font-size: 11.5px;
+  }
+
+  .compact-select-search {
+    height: 30px;
+  }
+
+  .compact-select-search input {
+    font-size: 12px;
+  }
+}

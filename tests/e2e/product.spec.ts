@@ -66,8 +66,9 @@ test("drag, clear, supply, catalyst, executable hint and encyclopedia alias sear
   await page.getByRole("button", { name: "添加过氧化氢", exact: true }).click();
   await page.getByRole("button", { name: "混合", exact: true }).click();
   await page
-    .getByRole("combobox", { name: "选择催化剂" })
-    .selectOption("manganese_dioxide");
+    .getByRole("group", { name: "选择催化剂" })
+    .getByRole("button", { name: "二氧化锰", exact: true })
+    .click();
   await page.getByRole("button", { name: "开始实验", exact: true }).click();
   await expect(page.locator(".result-area")).toContainText("过氧化氢催化分解");
   await expect(

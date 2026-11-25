@@ -7,6 +7,7 @@ import { useGame } from "../stores/game";
 import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula } from "../components/Shared";
+import { CompactSelect } from "../components/CompactSelect";
 import { ArchiveTabs, type ArchiveView } from "../components/ArchiveTabs";
 import "../components/knowledge.css";
 const KnowledgeLibrary = lazy(() =>
@@ -154,25 +155,34 @@ export default function Encyclopedia({
             />
           </label>
           <div className="book-select-row">
-            <select
-              aria-label="图鉴分类"
+            <CompactSelect
+              ariaLabel="图鉴分类"
               value={group}
-              onChange={(e) => setGroup(e.target.value)}
-            >
-              {["全部类别", ...new Set(substances.map((s) => s.group))].map(
-                (g) => (
-                  <option key={g}>{g}</option>
-                ),
-              )}
-            </select>
-            <select
-              aria-label="图鉴排序"
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <option value="number">编号排序</option>
-              <option value="recent">发现时间排序</option>
-            </select>
+              layout="grid"
+              options={[
+                "全部类别",
+                ...new Set(substances.map((s) => s.group)),
+              ].map((g) => ({ value: g, label: g }))}
+              onChange={setGroup}
+            />
+            <div className="book-sort-seg" role="group" aria-label="图鉴排序">
+              <button
+                type="button"
+                aria-pressed={sort === "number"}
+                className={sort === "number" ? "active" : ""}
+                onClick={() => setSort("number")}
+              >
+                编号排序
+              </button>
+              <button
+                type="button"
+                aria-pressed={sort === "recent"}
+                className={sort === "recent" ? "active" : ""}
+                onClick={() => setSort("recent")}
+              >
+                发现时间
+              </button>
+            </div>
           </div>
         </div>
       </div>

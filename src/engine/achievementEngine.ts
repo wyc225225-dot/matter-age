@@ -318,10 +318,18 @@ export function detailedAchievements(s: Save): AchievementEntry[] {
     {
       id: "科学史见证者",
       name: "科学史见证者",
-      description: "通关 V1.6 全部 5 个可玩历史章节",
+      description: "通关 5 个「挑战历史」章节",
       category: "history",
       condition: historyDone.length >= 5,
       reward: { coins: 220, researchPoints: 80, experience: 200 },
+    },
+    {
+      id: "全史通晓",
+      name: "全史通晓",
+      description: "通关全部 10 个「挑战历史」章节",
+      category: "history",
+      condition: historyDone.length >= 10,
+      reward: { coins: 360, researchPoints: 130, experience: 320 },
     },
     {
       id: "博物馆策展人",

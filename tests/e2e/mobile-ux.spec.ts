@@ -235,9 +235,9 @@ test("Mobile UX Portrait & Landscape real gameplay: Simplified Lobby, Lab state 
 
   // Advance Stage 1 -> Stage 2 -> Stage 3 via single fixed bottom dock
   await expect(page.locator(".history-sticky-dock")).toBeInViewport();
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page.getByRole("button", { name: /必须由两种不同金属/ }).click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   await expect(page.locator(".history-step-badge")).toContainText("第 3/5 步");
 
   // Stack 2 cells & verify live voltmeter and Submit button are BOTH visible in viewport!
@@ -263,7 +263,7 @@ test("Mobile UX Portrait & Landscape real gameplay: Simplified Lobby, Lab state 
   await page.setViewportSize({ width: 844, height: 390 });
   await expect(page.locator(".history-sticky-dock")).toContainText("1.6 V");
   await expect(
-    page.getByRole("button", { name: /进入第 4\/5 步/ }),
+    page.getByRole("button", { name: "整理证据与结论" }),
   ).toBeEnabled();
   await page.screenshot({
     path: "output/playwright/mobile-ux/landscape-844-history-ch04.png",
@@ -272,11 +272,11 @@ test("Mobile UX Portrait & Landscape real gameplay: Simplified Lobby, Lab state 
   // Check Ch.07 Periodic Table card selection banner on 390x844
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#history/hist_07");
-  await page.getByRole("button", { name: /进入阶段 2/ }).click();
+  await page.getByRole("button", { name: "开始提出假设" }).click();
   await page
     .getByRole("button", { name: /坚持同族化学性质一致的原则/ })
     .click();
-  await page.getByRole("button", { name: /进入阶段 3/ }).click();
+  await page.getByRole("button", { name: "开始实验" }).click();
   await page.getByRole("button", { name: /Na 钠/ }).click();
   await expect(page.locator(".selected-card-banner")).toContainText("Na 钠");
   await page.getByRole("button", { name: "第3周期第1族槽位" }).click();

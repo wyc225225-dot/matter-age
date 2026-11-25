@@ -580,15 +580,20 @@ export default function Home({
               >
                 <div className="portal-top">
                   <ScrollText size={22} />
-                  <span className="tag-pill">5 章可玩 / 10 章时间线</span>
+                  <span className="tag-pill">
+                    {historyChapters.filter((c) => c.playable).length}{" "}
+                    章完整可玩
+                  </span>
                 </div>
                 <h3>挑战历史</h3>
                 <p>
-                  氧气发现、质量守恒、水的组成、伏打电堆与门捷列夫周期表 5
-                  大独立谜题。
+                  从氧气发现、尿素合成、电解定律、元素周期表到原子核与合成氨，10
+                  章科学史实验完整可玩。
                 </p>
                 <span className="portal-meta">
-                  已通关 {historyDone}/5 章 · 解锁博物馆展品 →
+                  已通关 {historyDone}/
+                  {historyChapters.filter((c) => c.playable).length} 章 ·
+                  解锁博物馆展品 →
                 </span>
               </button>
 

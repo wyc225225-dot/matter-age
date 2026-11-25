@@ -156,7 +156,7 @@
       "1828 年完成无机物向尿素的人工转化",
       "与李比希合作研究苯甲酰基等有机基团理论"
     ],
-    "collaborationNote": "后续预告章节（CH.05）核心人物；科学史指出「生命力论」的退出是 19 世纪中叶多位有机化学家逐步促成的过程。",
+    "collaborationNote": "CH.05 核心人物；与导师贝采里乌斯共同推进同分异构体概念，并与李比希开展基团理论合作。科学史指出「生命力论」的退出是 19 世纪中叶多位有机化学家逐步促成的过程。",
     "references": ["https://www.britannica.com/biography/Friedrich-Wohler"],
     "reviewStatus": "pending"
   },
@@ -171,7 +171,7 @@
       "建立电量与电解产物物质的量之间的定量关系（法拉第电解定律）",
       "与休厄尔共同确立现代电化学命名术语"
     ],
-    "collaborationNote": "后续预告章节（CH.06）核心人物。",
+    "collaborationNote": "CH.06 核心人物；与剑桥学者威廉·休厄尔协作创立了电极、阳极、阴极、电解质、离子等现代电化学术语。",
     "references": [
       "https://www.sciencehistory.org/education/scientific-biographies/michael-faraday/"
     ],
@@ -188,7 +188,7 @@
       "1898 年共同发现钋与镭元素",
       "推动放射性定量分析与原子可分性研究"
     ],
-    "collaborationNote": "后续预告章节（CH.08，仅限虚拟数据分析）核心合作者，与贝克勒尔共享 1903 年诺贝尔物理学奖，玛丽·居里独享 1911 年诺贝尔化学奖。",
+    "collaborationNote": "CH.08（虚拟电离数据分析）核心合作者，在贝克勒尔发现铀射线的基础上确立放射性研究，共享 1903 年诺贝尔物理学奖；玛丽·居里独享 1911 年诺贝尔化学奖。",
     "references": [
       "https://www.nobelprize.org/prizes/chemistry/1911/marie-curie/facts/"
     ],
@@ -205,7 +205,7 @@
       "金箔散射实验推翻「葡萄干布丁」均匀原子模型",
       "确立微小致密带正电原子核与核外广阔空间的现代原子图像"
     ],
-    "collaborationNote": "后续预告章节（CH.09）多人协作典范：实验观测由盖革与年轻的马斯登完成，理论模型由卢瑟福阐明。",
+    "collaborationNote": "CH.09 多人协作典范：1909 年金箔散射观测由盖革与年轻的马斯登在曼彻斯特完成，1911 年由卢瑟福阐明原子核理论模型。",
     "references": [
       "https://www.nobelprize.org/prizes/chemistry/1908/rutherford/biographical/"
     ],
@@ -222,7 +222,7 @@
       "哈伯实现氮气与氢气催化合成氨的实验室高压工艺",
       "博施攻克高压反应釜材料与催化剂工程难题，建成工业合成氨装置"
     ],
-    "collaborationNote": "后续预告章节（CH.10）核心人物，体现基础化学平衡研究与高压化工工程的衔接。",
+    "collaborationNote": "CH.10 核心人物：哈伯完成 1909 年高压催化实验室验证，博施与阿尔温·米塔施团队攻克铁基促进催化剂与高压反应釜工程难题并于 1913 年实现工业投产。",
     "references": [
       "https://www.nobelprize.org/prizes/chemistry/1918/haber/facts/"
     ],

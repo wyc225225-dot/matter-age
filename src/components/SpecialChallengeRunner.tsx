@@ -209,9 +209,14 @@ export function SpecialChallengeRunner({
               {challenge.catalysts && challenge.catalysts.length > 0 && (
                 <div className="cat-row special-cat-box">
                   <span>可用催化剂（不消耗）：</span>
-                  <div className="catalyst-chips">
+                  <div
+                    className="catalyst-chips"
+                    role="group"
+                    aria-label="特殊挑战催化剂"
+                  >
                     <button
                       type="button"
+                      aria-pressed={selCat === ""}
                       className={`cat-chip ${selCat === "" ? "active" : ""}`}
                       onClick={() => setSelCat("")}
                     >
@@ -221,6 +226,7 @@ export function SpecialChallengeRunner({
                       <button
                         type="button"
                         key={cid}
+                        aria-pressed={selCat === cid}
                         className={`cat-chip ${selCat === cid ? "active" : ""}`}
                         onClick={() => setSelCat(selCat === cid ? "" : cid)}
                       >
@@ -229,19 +235,6 @@ export function SpecialChallengeRunner({
                       </button>
                     ))}
                   </div>
-                  <select
-                    className="catalyst-select-sync"
-                    aria-label="特殊挑战催化剂"
-                    value={selCat}
-                    onChange={(e) => setSelCat(e.target.value)}
-                  >
-                    <option value="">不使用</option>
-                    {challenge.catalysts.map((cid) => (
-                      <option key={cid} value={cid}>
-                        {byId[cid].name}
-                      </option>
-                    ))}
-                  </select>
                 </div>
               )}
             </div>

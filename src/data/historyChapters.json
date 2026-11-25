@@ -2,7 +2,7 @@
   {
     "id": "hist_01",
     "number": 1,
-    "eraYear": "1770年代（1774 普里斯特利实验）",
+    "eraYear": "1770 年代",
     "title": "空气中的秘密",
     "en": "CHAPTER 01 · SECRETS OF THE AIR",
     "subtitle": "未知气体线索与比较：空气是单一元素，还是多种气体的组合？",
@@ -10,7 +10,7 @@
     "playable": true,
     "figureIds": ["fig_priestley", "fig_scheele", "fig_lavoisier"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "史实脉络：1771–1772 年舍勒最早独立分离「火空气」，1774 年普里斯特利聚焦阳光加热氧化汞制得并于 1775 年率先发表，1777–1779 年拉瓦锡定量阐明氧化理论并命名。本关三瓶气体检验为限定候选范围的教学模拟实验，进阶分解计量采用过氧化氢分解（r026）作现代教学类比，旁白为虚构教学引导。",
+    "factDistinctionNote": "史实脉络：1771–1772 年舍勒最早独立分离「火空气」，1774 年普里斯特利聚焦阳光加热氧化汞制得并于 1775 年率先发表，1777–1779 年拉瓦锡定量阐明氧化理论并命名。本关三瓶气体检验为限定候选范围的教学模拟实验，进阶分解计量采用过氧化氢分解（r026）作现代教学类比。",
     "references": [
       "https://www.sciencehistory.org/education/scientific-biographies/joseph-priestley/",
       "https://www.sciencehistory.org/education/scientific-biographies/carl-wilhelm-scheele/",
@@ -35,17 +35,16 @@
     },
     "stages": {
       "background": {
-        "researchQuestion": "三瓶肉眼完全相同的无色气体，它们真的是同一种「空气元素」吗？如何只凭实验现象把它们区分开？",
-        "contextSummary": "18 世纪 70 年代，学界长期沿用「空气是单一元素」与「燃烧释放燃素」的旧观念。然而在几间欧洲实验室里，加热矿石或燃烧实验却收集到了性质截然不同的「不同空气」。",
+        "researchQuestion": "三瓶肉眼相同的无色气体，究竟是不是同一种「空气」？如何只凭实验现象区分它们？",
+        "contextSummary": "1770 年代，学界长期认为空气是单一元素、燃烧会释放「燃素」。但欧洲多间实验室在加热矿石或燃烧时，陆续收集到了性质截然不同的无色气体。",
         "historicalFacts": [
-          "1770 年代欧洲多位实验者改进了水槽与水银槽集气法，开始系统收集并比较看不见的无色气体。",
-          "同一时期，瑞典、英国与法国的化学家分别对加热红丹/氧化汞产生的助燃气体展开了观察与争论。",
-          "在正式揭晓历史命名与人物归属之前，请你先像 18 世纪研究者一样，只依据实验现象完成推理。"
+          "1770 年代，欧洲实验者改进水槽与水银槽集气法，开始系统收集并比较各类无色气体。",
+          "同一时期，瑞典、英国与法国化学家围绕加热红丹与氧化汞产生的助燃气体展开了激烈争论。"
         ],
         "teachingDialogue": [
           {
-            "speaker": "实验室助手（虚构教学旁白）",
-            "line": "桌上封存着甲、乙、丙三瓶已知属于「助燃组分 / 二氧化碳 / 空气主要惰性组分」三者之一的未知气体。先别猜名字——把木条和澄清石灰水都试一试，让现象说话。",
+            "speaker": "实验引导",
+            "line": "桌上有甲、乙、丙三瓶未知气体（分别为氧气、二氧化碳与氮气），请用木条与澄清石灰水对照鉴别。",
             "fictionalized": true
           }
         ]
@@ -170,7 +169,7 @@
   {
     "id": "hist_02",
     "number": 2,
-    "eraYear": "18世纪后期",
+    "eraYear": "18 世纪后期",
     "title": "消失的质量",
     "en": "CHAPTER 02 · THE VANISHING MASS",
     "subtitle": "开放系统 vs 密闭系统：物质穿过容器边界时，总质量真的消失了吗？",
@@ -203,17 +202,16 @@
     },
     "stages": {
       "background": {
-        "researchQuestion": "石灰石高温煅烧后变轻，铜粉在空气中加热后却变重——化学变化会让物质的总质量凭空增减吗？",
-        "contextSummary": "18 世纪后期，许多观察者看到木炭燃成轻灰、金属煅烧成重灰，以为质量在反应中可以随意消失或增加。如果把「看得见的固体」与「看不见的气体」一起放进密闭边界称量，会发生什么？",
+        "researchQuestion": "石灰石煅烧后变轻、铜粉在空气中加热却变重——化学变化会让物质总质量凭空增减吗？",
+        "contextSummary": "18 世纪后期，木炭燃成轻灰、金属煅烧变重，使不少观察者以为质量可以随反应增减。若把固体与看不见的气体一起放进密闭边界称量，会发生什么？",
         "historicalFacts": [
           "18 世纪后期，精密等臂天平逐步成为化学实验室的核心定量仪器。",
-          "对比「敞口容器」与「密封曲颈甑/刚性容器」的称量结果，是检验气体是否参与反应的关键手段。",
-          "请你先切换开放系统与密闭系统执行虚拟称量，再归纳质量变化的真正原因。"
+          "对照敞口容器与密封容器的称量结果，是检验气体是否参与反应的关键方法。"
         ],
         "teachingDialogue": [
           {
-            "speaker": "称量记录员（虚构教学旁白）",
-            "line": "天平已经调平。别忘了分别切到「开放系统」和「密闭系统」完成全部三组教学模拟称量，留意气体是离开还是进入了称量边界。",
+            "speaker": "实验引导",
+            "line": "请分别在「开放系统」与「密闭系统」完成三组称量对照，观察气体进出容器边界对天平读数的影响。",
             "fictionalized": true
           }
         ]
@@ -341,7 +339,7 @@
   {
     "id": "hist_03",
     "number": 3,
-    "eraYear": "1780年代",
+    "eraYear": "1780 年代",
     "title": "水的真正身份",
     "en": "CHAPTER 03 · THE TRUE IDENTITY OF WATER",
     "subtitle": "从「水元素」到氢氧化合物：用真实反应与配平引擎揭示水的组成",
@@ -374,17 +372,16 @@
     },
     "stages": {
       "background": {
-        "researchQuestion": "被视作「基本元素」长达两千年的水，究竟是不可再分的单质元素，还是由其他物质化合而成的化合物？",
-        "contextSummary": "直到 18 世纪 80 年代，绝大多数自然哲学家仍把水当作最纯粹的基本元素。然而在密闭玻璃球泡中引燃「可燃空气」后，玻璃内壁凝结出的清澈露珠引发了一场震撼整个科学界的争论。",
+        "researchQuestion": "被视作基本元素两千年的水，究竟是不可再分的单质，还是由其他物质化合而成的化合物？",
+        "contextSummary": "直到 1780 年代，水仍普遍被当作最纯粹的基本元素。但实验者在密闭玻璃球泡中引燃「可燃空气」后，内壁凝结出的清澈液滴动摇了这一观念。",
         "historicalFacts": [
           "1766 年以来，「可燃空气」（后称氢气）因极低密度与淡蓝色火焰引起广泛关注。",
-          "1780 年代初，伦敦与巴黎的实验者先后在密闭玻璃容器内引燃可燃空气与助燃空气，并对凝结液体展开成分检测。",
-          "请先在实验台上实际执行合成反应观察产物证据，再判断水的真正身份。"
+          "1780 年代初，伦敦与巴黎的实验者在密闭玻璃容器内引燃可燃空气与助燃空气，并对凝结液体展开分析。"
         ],
         "teachingDialogue": [
           {
-            "speaker": "气量计助手（虚构教学旁白）",
-            "line": "我们先用游戏共享化学引擎启动密闭点燃合成，再对比现代水电解教学演示——注意把「1780 年代的历史合成证据」与「现代分子配平」分清层次。",
+            "speaker": "实验引导",
+            "line": "先执行氢氧点燃合成水观察产物，再结合水电解教学对照与方程式配平，验证水的组成。",
             "fictionalized": true
           }
         ]
@@ -490,7 +487,7 @@
   {
     "id": "hist_04",
     "number": 4,
-    "eraYear": "1800年",
+    "eraYear": "1800 年",
     "title": "人类的第一块电池",
     "en": "CHAPTER 04 · THE FIRST ELECTRIC BATTERY",
     "subtitle": "叠层极性、异种金属与湿润电解质：动手组装并调试你的伏打电堆",
@@ -523,17 +520,16 @@
     },
     "stages": {
       "background": {
-        "researchQuestion": "1800 年之前，摩擦起电机只能放出转瞬即逝的静电火花——如何用常见金属片与盐水布片拼出一台持续输出电流的化学电源？",
-        "contextSummary": "18 世纪末，伽伐尼关于「青蛙腿肌肉抽搐」的发现引发了「动物电」与「金属接触电」的激烈争论。在意大利科莫，一位物理学家尝试将不同金属圆片与盐水湿纸板一层层叠高……",
+        "researchQuestion": "1800 年之前，起电机只能放出转瞬即逝的静电火花——如何用金属片与盐水布片拼出持续电流？",
+        "contextSummary": "1800 年前后，关于「动物电」与「金属接触电」的争论推动了电学实验革新。在意大利科莫，研究者尝试将不同金属圆片与盐水湿纸板交替叠高。",
         "historicalFacts": [
-          "18 世纪末的莱顿瓶只能瞬间放电，无法维持长时间化学反应。",
-          "伏特最初在 1800 年的电堆中使用了锌片与银片（或铜片），并在金属对之间夹入浸有盐水的纸板、布片或皮革。",
-          "请你亲自选择金属组合、叠放并调整层级顺序，通过电压表观察电流变化规律。"
+          "1800 年前的莱顿瓶只能瞬间放电，无法维持长时间化学反应。",
+          "1800 年的最初电堆采用锌片与银片（或铜片），并在金属对之间夹入浸盐水的纸板、布片或皮革。"
         ],
         "teachingDialogue": [
           {
-            "speaker": "仪器工坊助手（虚构教学旁白）",
-            "line": "你可以随时切换金属对、添加湿布或干燥纸、使用上移/下移调整任意一层顺序！试试看：同类金属、干燥纸板、或者反向叠放都会让电压表立刻露出端倪。",
+            "speaker": "实验引导",
+            "line": "选择金属组合并按统一极性交替叠放，也可测试同类金属、干燥纸板或反向叠层对电压表的影响。",
             "fictionalized": true
           }
         ]
@@ -619,43 +615,361 @@
   {
     "id": "hist_05",
     "number": 5,
-    "eraYear": "1828年",
+    "eraYear": "1828 年",
     "title": "生命物质的边界",
-    "en": "CHAPTER 05 · BOUNDARY OF ORGANIC MATTER · TEASED",
-    "subtitle": "维勒人工合成尿素：无机原料与有机化合物之间并非不可逾越",
-    "knowledgeTheme": "有机化学 · 物质转化",
-    "playable": false,
-    "teasedNote": "V1.7 历史扩展预告章节（已对齐 10 章时间线，当前版本明确标为预告，不冒充已实装）",
+    "en": "CHAPTER 05 · BOUNDARY OF ORGANIC MATTER",
+    "subtitle": "无机原料与有机化合物之间并非不可逾越：从针状结晶剖析尿素合成与同分异构",
+    "knowledgeTheme": "有机化学 · 物质转化 · 同分异构",
+    "playable": true,
     "figureIds": ["fig_wohler"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "预告章节：1828 年弗里德里希·维勒由无机盐氰酸铵制得尿素，动摇「生命力论」；将在 V1.7 开放完整虚拟产物分析关卡。",
-    "references": ["https://www.britannica.com/biography/Friedrich-Wohler"],
-    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
-    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+    "factDistinctionNote": "史实脉络：1828 年德国化学家弗里德里希·维勒用氰酸银与氯化铵反应企图制备氰酸铵，加热蒸发后却意外析出与生物尿素性质一致的针状结晶，并揭示了 NH₄OCN 与 CO(NH₂)₂ 的同分异构现象（由其导师贝采里乌斯命名）。现代科学史指出，「生命力论」并非因单一实验一夜终结，而是在 19 世纪中叶随柯尔贝合成乙酸（1845）等一系列人工合成逐步退出学界。",
+    "references": [
+      "https://www.britannica.com/biography/Friedrich-Wohler",
+      "https://www.sciencehistory.org/education/scientific-biographies/justus-von-liebig-and-friedrich-wohler/"
+    ],
+    "firstReward": { "coins": 130, "researchPoints": 48, "experience": 100 },
+    "advancedFirstBonus": {
+      "coins": 55,
+      "researchPoints": 24,
+      "experience": 45
+    },
+    "repeatReward": { "coins": 26, "researchPoints": 9, "experience": 20 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_urea_crystals",
+    "archiveRewards": {
+      "manuscriptTitle": "1828 人工合成尿素与同分异构手稿",
+      "manuscriptSummary": "记录了氰酸银与氯化铵复分解滤液经蒸发转化为无色针状尿素结晶的对照证据，展现无机物向有机化合物转化的关键节点。",
+      "theoryTitle": "有机合成起点与同分异构概念",
+      "theorySummary": "有机化合物与无机化合物遵循共同化学规律；分子式完全相同（CH₄N₂O）的物质可因原子排列不同而呈现截然不同的化学性质。",
+      "medalName": "有机破壁探索勋章",
+      "commemorativeInstrument": "1828 蒸发皿与针状尿素结晶标本瓶"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "长期以来人们认为有机化合物只能由生物体内「生命力」合成——无机盐加热后析出的结晶，真的能与生物体内的尿素完全相同吗？",
+        "contextSummary": "1828 年，学界主流仍深信无机矿物与生物体产生的有机物质之间存在不可逾越的鸿沟。然而一次原本旨在制备无机盐氰酸铵的实验，却在蒸发皿中留下了令人震惊的针状晶体。",
+        "historicalFacts": [
+          "1828 年前，尿素一直只能从动物尿液中提取，被视为典型的「生命产物」。",
+          "用氰酸银与氯化铵混合并滤去氯化银沉淀后，将澄清滤液加热蒸发，析出的晶体性质却出人意料。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验引导",
+            "line": "依次完成无机盐反应与蒸发结晶，再对析出的产物 X 执行元素组成、反应性与晶体对照检验。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "若无机物与有机物遵循相同的化学规律，且原子可以按不同方式重新排布，那么对比产物 X 与天然尿素时最合理的预期是？",
+        "options": [
+          {
+            "id": "h5_a",
+            "text": "产物 X 的元素组成、化学反应性与晶体特征应与生物尿素完全一致，即使它源自无机盐原料。",
+            "isRecommended": true,
+            "feedback": "清晰可检验的假设！进入实验台完成反应结晶与多项对照测试。"
+          },
+          {
+            "id": "h5_b",
+            "text": "无机盐不可能生成任何有机分子，蒸发皿中必然仍是普通氯化银或食盐。",
+            "isRecommended": false,
+            "feedback": "氯化银已在过滤步骤被除去；让我们亲自检验蒸发结晶得到的无色针状晶体。"
+          },
+          {
+            "id": "h5_c",
+            "text": "只要分子式相同，两种物质就必然是完全同一种化合物，不可能存在性质差异。",
+            "isRecommended": false,
+            "feedback": "分子式相同但原子连接方式不同时，可能形成性质迥异的同分异构体。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "urea_isomer_analysis",
+        "objectiveSimple": "依次执行无机盐混合过滤与加热蒸发结晶，对产物 X 完成至少 2 项对照检验，并准确判断产物身份与科学意义。",
+        "objectiveAdvanced": "进阶要求：完成全部 3 项产物对照检验并准确判断身份，同时完成氰酸铵（NH₄OCN）与尿素（CO(NH₂)₂）的同分异构体结构核验。",
+        "hints": [
+          "提示 1：先按顺序点击「混合氰酸银与氯化铵」与「加热蒸发滤液结晶」，得到无色针状产物 X。",
+          "提示 2：对照检验显示产物 X 组成为 CH₄N₂O，且不具备普通铵盐或氰酸盐的典型反应，与天然尿素完全一致。",
+          "提示 3：进阶核验中，NH₄OCN 与 CO(NH₂)₂ 均含 1 C、4 H、2 N、1 O（同为 CH₄N₂O），但原子连接结构不同，互为同分异构体。"
+        ],
+        "chapterMaterials": ["kb_Ag", "ammonia", "carbon_dioxide", "water"],
+        "ureaConfig": {
+          "reactionStepLabel": "步骤 1：混合氰酸银 (AgOCN) 与氯化铵 (NH₄Cl) 并过滤",
+          "reactionResultNote": "白色氯化银沉淀（AgCl↓）迅速析出并被滤除，烧杯中得到含氰酸铵（NH₄OCN）的澄清滤液。",
+          "evaporationStepLabel": "步骤 2：加热蒸发滤液并冷却结晶",
+          "evaporationResultNote": "水分蒸干冷却后，蒸发皿内壁析出大量无色透明的细长针状晶体（产物 X）。",
+          "tests": [
+            {
+              "id": "elemental",
+              "label": "元素组成定量测定",
+              "observation": "测定结果：C : H : N : O = 1 : 4 : 2 : 1（最简式 CH₄N₂O），与氰酸铵和生物尿素完全相同。",
+              "evidenceLine": "元素组成测定确认产物 X 分子式为 CH₄N₂O，与氰酸铵及生物尿素一致"
+            },
+            {
+              "id": "reactivity",
+              "label": "酸碱反应性对照",
+              "observation": "遇强碱不立刻释放刺鼻氨气，遇稀酸也不分解产生氰酸气味——失去铵盐与氰酸盐特征，与生物尿素表现一致。",
+              "evidenceLine": "酸碱对照证实产物 X 已不再表现氰酸铵性质，反应行为与生物尿素一致"
+            },
+            {
+              "id": "crystal",
+              "label": "晶体形态与浓硝酸检验",
+              "observation": "呈典型无色针状晶体；加入浓硝酸后生成白色片状硝酸尿素结晶，与天然尿素对照样本完全吻合。",
+              "evidenceLine": "晶体形态与硝酸盐特征结晶均与天然尿素对照样本完全一致"
+            }
+          ],
+          "conclusionPrompt": "综合上述结晶与对照检验记录，关于产物 X 的准确结论是？",
+          "conclusionOptions": [
+            {
+              "label": "产物 X 与生物体提取的尿素为同一化合物，说明有机化合物可由无机盐转化制得。",
+              "correct": true,
+              "feedback": "判断准确！"
+            },
+            {
+              "label": "产物 X 仍是未变化的无机盐氰酸铵，只是结晶形状变得更细长。",
+              "correct": false,
+              "feedback": "酸碱对照已表明它不再具有普通铵盐与氰酸盐的化学性质。"
+            },
+            {
+              "label": "产物 X 是实验过程混入空气杂质形成的碳酸铵。",
+              "correct": false,
+              "feedback": "碳酸铵遇酸会剧烈冒泡释放 CO₂，与产物 X 的对照现象不符。"
+            }
+          ],
+          "advancedIsomerPrompt": "进阶核验：氰酸铵（NH₄OCN）与尿素（CO(NH₂)₂）元素组成相同却性质迥异，其根本化学原因是？",
+          "advancedIsomerOptions": [
+            {
+              "label": "两者分子式同为 CH₄N₂O，但分子内部原子的连接顺序与结构排列不同（同分异构体）。",
+              "correct": true,
+              "feedback": "精准把握同分异构体核心！"
+            },
+            {
+              "label": "尿素比氰酸铵多出了一个神秘的「生命力原子」，无法被元素分析测出。",
+              "correct": false,
+              "feedback": "定量元素分析证实两者只含相同的 C、H、N、O 原子，并无所谓生命力元素。"
+            },
+            {
+              "label": "尿素含有的氮原子数量是氰酸铵的两倍。",
+              "correct": false,
+              "feedback": "请逐一清点：NH₄OCN 与 CO(NH₂)₂ 均含 2 个氮原子、4 个氢原子、1 个碳原子和 1 个氧原子。"
+            }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "无机盐氰酸银与氯化铵反应滤液经加热蒸发，析出与生物尿素性质完全一致的针状结晶。",
+          "元素组成、酸碱反应性与硝酸尿素特征结晶共同排除了未反应氰酸铵的可能。",
+          "氰酸铵（NH₄OCN）与尿素（CO(NH₂)₂）共享分子式 CH₄N₂O，为早期同分异构现象提供了清晰实证。"
+        ],
+        "question": "如何客观准确地评价 1828 年人工合成尿素在化学史上的意义？",
+        "options": [
+          {
+            "id": "a5_1",
+            "text": "它动摇了「有机物必须依赖生命力」的教条，并为同分异构体研究提供典范；随后几十年更多有机合成共同促成了现代有机化学确立。",
+            "correct": true,
+            "explanation": "全面而严谨！既肯定其里程碑地位，也如实反映科学观念演进的渐进过程。"
+          },
+          {
+            "id": "a5_2",
+            "text": "它证明有机化学与无机化学完全没有结构复杂度差异，从此无需区分碳化合物。",
+            "correct": false,
+            "explanation": "两者遵循同一套化学物理规律，但含碳化合物的成键与异构多样性仍使有机化学成为核心分支。"
+          },
+          {
+            "id": "a5_3",
+            "text": "它表明尿素与氰酸铵其实完全是同一种分子结构。",
+            "correct": false,
+            "explanation": "两者原子连接方式截然不同，互为同分异构体。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "无机到有机的桥梁 · 人工合成尿素与同分异构",
+        "scientificConclusion": "有机化合物并非由神秘「生命力」独占，只要条件合适，无机前体同样可以重排生成有机分子；相同原子组成按不同连接方式可形成性质迥异的同分异构体。",
+        "historicalImpact": "打破无机与有机世界不可逾越的观念壁垒，并与贝采里乌斯命名的「同分异构」概念一同催生了现代有机合成与结构化学。",
+        "multiContributorNote": "史实脉络：1828 年德国化学家弗里德里希·维勒在柏林发表《论尿素的人工生成》，随后与李比希及导师贝采里乌斯深入研究基团与同分异构；1845 年柯尔贝从单质合成乙酸、1860 年代贝特洛合成多种有机物，共同推动「生命力论」逐步退出化学界。"
+      }
+    }
   },
   {
     "id": "hist_06",
     "number": 6,
-    "eraYear": "1830年代",
+    "eraYear": "1830 年代",
     "title": "电流的化学法则",
-    "en": "CHAPTER 06 · LAWS OF ELECTROLYSIS · TEASED",
-    "subtitle": "法拉第电解定律：电量与电解产物数量之间的定量关系",
-    "knowledgeTheme": "电解 · 定量化学",
-    "playable": false,
-    "teasedNote": "V1.7 历史扩展预告章节（将衔接 CH.04 伏打电堆与定量电解参数分析）",
+    "en": "CHAPTER 06 · LAWS OF ELECTROLYSIS",
+    "subtitle": "电量与电解产物数量之间的定量规律：用可控电解实验揭示第一与第二定律",
+    "knowledgeTheme": "电解 · 定量化学 · 离子价态",
+    "playable": true,
     "figureIds": ["fig_faraday"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "预告章节：1833–1834 年迈克尔·法拉第建立定量电解定律并提出电极/离子术语；将在 V1.7 开放完整定量电解参数关卡。",
+    "factDistinctionNote": "史实与教学模型边界：1833–1834 年迈克尔·法拉第通过大量电解称量确立电解第一、第二定律，并与剑桥学者威廉·休厄尔合作创制「电极、阳极、阴极、电解质、离子」等现代术语。本关采用理想化教学电量单位（1 单位电量对应 1 份单价电子转移，假设 100% 电流效率，忽略副反应与极化损耗），旨在清晰呈现 Q = I×t 与电子数 z 的定量比例关系。",
     "references": [
-      "https://www.sciencehistory.org/education/scientific-biographies/michael-faraday/"
+      "https://www.sciencehistory.org/education/scientific-biographies/michael-faraday/",
+      "https://www.britannica.com/science/Faradays-laws-of-electrolysis"
     ],
-    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
-    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+    "firstReward": { "coins": 135, "researchPoints": 50, "experience": 105 },
+    "advancedFirstBonus": {
+      "coins": 58,
+      "researchPoints": 26,
+      "experience": 48
+    },
+    "repeatReward": { "coins": 28, "researchPoints": 10, "experience": 20 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_faraday_voltameter",
+    "archiveRewards": {
+      "manuscriptTitle": "1833–1834 电化学定量研究手稿",
+      "manuscriptSummary": "系统记录了通入电量与电极析出产物量之间的正比关系，以及不同离子在同电量下按价态比例析出的规律。",
+      "theoryTitle": "法拉第电解第一、第二定律",
+      "theorySummary": "电极上发生化学变化的物质的量与通过溶液的总电量成正比；相同电量下不同物质的析出物质的量与其所需转移电子数成反比。",
+      "medalName": "皇家学会电量计勋章",
+      "commemorativeInstrument": "法拉第定量水电解电量计模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "持续直流电能够分解水与金属盐溶液——电极上析出多少物质，是由电压高低随意决定的，还是严格受通过的总电量与离子电荷支配？",
+        "contextSummary": "1830 年代，伏打电堆已让电化学实验风靡欧洲，但电流与化学变化之间仍缺乏统一定量法则。伦敦皇家研究所的实验者开始用精密电量计称量不同电解槽的产物。",
+        "historicalFacts": [
+          "1833–1834 年，法拉第设计了气体电量计，首次以电解产物数量直接度量通过回路的电量。",
+          "通过将多个装有不同盐溶液的电解槽串联在同一电流回路中，研究者得以精确对比同电量下不同元素的析出比例。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验引导",
+            "line": "调节电解液、电流与通电时间并记录至少 3 组数据，既对比同一电解液的不同电量，也对比同电量下银与铜/氢的析出量。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "若每次化学析出都对应固定数量的电荷转移，那么改变通入电量 Q = I×t 与更换电解液时，最合理的定量预期是？",
+        "options": [
+          {
+            "id": "h6_a",
+            "text": "同一电解液析出量随总电量 Q 成正比增加；相同电量下，需转移 1 份电子的 Ag⁺ 析出物质的量应是需转移 2 份电子的 Cu²⁺ 的 2 倍。",
+            "isRecommended": true,
+            "feedback": "直指法拉第双定律核心！现在进入电解实验台收集定量对照记录。"
+          },
+          {
+            "id": "h6_b",
+            "text": "析出量只取决于通电时间，与电流大小和电解液离子电荷无关。",
+            "isRecommended": false,
+            "feedback": "电量由电流与时间共同决定（Q = I×t），不同价态离子所需的电子数也不同。"
+          },
+          {
+            "id": "h6_c",
+            "text": "只要串联通入相同电量，任何金属析出的物质的量必然完全相等（1:1）。",
+            "isRecommended": false,
+            "feedback": "请到实验台用相同电量分别电解硝酸银（Ag⁺）与硫酸铜（Cu²⁺）验证它们的物质的量之比。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "faraday_electrolysis_lab",
+        "objectiveSimple": "至少记录 3 组通电数据（须含：同一电解液 2 种不同电量对照 + 相同电量下硝酸银与硫酸铜或水的对照），并选出准确的电解定量规律。",
+        "objectiveAdvanced": "进阶要求：完成双定律对照记录与规律归纳，并推算在串联电解中析出 4 份银（Ag⁺ + e⁻ → Ag）的相同电量可析出多少份铜（Cu²⁺ + 2e⁻ → Cu）。",
+        "hints": [
+          "提示 1：例如先选「硝酸银溶液」，分别用 1A×1单位（Q=1）和 2A×1单位（Q=2）记录两次，观察产物从 1.00 翻倍到 2.00。",
+          "提示 2：再切到「硫酸铜溶液」，用同样 Q=2（2A×1单位）通电记录，对比硝酸银（2.00 份 Ag）与硫酸铜（1.00 份 Cu）。",
+          "提示 3：进阶计算中，析出 4 份 Ag 消耗 4 份电子；每个 Cu²⁺ 需要 2 个电子，因此相同电量可析出 4 ÷ 2 = 2 份 Cu。"
+        ],
+        "chapterMaterials": [
+          "water",
+          "copper_solution",
+          "kb_AgNO3",
+          "copper",
+          "kb_Ag"
+        ],
+        "faradayConfig": {
+          "modelNote": "教学理想模型说明：本台以 1 教学单位电量（Q = I × t）对应 1 份电子转移（100% 电流效率，忽略副反应与过电位），直观展示法拉第定量比例。",
+          "electrolytes": [
+            {
+              "id": "agno3_ag",
+              "name": "硝酸银溶液（Ag⁺）",
+              "productName": "银 (Ag)",
+              "halfReaction": "Ag⁺ + e⁻ → Ag（1 份电子/份）",
+              "electronsPerUnit": 1
+            },
+            {
+              "id": "cuso4_cu",
+              "name": "硫酸铜溶液（Cu²⁺）",
+              "productName": "铜 (Cu)",
+              "halfReaction": "Cu²⁺ + 2e⁻ → Cu（2 份电子/份）",
+              "electronsPerUnit": 2
+            },
+            {
+              "id": "water_h2",
+              "name": "稀电解质水（H₂O）",
+              "productName": "氢气 (H₂)",
+              "halfReaction": "2H⁺ + 2e⁻ → H₂↑（2 份电子/份）",
+              "electronsPerUnit": 2
+            }
+          ],
+          "currentsA": [1, 2, 4],
+          "durationsUnit": [1, 2],
+          "lawPrompt": "综合你的多组通电记录，哪项规律准确概括了电量与产物数量之间的关系？",
+          "lawOptions": [
+            {
+              "label": "产物物质的量与总电量 Q = I×t 成正比；相同电量下，不同产物的物质的量与其所需电子数 z 成反比（Ag : Cu = 2 : 1）。",
+              "correct": true,
+              "feedback": "完全符合法拉第第一与第二电解定律！"
+            },
+            {
+              "label": "电量翻倍时产物不变，只有更换更贵的电极材料才会增加产量。",
+              "correct": false,
+              "feedback": "请对比同一电解液在不同 Q 值下的记录，产物随 Q 线性增长。"
+            },
+            {
+              "label": "相同电量下，二价铜析出的物质的量是单价银的两倍。",
+              "correct": false,
+              "feedback": "恰好相反：还原 1 个 Cu²⁺ 需消耗 2 个电子，因此同电量下析出的 Cu 物质的量是 Ag 的一半。"
+            }
+          ],
+          "advancedSeriesPrompt": "进阶串联定量推算：相同电量通过串联的硝酸银与硫酸铜电解槽，已知析出 4 份银（Ag⁺ + e⁻ → Ag），理论上析出多少份铜（Cu²⁺ + 2e⁻ → Cu）？",
+          "advancedExpectedCuPortions": 2
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "同一电解槽中，通入电量 Q = I×t 翻倍，电极析出的产物物质的量严格翻倍。",
+          "相同电量通过不同电解槽时，Ag⁺（1e⁻）与 Cu²⁺/H₂（2e⁻）的析出物质的量之比为 2 : 1。",
+          "电荷与物质粒子按确定整数比例一一对应，暗示电荷本身可能存在最小基本单元。"
+        ],
+        "question": "法拉第电解定律除了指导定量电镀与冶金外，还对微观原子物理产生了什么深远启示？",
+        "options": [
+          {
+            "id": "a6_1",
+            "text": "电极上固定份数的物质总是携带固定倍数的电荷，直接启发后世科学家推断电荷并非连续流体，而是存在基本量子（电子）。",
+            "correct": true,
+            "explanation": "深刻而准确！赫姆霍兹与斯通尼正是从法拉第电解定律出发提出「电荷原子（电子）」的设想。"
+          },
+          {
+            "id": "a6_2",
+            "text": "说明所有金属离子在水溶液中都必然只带 1 个单位电荷。",
+            "correct": false,
+            "explanation": "实验表明 Ag⁺ 带 1 单位电荷而 Cu²⁺ 带 2 单位电荷，不同元素具有不同化合价/电荷数。"
+          },
+          {
+            "id": "a6_3",
+            "text": "证明电流通过溶液时不会遵守质量守恒定律。",
+            "correct": false,
+            "explanation": "电解过程完全遵守质量守恒与电荷守恒。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "电与物质的定量纽带 · 法拉第电解定律",
+        "scientificConclusion": "电解时电极上转化的物质数量与通过的电量成正比（第一定律）；相同电量下不同物质的转化量按其化学当量/转移电子数成固定比例（第二定律）。",
+        "historicalImpact": "奠定了现代定量电化学与电解工业基础，更首次在实验上揭示了电荷离散性，为 19 世纪末电子的发现埋下伏笔。",
+        "multiContributorNote": "史实协作：迈克尔·法拉第于 1833–1834 年完成关键定量实验并确立双定律；剑桥大学学者威廉·休厄尔协助法拉第创立了「电极（electrode）、阳极（anode）、阴极（cathode）、电解质（electrolyte）、离子（ion）」等沿用至今的科学术语。"
+      }
+    }
   },
   {
     "id": "hist_07",
     "number": 7,
-    "eraYear": "1869年",
+    "eraYear": "1869 年",
     "title": "尚未发现的元素",
     "en": "CHAPTER 07 · THE UNDISCOVERED ELEMENTS",
     "subtitle": "1869 元素卡片排布：不依赖现代原子序数，仅凭原子量与氧化物规律预言空位",
@@ -688,17 +1002,16 @@
     },
     "stages": {
       "background": {
-        "researchQuestion": "1869 年已有 60 多种化学元素，但原子核与质子数尚未被发现——仅靠相对原子质量和化学性质，能否排出一张连「未知元素」都能预测的地图？",
-        "contextSummary": "19 世纪 60 年代，元素清单越拉越长，化合价、氧化物组成与原子量看似杂乱无章。俄国与德国的几位化学家尝试把元素性质写在卡片上反复排列，寻找潜藏在数字背后的周期节奏。",
+        "researchQuestion": "1869 年尚不知原子序数，仅凭相对原子质量与化学性质，能否排出一张能预言未知元素的地图？",
+        "contextSummary": "1869 年前后，已知元素已达 60 多种，原子量、化合价与氧化物组成看似杂乱。俄国与德国的化学家把元素性质写在卡片上反复排布，寻找背后的周期规律。",
         "historicalFacts": [
-          "1869 年尚无「原子序数」或「核外电子排布」概念，研究者唯一可用的定量尺度是相对原子质量、密度与最高价氧化物通式。",
-          "更早之前，德贝莱纳（三元素组）、尚古多（螺旋图）与纽兰兹（八音律）都曾察觉元素性质的周期重复。",
-          "在实验阶段，我们将为你隐藏 1875 年之后的现代答案，请你仅凭 1869 年手稿线索完成排布与空位预言。"
+          "1869 年尚无原子序数或电子排布概念，研究者主要依据相对原子质量、密度与最高价氧化物通式分类。",
+          "此前，德贝莱纳（三元素组）、尚古多（螺旋图）与纽兰兹（八音律）都曾察觉元素性质的周期重复。"
         ],
         "teachingDialogue": [
           {
-            "speaker": "手稿整理助手（虚构教学旁白）",
-            "line": "桌上摆着 4 张 1869 年手写元素卡片。把它们放进对应的周期与族位后，别急着硬塞已知元素——请亲自在铝（Al）下方标出「未知空位」，再推断这个空位元素的性质！",
+            "speaker": "实验引导",
+            "line": "将 4 张 1869 年元素卡片归位至周期网格，在铝（Al）下方标出未知空位并推断其性质。",
             "fictionalized": true
           }
         ]
@@ -844,58 +1157,554 @@
   {
     "id": "hist_08",
     "number": 8,
-    "eraYear": "1898年",
+    "eraYear": "1898 年",
     "title": "矿石中的未知信号",
-    "en": "CHAPTER 08 · SIGNALS IN PITCHBLENDE · TEASED",
-    "subtitle": "玛丽·居里与皮埃尔·居里发现钋与镭（仅限虚拟数据分析）",
-    "knowledgeTheme": "放射性 · 元素发现（虚拟数据分析）",
-    "playable": false,
-    "teasedNote": "V1.7 历史扩展预告章节（将仅以虚拟矿样电离数据推理形式呈现，不涉及危险操作指南）",
+    "en": "CHAPTER 08 · SIGNALS IN PITCHBLENDE",
+    "subtitle": "压电石英电离数据分析：从沥青铀矿异常信号中追寻未知强放射性元素",
+    "knowledgeTheme": "放射性 · 元素发现 · 虚拟数据分析",
+    "playable": true,
     "figureIds": ["fig_curies"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "预告章节：1898 年玛丽·居里与皮埃尔·居里从沥青铀矿异常电离信号中发现钋与镭；将在后续版本仅以虚拟数据分析形式开放。",
+    "factDistinctionNote": "史实与安全教学边界：1898 年玛丽·居里与皮埃尔·居里在贝克勒尔发现铀射线（1896）的基础上，用压电石英验电器发现沥青铀矿电离强度远超其含铀量，经分步化学富集先后发现钋（Po，1898 年 7 月）与镭（Ra，1898 年 12 月）。本关严格限定为虚拟电离数据分析教学模型，不涉及任何危险矿石处理或实操指南；放射性属原子核物理现象，不套用普通化学计量平衡。",
     "references": [
-      "https://www.nobelprize.org/prizes/chemistry/1911/marie-curie/facts/"
+      "https://www.nobelprize.org/prizes/chemistry/1911/marie-curie/facts/",
+      "https://www.sciencehistory.org/education/scientific-biographies/marie-sklodowska-curie/"
     ],
-    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
-    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+    "firstReward": { "coins": 145, "researchPoints": 54, "experience": 115 },
+    "advancedFirstBonus": {
+      "coins": 62,
+      "researchPoints": 28,
+      "experience": 52
+    },
+    "repeatReward": { "coins": 30, "researchPoints": 10, "experience": 22 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_curie_electroscope",
+    "archiveRewards": {
+      "manuscriptTitle": "1898 沥青铀矿电离电流测量笔记",
+      "manuscriptSummary": "以相对电离强度曲线追踪沥青铀矿中远超铀含量的异常信号，记录随铋与随钡共沉淀的两条新元素线索。",
+      "theoryTitle": "原子属性放射性与痕量新元素追踪法",
+      "theorySummary": "放射性强度仅取决于特定核素的数量而非化学化合态；以电离测量追踪化学富集馏分成为发现痕量新元素的利器。",
+      "medalName": "石英验电器探索勋章",
+      "commemorativeInstrument": "压电石英电离测量仪模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "一块只含约一半铀的沥青铀矿，放出的电离信号却比纯金属铀强四倍以上——多出来的神秘辐射究竟来自哪里？",
+        "contextSummary": "1898 年，铀盐能发出穿透性射线的现象刚刚引起巴黎学界关注。研究者改用精密压电石英验电器定量测定矿石电离电流时，一组反常读数暴露出未知元素的踪迹。",
+        "historicalFacts": [
+          "1896 年贝克勒尔发现铀盐能使包裹避光的照相底片感光；1898 年研究者发现射线强度与铀元素的化学化合态无关。",
+          "相比传统肉眼称量，测量空气电离微弱电流的灵敏度高出数个数量级，可追踪肉眼看不见的极微量新元素。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验引导",
+            "line": "依次测定纯铀基准、沥青铀矿原矿与两组化学分级馏分的虚拟电离数据，找出异常信号的来源。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "若矿石电离强度仅取决于所含放射性原子的种类与数量，那么「半数含铀的沥青铀矿信号反而远超纯铀」最可能意味着什么？",
+        "options": [
+          {
+            "id": "h8_a",
+            "text": "沥青铀矿中必定隐藏着尚未发现、放射性远强于铀的极微量新元素。",
+            "isRecommended": true,
+            "feedback": "极具洞察力的推断！进入虚拟数据分析台逐项测定矿样与分级馏分。"
+          },
+          {
+            "id": "h8_b",
+            "text": "铀在矿石里和氧结合成化合物后，普通化学键能量大幅增强了射线。",
+            "isRecommended": false,
+            "feedback": "测定表明纯铀化合物的射线强度与含铀比例成正比，化学化合态不会放大放射性。"
+          },
+          {
+            "id": "h8_c",
+            "text": "一定是仪器受潮失灵，矿石里不可能存在比铀更强的辐射源。",
+            "isRecommended": false,
+            "feedback": "重复校准与分级富集测试可以检验信号是仪器误差还是真实存在的物质组分。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "radioactivity_data_analysis",
+        "objectiveSimple": "检测纯铀基准、沥青铀矿原矿及至少 1 份分级馏分的虚拟电离数据，据此推断异常信号的物质来源。",
+        "objectiveAdvanced": "进阶要求：完成全部 4 份虚拟矿样与双馏分测定，确认存在两种独立新元素信号，并准确界定核放射性与普通化学反应的边界。",
+        "hints": [
+          "提示 1：先点击检测「纯金属铀基准（1.0×）」与「沥青铀矿原矿（4.2×）」，对比原矿实际含铀量（约 50%）。",
+          "提示 2：继续检测「铋共沉淀馏分 A」与「钡共沉淀馏分 B」，两组化学性质不同的富集物分别暴增至数百倍基准强度。",
+          "提示 3：进阶界定中，放射性源于原子核内部变化，不受温度或普通化学化合态左右，不能套用普通化学计量平衡。"
+        ],
+        "chapterMaterials": [],
+        "radioactivityConfig": {
+          "safetyAndModelNote": "虚拟数据分析说明：本关仅展示教学示意电离电流数据（不涉及任何危险实操步骤）；放射性源于原子核内部过程，不适用普通化学计量计算。",
+          "samples": [
+            {
+              "id": "pure_uranium",
+              "label": "纯金属铀基准",
+              "compositionNote": "含铀 100% · 参考基准",
+              "relativeIntensity": 1,
+              "readingDisplay": "1.0 × 基准（20 pA）",
+              "spectrumNote": "仅呈现已知铀元素特征光谱。"
+            },
+            {
+              "id": "pitchblende_ore",
+              "label": "沥青铀矿原矿",
+              "compositionNote": "含铀约 50% · 若仅由铀贡献预期仅 0.5×",
+              "relativeIntensity": 4.2,
+              "readingDisplay": "4.2 × 基准（84 pA · 异常偏高！）",
+              "spectrumNote": "实测电离电流是预期铀信号的 8 倍以上，强烈指向未知强放射源。"
+            },
+            {
+              "id": "bismuth_fraction",
+              "label": "化学分级馏分 A（伴随铋共沉淀）",
+              "compositionNote": "按铋族化学性质富集的极微量组分",
+              "relativeIntensity": 400,
+              "readingDisplay": "≈ 400 × 基准（强未知信号甲）",
+              "spectrumNote": "化学行为近似铋但具有极强放射性，指向新元素甲（后命名钋 Po）。"
+            },
+            {
+              "id": "barium_fraction",
+              "label": "化学分级馏分 B（伴随钡共沉淀）",
+              "compositionNote": "按碱土金属钡盐分步结晶富集的微量组分",
+              "relativeIntensity": 900,
+              "readingDisplay": "≈ 900 × 基准（极强未知信号乙）",
+              "spectrumNote": "化学行为近似钡，且光谱仪检出前所未见的紫外特征谱线，指向新元素乙（后命名镭 Ra）。"
+            }
+          ],
+          "anomalyPrompt": "结合基准、原矿与富集馏分的虚拟电离数据，最严谨的科学推断是？",
+          "anomalyOptions": [
+            {
+              "label": "沥青铀矿中含有极微量但放射性极强的新元素，且随铋与随钡富集出两组不同化学性质的强信号，说明至少存在两种新元素。",
+              "correct": true,
+              "feedback": "推论严密！这正是 1898 年相继发现钋与镭的核心证据链。"
+            },
+            {
+              "label": "铋和钡本身都是比铀强数百倍的强放射性元素。",
+              "correct": false,
+              "feedback": "纯铋盐与纯钡盐对照几乎无此强电离信号，信号来自混在其中极微量的新元素。"
+            },
+            {
+              "label": "电离信号增强是因为加热蒸发让空气变热，与矿石成分无关。",
+              "correct": false,
+              "feedback": "室温下对不同化学馏分做等温对照，只有特定富集馏分呈现百倍级信号。"
+            }
+          ],
+          "advancedModelPrompt": "进阶模型界定：为什么本关采用虚拟核辐射数据模型，而不能用普通化学反应计量来解释放射性强弱？",
+          "advancedModelOptions": [
+            {
+              "label": "放射性是原子核内部自发释放粒子的核物理过程，不因原子参与普通化学化合或温度改变而增减，超出普通电子重排化学计量范畴。",
+              "correct": true,
+              "feedback": "概念边界清晰准确！"
+            },
+            {
+              "label": "因为放射性物质不遵守任何守恒定律，也无法进行定量测量。",
+              "correct": false,
+              "feedback": "核过程遵守质能守恒与核子数/电荷守恒，且电离电流可高度精确测量。"
+            },
+            {
+              "label": "只要配平化学方程式，普通化学反应就能把普通钡直接变成镭。",
+              "correct": false,
+              "feedback": "普通化学反应只涉及核外电子重排，不能改变元素原子核的质子数。"
+            }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "含铀约半数的沥青铀矿电离电流达纯铀基准 4.2 倍，排除了已知铀含量单独致因。",
+          "分别随铋与随钡富集的两组馏分信号飙升数百倍并呈现新谱线，证实存在两种截然不同的未知元素。",
+          "放射性是原子自身的核属性，不受普通化学化合态左右，首次动摇「原子不可再分」的经典观念。"
+        ],
+        "question": "以电离电流追踪未知元素的发现过程，带来了哪项根本性的科学观念突破？",
+        "options": [
+          {
+            "id": "a8_1",
+            "text": "证实放射性是特定原子内在的物理属性而非化学化合结果，为探索原子内部结构与核物理打开了大门。",
+            "correct": true,
+            "explanation": "准确！正是放射性研究直接催生了后续对原子核与核衰变的深入探索。"
+          },
+          {
+            "id": "a8_2",
+            "text": "证明元素周期表只适用于非放射性元素，放射性元素不属于化学元素。",
+            "correct": false,
+            "explanation": "钋（第 84 号）与镭（第 88 号）各自占据周期表明确位置并具有清晰的族特征化学性质。"
+          },
+          {
+            "id": "a8_3",
+            "text": "说明改变矿石的酸碱溶解方式就能随时关闭放射性。",
+            "correct": false,
+            "explanation": "化学溶解只能分离富集元素，无法改变原子核本身的放射性。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "穿透原子的微光 · 钋与镭的发现",
+        "scientificConclusion": "放射性是特定原子核的固有属性；通过高灵敏电离测量与分步化学富集，可以在海量矿渣中精准追踪并证实极微量新元素（钋 Po 与镭 Ra）的存在。",
+        "historicalImpact": "直接推动人类突破「原子不可再分」的传统认知，开启了核物理、放射化学与现代医学成像及放疗研究。",
+        "multiContributorNote": "史实协作：在亨利·贝克勒尔（1896）发现铀射线的基础上，玛丽·居里与皮埃尔·居里（1898）共同提出「放射性」术语并相继发现钋与镭（与贝克勒尔共享 1903 年诺贝尔物理学奖）；玛丽·居里随后历时多年提纯金属镭并测定原子量，独享 1911 年诺贝尔化学奖。"
+      }
+    }
   },
   {
     "id": "hist_09",
     "number": 9,
-    "eraYear": "1909–1911年",
+    "eraYear": "1909–1911 年",
     "title": "原子内部的世界",
-    "en": "CHAPTER 09 · INSIDE THE ATOM · TEASED",
-    "subtitle": "卢瑟福、盖革与马斯登散射实验与原子核模型的建立",
-    "knowledgeTheme": "原子结构 · 科学模型",
-    "playable": false,
-    "teasedNote": "V1.7/V1.8 历史扩展预告章节（将通过虚拟粒子散射轨迹分析推断原子核结构）",
+    "en": "CHAPTER 09 · INSIDE THE ATOM",
+    "subtitle": "α 粒子金箔散射教学模型：从极少数大角度反弹推断致密原子核结构",
+    "knowledgeTheme": "原子结构 · 核物理教学模型 · 科学建模",
+    "playable": true,
     "figureIds": ["fig_rutherford_team"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "预告章节：1909 年盖革与马斯登金箔散射实验与 1911 年卢瑟福原子核模型，将在后续版本开放。",
+    "factDistinctionNote": "史实与核物理教学模型边界：1909 年汉斯·盖革与欧内斯特·马斯登在欧内斯特·卢瑟福指导下完成 α 粒子金箔散射实验，观测到约每 8000 个粒子中有 1 个偏转超过 90°；1911 年卢瑟福据此提出原子核模型。本关散射轨迹图与百分比统计均为核物理库仑散射教学模型（不涉及普通化学反应计量），旨在阐明「绝大多数直穿」与「极少数大角度反弹」对原子结构的双重约束。",
     "references": [
-      "https://www.nobelprize.org/prizes/chemistry/1908/rutherford/biographical/"
+      "https://www.nobelprize.org/prizes/chemistry/1908/rutherford/biographical/",
+      "https://www.britannica.com/science/Rutherford-model"
     ],
-    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
-    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+    "firstReward": { "coins": 150, "researchPoints": 58, "experience": 120 },
+    "advancedFirstBonus": {
+      "coins": 65,
+      "researchPoints": 30,
+      "experience": 55
+    },
+    "repeatReward": { "coins": 32, "researchPoints": 11, "experience": 24 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_gold_foil_chamber",
+    "archiveRewards": {
+      "manuscriptTitle": "1909–1911 金箔散射计数与核模型手稿",
+      "manuscriptSummary": "对照记录了不同观测角下的荧光闪烁比例，展示了如何以大角度反弹数据推翻均匀布丁模型并建立中心原子核图像。",
+      "theoryTitle": "卢瑟福原子核结构模型",
+      "theorySummary": "原子内部绝大部分为空旷空间，几乎全部质量与全部正电荷高度集中在极微小的中心原子核内，核外电子在广阔空间运动。",
+      "medalName": "金箔散射观测勋章",
+      "commemorativeInstrument": "α 粒子金箔散射真空观测室模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "如果原子像一块均匀松软的「葡萄干布丁」，高速 α 粒子本应笔直穿过金箔——为何竟有极少数粒子像撞到坚硬核心一样原路弹回？",
+        "contextSummary": "1909–1911 年，电子虽已被发现，但正电荷在原子内如何分布仍是谜团。在曼彻斯特一间昏暗的实验室里，研究者转动硫化锌荧光屏，逐个数着穿过极薄金箔的 α 粒子闪烁。",
+        "historicalFacts": [
+          "1909 年，盖革与年轻的马斯登在极薄金箔四周不同角度放置可旋转荧光屏，观测带正电的高速 α 粒子散射。",
+          "如果正电荷均匀弥散在整个原子球体内，任何局部电场都太弱，理论上绝不可能把高速 α 粒子大角度反弹。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验引导",
+            "line": "在不同观测角发射模拟 α 粒子束并对比两种模型示意图，依据直穿与大角度反弹记录推断原子内部结构。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "若原子正电荷与绝大部分质量集中在中心一个极微小致密的核心，用高速带正电 α 粒子轰击极薄金箔时应观测到什么现象？",
+        "options": [
+          {
+            "id": "h9_a",
+            "text": "绝大多数 α 粒子穿过空旷外围几乎不偏转，极少数恰好逼近中心致密正电核心时发生大角度偏转甚至反弹。",
+            "isRecommended": true,
+            "feedback": "清晰可检验的物理预言！进入散射观测台逐角记录数据。"
+          },
+          {
+            "id": "h9_b",
+            "text": "所有 α 粒子都会被金箔完全挡住弹回，一个也穿不过去。",
+            "isRecommended": false,
+            "feedback": "若原子内部绝大部分是空旷空间，绝大多数粒子应能几乎笔直穿过。"
+          },
+          {
+            "id": "h9_c",
+            "text": "所有 α 粒子都会整齐地偏转 45°，不会出现直穿或大角度反弹。",
+            "isRecommended": false,
+            "feedback": "粒子瞄准中心核的远近随机分布，因此偏转角度应呈现极端悬殊的概率分布。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "rutherford_scattering_model",
+        "objectiveSimple": "至少完成「0°–10° 直穿区」与「135°–180° 大角度反弹区」两组虚拟观测记录，并选出唯一能解释全部现象的原子模型。",
+        "objectiveAdvanced": "进阶要求：完成全部 3 个观测角采样、亲自切换对比「葡萄干布丁模型」与「原子核模型」示意图，并完成库仑散射机理判别。",
+        "hints": [
+          "提示 1：依次点击观测角胶囊并按「发射模拟 α 粒子束」，收集直穿区（~99.98%）与反弹区（~0.01%）记录。",
+          "提示 2：进阶模式别忘了点击顶部模型切换按钮，亲自对比「葡萄干布丁」与「原子核」两套轨迹示意。",
+          "提示 3：极少数大角度反弹要求斥力极强（正电荷高度集中），而 99.98% 直穿要求核心体积相对原子极小。"
+        ],
+        "chapterMaterials": [],
+        "scatteringConfig": {
+          "nuclearModelNote": "核物理库仑散射教学模型：展示带正电 α 粒子（He 核）与金原子之间的静电散射概率分布，不涉及化学键断裂或普通化学计量。",
+          "angles": [
+            {
+              "id": "forward",
+              "label": "直穿区",
+              "rangeLabel": "0°–10°",
+              "fractionDisplay": "约 99.98%（绝大多数）",
+              "observation": "荧光屏闪光密集几乎连成一片：绝大多数 α 粒子畅通无阻地笔直穿过金箔。"
+            },
+            {
+              "id": "side",
+              "label": "侧偏区",
+              "rangeLabel": "30°–90°",
+              "fractionDisplay": "约 0.01%（偶发偏转）",
+              "observation": "偶有少量 α 粒子掠过强正电区域外缘，轨迹出现明显弯折。"
+            },
+            {
+              "id": "backscatter",
+              "label": "大角度反弹区",
+              "rangeLabel": "135°–180°",
+              "fractionDisplay": "约 0.01%（约 1/8000 量级 >90°）",
+              "observation": "虽极罕见，但清晰记录到 α 粒子几乎原路反弹！均匀布丁模型在此角度的预测几乎为零。"
+            }
+          ],
+          "modelPrompt": "结合多角度散射记录，哪项原子内部模型能同时解释「99.98% 直穿」与「极少数大角度反弹」？",
+          "modelOptions": [
+            {
+              "label": "原子绝大部分为空旷空间，全部正电荷与几乎全部质量集中在极微小致密的中心原子核内。",
+              "correct": true,
+              "feedback": "完全吻合卢瑟福原子核模型！"
+            },
+            {
+              "label": "正电荷像柔软布丁一样均匀铺满整个原子球体，电子嵌在其中。",
+              "correct": false,
+              "feedback": "均匀弥散的正电荷电场过弱，无法把高速重粒子大角度弹回。"
+            },
+            {
+              "label": "原子是实心不可穿透的硬钢球，中间没有任何空隙。",
+              "correct": false,
+              "feedback": "若原子完全实心密排，99.98% 的 α 粒子不可能笔直穿过数百层金原子。"
+            }
+          ],
+          "advancedMechanismPrompt": "进阶机理判别：为什么「大角度反弹极罕见却确实存在」同时约束了原子核的尺寸与电荷密度？",
+          "advancedMechanismOptions": [
+            {
+              "label": "只有把全部正电荷与质量压缩在半径远小于原子的微小核内，才能既让绝大多数粒子远离核心直穿，又在极少数正碰时产生足够强的库仑斥力将其弹回。",
+              "correct": true,
+              "feedback": "核物理散射逻辑严丝合缝！"
+            },
+            {
+              "label": "因为金箔表面涂了特殊化学催化剂，把 α 粒子化学反应掉了。",
+              "correct": false,
+              "feedback": "这是带正电 α 粒子与金原子核之间的弹性库仑静电散射，而非化学反应。"
+            },
+            {
+              "label": "因为轻盈的电子撞飞了质量大得多的 α 粒子。",
+              "correct": false,
+              "feedback": "α 粒子质量约为电子的 7300 倍，就像高速炮弹撞上尘埃，电子无法使 α 粒子大角度反弹。"
+            }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "0°–10° 直穿区集中了约 99.98% 的粒子，证明原子内部绝大部分是空旷空间。",
+          "135°–180° 大角度反弹虽仅占约 1/8000 量级，却彻底证伪了正电荷均匀分布的布丁模型。",
+          "仅当正电荷与几乎全部质量集中于微小中心核时，库仑排斥才能同时符合所有角度的散射统计。"
+        ],
+        "question": "金箔散射实验展示了科学建模的哪项关键原则？",
+        "options": [
+          {
+            "id": "a9_1",
+            "text": "哪怕只占万分之一的极端反常观测，只要经重复实验确证与旧模型根本矛盾，就足以推动建立全新的微观结构理论。",
+            "correct": true,
+            "explanation": "精辟！正是盖革、马斯登与卢瑟福没有放过那约八千分之一的反弹闪烁，才揭开了原子核时代。"
+          },
+          {
+            "id": "a9_2",
+            "text": "占比低于 1% 的实验数据一律应当作噪声直接丢弃。",
+            "correct": false,
+            "explanation": "大角度反弹虽然稀有，却是决定原子内部核心结构的最关键信号。"
+          },
+          {
+            "id": "a9_3",
+            "text": "科学模型一旦写进教科书就永远不需要根据新实验修正。",
+            "correct": false,
+            "explanation": "汤姆孙模型、卢瑟福核模型、玻尔模型到量子力学模型正是科学不断逼近真实的演进链条。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "微小而致密的核心 · 卢瑟福原子核模型",
+        "scientificConclusion": "原子并非均匀实心球，而是由极微小、带正电且集中几乎全部质量的中心原子核，以及围绕其外广阔空间运动的电子构成。",
+        "historicalImpact": "直接奠定了现代原子物理与核物理基石，随后催生了莫塞莱原子序数（1913）、玻尔能级模型与量子力学原子理论。",
+        "multiContributorNote": "史实协作典范：1909 年汉斯·盖革与当时年仅 20 岁的本科生欧内斯特·马斯登在卢瑟福指导下完成精密金箔散射测量；1911 年欧内斯特·卢瑟福完成库仑散射数学推导并正式提出原子核模型。"
+      }
+    }
   },
   {
     "id": "hist_10",
     "number": 10,
-    "eraYear": "1909–1913年",
+    "eraYear": "1909–1913 年",
     "title": "来自空气的农业革命",
-    "en": "CHAPTER 10 · HABER-BOSCH AMMONIA · TEASED",
-    "subtitle": "弗里茨·哈伯与卡尔·博施：合成氨技术与化学工业化",
+    "en": "CHAPTER 10 · HABER-BOSCH AMMONIA",
+    "subtitle": "高压催化与可逆平衡工程权衡：用抽象工业模型将空气中的氮转化为氨",
     "knowledgeTheme": "催化 · 化学平衡 · 工业化学",
-    "playable": false,
-    "teasedNote": "V1.7 工业文明版本预告终章（配合抽象能源与产线平衡模型开放）",
+    "playable": true,
     "figureIds": ["fig_haber_bosch"],
     "reviewStatus": "pending",
-    "factDistinctionNote": "预告章节：1909–1913 年哈伯与博施实现高温高压催化合成氨并工业化；将在 V1.7 工业文明版本配合能源/平衡模型开放。",
+    "factDistinctionNote": "史实与工业教学模型边界：1909 年弗里茨·哈伯在实验室借助高压与稀贵金属锇/铀催化剂首次实现氮氢直接合成氨；1909–1913 年卡尔·博施与阿尔温·米塔施团队在巴斯夫攻克高压钢材氢蚀难题并筛选出高效铁基促进催化剂，于 1913 年在奥堡建成首座工业合成氨厂。本关采用抽象可逆平衡与速率/能耗教学权衡模型（与单向 100% 化学计量清晰区分），并客观呈现合成氨对现代粮食增产与 20 世纪工业史的双重影响。",
     "references": [
-      "https://www.nobelprize.org/prizes/chemistry/1918/haber/facts/"
+      "https://www.nobelprize.org/prizes/chemistry/1918/haber/facts/",
+      "https://www.nobelprize.org/prizes/chemistry/1931/bosch/facts/",
+      "https://www.sciencehistory.org/education/scientific-biographies/fritz-haber/"
     ],
-    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
-    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+    "firstReward": { "coins": 165, "researchPoints": 65, "experience": 135 },
+    "advancedFirstBonus": {
+      "coins": 75,
+      "researchPoints": 35,
+      "experience": 60
+    },
+    "repeatReward": { "coins": 35, "researchPoints": 12, "experience": 26 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_haber_reactor",
+    "archiveRewards": {
+      "manuscriptTitle": "1909–1913 高压催化合成氨工艺图谱",
+      "manuscriptSummary": "总结了 N₂ + 3H₂ ⇌ 2NH₃ 在温度、压强、铁基促进催化剂与未反应气循环之间的工程权衡。",
+      "theoryTitle": "可逆平衡与催化动力学工业权衡",
+      "theorySummary": "合成氨为放热且气体分子数减少的可逆反应；工业最优解依赖中高温兼顾速率、中高压兼顾平衡与耐压成本、低成本铁基促进剂及原料气循环。",
+      "medalName": "固氮工业里程碑勋章",
+      "commemorativeInstrument": "高压催化合成氨反应釜模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "空气中近 78% 是氮气，农作物却无法直接吸收——面对极难断开的氮氮三键与放热可逆平衡，如何把它工业化转化为氨？",
+        "contextSummary": "1909–1913 年，全球人口增长迫切需要稳定氮肥来源。直接由氮气与氢气合成氨（N₂ + 3H₂ ⇌ 2NH₃）看似简单，却同时卡在「反应极慢」「高温逆移」与「催化剂昂贵」三重难题上。",
+        "historicalFacts": [
+          "1909 年哈伯在实验室以高压和稀贵金属锇演示了连续滴出液氨，但全球锇储量远不足以支撑化工厂。",
+          "1909–1913 年，工程团队筛选了数千种催化配方并开发出耐氢蚀高压反应釜，才让合成氨真正走出实验室。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验引导",
+            "line": "调节温度、压强、催化剂与原料气循环并多次试车对比，找到兼顾产率、速率与成本的工业稳态工况。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "对于放热且气体分子数减少（4 份 → 2 份）的可逆反应 N₂ + 3H₂ ⇌ 2NH₃，实现大规模工业化最合理的策略是？",
+        "options": [
+          {
+            "id": "h10_a",
+            "text": "采用适宜中高温兼顾速率、中高压提高平衡收率、低成本高效铁基催化剂提速，并循环利用未反应的原料气。",
+            "isRecommended": true,
+            "feedback": "抓住化工平衡与动力学折中精髓！进入工艺调节台亲手试车验证。"
+          },
+          {
+            "id": "h10_b",
+            "text": "把温度尽量升到 800°C 以上且保持常压，不用催化剂即可获得 100% 氨转化率。",
+            "isRecommended": false,
+            "feedback": "合成氨是放热且气体体积缩小的可逆反应，极高温与常压都会让平衡剧烈偏向原料一侧。"
+          },
+          {
+            "id": "h10_c",
+            "text": "在室温常压下加入催化剂，催化剂就能强行把平衡收率拉高到 100%。",
+            "isRecommended": false,
+            "feedback": "催化剂只能降低活化能加快反应速率，无法改变可逆反应的平衡上限，且过低温度下速率仍太慢。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "haber_bosch_process",
+        "objectiveSimple": "至少运行 2 次不同工况试车对照，最终调出稳定工业可行方案（适宜中高温 + 中高压 + 铁基促进催化剂），使氨产出与成本双达标。",
+        "objectiveAdvanced": "进阶要求：调出含「未反应原料气循环」的最优工业稳态并试车确认，同时完成理想进料比（N₂ : H₂）与催化剂平衡作用原理校验。",
+        "hints": [
+          "提示 1：先试一组极端条件（如低温 200°C 或无催化剂），再调至「中高温 450°C + 中高压 200 atm + 铁基促进催化剂」对比差异。",
+          "提示 2：稀贵金属锇虽能催化，但工业化因成本与储量受限必须改用铁基促进催化剂；超高压 600 atm 压缩能耗过高。",
+          "提示 3：进阶模式需开启「未反应原料气循环」，且 N₂ + 3H₂ ⇌ 2NH₃ 理想进料比为 1 : 3，催化剂只提速不改平衡。"
+        ],
+        "chapterMaterials": ["nitrogen", "hydrogen", "ammonia", "iron"],
+        "haberConfig": {
+          "modelBoundaryNote": "抽象工业平衡教学模型：展示放热可逆反应 N₂ + 3H₂ ⇌ 2NH₃ 在速率、平衡收率与能耗/成本间的趋势权衡（非单向 100% 转化，数值为教学趋势示意）。",
+          "tempOptions": [
+            { "id": "low", "label": "低温 ~200°C", "detail": "平衡有利但极慢" },
+            {
+              "id": "mid",
+              "label": "中高温 ~450°C",
+              "detail": "速率与平衡折中"
+            },
+            {
+              "id": "high",
+              "label": "极高温 ~800°C",
+              "detail": "放热平衡大逆移"
+            }
+          ],
+          "pressureOptions": [
+            { "id": "low", "label": "常压 1 atm", "detail": "收率极低" },
+            {
+              "id": "mid",
+              "label": "中高压 200 atm",
+              "detail": "收率与耐压均衡"
+            },
+            {
+              "id": "high",
+              "label": "超高压 600 atm",
+              "detail": "压缩与釜体过贵"
+            }
+          ],
+          "catalystOptions": [
+            { "id": "none", "label": "无催化剂", "detail": "难以断开 N≡N" },
+            {
+              "id": "iron",
+              "label": "铁基促进催化剂",
+              "detail": "高效低成本可量产"
+            },
+            {
+              "id": "osmium",
+              "label": "稀贵锇催化剂",
+              "detail": "1909 实验室原型"
+            }
+          ],
+          "advancedRatioPrompt": "进阶平衡与计量检验：关于 N₂ + 3H₂ ⇌ 2NH₃ 的工业进料配比与催化剂作用，哪项表述准确？",
+          "advancedRatioOptions": [
+            {
+              "label": "按方程式计量比采用 N₂ : H₂ = 1 : 3 进料；铁基催化剂仅加快达到平衡的速率，不改变平衡收率上限。",
+              "correct": true,
+              "feedback": "准确掌握化学平衡与催化动力学的分工！"
+            },
+            {
+              "label": "按 N₂ : H₂ = 3 : 1 进料，且铁基催化剂可以把单程平衡转化率提升到 100%。",
+              "correct": false,
+              "feedback": "1 份 N₂ 需配 3 份 H₂，且催化剂从不改变化学平衡常数。"
+            },
+            {
+              "label": "开启原料气循环会彻底改变 N₂ + 3H₂ ⇌ 2NH₃ 的化学方程式系数。",
+              "correct": false,
+              "feedback": "原料气循环通过不断移出液氨并回送未反应气体来提高总转化率，不改变反应计量比。"
+            }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "中高温（~450°C）克服反应迟缓，中高压（~200 atm）推动 4→2 分子数反应平衡右移且避免超高压能耗激增。",
+          "以丰富廉价的铁基促进催化剂替代稀贵锇，是从实验室示范迈向化工厂量产的决定性工程突破。",
+          "冷凝分离液氨并将未反应的 N₂/H₂ 循环回反应器，在有限单程平衡收率下实现了高总原料利用率。"
+        ],
+        "question": "合成氨技术从 1909 年实验室示范到 1913 年工业投产的历程，最突出地体现了什么？",
+        "options": [
+          {
+            "id": "a10_1",
+            "text": "基础化学平衡理论与材料/催化/循环工艺等化学工程创新的深度结合，同时技术成果也伴随着巨大的农业增产与历史伦理反思。",
+            "correct": true,
+            "explanation": "全面而深刻！哈伯-博施法养活了全球数十亿人口，也提醒人们理性审视化学技术的双重社会影响。"
+          },
+          {
+            "id": "a10_2",
+            "text": "只要在烧杯里发现一个新反应，无需考虑催化剂成本与设备耐压就能立刻大规模量产。",
+            "correct": false,
+            "explanation": "从锇催化剂到铁基促进剂、从玻璃管到双层耐氢蚀高压钢釜，正是化学工程攻克的关键瓶颈。"
+          },
+          {
+            "id": "a10_3",
+            "text": "可逆反应在工业上无法利用，必须寻找 100% 不可逆反应替代。",
+            "correct": false,
+            "explanation": "通过产物冷凝移出与未反应气循环，可逆反应同样能实现极高的总转化效率。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "向空气要粮食 · 哈伯-博施合成氨工业化",
+        "scientificConclusion": "在适宜中高温、中高压与促进型铁基催化剂协同作用下，辅以液氨分离和原料气循环，人类首次实现了大气氮气的大规模工业固定。",
+        "historicalImpact": "奠定了现代合成氮肥工业基础，支撑了 20 世纪以来全球粮食产量跃升与数十亿人口供养；同时历史上氮化合物工业亦曾被用于战争军工，促使科学界更加重视科技伦理与可持续节能固氮研究。",
+        "multiContributorNote": "史实协作：弗里茨·哈伯（1909）在卡尔斯鲁厄完成高压催化合成氨的实验室突破（1918 年诺贝尔化学奖）；卡尔·博施与阿尔温·米塔施团队在巴斯夫系统筛选数千种配方确立铁基促进催化剂并攻克高压钢釜工程难题，1913 年在奥堡建成首座合成氨工厂（博施获 1931 年诺贝尔化学奖）。"
+      }
+    }
   }
 ]
