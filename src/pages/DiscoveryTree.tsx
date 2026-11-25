@@ -9,9 +9,10 @@ import {
   type Edge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { X, Scale, Target } from "lucide-react";
+import { X, Scale, Target, SlidersHorizontal } from "lucide-react";
 import { substances, byId, reactions, quantitativeChallenges } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { PageHeading, fmt } from "../components/Shared";
 
@@ -21,10 +22,12 @@ export default function DiscoveryTree({
   setDetail: (s: Substance) => void;
 }) {
   const save = useGame((s) => s.save);
+  const vp = useViewport();
   const [category, setCategory] = useState("全部");
   const [focusId, setFocusId] = useState("");
   const [showEntityLinks, setShowEntityLinks] = useState(true);
   const [showUnknownFrontier, setShowUnknownFrontier] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [selectedReaction, setSelectedReaction] = useState<Reaction | null>(
     null,
   );
@@ -365,164 +368,287 @@ export default function DiscoveryTree({
     : [];
 
   return (
-    <div className="page-width standard-page">
+    <div
+      className={`page-width standard-page tree-page ${vp.isMobileLandscape ? "tree-landscape-split" : ""}`}
+    >
       <PageHeading
         kicker="THE DISCOVERY NETWORK · RESEARCH TIERS"
         title="科学发现网络"
         description="点击物质查看图鉴详情，点击已验证反应节点查看化学计量配比、研究记录与关联定量挑战。"
       />
-      <div className="tree-toolbar">
-        <span>
-          <i className="legend-dot blue-dot" />
-          Lv.1 已发现 <i className="legend-dot green-dot" />
-          Lv.2 已定量研究 <i className="legend-dot gold-dot" />
-          已验证反应 <i className="legend-dot purple-dot" />
-          同实体关联
-        </span>
-        <div className="tree-controls">
-          <select
-            aria-label="发现网络类别"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            {["全部", ...new Set(substances.map((s) => s.group))].map((g) => (
-              <option key={g}>{g}</option>
-            ))}
-          </select>
-          <select
-            aria-label="聚焦物质合成路径"
-            value={focusId}
-            onChange={(e) => setFocusId(e.target.value)}
-          >
-            <option value="">全部已知网络</option>
-            {discoveredIds.map((id) => (
-              <option key={id} value={id}>
-                合成路径：{byId[id].name}
-              </option>
-            ))}
-          </select>
-          <label className="tree-toggle">
-            <input
-              type="checkbox"
-              checked={showEntityLinks}
-              onChange={(e) => setShowEntityLinks(e.target.checked)}
-            />
-            实体关联
-          </label>
-          <label className="tree-toggle">
-            <input
-              type="checkbox"
-              checked={showUnknownFrontier}
-              onChange={(e) => setShowUnknownFrontier(e.target.checked)}
-            />
-            未知前沿
-          </label>
-        </div>
-      </div>
 
-      <div className="flow-panel">
-        <ReactFlow
-          key={`${category}-${focusId}-${showEntityLinks}-${showUnknownFrontier}-${completedCount}`}
-          defaultNodes={nodes}
-          defaultEdges={edges}
-          fitView
-          onNodeClick={(_, n) => {
-            if (byId[n.id]) {
-              setDetail(byId[n.id]);
-              return;
-            }
-            const rx = reactions.find((r) => r.id === n.id);
-            if (rx) setSelectedReaction(rx);
-          }}
-        >
-          <Background color="#314455" gap={24} />
-          <Controls />
-        </ReactFlow>
-        {!completedCount && (
-          <div className="flow-empty">
-            完成一次实验，点亮你的第一条发现路径。
+      <div className="tree-workspace">
+        <div className="tree-canvas-pane">
+          {vp.isMobilePortrait && (
+            <div className="tree-mobile-bar">
+              <span className="tag-pill">
+                已发现 {discoveredIds.length} · 反应 {completedCount}
+              </span>
+              <button
+                type="button"
+                className="secondary small"
+                aria-expanded={filtersOpen}
+                onClick={() => setFiltersOpen((v) => !v)}
+              >
+                <SlidersHorizontal size={13} />
+                {filtersOpen ? "收起筛选" : "筛选与图例"}
+              </button>
+            </div>
+          )}
+
+          {(!vp.isMobilePortrait || filtersOpen) && !vp.isMobileLandscape && (
+            <div className="tree-toolbar">
+              <span>
+                <i className="legend-dot blue-dot" />
+                Lv.1 已发现 <i className="legend-dot green-dot" />
+                Lv.2 已定量研究 <i className="legend-dot gold-dot" />
+                已验证反应 <i className="legend-dot purple-dot" />
+                同实体关联
+              </span>
+              <div className="tree-controls">
+                <select
+                  aria-label="发现网络类别"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {["全部", ...new Set(substances.map((s) => s.group))].map(
+                    (g) => (
+                      <option key={g}>{g}</option>
+                    ),
+                  )}
+                </select>
+                <select
+                  aria-label="聚焦物质合成路径"
+                  value={focusId}
+                  onChange={(e) => setFocusId(e.target.value)}
+                >
+                  <option value="">全部已知网络</option>
+                  {discoveredIds.map((id) => (
+                    <option key={id} value={id}>
+                      合成路径：{byId[id].name}
+                    </option>
+                  ))}
+                </select>
+                <label className="tree-toggle">
+                  <input
+                    type="checkbox"
+                    checked={showEntityLinks}
+                    onChange={(e) => setShowEntityLinks(e.target.checked)}
+                  />
+                  实体关联
+                </label>
+                <label className="tree-toggle">
+                  <input
+                    type="checkbox"
+                    checked={showUnknownFrontier}
+                    onChange={(e) => setShowUnknownFrontier(e.target.checked)}
+                  />
+                  未知前沿
+                </label>
+              </div>
+            </div>
+          )}
+
+          <div className="flow-panel">
+            <ReactFlow
+              key={`${category}-${focusId}-${showEntityLinks}-${showUnknownFrontier}-${completedCount}`}
+              defaultNodes={nodes}
+              defaultEdges={edges}
+              fitView
+              onNodeClick={(_, n) => {
+                if (byId[n.id]) {
+                  setDetail(byId[n.id]);
+                  return;
+                }
+                const rx = reactions.find((r) => r.id === n.id);
+                if (rx) setSelectedReaction(rx);
+              }}
+            >
+              <Background color="#314455" gap={24} />
+              <Controls />
+            </ReactFlow>
+            {!completedCount && (
+              <div className="flow-empty">
+                完成一次实验，点亮你的第一条发现路径。
+              </div>
+            )}
+          </div>
+        </div>
+
+        {(vp.isMobileLandscape || selectedReaction) && (
+          <div
+            className={`tree-side-pane ${vp.isMobilePortrait && selectedReaction ? "mobile-sheet-active" : ""}`}
+          >
+            {vp.isMobilePortrait && selectedReaction && (
+              <button
+                type="button"
+                className="sheet-backdrop-btn"
+                aria-label="关闭反应详情遮罩"
+                onClick={() => setSelectedReaction(null)}
+              />
+            )}
+
+            {vp.isMobileLandscape && (
+              <div className="panel tree-landscape-controls">
+                <div className="tree-legend-compact">
+                  <span>
+                    <i className="legend-dot blue-dot" /> Lv.1
+                  </span>
+                  <span>
+                    <i className="legend-dot green-dot" /> Lv.2
+                  </span>
+                  <span>
+                    <i className="legend-dot gold-dot" /> 反应
+                  </span>
+                  <span>
+                    <i className="legend-dot purple-dot" /> 实体
+                  </span>
+                </div>
+                <select
+                  aria-label="发现网络类别"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {["全部", ...new Set(substances.map((s) => s.group))].map(
+                    (g) => (
+                      <option key={g}>{g}</option>
+                    ),
+                  )}
+                </select>
+                <select
+                  aria-label="聚焦物质合成路径"
+                  value={focusId}
+                  onChange={(e) => setFocusId(e.target.value)}
+                >
+                  <option value="">全部已知网络</option>
+                  {discoveredIds.map((id) => (
+                    <option key={id} value={id}>
+                      合成路径：{byId[id].name}
+                    </option>
+                  ))}
+                </select>
+                <div className="tree-toggle-row">
+                  <label className="tree-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showEntityLinks}
+                      onChange={(e) => setShowEntityLinks(e.target.checked)}
+                    />
+                    实体关联
+                  </label>
+                  <label className="tree-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showUnknownFrontier}
+                      onChange={(e) => setShowUnknownFrontier(e.target.checked)}
+                    />
+                    未知前沿
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {selectedReaction && (
+              <section
+                className="panel reaction-inspector"
+                aria-label="反应节点研究详情"
+              >
+                <div className="panel-title">
+                  <h2>
+                    <Scale size={16} />
+                    {selectedReaction.name} · 化学计量与研究档案
+                  </h2>
+                  <button
+                    type="button"
+                    className="icon-button"
+                    aria-label="关闭反应详情"
+                    onClick={() => setSelectedReaction(null)}
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+                <div className="inspector-grid">
+                  <div>
+                    <small>化学方程式</small>
+                    <p className="equation">{fmt(selectedReaction.equation)}</p>
+                    <small>
+                      计量策略：
+                      {(
+                        {
+                          stoichiometric: "整数化学计量",
+                          ionic_stoichiometric: "离子化学计量",
+                          phase_change: "物态变化",
+                          mixture_unsupported: "混合物/加工规则",
+                          material_process_unsupported: "材料加工规则",
+                        } as Record<string, string>
+                      )[selectedReaction.calculationStrategy] ??
+                        selectedReaction.calculationStrategy}{" "}
+                      · 审核状态：
+                      {selectedReaction.reviewStatus === "reviewed"
+                        ? "已审核"
+                        : "待人工审核（preview）"}
+                    </small>
+                  </div>
+                  <div>
+                    <small>反应物比例</small>
+                    <p>
+                      {selectedReaction.reactants
+                        .map(
+                          (p) =>
+                            `${byId[p.substanceId].name} ×${p.coefficient}`,
+                        )
+                        .join(" : ")}
+                    </p>
+                    <small>产物比例</small>
+                    <p>
+                      {selectedReaction.products
+                        .map(
+                          (p) =>
+                            `${byId[p.substanceId].name} ×${p.coefficient}`,
+                        )
+                        .join(" : ")}
+                    </p>
+                  </div>
+                  <div>
+                    <small>定量研究记录</small>
+                    <p>
+                      {save.bestUtilization[selectedReaction.id]
+                        ? `最佳份数利用率 ${Math.round(save.bestUtilization[selectedReaction.id].portionUtilization * 1000) / 10}%`
+                        : "尚未在进阶模式完成定量实验"}
+                    </p>
+                    <small>配平记录</small>
+                    <p>
+                      {save.balancingRecords[selectedReaction.id]?.solved
+                        ? save.balancingRecords[selectedReaction.id]
+                            .simplestRatio
+                          ? "已通过最简整数比配平"
+                          : "已通过等比例配平"
+                        : "尚未完成方程式配平"}
+                    </p>
+                  </div>
+                  <div>
+                    <small>关联定量挑战</small>
+                    {relatedQuantChallenges.length ? (
+                      <ul className="inspector-challenges">
+                        {relatedQuantChallenges.map((qc) => (
+                          <li key={qc.id}>
+                            <Target size={12} />
+                            <span>
+                              {qc.name}（{qc.group}）
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="muted">暂无直接关联定量关卡。</p>
+                    )}
+                  </div>
+                </div>
+              </section>
+            )}
           </div>
         )}
       </div>
-
-      {selectedReaction && (
-        <section
-          className="panel reaction-inspector"
-          aria-label="反应节点研究详情"
-        >
-          <div className="panel-title">
-            <h2>
-              <Scale size={16} />
-              {selectedReaction.name} · 化学计量与研究档案
-            </h2>
-            <button
-              type="button"
-              className="icon-button"
-              aria-label="关闭反应详情"
-              onClick={() => setSelectedReaction(null)}
-            >
-              <X size={16} />
-            </button>
-          </div>
-          <div className="inspector-grid">
-            <div>
-              <small>化学方程式</small>
-              <p className="equation">{fmt(selectedReaction.equation)}</p>
-              <small>
-                计量策略：{selectedReaction.calculationStrategy} · 审核状态：
-                {selectedReaction.reviewStatus}
-              </small>
-            </div>
-            <div>
-              <small>反应物比例</small>
-              <p>
-                {selectedReaction.reactants
-                  .map((p) => `${byId[p.substanceId].name} ×${p.coefficient}`)
-                  .join(" : ")}
-              </p>
-              <small>产物比例</small>
-              <p>
-                {selectedReaction.products
-                  .map((p) => `${byId[p.substanceId].name} ×${p.coefficient}`)
-                  .join(" : ")}
-              </p>
-            </div>
-            <div>
-              <small>定量研究记录</small>
-              <p>
-                {save.bestUtilization[selectedReaction.id]
-                  ? `最佳份数利用率 ${Math.round(save.bestUtilization[selectedReaction.id].portionUtilization * 1000) / 10}%`
-                  : "尚未在进阶模式完成定量实验"}
-              </p>
-              <small>配平记录</small>
-              <p>
-                {save.balancingRecords[selectedReaction.id]?.solved
-                  ? save.balancingRecords[selectedReaction.id].simplestRatio
-                    ? "已通过最简整数比配平"
-                    : "已通过等比例配平"
-                  : "尚未完成方程式配平"}
-              </p>
-            </div>
-            <div>
-              <small>关联定量挑战</small>
-              {relatedQuantChallenges.length ? (
-                <ul className="inspector-challenges">
-                  {relatedQuantChallenges.map((qc) => (
-                    <li key={qc.id}>
-                      <Target size={12} />
-                      <span>
-                        {qc.name}（{qc.group}）
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="muted">暂无直接关联定量关卡。</p>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
     </div>
   );
 }

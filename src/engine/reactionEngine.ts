@@ -396,3 +396,266 @@ export function findPathToTarget(
   }
   return null;
 }
+
+export interface MisplacedCatalystCandidate {
+  reactionId: string;
+  reactionName: string;
+  reactants: string[];
+  catalystsToMove: string[];
+  missingConditions: Condition[];
+  extraCatalysts: string[];
+}
+
+export interface ExtraReactantCandidate {
+  reactionId: string;
+  reactionName: string;
+  extraReactants: string[];
+  missingConditions: Condition[];
+  missingCatalysts: string[];
+}
+
+export type FailureDiagnostic =
+  | {
+      kind: "catalyst_in_reactants";
+      summary: string;
+      candidates: MisplacedCatalystCandidate[];
+    }
+  | {
+      kind: "missing_requirements";
+      summary: string;
+      missingConditions: Condition[];
+      missingCatalysts: string[];
+      extraCatalysts: string[];
+    }
+  | {
+      kind: "insufficient_portions";
+      summary: string;
+      shortfalls: { substanceId: string; provided: number; required: number }[];
+    }
+  | {
+      kind: "extra_reactants";
+      summary: string;
+      candidates: ExtraReactantCandidate[];
+    }
+  | {
+      kind: "unsupported_strategy";
+      summary: string;
+      reactionId?: string;
+    }
+  | {
+      kind: "ambiguous";
+      summary: string;
+    }
+  | {
+      kind: "unmatched";
+      summary: string;
+    };
+
+export interface DiagnoseFailureInput {
+  substances: string[];
+  conditions: Condition[];
+  catalysts: string[];
+  mode: "simple" | "advanced";
+}
+
+export interface DiagnoseFailureOptions {
+  channel?: "preview" | "release";
+  labelCondition?: (c: Condition) => string;
+}
+
+/**
+ * Pure-engine contextual failure diagnosis driven exclusively by the shared reaction catalog.
+ * Returns null on successful reactions. Never hardcodes substance IDs, never silently swallows
+ * extra non-catalyst materials, and exposes all ambiguous role candidates for player choice.
+ */
+export function diagnoseExperimentFailure(
+  input: DiagnoseFailureInput,
+  result: Result | AdvancedResult,
+  rules: Reaction[],
+  db: Record<string, Substance>,
+  options: DiagnoseFailureOptions = {},
+): FailureDiagnostic | null {
+  if (
+    result.status === "success" ||
+    result.status === "complete" ||
+    result.status === "partial"
+  ) {
+    return null;
+  }
+
+  const channel = options.channel ?? "preview";
+  const condLabel = options.labelCondition ?? ((c: Condition) => c);
+  const subName = (id: string) => db[id]?.name ?? id;
+
+  if (result.status === "insufficient") {
+    const detail = result.stoichiometry.shortfalls
+      .map(
+        (sf) =>
+          `${subName(sf.substanceId)}当前 ${sf.provided} 份，至少需 ${sf.required} 份`,
+      )
+      .join("；");
+    return {
+      kind: "insufficient_portions",
+      summary: `投入份数不足：${detail}。`,
+      shortfalls: result.stoichiometry.shortfalls,
+    };
+  }
+
+  if (result.status === "missing") {
+    const parts: string[] = [];
+    if (result.conditions.length) {
+      parts.push(`缺少条件：${result.conditions.map(condLabel).join("、")}`);
+    }
+    if (result.catalysts.length) {
+      parts.push(`缺少催化剂：${result.catalysts.map(subName).join("、")}`);
+    }
+    if (result.extraCatalysts.length) {
+      parts.push(
+        `当前反应不需要催化剂：${result.extraCatalysts.map(subName).join("、")}`,
+      );
+    }
+    return {
+      kind: "missing_requirements",
+      summary: parts.length ? `${parts.join("；")}。` : result.message,
+      missingConditions: result.conditions,
+      missingCatalysts: result.catalysts,
+      extraCatalysts: result.extraCatalysts,
+    };
+  }
+
+  if (result.status === "unsupported_strategy") {
+    return {
+      kind: "unsupported_strategy",
+      summary: result.message,
+      reactionId: result.reaction?.id,
+    };
+  }
+
+  if (result.status === "ambiguous") {
+    return {
+      kind: "ambiguous",
+      summary: result.message,
+    };
+  }
+
+  if (result.status === "unmatched" && input.substances.length > 0) {
+    const eligible = rules.filter(
+      (r) =>
+        (channel === "preview" || r.reviewStatus === "reviewed") &&
+        r.supportedModes.includes(input.mode) &&
+        (input.mode === "simple" || r.stoichiometrySupported),
+    );
+
+    // 1. Check strict misplaced-catalyst role candidates (exact pool match, zero extra non-catalysts)
+    const combinedPool = new Set([...input.substances, ...input.catalysts]);
+    const misplacedCandidates: MisplacedCatalystCandidate[] = [];
+
+    for (const r of eligible) {
+      if (r.catalysts.length === 0) continue;
+      const ruleReactants = r.reactants.map((p) => p.substanceId);
+      const rulePool = new Set([...ruleReactants, ...r.catalysts]);
+      if (rulePool.size !== combinedPool.size) continue;
+      if (![...rulePool].every((id) => combinedPool.has(id))) continue;
+
+      const catalystsInReactants = r.catalysts.filter((cid) =>
+        input.substances.includes(cid),
+      );
+      if (catalystsInReactants.length === 0) continue;
+      if (!ruleReactants.every((rid) => input.substances.includes(rid))) {
+        continue;
+      }
+
+      const missingConditions = r.conditions.filter(
+        (c) => !input.conditions.includes(c),
+      );
+      const extraCatalysts = input.catalysts.filter(
+        (cid) => !r.catalysts.includes(cid),
+      );
+
+      misplacedCandidates.push({
+        reactionId: r.id,
+        reactionName: r.name,
+        reactants: ruleReactants,
+        catalystsToMove: catalystsInReactants,
+        missingConditions,
+        extraCatalysts,
+      });
+    }
+
+    if (misplacedCandidates.length > 0) {
+      misplacedCandidates.sort(
+        (a, b) =>
+          a.missingConditions.length - b.missingConditions.length ||
+          a.reactionId.localeCompare(b.reactionId),
+      );
+      const summary =
+        misplacedCandidates.length === 1
+          ? (() => {
+              const c = misplacedCandidates[0];
+              const catNames = c.catalystsToMove.map(subName).join("、");
+              const condHint = c.missingConditions.length
+                ? `；另外还需选择条件：${c.missingConditions.map(condLabel).join("、")}`
+                : "";
+              return `「${catNames}」在候选反应「${c.reactionName}」中作为催化剂（不参与消耗），不属于反应物槽位${condHint}。`;
+            })()
+          : `当前材料在多个候选反应中可担任不同催化剂角色，请选择要调整的方案。`;
+      return {
+        kind: "catalyst_in_reactants",
+        summary,
+        candidates: misplacedCandidates,
+      };
+    }
+
+    // 2. Check strict extra-reactant candidates (removing extra non-catalyst material matches a rule)
+    if (input.substances.length >= 2) {
+      const subSet = new Set(input.substances);
+      const extraCandidates: ExtraReactantCandidate[] = [];
+      for (const r of eligible) {
+        const ruleReactants = r.reactants.map((p) => p.substanceId);
+        if (
+          ruleReactants.length > 0 &&
+          ruleReactants.length < subSet.size &&
+          ruleReactants.every((id) => subSet.has(id))
+        ) {
+          const extra = input.substances.filter(
+            (id) => !ruleReactants.includes(id),
+          );
+          if (extra.length > 0) {
+            extraCandidates.push({
+              reactionId: r.id,
+              reactionName: r.name,
+              extraReactants: extra,
+              missingConditions: r.conditions.filter(
+                (c) => !input.conditions.includes(c),
+              ),
+              missingCatalysts: r.catalysts.filter(
+                (c) => !input.catalysts.includes(c),
+              ),
+            });
+          }
+        }
+      }
+      if (extraCandidates.length > 0) {
+        extraCandidates.sort(
+          (a, b) =>
+            a.extraReactants.length - b.extraReactants.length ||
+            a.missingConditions.length +
+              a.missingCatalysts.length -
+              (b.missingConditions.length + b.missingCatalysts.length) ||
+            a.reactionId.localeCompare(b.reactionId),
+        );
+        const top = extraCandidates[0];
+        return {
+          kind: "extra_reactants",
+          summary: `当前台面包含多余材料（如「${top.extraReactants.map(subName).join("、")}」），系统不会忽略多余反应物；请移除多余材料后再试。`,
+          candidates: extraCandidates.slice(0, 3),
+        };
+      }
+    }
+  }
+
+  return {
+    kind: "unmatched",
+    summary: result.message,
+  };
+}

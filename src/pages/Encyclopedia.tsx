@@ -90,45 +90,51 @@ export default function Encyclopedia({
         </div>
       </div>
 
-      <ArchiveTabs view={archiveView} onChange={setArchiveView} />
-      <div className="book-toolbar">
-        <div className="segmented">
-          {["全部物质", "已发现", "已定量研究", "未发现", "收藏"].map((f) => (
-            <button
-              key={f}
-              className={filter === f ? "active" : ""}
-              onClick={() => setFilter(f)}
+      <div className="mobile-sticky-bar book-sticky-bar">
+        <ArchiveTabs view={archiveView} onChange={setArchiveView} />
+        <div className="book-toolbar">
+          <div className="segmented mobile-scroll-strip">
+            {["全部物质", "已发现", "已定量研究", "未发现", "收藏"].map((f) => (
+              <button
+                key={f}
+                className={filter === f ? "active" : ""}
+                onClick={() => setFilter(f)}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+          <label className="search-box">
+            <Search size={16} />
+            <input
+              aria-label="图鉴搜索"
+              placeholder="搜索已发现的名称 / 俗名 / 化学式"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </label>
+          <div className="book-select-row">
+            <select
+              aria-label="图鉴分类"
+              value={group}
+              onChange={(e) => setGroup(e.target.value)}
             >
-              {f}
-            </button>
-          ))}
+              {["全部类别", ...new Set(substances.map((s) => s.group))].map(
+                (g) => (
+                  <option key={g}>{g}</option>
+                ),
+              )}
+            </select>
+            <select
+              aria-label="图鉴排序"
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+            >
+              <option value="number">编号排序</option>
+              <option value="recent">发现时间排序</option>
+            </select>
+          </div>
         </div>
-        <label className="search-box">
-          <Search size={16} />
-          <input
-            aria-label="图鉴搜索"
-            placeholder="搜索已发现的名称 / 俗名 / 化学式"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </label>
-        <select
-          aria-label="图鉴分类"
-          value={group}
-          onChange={(e) => setGroup(e.target.value)}
-        >
-          {["全部类别", ...new Set(substances.map((s) => s.group))].map((g) => (
-            <option key={g}>{g}</option>
-          ))}
-        </select>
-        <select
-          aria-label="图鉴排序"
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-        >
-          <option value="number">编号排序</option>
-          <option value="recent">发现时间排序</option>
-        </select>
       </div>
 
       <div className="encyclopedia-grid">

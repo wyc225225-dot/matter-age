@@ -16,6 +16,7 @@ import {
   specialChallenges,
 } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { SpecialChallengeRunner } from "../components/SpecialChallengeRunner";
 
@@ -71,11 +72,37 @@ export default function Challenges({
   toast?: (s: string) => void;
 }) {
   const game = useGame();
+  const vp = useViewport();
   const [modeTab, setModeTab] = useState<"simple" | "advanced" | "special">(
     () => (game.save.currentMode === "advanced" ? "advanced" : "simple"),
   );
+  const [groupFilter, setGroupFilter] = useState<string>("auto");
   const [activeSpecial, setActiveSpecial] =
     useState<SpecialChallengeDef | null>(null);
+
+  const simpleGroups = ["基础探索", "组合实验", "科学推演"] as const;
+  const quantGroups = ["基础份数", "剩余物质", "定量推演"] as const;
+  const specialGroups = [
+    "极限实验",
+    "最短路径",
+    "零浪费挑战",
+    "未知物质鉴定",
+    "逆向推理",
+  ] as const;
+
+  const currentGroups: readonly string[] =
+    modeTab === "simple"
+      ? simpleGroups
+      : modeTab === "advanced"
+        ? quantGroups
+        : specialGroups;
+
+  const activeGroupFilter =
+    groupFilter === "auto"
+      ? vp.isMobile
+        ? currentGroups[0]
+        : "all"
+      : groupFilter;
 
   const simpleBest = Object.values(game.save.challengeBest);
   const simpleStars = simpleBest.reduce((sum, b) => sum + b.stars, 0);
@@ -133,37 +160,70 @@ export default function Challenges({
         </div>
       </div>
 
-      <div className="challenge-mode-tabs">
-        <button
-          type="button"
-          className={modeTab === "simple" ? "active" : ""}
-          onClick={() => {
-            setActiveSpecial(null);
-            setModeTab("simple");
-          }}
-        >
-          <FlaskConical size={15} />
-          简单模式挑战（{challenges.length} 关）
-        </button>
-        <button
-          type="button"
-          className={modeTab === "advanced" ? "active" : ""}
-          onClick={() => {
-            setActiveSpecial(null);
-            setModeTab("advanced");
-          }}
-        >
-          <Scale size={15} />
-          进阶定量挑战（{quantitativeChallenges.length} 关）
-        </button>
-        <button
-          type="button"
-          className={modeTab === "special" ? "active" : ""}
-          onClick={() => setModeTab("special")}
-        >
-          <Sparkles size={15} />
-          特殊挑战（{specialChallenges.length} 关）
-        </button>
+      <div className="mobile-sticky-bar challenges-sticky-bar">
+        <div className="challenge-mode-tabs mobile-scroll-strip">
+          <button
+            type="button"
+            className={modeTab === "simple" ? "active" : ""}
+            onClick={() => {
+              setActiveSpecial(null);
+              setGroupFilter("auto");
+              setModeTab("simple");
+            }}
+          >
+            <FlaskConical size={15} />
+            简单模式挑战（{challenges.length} 关）
+          </button>
+          <button
+            type="button"
+            className={modeTab === "advanced" ? "active" : ""}
+            onClick={() => {
+              setActiveSpecial(null);
+              setGroupFilter("auto");
+              setModeTab("advanced");
+            }}
+          >
+            <Scale size={15} />
+            进阶定量挑战（{quantitativeChallenges.length} 关）
+          </button>
+          <button
+            type="button"
+            className={modeTab === "special" ? "active" : ""}
+            onClick={() => {
+              setGroupFilter("auto");
+              setModeTab("special");
+            }}
+          >
+            <Sparkles size={15} />
+            特殊挑战（{specialChallenges.length} 关）
+          </button>
+        </div>
+
+        {!activeSpecial && vp.isMobile && (
+          <div
+            className="filter-pills mobile-scroll-strip challenge-group-pills"
+            role="group"
+            aria-label="挑战分组筛选"
+          >
+            <button
+              type="button"
+              className={activeGroupFilter === "all" ? "active" : ""}
+              onClick={() => setGroupFilter("all")}
+            >
+              全部 ({curTotal})
+            </button>
+            {currentGroups.map((g) => (
+              <button
+                type="button"
+                key={g}
+                className={activeGroupFilter === g ? "active" : ""}
+                onClick={() => setGroupFilter(g)}
+              >
+                {g}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {modeTab === "special" ? (
@@ -174,38 +234,125 @@ export default function Challenges({
             toast={(msg) => toast?.(msg)}
           />
         ) : (
-          (
-            [
-              "极限实验",
-              "最短路径",
-              "零浪费挑战",
-              "未知物质鉴定",
-              "逆向推理",
-            ] as const
-          ).map((typeName) => {
-            const items = specialChallenges.filter(
-              (c) => c.typeName === typeName,
-            );
+          specialGroups
+            .filter(
+              (typeName) =>
+                activeGroupFilter === "all" || activeGroupFilter === typeName,
+            )
+            .map((typeName) => {
+              const items = specialChallenges.filter(
+                (c) => c.typeName === typeName,
+              );
+              const solvedInGroup = items.filter(
+                (c) => c.id in game.save.specialChallengeBest,
+              ).length;
+              return (
+                <section className="challenge-group" key={typeName}>
+                  <h2>
+                    {typeName}
+                    <span>
+                      {specialTypeMeta[typeName].badge} · {solvedInGroup}/
+                      {items.length} 完成 · {specialTypeMeta[typeName].hint}
+                    </span>
+                  </h2>
+                  <div className="challenge-grid">
+                    {items.map((c, i) => {
+                      const best = game.save.specialChallengeBest[c.id];
+                      return (
+                        <button
+                          key={c.id}
+                          className={`challenge-card ${best ? "solved" : ""}`}
+                          onClick={() => setActiveSpecial(c)}
+                        >
+                          <span className="challenge-number">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <div className="challenge-card-body">
+                            <div className="challenge-card-head">
+                              <h3>{c.name}</h3>
+                              <span className="challenge-target-pill">
+                                <Sparkles size={11} />
+                                {c.difficulty} · +{c.reward.coins} 金币
+                              </span>
+                            </div>
+                            <p className="challenge-desc">{c.description}</p>
+                            <div className="challenge-card-foot">
+                              <span
+                                className="stars"
+                                aria-label={`最佳 ${best?.stars || 0} 星`}
+                              >
+                                {[1, 2, 3].map((n) => (
+                                  <Star
+                                    key={n}
+                                    size={14}
+                                    fill={
+                                      (best?.stars || 0) >= n
+                                        ? "currentColor"
+                                        : "none"
+                                    }
+                                  />
+                                ))}
+                              </span>
+                              {best && (
+                                <small className="challenge-best-note">
+                                  最佳 {best.attempts} 次
+                                  {best.metric ? ` · ${best.metric}` : ""}
+                                </small>
+                              )}
+                            </div>
+                          </div>
+                          <ChevronRight size={17} />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })
+        )
+      ) : modeTab === "simple" ? (
+        simpleGroups
+          .filter(
+            (group) =>
+              activeGroupFilter === "all" || activeGroupFilter === group,
+          )
+          .map((group) => {
+            const items = challenges.filter((c) => c.group === group);
             const solvedInGroup = items.filter(
-              (c) => c.id in game.save.specialChallengeBest,
+              (c) => c.id in game.save.challengeBest,
             ).length;
             return (
-              <section className="challenge-group" key={typeName}>
+              <section className="challenge-group" key={group}>
                 <h2>
-                  {typeName}
+                  {group}
                   <span>
-                    {specialTypeMeta[typeName].badge} · {solvedInGroup}/
-                    {items.length} 完成 · {specialTypeMeta[typeName].hint}
+                    {simpleGroupMeta[group].badge} · {solvedInGroup}/
+                    {items.length} 完成 · {simpleGroupMeta[group].hint}
                   </span>
                 </h2>
                 <div className="challenge-grid">
                   {items.map((c, i) => {
-                    const best = game.save.specialChallengeBest[c.id];
+                    const best = game.save.challengeBest[c.id];
+                    const targetSub = byId[c.target];
                     return (
                       <button
                         key={c.id}
                         className={`challenge-card ${best ? "solved" : ""}`}
-                        onClick={() => setActiveSpecial(c)}
+                        onClick={() => {
+                          game.update((s) => ({
+                            ...s,
+                            currentMode: "simple",
+                            quantitativeChallengeRun: null,
+                            challengeRun: {
+                              id: c.id,
+                              inventory: [...c.initial],
+                              attempts: 0,
+                              hints: 0,
+                              complete: false,
+                            },
+                          }));
+                          go("lab");
+                        }}
                       >
                         <span className="challenge-number">
                           {String(i + 1).padStart(2, "0")}
@@ -214,11 +361,17 @@ export default function Challenges({
                           <div className="challenge-card-head">
                             <h3>{c.name}</h3>
                             <span className="challenge-target-pill">
-                              <Sparkles size={11} />
-                              {c.difficulty} · +{c.reward.coins} 金币
+                              <Target size={11} />
+                              <SubstanceIcon s={targetSub} size={18} />
+                              {targetSub.name}
                             </span>
                           </div>
                           <p className="challenge-desc">{c.description}</p>
+                          <p className="challenge-materials">
+                            起点：
+                            {c.initial.map((id) => byId[id].name).join(" · ")} ·
+                            上限 {c.limit} 次
+                          </p>
                           <div className="challenge-card-foot">
                             <span
                               className="stars"
@@ -239,7 +392,6 @@ export default function Challenges({
                             {best && (
                               <small className="challenge-best-note">
                                 最佳 {best.attempts} 次
-                                {best.metric ? ` · ${best.metric}` : ""}
                               </small>
                             )}
                           </div>
@@ -252,183 +404,100 @@ export default function Challenges({
               </section>
             );
           })
-        )
-      ) : modeTab === "simple" ? (
-        (["基础探索", "组合实验", "科学推演"] as const).map((group) => {
-          const items = challenges.filter((c) => c.group === group);
-          const solvedInGroup = items.filter(
-            (c) => c.id in game.save.challengeBest,
-          ).length;
-          return (
-            <section className="challenge-group" key={group}>
-              <h2>
-                {group}
-                <span>
-                  {simpleGroupMeta[group].badge} · {solvedInGroup}/
-                  {items.length} 完成 · {simpleGroupMeta[group].hint}
-                </span>
-              </h2>
-              <div className="challenge-grid">
-                {items.map((c, i) => {
-                  const best = game.save.challengeBest[c.id];
-                  const targetSub = byId[c.target];
-                  return (
-                    <button
-                      key={c.id}
-                      className={`challenge-card ${best ? "solved" : ""}`}
-                      onClick={() => {
-                        game.update((s) => ({
-                          ...s,
-                          currentMode: "simple",
-                          quantitativeChallengeRun: null,
-                          challengeRun: {
-                            id: c.id,
-                            inventory: [...c.initial],
-                            attempts: 0,
-                            hints: 0,
-                            complete: false,
-                          },
-                        }));
-                        go("lab");
-                      }}
-                    >
-                      <span className="challenge-number">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <div className="challenge-card-body">
-                        <div className="challenge-card-head">
-                          <h3>{c.name}</h3>
-                          <span className="challenge-target-pill">
-                            <Target size={11} />
-                            <SubstanceIcon s={targetSub} size={18} />
-                            {targetSub.name}
-                          </span>
-                        </div>
-                        <p className="challenge-desc">{c.description}</p>
-                        <p className="challenge-materials">
-                          起点：
-                          {c.initial.map((id) => byId[id].name).join(" · ")} ·
-                          上限 {c.limit} 次
-                        </p>
-                        <div className="challenge-card-foot">
-                          <span
-                            className="stars"
-                            aria-label={`最佳 ${best?.stars || 0} 星`}
-                          >
-                            {[1, 2, 3].map((n) => (
-                              <Star
-                                key={n}
-                                size={14}
-                                fill={
-                                  (best?.stars || 0) >= n
-                                    ? "currentColor"
-                                    : "none"
-                                }
-                              />
-                            ))}
-                          </span>
-                          {best && (
-                            <small className="challenge-best-note">
-                              最佳 {best.attempts} 次
-                            </small>
-                          )}
-                        </div>
-                      </div>
-                      <ChevronRight size={17} />
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })
       ) : (
-        (["基础份数", "剩余物质", "定量推演"] as const).map((group) => {
-          const items = quantitativeChallenges.filter((c) => c.group === group);
-          const solvedInGroup = items.filter(
-            (c) => c.id in game.save.quantitativeChallengeBest,
-          ).length;
-          return (
-            <section className="challenge-group" key={group}>
-              <h2>
-                {group}
-                <span>
-                  {quantGroupMeta[group].badge} · {solvedInGroup}/{items.length}{" "}
-                  完成 · {quantGroupMeta[group].hint}
-                </span>
-              </h2>
-              <div className="challenge-grid">
-                {items.map((c, i) => {
-                  const best = game.save.quantitativeChallengeBest[c.id];
-                  const targetSub = byId[c.target.substanceId];
-                  return (
-                    <button
-                      key={c.id}
-                      className={`challenge-card ${best ? "solved" : ""}`}
-                      onClick={() => {
-                        game.startQuantitativeChallenge(c);
-                        go("lab");
-                      }}
-                    >
-                      <span className="challenge-number">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <div className="challenge-card-body">
-                        <div className="challenge-card-head">
-                          <h3>{c.name}</h3>
-                          <span className="challenge-target-pill">
-                            <Scale size={11} />
-                            {c.kind === "balancing"
-                              ? "系数配平"
-                              : `${targetSub.name} ×${c.target.minAmount}`}
-                          </span>
+        quantGroups
+          .filter(
+            (group) =>
+              activeGroupFilter === "all" || activeGroupFilter === group,
+          )
+          .map((group) => {
+            const items = quantitativeChallenges.filter(
+              (c) => c.group === group,
+            );
+            const solvedInGroup = items.filter(
+              (c) => c.id in game.save.quantitativeChallengeBest,
+            ).length;
+            return (
+              <section className="challenge-group" key={group}>
+                <h2>
+                  {group}
+                  <span>
+                    {quantGroupMeta[group].badge} · {solvedInGroup}/
+                    {items.length} 完成 · {quantGroupMeta[group].hint}
+                  </span>
+                </h2>
+                <div className="challenge-grid">
+                  {items.map((c, i) => {
+                    const best = game.save.quantitativeChallengeBest[c.id];
+                    const targetSub = byId[c.target.substanceId];
+                    return (
+                      <button
+                        key={c.id}
+                        className={`challenge-card ${best ? "solved" : ""}`}
+                        onClick={() => {
+                          game.startQuantitativeChallenge(c);
+                          go("lab");
+                        }}
+                      >
+                        <span className="challenge-number">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div className="challenge-card-body">
+                          <div className="challenge-card-head">
+                            <h3>{c.name}</h3>
+                            <span className="challenge-target-pill">
+                              <Scale size={11} />
+                              {c.kind === "balancing"
+                                ? "系数配平"
+                                : `${targetSub.name} ×${c.target.minAmount}`}
+                            </span>
+                          </div>
+                          <p className="challenge-desc">{c.description}</p>
+                          <p className="challenge-materials">
+                            有限库存：
+                            {Object.entries(c.initialInventory)
+                              .map(([id, n]) => `${byId[id].name}×${n}`)
+                              .join(" · ")}
+                            {c.catalysts.length
+                              ? ` · 催化：${c.catalysts.map((id) => byId[id].name).join("、")}`
+                              : ""}{" "}
+                            · 上限 {c.limit} 次
+                          </p>
+                          <div className="challenge-card-foot">
+                            <span
+                              className="stars"
+                              aria-label={`最佳 ${best?.stars || 0} 星`}
+                            >
+                              {[1, 2, 3].map((n) => (
+                                <Star
+                                  key={n}
+                                  size={14}
+                                  fill={
+                                    (best?.stars || 0) >= n
+                                      ? "currentColor"
+                                      : "none"
+                                  }
+                                />
+                              ))}
+                            </span>
+                            {best && (
+                              <small className="challenge-best-note">
+                                最佳 {best.attempts} 次
+                                {best.bestUtilization !== undefined
+                                  ? ` · 利用率 ${Math.round(best.bestUtilization * 100)}%`
+                                  : ""}
+                              </small>
+                            )}
+                          </div>
                         </div>
-                        <p className="challenge-desc">{c.description}</p>
-                        <p className="challenge-materials">
-                          有限库存：
-                          {Object.entries(c.initialInventory)
-                            .map(([id, n]) => `${byId[id].name}×${n}`)
-                            .join(" · ")}
-                          {c.catalysts.length
-                            ? ` · 催化：${c.catalysts.map((id) => byId[id].name).join("、")}`
-                            : ""}{" "}
-                          · 上限 {c.limit} 次
-                        </p>
-                        <div className="challenge-card-foot">
-                          <span
-                            className="stars"
-                            aria-label={`最佳 ${best?.stars || 0} 星`}
-                          >
-                            {[1, 2, 3].map((n) => (
-                              <Star
-                                key={n}
-                                size={14}
-                                fill={
-                                  (best?.stars || 0) >= n
-                                    ? "currentColor"
-                                    : "none"
-                                }
-                              />
-                            ))}
-                          </span>
-                          {best && (
-                            <small className="challenge-best-note">
-                              最佳 {best.attempts} 次
-                              {best.bestUtilization !== undefined
-                                ? ` · 利用率 ${Math.round(best.bestUtilization * 100)}%`
-                                : ""}
-                            </small>
-                          )}
-                        </div>
-                      </div>
-                      <ChevronRight size={17} />
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })
+                        <ChevronRight size={17} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })
       )}
     </div>
   );

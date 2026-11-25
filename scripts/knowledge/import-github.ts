@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { resolveKnowledgeSpeciesZh } from "./chinese-names";
 
 type Species = {
   id: string;
@@ -106,19 +107,30 @@ const records = atlas.reactions.map((r) => {
         : "上游存在模拟情境；本项目尚未将此条目自动转成实验台配方。",
   };
 });
-const species = atlas.substances.map((s) => ({
-  id: s.id,
-  nameEn: s.name,
-  formula: ascii(s.formula),
-  displayFormula: s.formula,
-  state: s.state,
-  elementComposition: s.composition,
-  charge: s.charge,
-  atomicNumber: s.elementZ ?? null,
-  referenceRecordIds: records
-    .filter((r) => [...r.reactants, ...r.products].some((p) => p.id === s.id))
-    .map((r) => r.id),
-}));
+const species = atlas.substances.map((s) => {
+  const formulaAscii = ascii(s.formula);
+  const zh = resolveKnowledgeSpeciesZh({
+    id: s.id,
+    nameEn: s.name,
+    formula: formulaAscii,
+    state: s.state,
+  });
+  return {
+    id: s.id,
+    nameZh: zh.nameZh,
+    aliasesZh: zh.aliasesZh,
+    nameEn: s.name,
+    formula: formulaAscii,
+    displayFormula: s.formula,
+    state: s.state,
+    elementComposition: s.composition,
+    charge: s.charge,
+    atomicNumber: s.elementZ ?? null,
+    referenceRecordIds: records
+      .filter((r) => [...r.reactants, ...r.products].some((p) => p.id === s.id))
+      .map((r) => r.id),
+  };
+});
 // BODR factual coordinates supplement the authoritative PubChem records. Narratives,
 // photographs, original application code and upstream procedural prose are not imported.
 const xml = readFileSync(

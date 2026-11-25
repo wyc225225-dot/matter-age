@@ -9,48 +9,30 @@ import {
 } from "lucide-react";
 import elements from "../data/elements.json";
 import rawSpecies from "../data/knowledgeSubstances.json";
-import transformations from "../data/knowledgeTransformations.json";
-import { substances } from "../data";
+import rawTransformations from "../data/knowledgeTransformations.json";
 import { Formula } from "./Shared";
-import "./knowledge.css";
-interface KnowledgeSpecies {
-  id: string;
-  nameEn: string;
-  formula: string;
-  displayFormula: string;
-  state: string;
-  elementComposition: Record<string, number>;
-  charge: number;
-  atomicNumber: number | null;
-  referenceRecordIds: string[];
-}
-const species = rawSpecies as unknown as KnowledgeSpecies[];
-
 import { ArchiveTabs, type ArchiveView } from "./ArchiveTabs";
-const stateName: Record<string, string> = {
-  s: "固态",
-  l: "液态",
-  g: "气态",
-  aq: "水溶液",
-  Gas: "气态",
-  Solid: "固态",
-  Liquid: "液态",
-};
-const activationName: Record<string, string> = {
-  none: "常温情境",
-  heat: "加热",
-  ignition: "点燃",
-  electricity: "通电",
-  cooling: "冷却",
-  light: "光照",
-};
-const substanceName = (s: (typeof species)[number]) =>
-  substances.find(
-    (x) =>
-      x.formula === s.formula &&
-      x.state === { g: "gas", l: "liquid", s: "solid" }[s.state],
-  )?.name || s.nameEn;
-const speciesById = Object.fromEntries(species.map((s) => [s.id, s]));
+import {
+  formatKnowledgeActivation,
+  formatKnowledgeAtmosphere,
+  formatKnowledgeKind,
+  formatKnowledgeOutcome,
+  formatKnowledgeState,
+  formatTransformationChinese,
+  resolveSpeciesDisplayName,
+  speciesSearchText,
+  type KnowledgeSpeciesRecord,
+  type KnowledgeTransformationRecord,
+} from "../utils/knowledgeNames";
+import "./knowledge.css";
+
+const species = rawSpecies as unknown as KnowledgeSpeciesRecord[];
+const transformations =
+  rawTransformations as unknown as KnowledgeTransformationRecord[];
+const speciesById: Record<string, KnowledgeSpeciesRecord> = Object.fromEntries(
+  species.map((s) => [s.id, s]),
+);
+
 const questions = transformations
   .filter(
     (r) =>
@@ -81,6 +63,7 @@ export function KnowledgeLibrary({
     transformations: "物质转化路径",
     lessons: "知识学习任务",
   }[view];
+
   const elementRows = elements.filter(
     (e) =>
       (category === "全部" || e.groupName === category) &&
@@ -88,24 +71,23 @@ export function KnowledgeLibrary({
         .toLowerCase()
         .includes(q),
   );
-  const speciesRows = species.filter((s) =>
-    `${substanceName(s)} ${s.nameEn} ${s.formula} ${s.id}`
-      .toLowerCase()
-      .includes(q),
-  );
+  const speciesRows = species.filter((s) => speciesSearchText(s).includes(q));
   const reactionRows = transformations.filter(
     (r) =>
       (category === "全部" ||
         (category === "仅方程式资料"
           ? r.sourceExecution === "equation-only"
           : r.sourceExecution !== "equation-only")) &&
-      `${r.equation} ${r.reactants
+      `${r.equation} ${formatTransformationChinese(r, speciesById)} ${r.reactants
         .concat(r.products)
-        .map((p) => substanceName(speciesById[p.id]))
+        .map((p) =>
+          speciesById[p.id] ? speciesSearchText(speciesById[p.id]) : p.id,
+        )
         .join(" ")}`
         .toLowerCase()
         .includes(q),
   );
+
   const size = 24;
   const total =
     view === "elements"
@@ -117,6 +99,7 @@ export function KnowledgeLibrary({
   const element = elements.find((e) => e.symbol === selected);
   const material = species.find((s) => s.id === selected);
   const reaction = transformations.find((r) => r.id === selected);
+
   return (
     <div className="page-width standard-page">
       <div className="page-heading">
@@ -129,11 +112,10 @@ export function KnowledgeLibrary({
           </p>
         </div>
       </div>
-      <ArchiveTabs view={view} onChange={onChange} />
-      {view === "lessons" ? (
-        <KnowledgeLessons />
-      ) : (
-        <>
+
+      <div className="mobile-sticky-bar archive-sticky-bar">
+        <ArchiveTabs view={view} onChange={onChange} />
+        {view !== "lessons" && (
           <div className="archive-toolbar">
             <label className="search-box">
               <Search size={16} />
@@ -142,7 +124,7 @@ export function KnowledgeLibrary({
                 placeholder={
                   view === "elements"
                     ? "搜索中文名、英文名、元素符号或原子序数"
-                    : "搜索名称、化学式或反应物"
+                    : "搜索中文名称、别名、化学式或英文名"
                 }
                 value={query}
                 onChange={(e) => {
@@ -164,7 +146,7 @@ export function KnowledgeLibrary({
               >
                 {(view === "elements"
                   ? ["全部", ...new Set(elements.map((e) => e.groupName))]
-                  : ["全部", "含上游模拟情境", "仅方程式资料"]
+                  : ["全部", "含变化情境", "仅方程式资料"]
                 ).map((c) => (
                   <option key={c}>{c}</option>
                 ))}
@@ -172,14 +154,21 @@ export function KnowledgeLibrary({
             )}
             <span>{total} 条结果</span>
           </div>
+        )}
+      </div>
+
+      {view === "lessons" ? (
+        <KnowledgeLessons />
+      ) : (
+        <>
           <div className="archive-note">
             <BookOpen size={17} />
             <p>
               {view === "elements"
                 ? "元素是原子核电荷相同的一类原子；氢元素 H、氢气 H₂ 和水中的氢不能视作同一个游戏物品。"
                 : view === "species"
-                  ? "资料条目区分相态与化学组成；这里的资料数量与实验台已接入的物质数量分别统计。"
-                  : "路径记录展示物质相态、配平系数与变化条件；仅方程式条目用于知识学习。"}
+                  ? "资料条目按化学实体与物态独立命名（如氯化氢气体与盐酸、水与水蒸气）；支持中文、别名、化学式与英文检索。"
+                  : "每条转化同时给出结构化中文物质关系与配平方程式；仅方程式条目用于知识学习。"}
             </p>
           </div>
           {selected && (
@@ -214,11 +203,7 @@ export function KnowledgeLibrary({
                         "周期 / 族 / 区",
                         `${element.bodr?.period ?? "—"} / ${element.bodr?.group ?? "—"} / ${element.bodr?.block ?? "—"}`,
                       ],
-                      [
-                        "常规相态",
-                        stateName[element.standardState] ||
-                          element.standardState,
-                      ],
+                      ["常规相态", formatKnowledgeState(element.standardState)],
                       ["熔点 K", element.meltingPointK],
                       ["沸点 K", element.boilingPointK],
                       ["电负性", element.electronegativity],
@@ -238,22 +223,30 @@ export function KnowledgeLibrary({
                   </p>
                   <h3>包含此元素的物质 · {element.relatedSpeciesIds.length}</h3>
                   <div className="archive-chips">
-                    {element.relatedSpeciesIds.slice(0, 18).map((id) => (
-                      <span key={id}>
-                        {speciesById[id]?.displayFormula || id}
-                      </span>
-                    ))}
+                    {element.relatedSpeciesIds.slice(0, 18).map((id) => {
+                      const sp = speciesById[id];
+                      return (
+                        <span key={id}>
+                          {sp ? `${sp.nameZh}（${sp.displayFormula}）` : id}
+                        </span>
+                      );
+                    })}
                   </div>
                 </>
               )}
               {view === "species" && material && (
                 <>
-                  <h2>{substanceName(material)}</h2>
+                  <h2>{material.nameZh}</h2>
                   <h3>
                     <Formula value={material.formula} /> ·{" "}
-                    {stateName[material.state] || material.state}
+                    {formatKnowledgeState(material.state)}
                   </h3>
-                  <p>{material.nameEn}</p>
+                  <p className="archive-sub-en">英文名：{material.nameEn}</p>
+                  {material.aliasesZh && material.aliasesZh.length > 0 && (
+                    <p className="archive-aliases">
+                      常见别称：{material.aliasesZh.join(" / ")}
+                    </p>
+                  )}
                   <dl className="archive-facts">
                     <div>
                       <dt>元素组成 / 化学式单位</dt>
@@ -262,6 +255,10 @@ export function KnowledgeLibrary({
                           .map(([e, n]) => `${e} × ${n}`)
                           .join("，")}
                       </dd>
+                    </div>
+                    <div>
+                      <dt>物态</dt>
+                      <dd>{formatKnowledgeState(material.state)}</dd>
                     </div>
                     <div>
                       <dt>净电荷</dt>
@@ -274,6 +271,9 @@ export function KnowledgeLibrary({
                     .slice(0, 10)
                     .map((r) => (
                       <div className="archive-equation" key={r.id}>
+                        <strong className="archive-eq-zh">
+                          {formatTransformationChinese(r, speciesById)}
+                        </strong>
                         <Formula value={r.equation} />
                       </div>
                     ))}
@@ -281,27 +281,48 @@ export function KnowledgeLibrary({
               )}
               {view === "transformations" && reaction && (
                 <>
-                  <h2>
+                  <h2>{formatTransformationChinese(reaction, speciesById)}</h2>
+                  <p className="archive-detail-formula">
                     <Formula value={reaction.equation} />
-                  </h2>
+                  </p>
                   <p>
+                    {formatKnowledgeKind(reaction.kind)} ·{" "}
+                    {formatKnowledgeOutcome(reaction.outcome)} ·{" "}
                     {reaction.sourceExecution === "equation-only"
                       ? "仅方程式资料"
-                      : "变化情境"}{" "}
-                    · 原子与电荷数量{reaction.atomBalanced ? "守恒" : "待核对"}
+                      : "含变化情境"}{" "}
+                    · 原子与电荷数量
+                    {reaction.atomBalanced ? "守恒" : "待核对"}
                   </p>
                   <div className="archive-chips">
                     {reaction.activation.map((a) => (
-                      <span key={a}>{activationName[a] || a}</span>
+                      <span key={a}>{formatKnowledgeActivation(a)}</span>
                     ))}
                     {reaction.atmosphere && (
-                      <span>气氛：{reaction.atmosphere}</span>
+                      <span>
+                        气氛：{formatKnowledgeAtmosphere(reaction.atmosphere)}
+                      </span>
+                    )}
+                  </div>
+                  <h3>参与物质（按物态区分）</h3>
+                  <div className="archive-chips">
+                    {[...reaction.reactants, ...reaction.products].map(
+                      (p, idx) => {
+                        const sp = speciesById[p.id];
+                        return (
+                          <span key={`${p.id}-${idx}`}>
+                            {resolveSpeciesDisplayName(sp, p.id)}（
+                            {sp?.displayFormula ?? p.id} ·{" "}
+                            {sp ? formatKnowledgeState(sp.state) : ""}）
+                          </span>
+                        );
+                      },
                     )}
                   </div>
                   <p>
                     {reaction.sourceExecution === "equation-only"
                       ? "此条目用于方程式学习，暂未接入实验台。"
-                      : "比较反应物、生成物和条件，理解物质之间的转化。"}
+                      : "比较反应物、生成物与变化条件，理解物质之间的转化。"}
                   </p>
                 </>
               )}
@@ -335,10 +356,10 @@ export function KnowledgeLibrary({
                     .map((s) => (
                       <button key={s.id} onClick={() => setSelected(s.id)}>
                         <Atom size={22} />
+                        <strong>{s.nameZh}</strong>
                         <Formula value={s.formula} />
-                        <strong>{substanceName(s)}</strong>
                         <small>
-                          {stateName[s.state] || s.state} ·{" "}
+                          {formatKnowledgeState(s.state)} ·{" "}
                           {s.referenceRecordIds.length} 条路径
                         </small>
                       </button>
@@ -350,11 +371,16 @@ export function KnowledgeLibrary({
                     .slice(page * size, (page + 1) * size)
                     .map((r) => (
                       <button key={r.id} onClick={() => setSelected(r.id)}>
-                        <Formula value={r.equation} />
+                        <div className="reaction-row-main">
+                          <strong className="reaction-zh-line">
+                            {formatTransformationChinese(r, speciesById)}
+                          </strong>
+                          <Formula value={r.equation} />
+                        </div>
                         <small>
                           {r.sourceExecution === "equation-only"
                             ? "仅方程式"
-                            : "变化情境"}{" "}
+                            : "变化情境"}
                         </small>
                         <ArrowRight size={15} />
                       </button>
@@ -443,9 +469,12 @@ function KnowledgeLessons() {
       </p>
       <div className="lesson-prompt">
         {r.reactants.map((p) => (
-          <span key={p.id}>
-            {p.coefficient > 1 ? p.coefficient : ""}
-            <Formula value={speciesById[p.id].formula} />
+          <span key={p.id} className="lesson-term">
+            <span>
+              {p.coefficient > 1 ? p.coefficient : ""}
+              <Formula value={speciesById[p.id].formula} />
+            </span>
+            <small>{resolveSpeciesDisplayName(speciesById[p.id], p.id)}</small>
           </span>
         ))}
         <ArrowRight size={21} />
@@ -463,8 +492,9 @@ function KnowledgeLessons() {
               setSubmitted(false);
             }}
           >
+            <strong>{resolveSpeciesDisplayName(speciesById[id], id)}</strong>
             <Formula value={speciesById[id].formula} />
-            <small>{substanceName(speciesById[id])}</small>
+            <small>{formatKnowledgeState(speciesById[id].state)}</small>
           </button>
         ))}
       </div>
@@ -473,12 +503,13 @@ function KnowledgeLessons() {
           {answer === correct ? (
             <>
               <Check size={16} />
-              回答正确。完整方程式：
+              回答正确。
             </>
           ) : (
-            "还可以再试。资料中的完整方程式："
+            "还可以再试。"
           )}{" "}
-          <Formula value={r.equation} />
+          {formatTransformationChinese(r, speciesById)}（
+          <Formula value={r.equation} />）
         </p>
       )}
       <div className="save-actions">

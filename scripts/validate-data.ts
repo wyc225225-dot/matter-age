@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import {
   substanceSchema,
   reactionSchema,
@@ -52,6 +52,10 @@ import { validateTechDAG } from "../src/engine/technologyEngine";
 import { simulateProgressionToLabLv3 } from "../src/engine/orderEngine";
 import { verifySpecialChallenge } from "../src/engine/specialChallengeEngine";
 import { initialSave } from "../src/database";
+import type {
+  KnowledgeSpeciesRecord,
+  KnowledgeTransformationRecord,
+} from "../src/utils/knowledgeNames";
 
 const failures: string[] = [];
 
@@ -419,6 +423,51 @@ if (!sim.ok) {
   failures.push(`V1.6 经营主循环可达性验证失败: ${sim.error}`);
 }
 
+// === Local Knowledge Corpus Chinese Coverage & Integrity Validation ===
+const knowledgeSpecies: KnowledgeSpeciesRecord[] = JSON.parse(
+  readFileSync("src/data/knowledgeSubstances.json", "utf8"),
+);
+const knowledgeTransformations: KnowledgeTransformationRecord[] = JSON.parse(
+  readFileSync("src/data/knowledgeTransformations.json", "utf8"),
+);
+const knowledgeSpeciesById = Object.fromEntries(
+  knowledgeSpecies.map((s) => [s.id, s]),
+);
+let missingZhSpeciesCount = 0;
+for (const ks of knowledgeSpecies) {
+  if (!ks.nameZh || !/[\u4e00-\u9fff]/.test(ks.nameZh)) {
+    missingZhSpeciesCount++;
+    failures.push(`知识库物质 ${ks.id} 缺少规范中文名称 (nameZh)`);
+  }
+  if (!Array.isArray(ks.aliasesZh)) {
+    failures.push(`知识库物质 ${ks.id} 缺少 aliasesZh 字段`);
+  }
+}
+// Entity + state disambiguation checks
+if (
+  knowledgeSpeciesById["HCl"]?.nameZh === knowledgeSpeciesById["HCl-g"]?.nameZh
+) {
+  failures.push("知识库 HCl(aq) 与 HCl(g) 未按物态区分中文名称");
+}
+if (
+  knowledgeSpeciesById["H2O"]?.nameZh ===
+    knowledgeSpeciesById["H2O-g"]?.nameZh ||
+  knowledgeSpeciesById["H2O"]?.nameZh ===
+    knowledgeSpeciesById["H2O-ice"]?.nameZh
+) {
+  failures.push("知识库 H2O 液态/气态/固态未按物态区分中文名称");
+}
+let unresolvedTransformParticipants = 0;
+for (const kt of knowledgeTransformations) {
+  for (const p of [...kt.reactants, ...kt.products]) {
+    const sp = knowledgeSpeciesById[p.id];
+    if (!sp || !sp.nameZh || !/[\u4e00-\u9fff]/.test(sp.nameZh)) {
+      unresolvedTransformParticipants++;
+      failures.push(`知识库转化 ${kt.id} 参与物 ${p.id} 无法解析中文名称`);
+    }
+  }
+}
+
 function refLabel(url: string) {
   if (url.includes("openstax.org")) {
     const seg = url.split("/pages/")[1] || "";
@@ -455,6 +504,7 @@ const report = `# 数据自动校验与人工科学审核清单
 - 简单模式挑战：${challenges.length}（2 步及以上 ${multiStepCount} 关，3 步及以上 ${threePlusCount} 关；全链路与三级提示通过）
 - 进阶定量挑战：${quantitativeChallenges.length}（全有限库存逐步回放；已获审底层规则的挑战 ${quantReviewedReady}/${quantitativeChallenges.length}，本地预览不以此阻断）
 - V1.6 扩展系统校验：${technologies.length} 项科技（DAG 无环且 100% 可达）、${equipmentList.filter((e) => !e.lockedPreview).length} 台功能设备、${orders.length} 个研究订单、${regions.filter((r) => r.playable).length}/${regions.length} 个探索区域、${historyChapters.filter((c) => c.playable).length}/${historyChapters.length} 个可玩历史章节（均保持 pending）、${museumItems.length} 件博物馆藏品、${specialChallenges.length} 道特殊挑战（全可解验证通过）、初始存档 Lv.1→Lv.2→Lv.3 零死锁闭环模拟通过（${sim.ok ? `${sim.steps} 步` : "失败"}）
+- 本地化学知识库中文化校验：${knowledgeSpecies.length} 种物质中文全覆盖（缺失 ${missingZhSpeciesCount}）、${knowledgeTransformations.length} 条转化路径参与物中文全解析（缺失 ${unresolvedTransformParticipants}；全部保持 pending）
 - 自动错误：${failures.length}
 - 人工科学审核完成：${reactions.filter((r) => r.reviewStatus === "reviewed").length}；**自动校验与参考链接采集绝不替代人工科学审核**。
 

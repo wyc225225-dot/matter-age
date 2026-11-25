@@ -165,18 +165,20 @@ export default function Museum() {
         </div>
       </div>
 
-      <div className="filter-pills">
-        {(Object.keys(categoryLabels) as (MuseumCategory | "all")[]).map(
-          (k) => (
-            <button
-              key={k}
-              className={cat === k ? "active" : ""}
-              onClick={() => setCat(k)}
-            >
-              {categoryLabels[k]}
-            </button>
-          ),
-        )}
+      <div className="mobile-sticky-bar">
+        <div className="filter-pills mobile-scroll-strip">
+          {(Object.keys(categoryLabels) as (MuseumCategory | "all")[]).map(
+            (k) => (
+              <button
+                key={k}
+                className={cat === k ? "active" : ""}
+                onClick={() => setCat(k)}
+              >
+                {categoryLabels[k]}
+              </button>
+            ),
+          )}
+        </div>
       </div>
 
       <div className="museum-grid">

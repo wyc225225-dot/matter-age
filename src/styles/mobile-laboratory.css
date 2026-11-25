@@ -5,79 +5,161 @@
 .picker-footer {
   display: none;
 }
-@media (max-width: 760px) {
+
+@media (max-width: 760px) and (min-height: 521px), (max-width: 479px) {
   .lab {
-    padding-bottom: 110px;
+    padding-bottom: calc(
+      var(--mobile-nav-h, 58px) + var(--mobile-dock-h, 60px) + 22px +
+        env(safe-area-inset-bottom)
+    );
   }
   .lab .workbench {
     scroll-margin-top: 12px;
   }
+  .lab-mode-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding: 4px;
+  }
+  .lab-mode-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .lab-mode-bar > button {
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+  }
+  .lab-mode-bar .advanced-subtabs {
+    flex-shrink: 0;
+    width: auto;
+    margin-left: 0;
+  }
+  .lab .challenge-banner {
+    position: sticky;
+    top: 0;
+    z-index: 24;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    font-size: 11.5px;
+    gap: 8px;
+  }
+  .lab-mobile-tabs {
+    margin-bottom: 10px;
+  }
   .lab-columns > .warehouse:not(.mobile-picker-open) {
     display: none;
+  }
+  .lab .workspace {
+    padding: 12px 10px;
+  }
+  .lab .slots {
+    gap: 8px;
+  }
+  .lab .slot {
+    min-height: 108px;
+    padding: 8px 4px;
+  }
+  .lab .conditions-panel {
+    padding: 12px 10px;
+  }
+  .lab .conditions-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .lab .conditions-grid button {
+    min-height: 38px;
+    padding: 6px 4px;
+    font-size: 11px;
   }
   .mobile-material-launcher {
     display: flex;
     width: 100%;
     align-items: center;
     gap: 10px;
-    min-height: 46px;
+    min-height: 44px;
     background: #294959;
     border: 1px solid #578299;
     border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 13px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
     text-align: left;
     color: #bce4f3;
   }
   .mobile-material-launcher strong {
-    font-size: 12px;
+    font-size: 12.5px;
     flex: 1;
   }
   .mobile-material-launcher > span {
-    font-size: 11px;
+    font-size: 11.5px;
     color: #9cc6d9;
   }
   .mobile-experiment-dock {
     display: flex;
     position: fixed;
-    bottom: calc(68px + env(safe-area-inset-bottom));
+    bottom: calc(var(--mobile-nav-h, 58px) + env(safe-area-inset-bottom));
     left: 0;
     right: 0;
     z-index: 48;
-    gap: 12px;
-    padding: 10px 16px;
-    background: #142633f5;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(16, 30, 42, 0.97);
     border-top: 1px solid #486577;
-    box-shadow: 0 -7px 22px #0003;
+    box-shadow: 0 -7px 22px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(12px);
   }
   .dock-materials {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     border: 1px solid #496577;
     background: #223b4c;
     border-radius: 8px;
-    min-height: 48px;
-    min-width: 118px;
-    padding: 5px 13px;
+    min-height: 44px;
+    min-width: 104px;
+    padding: 4px 10px;
     color: #b6d2e3;
   }
   .dock-materials > span {
     font-size: 12px;
     text-align: left;
+    line-height: 1.2;
   }
   .dock-materials small {
     display: block;
     font-size: 10px;
     color: #8baabe;
-    margin-top: 3px;
+    margin-top: 2px;
+  }
+  .dock-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 48px;
+    min-height: 44px;
+    padding: 4px 6px;
+    border-radius: 8px;
+    border: 1px solid #3c5669;
+    background: #1a2f3f;
+    color: #eac477;
+  }
+  .dock-hint small {
+    font-size: 9.5px;
+    line-height: 1;
   }
   .dock-run {
     flex: 1;
-    min-height: 48px;
+    min-height: 44px;
     font-size: 13px;
+    padding: 8px 12px;
   }
   .material-picker-backdrop {
     display: block;
@@ -90,8 +172,8 @@
   }
   .lab-columns > .warehouse.mobile-picker-open {
     position: fixed;
-    inset: max(12px, env(safe-area-inset-top)) 10px
-      max(12px, env(safe-area-inset-bottom));
+    inset: max(10px, env(safe-area-inset-top)) 10px
+      max(10px, env(safe-area-inset-bottom));
     width: auto;
     max-height: none;
     z-index: 80;
@@ -104,7 +186,7 @@
     overflow: hidden;
   }
   .mobile-picker-open > .panel-title {
-    min-height: 52px;
+    min-height: 48px;
     flex-shrink: 0;
     padding-right: 9px;
   }
@@ -119,7 +201,7 @@
   .picker-selection {
     display: block;
     flex-shrink: 0;
-    padding: 12px;
+    padding: 10px 12px;
     background: #122431;
     border-bottom: 1px solid #354d60;
   }
@@ -128,14 +210,14 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .picker-selection-title strong {
-    font-size: 11px;
+    font-size: 11.5px;
     color: #b6dce9;
   }
   .picker-selection-title > span {
-    font-size: 9px;
+    font-size: 10px;
     color: #89a9bd;
   }
   .picker-selected-slots {
@@ -146,7 +228,7 @@
   .picker-selected-item,
   .picker-empty-item {
     min-width: 0;
-    min-height: 70px;
+    min-height: 66px;
     border: 1px solid #4f7488;
     border-radius: 8px;
     position: relative;
@@ -154,9 +236,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     background: #294454;
-    padding: 5px 3px;
+    padding: 4px 3px;
   }
   .picker-selected-item > span {
     display: block;
@@ -164,13 +246,13 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 9px;
+    font-size: 10px;
     color: #c4e3ef;
   }
   .picker-selected-item small {
     margin-left: 3px;
     color: #eac477;
-    font-size: 9px;
+    font-size: 9.5px;
   }
   .picker-selected-item > svg:last-child {
     position: absolute;
@@ -185,7 +267,7 @@
     color: #597f95;
   }
   .picker-empty-item > span {
-    font-size: 9px;
+    font-size: 9.5px;
   }
   .mobile-picker-open .warehouse-tabs,
   .mobile-picker-open > .search-box,
@@ -195,22 +277,22 @@
     flex-shrink: 0;
   }
   .mobile-picker-open .warehouse-tabs button {
-    min-height: 40px;
-    padding: 9px 0;
+    min-height: 38px;
+    padding: 8px 0;
   }
   .mobile-picker-open > .search-box {
-    height: 42px;
-    margin-top: 10px;
+    height: 40px;
+    margin-top: 8px;
   }
   .mobile-picker-open input {
     font-size: 16px;
   }
   .mobile-picker-open .warehouse-selects {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .mobile-picker-open .warehouse-selects select {
-    min-height: 38px;
-    font-size: 11px;
+    min-height: 36px;
+    font-size: 12px;
   }
   .mobile-picker-open .warehouse-grid {
     flex: 1;
@@ -224,8 +306,8 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .mobile-picker-open .material-add {
-    min-height: 108px;
-    padding-top: 19px;
+    min-height: 102px;
+    padding-top: 18px;
     touch-action: manipulation;
   }
   .mobile-picker-open .material-info {
@@ -241,21 +323,21 @@
     top: 10px;
   }
   .mobile-picker-open .supply-button {
-    margin-top: 7px;
-    margin-bottom: 7px;
-    min-height: 46px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    min-height: 44px;
   }
   .picker-footer {
     display: block;
-    padding: 12px;
+    padding: 10px 12px;
     flex-shrink: 0;
     background: #142633;
     border-top: 1px solid #38566a;
   }
   .picker-footer .primary {
     width: 100%;
-    min-height: 48px;
-    font-size: 12px;
+    min-height: 46px;
+    font-size: 13px;
     gap: 8px;
   }
   .picker-footer .primary > span {
@@ -264,7 +346,7 @@
     font-size: 12px;
   }
   .lab .workbench-instruction {
-    font-size: 9px;
-    line-height: 1.7;
+    font-size: 10px;
+    line-height: 1.5;
   }
 }

@@ -31,7 +31,13 @@ import type {
   IntegerStoichiometryResult,
   QuantitativeChallenge,
 } from "../types";
-import { execute, executeAdvanced } from "../engine/reactionEngine";
+import {
+  execute,
+  executeAdvanced,
+  diagnoseExperimentFailure,
+  type FailureDiagnostic,
+  type MisplacedCatalystCandidate,
+} from "../engine/reactionEngine";
 import { getHint } from "../engine/hintEngine";
 import { rateChallenge } from "../engine/challengeEngine";
 import { ADVANCED_LIMITS } from "../config/modes";
@@ -49,6 +55,7 @@ import {
   quantitativeChallenges,
 } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula, fmt } from "../components/Shared";
 import "../styles/mobile-laboratory.css";
@@ -110,29 +117,39 @@ export default function Laboratory({
     null,
   );
   const [message, setMessage] = useState("");
+  const [diagnostic, setDiagnostic] = useState<FailureDiagnostic | null>(null);
+  const [roleUndo, setRoleUndo] = useState<{
+    slots: string[];
+    amounts: Record<string, number>;
+    catalyst: string[];
+    label: string;
+  } | null>(null);
   const [fresh, setFresh] = useState<string[]>([]);
   const [hintLevel, setHintLevel] = useState(0);
   const [hint, setHint] = useState("");
   const [animating, setAnimating] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    () => window.matchMedia("(max-width: 760px)").matches,
-  );
+  const vp = useViewport();
+  const isMobilePortrait = vp.isMobilePortrait;
+  const isMobileLandscape = vp.isMobileLandscape;
+  const isMobile = vp.isMobile;
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [mobileLabPane, setMobileLabPane] = useState<"bench" | "notebook">(
+    "bench",
+  );
+  const [landscapeSideTab, setLandscapeSideTab] = useState<
+    "materials" | "conditions" | "notebook"
+  >("materials");
   const pickerRef = useRef<HTMLElement>(null);
   const workbenchRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 760px)");
-    const update = () => {
-      setIsMobile(media.matches);
-      if (!media.matches) setPickerOpen(false);
-    };
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
+    if (!isMobilePortrait && pickerOpen) {
+      setPickerOpen(false);
+    }
+  }, [isMobilePortrait, pickerOpen]);
   useEffect(() => {
-    if (!isMobile || !pickerOpen) return;
+    if (!isMobilePortrait || !pickerOpen) return;
     const previousOverflow = document.body.style.overflow;
     const previousFocus = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
@@ -168,7 +185,7 @@ export default function Laboratory({
       if (previousFocus?.isConnected && previousFocus.getClientRects().length)
         previousFocus.focus({ preventScroll: true });
     };
-  }, [isMobile, pickerOpen]);
+  }, [isMobilePortrait, pickerOpen]);
   const finishPicking = () => {
     setPickerOpen(false);
     requestAnimationFrame(() =>
@@ -194,6 +211,8 @@ export default function Laboratory({
     setResult(null);
     setAdvStoich(null);
     setMessage("");
+    setDiagnostic(null);
+    setRoleUndo(null);
     setFresh([]);
     setHint("");
     setAnimating(false);
@@ -308,6 +327,7 @@ export default function Laboratory({
         }
         setAmounts((prev) => ({ ...prev, [id]: cur + 1 }));
         setMessage("");
+        setDiagnostic(null);
         setResult(null);
         setAdvStoich(null);
         return;
@@ -324,6 +344,7 @@ export default function Laboratory({
       setAmounts((prev) => ({ ...prev, [id]: 1 }));
     }
     setMessage("");
+    setDiagnostic(null);
     setResult(null);
     setAdvStoich(null);
     setFresh([]);
@@ -332,6 +353,7 @@ export default function Laboratory({
   const removeSlot = (index: number) => {
     const removedId = slots[index];
     setSlots(slots.filter((_, j) => index !== j));
+    setDiagnostic(null);
     if (removedId) {
       setAmounts((prev) => {
         const next = { ...prev };
@@ -390,6 +412,8 @@ export default function Laboratory({
         setAdvStoich(res.stoichiometry);
         setFresh(rec.newProducts);
         setMessage(res.message);
+        setDiagnostic(null);
+        setRoleUndo(null);
         if (qRun) {
           setSlots([]);
           setAmounts({});
@@ -409,6 +433,20 @@ export default function Laboratory({
         setAdvStoich(res.stoichiometry);
         setFresh([]);
         setMessage(res.message);
+        setDiagnostic(
+          diagnoseExperimentFailure(
+            {
+              substances: slots,
+              conditions: selected,
+              catalysts: catalyst,
+              mode: "advanced",
+            },
+            res,
+            allowedAdvancedRules,
+            byId,
+            { channel: "preview", labelCondition: conditionName },
+          ),
+        );
       } else {
         const msg =
           res.status === "missing"
@@ -431,6 +469,20 @@ export default function Laboratory({
         setAdvStoich(null);
         setFresh([]);
         setMessage(msg);
+        setDiagnostic(
+          diagnoseExperimentFailure(
+            {
+              substances: slots,
+              conditions: selected,
+              catalysts: catalyst,
+              mode: "advanced",
+            },
+            res,
+            allowedAdvancedRules,
+            byId,
+            { channel: "preview", labelCondition: conditionName },
+          ),
+        );
       }
       return;
     }
@@ -446,6 +498,8 @@ export default function Laboratory({
       setResult(r);
       setAdvStoich(null);
       setMessage("");
+      setDiagnostic(null);
+      setRoleUndo(null);
       if (found.length) setHintLevel(0);
       setAnimating(game.save.settings.motion);
       if (found.length && game.save.settings.sound) playDiscovery();
@@ -461,6 +515,20 @@ export default function Laboratory({
       setAdvStoich(null);
       setFresh([]);
       setMessage(msg);
+      setDiagnostic(
+        diagnoseExperimentFailure(
+          {
+            substances: slots,
+            conditions: selected,
+            catalysts: catalyst,
+            mode: "simple",
+          },
+          res,
+          allowedSimpleRules,
+          byId,
+          { channel: "preview", labelCondition: conditionName },
+        ),
+      );
     }
   }
 
@@ -517,8 +585,183 @@ export default function Laboratory({
         : true,
   );
 
+  const highlightedConditions: Condition[] =
+    diagnostic?.kind === "missing_requirements"
+      ? diagnostic.missingConditions
+      : diagnostic?.kind === "catalyst_in_reactants" &&
+          diagnostic.candidates.length === 1
+        ? diagnostic.candidates[0].missingConditions
+        : [];
+
+  const applyCatalystRoleMove = (cand: MisplacedCatalystCandidate) => {
+    const movedNames = cand.catalystsToMove
+      .map((id) => byId[id]?.name ?? id)
+      .join("、");
+    setRoleUndo({
+      slots: [...slots],
+      amounts: { ...amounts },
+      catalyst: [...catalyst],
+      label: movedNames,
+    });
+    const nextSlots = slots.filter((id) => !cand.catalystsToMove.includes(id));
+    const nextAmounts = { ...amounts };
+    for (const cid of cand.catalystsToMove) {
+      delete nextAmounts[cid];
+    }
+    const nextCatalysts = [
+      ...new Set([
+        ...catalyst.filter((id) => !cand.extraCatalysts.includes(id)),
+        ...cand.catalystsToMove,
+      ]),
+    ];
+    setSlots(nextSlots);
+    setAmounts(nextAmounts);
+    setCatalyst(nextCatalysts);
+    if (cand.missingConditions.length > 0) {
+      const condText = cand.missingConditions.map(conditionName).join("、");
+      setMessage(
+        `已将「${movedNames}」移至独立催化剂栏；另外还需选择条件：${condText}，确认后再点击开始实验。`,
+      );
+      setDiagnostic({
+        kind: "missing_requirements",
+        summary: `已移入催化剂栏；当前仍缺少条件：${condText}。`,
+        missingConditions: cand.missingConditions,
+        missingCatalysts: [],
+        extraCatalysts: [],
+      });
+    } else {
+      setMessage(
+        `已将「${movedNames}」移至独立催化剂栏（不参与消耗），现在可以点击「${isAdvanced ? "执行定量实验" : "开始实验"}」。`,
+      );
+      setDiagnostic(null);
+    }
+  };
+
+  const undoRoleMove = () => {
+    if (!roleUndo) return;
+    setSlots(roleUndo.slots);
+    setAmounts(roleUndo.amounts);
+    setCatalyst(roleUndo.catalyst);
+    setRoleUndo(null);
+    setDiagnostic(null);
+    setMessage("已撤回催化剂角色调整，恢复原有材料槽位。");
+  };
+
+  const applyMissingConditions = (conds: Condition[]) => {
+    setSelected((prev) => [...new Set([...prev, ...conds])]);
+    setDiagnostic((cur) => {
+      if (!cur || cur.kind !== "missing_requirements") return null;
+      const remainCats = cur.missingCatalysts;
+      const remainExtra = cur.extraCatalysts;
+      if (!remainCats.length && !remainExtra.length) return null;
+      return { ...cur, missingConditions: [] };
+    });
+    setMessage(
+      `已选中条件：${conds.map(conditionName).join("、")}，点击「${isAdvanced ? "执行定量实验" : "开始实验"}」验证。`,
+    );
+  };
+
+  const conditionsBlock = (
+    <div className="conditions-panel">
+      <div className="conditions-title">
+        <h3>实验条件</h3>
+        <span>
+          {qRun
+            ? "有限库存挑战 · 仅消耗反应份数"
+            : "可多选 · 不消耗全局解锁库存"}
+        </span>
+      </div>
+      <div className="conditions-grid">
+        {visibleConditions.map((c) => (
+          <button
+            className={`${selected.includes(c.id) ? "active" : ""} ${highlightedConditions.includes(c.id) && !selected.includes(c.id) ? "highlight-cond" : ""}`}
+            aria-pressed={selected.includes(c.id)}
+            aria-label={c.name}
+            key={c.id}
+            onClick={() =>
+              setSelected(
+                selected.includes(c.id)
+                  ? selected.filter((x) => x !== c.id)
+                  : [...selected, c.id],
+              )
+            }
+          >
+            <span aria-hidden="true">{c.symbol}</span>
+            {c.name}
+          </button>
+        ))}
+      </div>
+      <div className="catalyst-row catalyst-role-slot">
+        <span>
+          独立催化剂栏 <small>催化剂角色（加速反应，不参与消耗）</small>
+        </span>
+        <div className="catalyst-control-wrap">
+          {catalyst.length > 0 && (
+            <span className="catalyst-active-pill">
+              已选：{catalyst.map((id) => byId[id]?.name ?? id).join("、")}
+              <button
+                type="button"
+                className="catalyst-clear-btn"
+                aria-label="移除已选催化剂"
+                onClick={() => setCatalyst([])}
+              >
+                <X size={12} />
+              </button>
+            </span>
+          )}
+          <select
+            aria-label="选择催化剂"
+            value={catalyst[0] || ""}
+            onChange={(e) =>
+              setCatalyst(e.target.value ? [e.target.value] : [])
+            }
+          >
+            <option value="">不使用催化剂</option>
+            {availableCatalysts.map((id) => (
+              <option value={id} key={id}>
+                {byId[id].name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div className="experiment-actions">
+        <button
+          className="hint-button"
+          onClick={requestHint}
+          disabled={!!run?.complete || !!qRun?.complete}
+        >
+          <Lightbulb size={17} />
+          实验提示 <small>{hintLevel ? `${hintLevel}/3` : ""}</small>
+        </button>
+        <button
+          className="primary run-button"
+          disabled={
+            slots.length === 0 ||
+            animating ||
+            !!run?.complete ||
+            !!qRun?.complete
+          }
+          onClick={experiment}
+        >
+          <Play size={17} fill="currentColor" />
+          {animating ? "反应进行中" : isAdvanced ? "执行定量实验" : "开始实验"}
+          <ArrowRight size={16} />
+        </button>
+      </div>
+      {hint && (
+        <p className="hint-message">
+          <Lightbulb size={16} />
+          {hint}
+        </p>
+      )}
+    </div>
+  );
+
   return (
-    <div className="lab page-width">
+    <div
+      className={`lab page-width ${isMobileLandscape ? "lab-landscape-mode" : ""}`}
+    >
       <div className="page-heading">
         <div>
           <p className="eyebrow">
@@ -736,19 +979,97 @@ export default function Laboratory({
         </div>
       ) : (
         <div className="lab-columns">
-          {isMobile && pickerOpen && (
+          {isMobilePortrait && !pickerOpen && (
+            <div
+              className="mobile-seg-tabs lab-mobile-tabs"
+              role="tablist"
+              aria-label="实验台与手记切换"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={mobileLabPane === "bench"}
+                className={mobileLabPane === "bench" ? "active" : ""}
+                onClick={() => setMobileLabPane("bench")}
+              >
+                <FlaskConical size={14} />
+                实验操作台
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={mobileLabPane === "notebook"}
+                className={mobileLabPane === "notebook" ? "active" : ""}
+                onClick={() => setMobileLabPane("notebook")}
+              >
+                <BookOpen size={14} />
+                记录与科学原理
+                {(result || game.save.history.length > 0) && (
+                  <span className="tab-dot-badge">
+                    {game.save.history.length}
+                  </span>
+                )}
+              </button>
+            </div>
+          )}
+
+          {isMobilePortrait && pickerOpen && (
             <button
               className="material-picker-backdrop"
               aria-label="关闭物质选择"
               onClick={() => setPickerOpen(false)}
             />
           )}
+
+          {isMobileLandscape && (
+            <div
+              className="mobile-seg-tabs landscape-side-tabs"
+              role="tablist"
+              aria-label="横屏实验侧栏"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={landscapeSideTab === "materials"}
+                className={landscapeSideTab === "materials" ? "active" : ""}
+                onClick={() => setLandscapeSideTab("materials")}
+              >
+                材料 ({inventory.length})
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={landscapeSideTab === "conditions"}
+                className={landscapeSideTab === "conditions" ? "active" : ""}
+                onClick={() => setLandscapeSideTab("conditions")}
+              >
+                条件
+                {selected.length + catalyst.length > 0 && (
+                  <span className="tab-dot-badge">
+                    {selected.length + catalyst.length}
+                  </span>
+                )}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={landscapeSideTab === "notebook"}
+                className={landscapeSideTab === "notebook" ? "active" : ""}
+                onClick={() => setLandscapeSideTab("notebook")}
+              >
+                记录与原理
+              </button>
+            </div>
+          )}
+
           <section
             ref={pickerRef}
-            className={`panel warehouse ${pickerOpen ? "mobile-picker-open" : ""}`}
-            role={isMobile && pickerOpen ? "dialog" : undefined}
-            aria-modal={isMobile && pickerOpen ? true : undefined}
-            aria-label={isMobile && pickerOpen ? "选择实验物质" : undefined}
+            className={`panel warehouse ${pickerOpen ? "mobile-picker-open" : ""} ${isMobileLandscape && landscapeSideTab !== "materials" ? "landscape-hidden" : ""}`}
+            role={isMobilePortrait && pickerOpen ? "dialog" : undefined}
+            aria-modal={isMobilePortrait && pickerOpen ? true : undefined}
+            aria-label={
+              isMobilePortrait && pickerOpen ? "选择实验物质" : undefined
+            }
           >
             <div className="panel-title">
               <h2>
@@ -756,7 +1077,7 @@ export default function Laboratory({
                 {qRun ? "有限份数库存" : run ? "挑战材料库" : "物质仓库"}
               </h2>
               <span>{inventory.length} 种可用</span>
-              {isMobile && (
+              {isMobilePortrait && (
                 <button
                   className="icon-button picker-close"
                   aria-label="收起物质选择"
@@ -766,7 +1087,7 @@ export default function Laboratory({
                 </button>
               )}
             </div>
-            {isMobile && (
+            {isMobilePortrait && (
               <div className="picker-selection">
                 <div className="picker-selection-title">
                   <strong>实验台已选 {slots.length}/4</strong>
@@ -914,7 +1235,7 @@ export default function Laboratory({
                 <ChevronRight size={16} />
               </button>
             )}
-            {isMobile && (
+            {isMobilePortrait && (
               <div className="picker-footer">
                 <button
                   className="primary"
@@ -928,7 +1249,10 @@ export default function Laboratory({
             )}
           </section>
 
-          <section ref={workbenchRef} className="panel workbench">
+          <section
+            ref={workbenchRef}
+            className={`panel workbench ${isMobilePortrait && mobileLabPane !== "bench" ? "mobile-pane-hidden" : ""}`}
+          >
             <div className="panel-title">
               <h2>
                 <FlaskConical size={16} />
@@ -944,7 +1268,7 @@ export default function Laboratory({
             </div>
             <div className="workspace">
               <div className="workspace-grid" />
-              {isMobile && (
+              {isMobilePortrait && (
                 <button
                   className="mobile-material-launcher"
                   onClick={() => setPickerOpen(true)}
@@ -1037,9 +1361,12 @@ export default function Laboratory({
                         e.preventDefault();
                         add(e.dataTransfer.getData("text/plain"));
                       }}
-                      onClick={() =>
-                        id ? removeSlot(i) : isMobile && setPickerOpen(true)
-                      }
+                      onClick={() => {
+                        if (id) removeSlot(i);
+                        else if (isMobilePortrait) setPickerOpen(true);
+                        else if (isMobileLandscape)
+                          setLandscapeSideTab("materials");
+                      }}
                     >
                       {id ? (
                         <>
@@ -1074,7 +1401,44 @@ export default function Laboratory({
                 aria-live="polite"
               >
                 {isAdvanced && advStoich ? (
-                  <StoichiometryReport stoich={advStoich} />
+                  <div className="adv-result-stack">
+                    <StoichiometryReport stoich={advStoich} />
+                    {diagnostic?.kind === "insufficient_portions" && (
+                      <div
+                        className="failure-diagnostic-box"
+                        role="region"
+                        aria-label="实验失败诊断提示"
+                      >
+                        <p>{diagnostic.summary}</p>
+                        {diagnostic.shortfalls.every(
+                          (sf) => maxCapFor(sf.substanceId) >= sf.required,
+                        ) && (
+                          <div className="diagnostic-actions">
+                            <button
+                              type="button"
+                              className="secondary small"
+                              onClick={() => {
+                                setAmounts((prev) => {
+                                  const next = { ...prev };
+                                  for (const sf of diagnostic.shortfalls) {
+                                    next[sf.substanceId] = sf.required;
+                                  }
+                                  return next;
+                                });
+                                setDiagnostic(null);
+                                setAdvStoich(null);
+                                setMessage(
+                                  "已按最低计量要求补足投入份数，请点击「执行定量实验」验证。",
+                                );
+                              }}
+                            >
+                              按最低要求补足份数
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 ) : result ? (
                   <>
                     <div className="result-kicker">
@@ -1142,10 +1506,123 @@ export default function Laboratory({
                       {result.reversible ? " · 可逆过程" : ""}
                     </small>
                   </>
-                ) : message ? (
+                ) : message || diagnostic ? (
                   <div className="experiment-message">
-                    <Beaker size={27} />
-                    <p>{message}</p>
+                    <Beaker size={25} />
+                    <p>{message || diagnostic?.summary}</p>
+                    {diagnostic && (
+                      <div
+                        className="failure-diagnostic-box"
+                        role="region"
+                        aria-label="实验失败诊断提示"
+                      >
+                        {diagnostic.summary !== message && (
+                          <p>{diagnostic.summary}</p>
+                        )}
+                        {diagnostic.kind === "catalyst_in_reactants" && (
+                          <div className="diagnostic-actions">
+                            {diagnostic.candidates.map((cand) => {
+                              const catNames = cand.catalystsToMove
+                                .map((id) => byId[id]?.name ?? id)
+                                .join("、");
+                              return (
+                                <button
+                                  key={cand.reactionId}
+                                  type="button"
+                                  className="primary small"
+                                  onClick={() => applyCatalystRoleMove(cand)}
+                                >
+                                  {diagnostic.candidates.length === 1
+                                    ? `将「${catNames}」移至催化剂栏`
+                                    : `${cand.reactionName}：将「${catNames}」移至催化剂栏`}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                        {diagnostic.kind === "missing_requirements" && (
+                          <div className="diagnostic-actions">
+                            {diagnostic.missingConditions.length > 0 && (
+                              <button
+                                type="button"
+                                className="secondary small"
+                                onClick={() => {
+                                  applyMissingConditions(
+                                    diagnostic.missingConditions,
+                                  );
+                                  if (isMobileLandscape) {
+                                    setLandscapeSideTab("conditions");
+                                  }
+                                }}
+                              >
+                                选中条件：
+                                {diagnostic.missingConditions
+                                  .map(conditionName)
+                                  .join("、")}
+                              </button>
+                            )}
+                            {diagnostic.missingCatalysts.length > 0 &&
+                              diagnostic.missingCatalysts.every((id) =>
+                                availableCatalysts.includes(id),
+                              ) && (
+                                <button
+                                  type="button"
+                                  className="secondary small"
+                                  onClick={() => {
+                                    setCatalyst(diagnostic.missingCatalysts);
+                                    setDiagnostic((cur) =>
+                                      cur?.kind === "missing_requirements" &&
+                                      cur.missingConditions.length > 0
+                                        ? { ...cur, missingCatalysts: [] }
+                                        : null,
+                                    );
+                                    setMessage(
+                                      `已设置催化剂：${diagnostic.missingCatalysts.map((id) => byId[id]?.name ?? id).join("、")}，点击开始实验验证。`,
+                                    );
+                                  }}
+                                >
+                                  设为催化剂：
+                                  {diagnostic.missingCatalysts
+                                    .map((id) => byId[id]?.name ?? id)
+                                    .join("、")}
+                                </button>
+                              )}
+                            {diagnostic.extraCatalysts.length > 0 && (
+                              <button
+                                type="button"
+                                className="secondary small"
+                                onClick={() => {
+                                  setCatalyst((prev) =>
+                                    prev.filter(
+                                      (id) =>
+                                        !diagnostic.extraCatalysts.includes(id),
+                                    ),
+                                  );
+                                  setDiagnostic(null);
+                                  setMessage(
+                                    "已取消多余催化剂，点击开始实验验证。",
+                                  );
+                                }}
+                              >
+                                取消多余催化剂
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {roleUndo && (
+                      <div className="diagnostic-actions">
+                        <button
+                          type="button"
+                          className="secondary small"
+                          onClick={undoRoleMove}
+                        >
+                          <RotateCcw size={13} /> 撤回角色调整（恢复
+                          {roleUndo.label}到材料槽）
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <>
@@ -1182,92 +1659,18 @@ export default function Laboratory({
               </span>
             </div>
 
-            <div className="conditions-panel">
-              <div className="conditions-title">
-                <h3>实验条件</h3>
-                <span>
-                  {qRun
-                    ? "有限库存挑战 · 仅消耗反应份数"
-                    : "可多选 · 不消耗全局解锁库存"}
-                </span>
-              </div>
-              <div className="conditions-grid">
-                {visibleConditions.map((c) => (
-                  <button
-                    className={selected.includes(c.id) ? "active" : ""}
-                    aria-pressed={selected.includes(c.id)}
-                    aria-label={c.name}
-                    key={c.id}
-                    onClick={() =>
-                      setSelected(
-                        selected.includes(c.id)
-                          ? selected.filter((x) => x !== c.id)
-                          : [...selected, c.id],
-                      )
-                    }
-                  >
-                    <span aria-hidden="true">{c.symbol}</span>
-                    {c.name}
-                  </button>
-                ))}
-              </div>
-              <div className="catalyst-row">
-                <span>
-                  催化剂 <small>独立角色，不参与消耗计算</small>
-                </span>
-                <select
-                  aria-label="选择催化剂"
-                  value={catalyst[0] || ""}
-                  onChange={(e) =>
-                    setCatalyst(e.target.value ? [e.target.value] : [])
-                  }
-                >
-                  <option value="">不使用催化剂</option>
-                  {availableCatalysts.map((id) => (
-                    <option value={id} key={id}>
-                      {byId[id].name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="experiment-actions">
-                <button
-                  className="hint-button"
-                  onClick={requestHint}
-                  disabled={!!run?.complete || !!qRun?.complete}
-                >
-                  <Lightbulb size={17} />
-                  实验提示 <small>{hintLevel ? `${hintLevel}/3` : ""}</small>
-                </button>
-                <button
-                  className="primary run-button"
-                  disabled={
-                    slots.length === 0 ||
-                    animating ||
-                    !!run?.complete ||
-                    !!qRun?.complete
-                  }
-                  onClick={experiment}
-                >
-                  <Play size={17} fill="currentColor" />
-                  {animating
-                    ? "反应进行中"
-                    : isAdvanced
-                      ? "执行定量实验"
-                      : "开始实验"}
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-              {hint && (
-                <p className="hint-message">
-                  <Lightbulb size={16} />
-                  {hint}
-                </p>
-              )}
-            </div>
+            {!isMobileLandscape && conditionsBlock}
           </section>
 
-          <aside className="lab-sidebar">
+          {isMobileLandscape && landscapeSideTab === "conditions" && (
+            <section className="panel landscape-conditions-pane">
+              {conditionsBlock}
+            </section>
+          )}
+
+          <aside
+            className={`lab-sidebar ${isMobilePortrait && mobileLabPane !== "notebook" ? "mobile-pane-hidden" : ""} ${isMobileLandscape && landscapeSideTab !== "notebook" ? "landscape-hidden" : ""}`}
+          >
             <section className="panel notebook">
               <div className="panel-title">
                 <h2>
@@ -1311,7 +1714,16 @@ export default function Laboratory({
                     {game.save.quantitativeHistory.slice(0, 8).map((qh) => (
                       <div key={qh.id} className="quant-history-item">
                         <small>
-                          {qh.outcome} · ×{qh.extent}
+                          {{
+                            complete: "完全反应",
+                            partial: "部分反应",
+                            insufficient: "份数不足",
+                            missing: "缺条件/催化剂",
+                            unmatched: "未收录组合",
+                            unsupported_strategy: "不适用计量",
+                            pending_review: "待审核",
+                          }[qh.outcome] ?? qh.outcome}{" "}
+                          · ×{qh.extent}
                         </small>
                         <strong>{qh.reactionName}</strong>
                         <p>
@@ -1462,7 +1874,44 @@ export default function Laboratory({
               </p>
             </div>
           </aside>
-          {isMobile && !pickerOpen && (
+          {isMobileLandscape && (
+            <div
+              className="landscape-lab-actionbar"
+              role="region"
+              aria-label="横屏实验快捷操作"
+            >
+              <button
+                type="button"
+                className="secondary small"
+                onClick={requestHint}
+                disabled={!!run?.complete || !!qRun?.complete}
+              >
+                <Lightbulb size={14} />
+                提示{hintLevel ? ` ${hintLevel}/3` : ""}
+              </button>
+              <button
+                type="button"
+                className="primary dock-run"
+                aria-label="执行当前实验"
+                disabled={
+                  !slots.length ||
+                  animating ||
+                  !!run?.complete ||
+                  !!qRun?.complete
+                }
+                onClick={experiment}
+              >
+                <Play size={15} fill="currentColor" />
+                {animating
+                  ? "反应中…"
+                  : isAdvanced
+                    ? `执行定量 (${slots.length}/4)`
+                    : `开始实验 (${slots.length}/4)`}
+              </button>
+            </div>
+          )}
+
+          {isMobilePortrait && !pickerOpen && (
             <div
               className="mobile-experiment-dock"
               role="region"
@@ -1470,12 +1919,28 @@ export default function Laboratory({
             >
               <button
                 className="dock-materials"
-                onClick={() => setPickerOpen(true)}
+                onClick={() => {
+                  setMobileLabPane("bench");
+                  setPickerOpen(true);
+                }}
               >
-                <LayoutGrid size={20} />
+                <LayoutGrid size={19} />
                 <span>
                   选物质<small>已选 {slots.length}/4</small>
                 </span>
+              </button>
+              <button
+                type="button"
+                className="dock-hint"
+                aria-label="获取实验提示"
+                disabled={!!run?.complete || !!qRun?.complete}
+                onClick={() => {
+                  setMobileLabPane("bench");
+                  requestHint();
+                }}
+              >
+                <Lightbulb size={17} />
+                <small>{hintLevel ? `${hintLevel}/3` : "提示"}</small>
               </button>
               <button
                 className="primary dock-run"
@@ -1487,6 +1952,7 @@ export default function Laboratory({
                   !!qRun?.complete
                 }
                 onClick={() => {
+                  setMobileLabPane("bench");
                   workbenchRef.current?.scrollIntoView({
                     block: "start",
                     behavior: "instant",
@@ -1495,7 +1961,11 @@ export default function Laboratory({
                 }}
               >
                 <Play size={17} fill="currentColor" />
-                {animating ? "反应中…" : "开始实验"}
+                {animating
+                  ? "反应中…"
+                  : isAdvanced
+                    ? "执行定量实验"
+                    : "开始实验"}
               </button>
             </div>
           )}

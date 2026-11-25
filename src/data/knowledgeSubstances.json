@@ -1,6 +1,8 @@
 [
   {
     "id": "H2",
+    "nameZh": "氢气",
+    "aliasesZh": ["氢分子", "氢单质"],
     "nameEn": "Hydrogen",
     "formula": "H2",
     "displayFormula": "H₂",
@@ -42,6 +44,8 @@
   },
   {
     "id": "O2",
+    "nameZh": "氧气",
+    "aliasesZh": ["氧分子", "氧单质"],
     "nameEn": "Oxygen",
     "formula": "O2",
     "displayFormula": "O₂",
@@ -154,6 +158,8 @@
   },
   {
     "id": "Mg",
+    "nameZh": "镁",
+    "aliasesZh": ["金属镁", "镁单质"],
     "nameEn": "Magnesium",
     "formula": "Mg",
     "displayFormula": "Mg",
@@ -175,6 +181,8 @@
   },
   {
     "id": "Fe",
+    "nameZh": "铁",
+    "aliasesZh": ["金属铁", "铁单质"],
     "nameEn": "Iron",
     "formula": "Fe",
     "displayFormula": "Fe",
@@ -199,6 +207,8 @@
   },
   {
     "id": "S8",
+    "nameZh": "硫单质（S₈）",
+    "aliasesZh": ["硫", "硫磺", "环状硫", "八硫"],
     "nameEn": "Sulfur (S₈)",
     "formula": "S8",
     "displayFormula": "S₈",
@@ -228,6 +238,8 @@
   },
   {
     "id": "C",
+    "nameZh": "碳（石墨态）",
+    "aliasesZh": ["碳", "石墨", "碳单质"],
     "nameEn": "Carbon (graphitic solid)",
     "formula": "C",
     "displayFormula": "C",
@@ -252,6 +264,8 @@
   },
   {
     "id": "Cl2",
+    "nameZh": "氯气",
+    "aliasesZh": ["氯单质"],
     "nameEn": "Chlorine",
     "formula": "Cl2",
     "displayFormula": "Cl₂",
@@ -335,6 +349,8 @@
   },
   {
     "id": "Na",
+    "nameZh": "钠",
+    "aliasesZh": ["金属钠", "钠单质"],
     "nameEn": "Sodium",
     "formula": "Na",
     "displayFormula": "Na",
@@ -358,6 +374,8 @@
   },
   {
     "id": "He",
+    "nameZh": "氦气",
+    "aliasesZh": ["氦"],
     "nameEn": "Helium",
     "formula": "He",
     "displayFormula": "He",
@@ -371,6 +389,8 @@
   },
   {
     "id": "Ne",
+    "nameZh": "氖气",
+    "aliasesZh": ["氖"],
     "nameEn": "Neon",
     "formula": "Ne",
     "displayFormula": "Ne",
@@ -384,6 +404,8 @@
   },
   {
     "id": "Zn",
+    "nameZh": "锌",
+    "aliasesZh": ["金属锌", "锌单质"],
     "nameEn": "Zinc",
     "formula": "Zn",
     "displayFormula": "Zn",
@@ -404,6 +426,8 @@
   },
   {
     "id": "Cu",
+    "nameZh": "铜",
+    "aliasesZh": ["金属铜", "紫铜"],
     "nameEn": "Copper",
     "formula": "Cu",
     "displayFormula": "Cu",
@@ -426,6 +450,8 @@
   },
   {
     "id": "Ag",
+    "nameZh": "银",
+    "aliasesZh": ["金属银", "白银"],
     "nameEn": "Silver",
     "formula": "Ag",
     "displayFormula": "Ag",
@@ -439,6 +465,8 @@
   },
   {
     "id": "H2O",
+    "nameZh": "水",
+    "aliasesZh": ["液态水", "纯水", "一氧化二氢"],
     "nameEn": "Water",
     "formula": "H2O",
     "displayFormula": "H₂O",
@@ -495,6 +523,8 @@
   },
   {
     "id": "H2O-g",
+    "nameZh": "水蒸气",
+    "aliasesZh": ["气态水", "水汽"],
     "nameEn": "Water vapor",
     "formula": "H2O",
     "displayFormula": "H₂O",
@@ -524,6 +554,8 @@
   },
   {
     "id": "HCl",
+    "nameZh": "盐酸",
+    "aliasesZh": ["氯化氢水溶液", "氢氯酸", "稀盐酸"],
     "nameEn": "Hydrochloric acid",
     "formula": "HCl",
     "displayFormula": "HCl",
@@ -550,6 +582,8 @@
   },
   {
     "id": "HCl-g",
+    "nameZh": "氯化氢",
+    "aliasesZh": ["氯化氢气体"],
     "nameEn": "Hydrogen chloride",
     "formula": "HCl",
     "displayFormula": "HCl",
@@ -564,6 +598,8 @@
   },
   {
     "id": "NaOH",
+    "nameZh": "氢氧化钠溶液",
+    "aliasesZh": ["氢氧化钠", "烧碱溶液", "苛性钠溶液", "火碱"],
     "nameEn": "Sodium hydroxide solution",
     "formula": "NaOH",
     "displayFormula": "NaOH",
@@ -588,6 +624,8 @@
   },
   {
     "id": "NaHCO3",
+    "nameZh": "碳酸氢钠溶液",
+    "aliasesZh": ["小苏打溶液", "碳酸氢钠"],
     "nameEn": "Sodium bicarbonate solution",
     "formula": "NaHCO3",
     "displayFormula": "NaHCO₃",
@@ -604,6 +642,8 @@
   },
   {
     "id": "CuSO4",
+    "nameZh": "硫酸铜溶液",
+    "aliasesZh": ["硫酸铜", "胆矾溶液"],
     "nameEn": "Copper(II) sulfate solution",
     "formula": "CuSO4",
     "displayFormula": "CuSO₄",
@@ -619,6 +659,8 @@
   },
   {
     "id": "AgNO3",
+    "nameZh": "硝酸银溶液",
+    "aliasesZh": ["硝酸银"],
     "nameEn": "Silver nitrate solution",
     "formula": "AgNO3",
     "displayFormula": "AgNO₃",
@@ -637,6 +679,8 @@
   },
   {
     "id": "CuNO3",
+    "nameZh": "硝酸铜溶液",
+    "aliasesZh": ["硝酸铜", "硝酸铜(II)"],
     "nameEn": "Copper(II) nitrate solution",
     "formula": "Cu(NO3)2",
     "displayFormula": "Cu(NO₃)₂",
@@ -652,6 +696,8 @@
   },
   {
     "id": "NaCl",
+    "nameZh": "氯化钠溶液",
+    "aliasesZh": ["食盐水", "氯化钠", "盐水"],
     "nameEn": "Sodium chloride solution",
     "formula": "NaCl",
     "displayFormula": "NaCl",
@@ -672,6 +718,8 @@
   },
   {
     "id": "NaCl-s",
+    "nameZh": "氯化钠",
+    "aliasesZh": ["食盐", "氯化钠固体"],
     "nameEn": "Sodium chloride",
     "formula": "NaCl",
     "displayFormula": "NaCl",
@@ -686,6 +734,8 @@
   },
   {
     "id": "MgO",
+    "nameZh": "氧化镁",
+    "aliasesZh": ["苦土"],
     "nameEn": "Magnesium oxide",
     "formula": "MgO",
     "displayFormula": "MgO",
@@ -704,6 +754,8 @@
   },
   {
     "id": "FeS",
+    "nameZh": "硫化亚铁",
+    "aliasesZh": ["硫化铁(II)"],
     "nameEn": "Iron(II) sulfide",
     "formula": "FeS",
     "displayFormula": "FeS",
@@ -718,6 +770,8 @@
   },
   {
     "id": "CO2",
+    "nameZh": "二氧化碳",
+    "aliasesZh": ["二氧化碳气体"],
     "nameEn": "Carbon dioxide",
     "formula": "CO2",
     "displayFormula": "CO₂",
@@ -753,6 +807,8 @@
   },
   {
     "id": "MgCl2",
+    "nameZh": "氯化镁溶液",
+    "aliasesZh": ["氯化镁"],
     "nameEn": "Magnesium chloride solution",
     "formula": "MgCl2",
     "displayFormula": "MgCl₂",
@@ -774,6 +830,8 @@
   },
   {
     "id": "ZnCl2",
+    "nameZh": "氯化锌溶液",
+    "aliasesZh": ["氯化锌"],
     "nameEn": "Zinc chloride solution",
     "formula": "ZnCl2",
     "displayFormula": "ZnCl₂",
@@ -788,6 +846,8 @@
   },
   {
     "id": "CuOH2",
+    "nameZh": "氢氧化铜",
+    "aliasesZh": ["氢氧化铜(II)", "蓝色沉淀"],
     "nameEn": "Copper(II) hydroxide",
     "formula": "Cu(OH)2",
     "displayFormula": "Cu(OH)₂",
@@ -803,6 +863,8 @@
   },
   {
     "id": "Na2SO4",
+    "nameZh": "硫酸钠溶液",
+    "aliasesZh": ["硫酸钠", "芒硝溶液"],
     "nameEn": "Sodium sulfate solution",
     "formula": "Na2SO4",
     "displayFormula": "Na₂SO₄",
@@ -818,6 +880,8 @@
   },
   {
     "id": "CH4",
+    "nameZh": "甲烷",
+    "aliasesZh": ["沼气", "天然气主要成分"],
     "nameEn": "Methane",
     "formula": "CH4",
     "displayFormula": "CH₄",
@@ -832,6 +896,8 @@
   },
   {
     "id": "C2H6",
+    "nameZh": "乙烷",
+    "aliasesZh": [],
     "nameEn": "Ethane",
     "formula": "C2H6",
     "displayFormula": "C₂H₆",
@@ -846,6 +912,8 @@
   },
   {
     "id": "CaCO3",
+    "nameZh": "碳酸钙",
+    "aliasesZh": ["石灰石", "大理石", "白垩"],
     "nameEn": "Calcium carbonate",
     "formula": "CaCO3",
     "displayFormula": "CaCO₃",
@@ -868,6 +936,8 @@
   },
   {
     "id": "CaO",
+    "nameZh": "氧化钙",
+    "aliasesZh": ["生石灰"],
     "nameEn": "Calcium oxide",
     "formula": "CaO",
     "displayFormula": "CaO",
@@ -887,6 +957,8 @@
   },
   {
     "id": "CaCl2",
+    "nameZh": "氯化钙溶液",
+    "aliasesZh": ["氯化钙"],
     "nameEn": "Calcium chloride",
     "formula": "CaCl2",
     "displayFormula": "CaCl₂",
@@ -907,6 +979,8 @@
   },
   {
     "id": "Ca(NO3)2",
+    "nameZh": "硝酸钙溶液",
+    "aliasesZh": ["硝酸钙"],
     "nameEn": "Calcium nitrate",
     "formula": "Ca(NO3)2",
     "displayFormula": "Ca(NO₃)₂",
@@ -922,6 +996,8 @@
   },
   {
     "id": "AgCl",
+    "nameZh": "氯化银",
+    "aliasesZh": ["氯化银沉淀"],
     "nameEn": "Silver chloride",
     "formula": "AgCl",
     "displayFormula": "AgCl",
@@ -936,6 +1012,8 @@
   },
   {
     "id": "CO2-aq",
+    "nameZh": "二氧化碳水溶液",
+    "aliasesZh": ["溶解二氧化碳", "碳酸水"],
     "nameEn": "Dissolved carbon dioxide",
     "formula": "CO2",
     "displayFormula": "CO₂",
@@ -953,6 +1031,8 @@
   },
   {
     "id": "Na2CO3",
+    "nameZh": "碳酸钠溶液",
+    "aliasesZh": ["纯碱溶液", "苏打溶液", "碳酸钠"],
     "nameEn": "Sodium carbonate",
     "formula": "Na2CO3",
     "displayFormula": "Na₂CO₃",
@@ -968,6 +1048,8 @@
   },
   {
     "id": "KI",
+    "nameZh": "碘化钾溶液",
+    "aliasesZh": ["碘化钾"],
     "nameEn": "Potassium iodide",
     "formula": "KI",
     "displayFormula": "KI",
@@ -982,6 +1064,8 @@
   },
   {
     "id": "Pb(NO3)2",
+    "nameZh": "硝酸铅溶液",
+    "aliasesZh": ["硝酸铅", "硝酸铅(II)"],
     "nameEn": "Lead(II) nitrate",
     "formula": "Pb(NO3)2",
     "displayFormula": "Pb(NO₃)₂",
@@ -997,6 +1081,8 @@
   },
   {
     "id": "PbI2",
+    "nameZh": "碘化铅",
+    "aliasesZh": ["碘化铅(II)", "黄金雨沉淀"],
     "nameEn": "Lead(II) iodide",
     "formula": "PbI2",
     "displayFormula": "PbI₂",
@@ -1011,6 +1097,8 @@
   },
   {
     "id": "KNO3",
+    "nameZh": "硝酸钾溶液",
+    "aliasesZh": ["硝酸钾", "火硝"],
     "nameEn": "Potassium nitrate",
     "formula": "KNO3",
     "displayFormula": "KNO₃",
@@ -1026,6 +1114,8 @@
   },
   {
     "id": "Ba^2+",
+    "nameZh": "钡离子",
+    "aliasesZh": ["Ba2+"],
     "nameEn": "Barium ion",
     "formula": "Ba²⁺",
     "displayFormula": "Ba²⁺",
@@ -1039,6 +1129,8 @@
   },
   {
     "id": "SO4^2-",
+    "nameZh": "硫酸根离子",
+    "aliasesZh": ["硫酸根"],
     "nameEn": "Sulfate ion",
     "formula": "SO4²⁻",
     "displayFormula": "SO₄²⁻",
@@ -1053,6 +1145,8 @@
   },
   {
     "id": "BaSO4",
+    "nameZh": "硫酸钡",
+    "aliasesZh": ["重晶石", "钡餐"],
     "nameEn": "Barium sulfate",
     "formula": "BaSO4",
     "displayFormula": "BaSO₄",
@@ -1068,6 +1162,8 @@
   },
   {
     "id": "Pb^2+",
+    "nameZh": "铅离子（Pb²⁺）",
+    "aliasesZh": ["二价铅离子", "铅离子"],
     "nameEn": "Lead(II) ion",
     "formula": "Pb²⁺",
     "displayFormula": "Pb²⁺",
@@ -1081,6 +1177,8 @@
   },
   {
     "id": "CO3^2-",
+    "nameZh": "碳酸根离子",
+    "aliasesZh": ["碳酸根"],
     "nameEn": "Carbonate ion",
     "formula": "CO3²⁻",
     "displayFormula": "CO₃²⁻",
@@ -1098,6 +1196,8 @@
   },
   {
     "id": "PbCO3",
+    "nameZh": "碳酸铅",
+    "aliasesZh": ["碳酸铅(II)"],
     "nameEn": "Lead(II) carbonate",
     "formula": "PbCO3",
     "displayFormula": "PbCO₃",
@@ -1113,6 +1213,8 @@
   },
   {
     "id": "Mg(OH)2",
+    "nameZh": "氢氧化镁",
+    "aliasesZh": ["氢氧化镁沉淀"],
     "nameEn": "Magnesium hydroxide",
     "formula": "Mg(OH)2",
     "displayFormula": "Mg(OH)₂",
@@ -1133,6 +1235,8 @@
   },
   {
     "id": "Ba(OH)2",
+    "nameZh": "氢氧化钡溶液",
+    "aliasesZh": ["氢氧化钡", "钡水"],
     "nameEn": "Barium hydroxide",
     "formula": "Ba(OH)2",
     "displayFormula": "Ba(OH)₂",
@@ -1151,6 +1255,8 @@
   },
   {
     "id": "HNO3",
+    "nameZh": "稀硝酸",
+    "aliasesZh": ["硝酸溶液", "硝酸"],
     "nameEn": "Nitric acid (dilute)",
     "formula": "HNO3",
     "displayFormula": "HNO₃",
@@ -1173,6 +1279,8 @@
   },
   {
     "id": "Ba(NO3)2",
+    "nameZh": "硝酸钡溶液",
+    "aliasesZh": ["硝酸钡"],
     "nameEn": "Barium nitrate",
     "formula": "Ba(NO3)2",
     "displayFormula": "Ba(NO₃)₂",
@@ -1188,6 +1296,8 @@
   },
   {
     "id": "C2H5OH",
+    "nameZh": "乙醇",
+    "aliasesZh": ["酒精"],
     "nameEn": "Ethanol",
     "formula": "C2H5OH",
     "displayFormula": "C₂H₅OH",
@@ -1203,6 +1313,8 @@
   },
   {
     "id": "C2H2",
+    "nameZh": "乙炔",
+    "aliasesZh": ["电石气"],
     "nameEn": "Acetylene",
     "formula": "C2H2",
     "displayFormula": "C₂H₂",
@@ -1217,6 +1329,8 @@
   },
   {
     "id": "CH3OH",
+    "nameZh": "甲醇",
+    "aliasesZh": ["木精"],
     "nameEn": "Methanol",
     "formula": "CH3OH",
     "displayFormula": "CH₃OH",
@@ -1232,6 +1346,8 @@
   },
   {
     "id": "C8H18",
+    "nameZh": "异辛烷",
+    "aliasesZh": ["2,2,4-三甲基戊烷"],
     "nameEn": "Isooctane",
     "formula": "C8H18",
     "displayFormula": "C₈H₁₈",
@@ -1246,6 +1362,8 @@
   },
   {
     "id": "CO",
+    "nameZh": "一氧化碳",
+    "aliasesZh": ["煤气主要成分"],
     "nameEn": "Carbon monoxide",
     "formula": "CO",
     "displayFormula": "CO",
@@ -1267,6 +1385,8 @@
   },
   {
     "id": "SO2",
+    "nameZh": "二氧化硫",
+    "aliasesZh": ["亚硫酸酐"],
     "nameEn": "Sulfur dioxide",
     "formula": "SO2",
     "displayFormula": "SO₂",
@@ -1286,6 +1406,8 @@
   },
   {
     "id": "NH4NO3",
+    "nameZh": "硝酸铵",
+    "aliasesZh": ["硝铵"],
     "nameEn": "Ammonium nitrate",
     "formula": "NH4NO3",
     "displayFormula": "NH₄NO₃",
@@ -1301,6 +1423,8 @@
   },
   {
     "id": "NH4^+",
+    "nameZh": "铵根离子",
+    "aliasesZh": ["铵离子"],
     "nameEn": "Ammonium ion",
     "formula": "NH4⁺",
     "displayFormula": "NH₄⁺",
@@ -1315,6 +1439,8 @@
   },
   {
     "id": "NO3^-",
+    "nameZh": "硝酸根离子",
+    "aliasesZh": ["硝酸根"],
     "nameEn": "Nitrate ion",
     "formula": "NO3⁻",
     "displayFormula": "NO₃⁻",
@@ -1329,6 +1455,8 @@
   },
   {
     "id": "C12H22O11",
+    "nameZh": "蔗糖",
+    "aliasesZh": ["白糖", "蔗糖固体"],
     "nameEn": "Sucrose",
     "formula": "C12H22O11",
     "displayFormula": "C₁₂H₂₂O₁₁",
@@ -1344,6 +1472,8 @@
   },
   {
     "id": "C12H22O11-aq",
+    "nameZh": "蔗糖溶液",
+    "aliasesZh": ["糖水", "溶解蔗糖"],
     "nameEn": "Dissolved sucrose",
     "formula": "C12H22O11",
     "displayFormula": "C₁₂H₂₂O₁₁",
@@ -1359,6 +1489,8 @@
   },
   {
     "id": "H3O^+",
+    "nameZh": "水合氢离子",
+    "aliasesZh": ["水合质子", "氢离子"],
     "nameEn": "Hydronium ion",
     "formula": "H3O⁺",
     "displayFormula": "H₃O⁺",
@@ -1377,6 +1509,8 @@
   },
   {
     "id": "Fe^2+",
+    "nameZh": "亚铁离子",
+    "aliasesZh": ["铁(II)离子", "二价铁离子"],
     "nameEn": "Iron(II) ion",
     "formula": "Fe²⁺",
     "displayFormula": "Fe²⁺",
@@ -1390,6 +1524,8 @@
   },
   {
     "id": "CaH2",
+    "nameZh": "氢化钙",
+    "aliasesZh": [],
     "nameEn": "Calcium hydride",
     "formula": "CaH2",
     "displayFormula": "CaH₂",
@@ -1407,6 +1543,8 @@
   },
   {
     "id": "Ca^2+",
+    "nameZh": "钙离子",
+    "aliasesZh": ["Ca2+"],
     "nameEn": "Calcium ion",
     "formula": "Ca²⁺",
     "displayFormula": "Ca²⁺",
@@ -1424,6 +1562,8 @@
   },
   {
     "id": "OH^-",
+    "nameZh": "氢氧根离子",
+    "aliasesZh": ["氢氧根"],
     "nameEn": "Hydroxide ion",
     "formula": "OH⁻",
     "displayFormula": "OH⁻",
@@ -1442,6 +1582,8 @@
   },
   {
     "id": "Mg3N2",
+    "nameZh": "氮化镁",
+    "aliasesZh": [],
     "nameEn": "Magnesium nitride",
     "formula": "Mg3N2",
     "displayFormula": "Mg₃N₂",
@@ -1459,6 +1601,8 @@
   },
   {
     "id": "NH3",
+    "nameZh": "氨气",
+    "aliasesZh": ["氨"],
     "nameEn": "Ammonia",
     "formula": "NH3",
     "displayFormula": "NH₃",
@@ -1476,6 +1620,8 @@
   },
   {
     "id": "H2S",
+    "nameZh": "硫化氢",
+    "aliasesZh": ["硫化氢气体"],
     "nameEn": "Hydrogen sulfide",
     "formula": "H2S",
     "displayFormula": "H₂S",
@@ -1495,6 +1641,8 @@
   },
   {
     "id": "Br2-aq",
+    "nameZh": "溴水",
+    "aliasesZh": ["溴水溶液", "溶解溴"],
     "nameEn": "Dissolved bromine",
     "formula": "Br2",
     "displayFormula": "Br₂",
@@ -1508,6 +1656,8 @@
   },
   {
     "id": "HI",
+    "nameZh": "氢碘酸",
+    "aliasesZh": ["碘化氢水溶液"],
     "nameEn": "Hydroiodic acid",
     "formula": "HI",
     "displayFormula": "HI",
@@ -1522,6 +1672,8 @@
   },
   {
     "id": "HBr",
+    "nameZh": "氢溴酸",
+    "aliasesZh": ["溴化氢水溶液"],
     "nameEn": "Hydrobromic acid",
     "formula": "HBr",
     "displayFormula": "HBr",
@@ -1539,6 +1691,8 @@
   },
   {
     "id": "I2-aq",
+    "nameZh": "碘水",
+    "aliasesZh": ["碘水溶液", "溶解碘"],
     "nameEn": "Dissolved iodine",
     "formula": "I2",
     "displayFormula": "I₂",
@@ -1552,6 +1706,8 @@
   },
   {
     "id": "Na2O",
+    "nameZh": "氧化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium oxide",
     "formula": "Na2O",
     "displayFormula": "Na₂O",
@@ -1572,6 +1728,8 @@
   },
   {
     "id": "Na2CO3-s",
+    "nameZh": "碳酸钠",
+    "aliasesZh": ["纯碱", "苏打", "碳酸钠固体"],
     "nameEn": "Sodium carbonate (solid)",
     "formula": "Na2CO3",
     "displayFormula": "Na₂CO₃",
@@ -1590,6 +1748,8 @@
   },
   {
     "id": "Ca(OH)2-s",
+    "nameZh": "氢氧化钙",
+    "aliasesZh": ["熟石灰", "消石灰", "氢氧化钙固体"],
     "nameEn": "Calcium hydroxide (solid)",
     "formula": "Ca(OH)2",
     "displayFormula": "Ca(OH)₂",
@@ -1608,6 +1768,8 @@
   },
   {
     "id": "KHCO3",
+    "nameZh": "碳酸氢钾溶液",
+    "aliasesZh": ["碳酸氢钾"],
     "nameEn": "Potassium bicarbonate",
     "formula": "KHCO3",
     "displayFormula": "KHCO₃",
@@ -1624,6 +1786,8 @@
   },
   {
     "id": "KOH",
+    "nameZh": "氢氧化钾溶液",
+    "aliasesZh": ["氢氧化钾", "苛性钾"],
     "nameEn": "Potassium hydroxide",
     "formula": "KOH",
     "displayFormula": "KOH",
@@ -1644,6 +1808,8 @@
   },
   {
     "id": "K2CO3",
+    "nameZh": "碳酸钾溶液",
+    "aliasesZh": ["碳酸钾", "草木灰主要成分"],
     "nameEn": "Potassium carbonate",
     "formula": "K2CO3",
     "displayFormula": "K₂CO₃",
@@ -1659,6 +1825,8 @@
   },
   {
     "id": "HCO3^-",
+    "nameZh": "碳酸氢根离子",
+    "aliasesZh": ["碳酸氢根"],
     "nameEn": "Bicarbonate ion",
     "formula": "HCO3⁻",
     "displayFormula": "HCO₃⁻",
@@ -1674,6 +1842,8 @@
   },
   {
     "id": "NO",
+    "nameZh": "一氧化氮",
+    "aliasesZh": [],
     "nameEn": "Nitric oxide",
     "formula": "NO",
     "displayFormula": "NO",
@@ -1694,6 +1864,8 @@
   },
   {
     "id": "NO2",
+    "nameZh": "二氧化氮",
+    "aliasesZh": [],
     "nameEn": "Nitrogen dioxide",
     "formula": "NO2",
     "displayFormula": "NO₂",
@@ -1712,6 +1884,8 @@
   },
   {
     "id": "N2O5",
+    "nameZh": "五氧化二氮",
+    "aliasesZh": ["硝酸酐"],
     "nameEn": "Dinitrogen pentoxide",
     "formula": "N2O5",
     "displayFormula": "N₂O₅",
@@ -1729,6 +1903,8 @@
   },
   {
     "id": "N2O",
+    "nameZh": "一氧化二氮",
+    "aliasesZh": ["笑气", "氧化亚氮"],
     "nameEn": "Nitrous oxide",
     "formula": "N2O",
     "displayFormula": "N₂O",
@@ -1743,6 +1919,8 @@
   },
   {
     "id": "N2",
+    "nameZh": "氮气",
+    "aliasesZh": ["氮分子"],
     "nameEn": "Nitrogen",
     "formula": "N2",
     "displayFormula": "N₂",
@@ -1771,6 +1949,8 @@
   },
   {
     "id": "Li",
+    "nameZh": "锂",
+    "aliasesZh": ["金属锂"],
     "nameEn": "Lithium",
     "formula": "Li",
     "displayFormula": "Li",
@@ -1794,6 +1974,8 @@
   },
   {
     "id": "Li3N",
+    "nameZh": "氮化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium nitride",
     "formula": "Li3N",
     "displayFormula": "Li₃N",
@@ -1808,6 +1990,8 @@
   },
   {
     "id": "P4O10",
+    "nameZh": "五氧化二磷",
+    "aliasesZh": ["十氧化四磷", "氧化磷(V)"],
     "nameEn": "Phosphorus(V) oxide",
     "formula": "P4O10",
     "displayFormula": "P₄O₁₀",
@@ -1826,6 +2010,8 @@
   },
   {
     "id": "H3PO4",
+    "nameZh": "磷酸",
+    "aliasesZh": ["正磷酸", "磷酸溶液"],
     "nameEn": "Phosphoric acid",
     "formula": "H3PO4",
     "displayFormula": "H₃PO₄",
@@ -1845,6 +2031,8 @@
   },
   {
     "id": "NaNO3",
+    "nameZh": "硝酸钠溶液",
+    "aliasesZh": ["硝酸钠", "智利硝石"],
     "nameEn": "Sodium nitrate",
     "formula": "NaNO3",
     "displayFormula": "NaNO₃",
@@ -1860,6 +2048,8 @@
   },
   {
     "id": "LiOH",
+    "nameZh": "氢氧化锂溶液",
+    "aliasesZh": ["氢氧化锂"],
     "nameEn": "Lithium hydroxide",
     "formula": "LiOH",
     "displayFormula": "LiOH",
@@ -1875,6 +2065,8 @@
   },
   {
     "id": "Ca",
+    "nameZh": "钙",
+    "aliasesZh": ["金属钙"],
     "nameEn": "Calcium",
     "formula": "Ca",
     "displayFormula": "Ca",
@@ -1898,6 +2090,8 @@
   },
   {
     "id": "Ca(OH)2",
+    "nameZh": "氢氧化钙溶液",
+    "aliasesZh": ["澄清石灰水", "石灰水", "氢氧化钙", "熟石灰溶液"],
     "nameEn": "Calcium hydroxide solution",
     "formula": "Ca(OH)2",
     "displayFormula": "Ca(OH)₂",
@@ -1919,6 +2113,8 @@
   },
   {
     "id": "Li2O",
+    "nameZh": "氧化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium oxide",
     "formula": "Li2O",
     "displayFormula": "Li₂O",
@@ -1936,6 +2132,8 @@
   },
   {
     "id": "Al^3+",
+    "nameZh": "铝离子",
+    "aliasesZh": ["Al3+"],
     "nameEn": "Aluminum ion",
     "formula": "Al³⁺",
     "displayFormula": "Al³⁺",
@@ -1949,6 +2147,8 @@
   },
   {
     "id": "Al(OH)3",
+    "nameZh": "氢氧化铝",
+    "aliasesZh": ["氢氧化铝沉淀"],
     "nameEn": "Aluminum hydroxide",
     "formula": "Al(OH)3",
     "displayFormula": "Al(OH)₃",
@@ -1967,6 +2167,8 @@
   },
   {
     "id": "Zn^2+",
+    "nameZh": "锌离子",
+    "aliasesZh": ["Zn2+"],
     "nameEn": "Zinc ion",
     "formula": "Zn²⁺",
     "displayFormula": "Zn²⁺",
@@ -1980,6 +2182,8 @@
   },
   {
     "id": "Zn(OH)2",
+    "nameZh": "氢氧化锌",
+    "aliasesZh": ["氢氧化锌沉淀"],
     "nameEn": "Zinc hydroxide",
     "formula": "Zn(OH)2",
     "displayFormula": "Zn(OH)₂",
@@ -1995,6 +2199,8 @@
   },
   {
     "id": "ZnO",
+    "nameZh": "氧化锌",
+    "aliasesZh": ["锌白"],
     "nameEn": "Zinc oxide",
     "formula": "ZnO",
     "displayFormula": "ZnO",
@@ -2014,6 +2220,8 @@
   },
   {
     "id": "Zn-g",
+    "nameZh": "锌蒸气",
+    "aliasesZh": ["气态锌"],
     "nameEn": "Zinc vapor",
     "formula": "Zn",
     "displayFormula": "Zn",
@@ -2027,6 +2235,8 @@
   },
   {
     "id": "Br^-",
+    "nameZh": "溴离子",
+    "aliasesZh": ["Br-"],
     "nameEn": "Bromide ion",
     "formula": "Br⁻",
     "displayFormula": "Br⁻",
@@ -2040,6 +2250,8 @@
   },
   {
     "id": "Br2",
+    "nameZh": "液溴",
+    "aliasesZh": ["溴", "溴单质", "液态溴"],
     "nameEn": "Bromine",
     "formula": "Br2",
     "displayFormula": "Br₂",
@@ -2062,6 +2274,8 @@
   },
   {
     "id": "Cl^-",
+    "nameZh": "氯离子",
+    "aliasesZh": ["Cl-"],
     "nameEn": "Chloride ion",
     "formula": "Cl⁻",
     "displayFormula": "Cl⁻",
@@ -2075,6 +2289,8 @@
   },
   {
     "id": "I2",
+    "nameZh": "碘单质",
+    "aliasesZh": ["碘", "固态碘"],
     "nameEn": "Iodine",
     "formula": "I2",
     "displayFormula": "I₂",
@@ -2094,6 +2310,8 @@
   },
   {
     "id": "I^-",
+    "nameZh": "碘离子",
+    "aliasesZh": ["I-"],
     "nameEn": "Iodide ion",
     "formula": "I⁻",
     "displayFormula": "I⁻",
@@ -2107,6 +2325,8 @@
   },
   {
     "id": "I3^-",
+    "nameZh": "三碘阴离子",
+    "aliasesZh": ["三碘离子"],
     "nameEn": "Triiodide ion",
     "formula": "I3⁻",
     "displayFormula": "I₃⁻",
@@ -2120,6 +2340,8 @@
   },
   {
     "id": "Cl2-aq",
+    "nameZh": "氯水",
+    "aliasesZh": ["氯气水溶液", "溶解氯"],
     "nameEn": "Dissolved chlorine",
     "formula": "Cl2",
     "displayFormula": "Cl₂",
@@ -2133,6 +2355,8 @@
   },
   {
     "id": "HOCl",
+    "nameZh": "次氯酸",
+    "aliasesZh": ["次氯酸溶液"],
     "nameEn": "Hypochlorous acid",
     "formula": "HOCl",
     "displayFormula": "HOCl",
@@ -2148,6 +2372,8 @@
   },
   {
     "id": "H2O-ice",
+    "nameZh": "冰",
+    "aliasesZh": ["固态水"],
     "nameEn": "Ice",
     "formula": "H2O",
     "displayFormula": "H₂O",
@@ -2162,6 +2388,8 @@
   },
   {
     "id": "CO2-s",
+    "nameZh": "干冰",
+    "aliasesZh": ["固态二氧化碳"],
     "nameEn": "Dry ice",
     "formula": "CO2",
     "displayFormula": "CO₂",
@@ -2176,6 +2404,8 @@
   },
   {
     "id": "C4H10",
+    "nameZh": "丁烷",
+    "aliasesZh": [],
     "nameEn": "Butane",
     "formula": "C4H10",
     "displayFormula": "C₄H₁₀",
@@ -2190,6 +2420,8 @@
   },
   {
     "id": "KClO3",
+    "nameZh": "氯酸钾",
+    "aliasesZh": ["氯酸钾固体"],
     "nameEn": "Potassium chlorate",
     "formula": "KClO3",
     "displayFormula": "KClO₃",
@@ -2205,6 +2437,8 @@
   },
   {
     "id": "KCl",
+    "nameZh": "氯化钾",
+    "aliasesZh": ["氯化钾固体"],
     "nameEn": "Potassium chloride",
     "formula": "KCl",
     "displayFormula": "KCl",
@@ -2222,6 +2456,8 @@
   },
   {
     "id": "K2C2O4",
+    "nameZh": "草酸钾溶液",
+    "aliasesZh": ["草酸钾"],
     "nameEn": "Potassium oxalate",
     "formula": "K2C2O4",
     "displayFormula": "K₂C₂O₄",
@@ -2237,6 +2473,8 @@
   },
   {
     "id": "BaC2O4",
+    "nameZh": "草酸钡",
+    "aliasesZh": ["草酸钡沉淀"],
     "nameEn": "Barium oxalate",
     "formula": "BaC2O4",
     "displayFormula": "BaC₂O₄",
@@ -2252,6 +2490,8 @@
   },
   {
     "id": "H2SO4",
+    "nameZh": "稀硫酸",
+    "aliasesZh": ["硫酸溶液", "硫酸"],
     "nameEn": "Sulfuric acid (dilute)",
     "formula": "H2SO4",
     "displayFormula": "H₂SO₄",
@@ -2272,6 +2512,8 @@
   },
   {
     "id": "PbSO4",
+    "nameZh": "硫酸铅",
+    "aliasesZh": ["硫酸铅(II)"],
     "nameEn": "Lead(II) sulfate",
     "formula": "PbSO4",
     "displayFormula": "PbSO₄",
@@ -2287,6 +2529,8 @@
   },
   {
     "id": "CaSO4",
+    "nameZh": "硫酸钙",
+    "aliasesZh": ["石膏"],
     "nameEn": "Calcium sulfate",
     "formula": "CaSO4",
     "displayFormula": "CaSO₄",
@@ -2302,6 +2546,8 @@
   },
   {
     "id": "CaBr2",
+    "nameZh": "溴化钙溶液",
+    "aliasesZh": ["溴化钙"],
     "nameEn": "Calcium bromide",
     "formula": "CaBr2",
     "displayFormula": "CaBr₂",
@@ -2316,6 +2562,8 @@
   },
   {
     "id": "C6H12",
+    "nameZh": "环己烷",
+    "aliasesZh": [],
     "nameEn": "Cyclohexane",
     "formula": "C6H12",
     "displayFormula": "C₆H₁₂",
@@ -2330,6 +2578,8 @@
   },
   {
     "id": "Na2S",
+    "nameZh": "硫化钠溶液",
+    "aliasesZh": ["硫化钠"],
     "nameEn": "Sodium sulfide",
     "formula": "Na2S",
     "displayFormula": "Na₂S",
@@ -2344,6 +2594,8 @@
   },
   {
     "id": "K3PO4",
+    "nameZh": "磷酸钾溶液",
+    "aliasesZh": ["磷酸钾"],
     "nameEn": "Potassium phosphate",
     "formula": "K3PO4",
     "displayFormula": "K₃PO₄",
@@ -2359,6 +2611,8 @@
   },
   {
     "id": "NiCl2",
+    "nameZh": "氯化镍溶液",
+    "aliasesZh": ["氯化镍(II)溶液", "氯化镍"],
     "nameEn": "Nickel(II) chloride",
     "formula": "NiCl2",
     "displayFormula": "NiCl₂",
@@ -2373,6 +2627,8 @@
   },
   {
     "id": "Ni",
+    "nameZh": "镍",
+    "aliasesZh": ["金属镍"],
     "nameEn": "Nickel",
     "formula": "Ni",
     "displayFormula": "Ni",
@@ -2392,6 +2648,8 @@
   },
   {
     "id": "C2H4",
+    "nameZh": "乙烯",
+    "aliasesZh": [],
     "nameEn": "Ethylene",
     "formula": "C2H4",
     "displayFormula": "C₂H₄",
@@ -2406,6 +2664,8 @@
   },
   {
     "id": "ZnSO4",
+    "nameZh": "硫酸锌溶液",
+    "aliasesZh": ["硫酸锌"],
     "nameEn": "Zinc sulfate",
     "formula": "ZnSO4",
     "displayFormula": "ZnSO₄",
@@ -2421,6 +2681,8 @@
   },
   {
     "id": "CH3COOH",
+    "nameZh": "乙酸溶液",
+    "aliasesZh": ["醋酸", "乙酸", "醋酸溶液"],
     "nameEn": "Acetic acid",
     "formula": "CH3COOH",
     "displayFormula": "CH₃COOH",
@@ -2436,6 +2698,8 @@
   },
   {
     "id": "Ca(CH3COO)2",
+    "nameZh": "乙酸钙溶液",
+    "aliasesZh": ["醋酸钙溶液", "乙酸钙"],
     "nameEn": "Calcium acetate",
     "formula": "Ca(CH3COO)2",
     "displayFormula": "Ca(CH₃COO)₂",
@@ -2452,6 +2716,8 @@
   },
   {
     "id": "K2HPO4",
+    "nameZh": "磷酸氢二钾溶液",
+    "aliasesZh": ["磷酸氢二钾"],
     "nameEn": "Potassium hydrogen phosphate",
     "formula": "K2HPO4",
     "displayFormula": "K₂HPO₄",
@@ -2468,6 +2734,8 @@
   },
   {
     "id": "H2C2O4",
+    "nameZh": "草酸溶液",
+    "aliasesZh": ["乙二酸", "草酸"],
     "nameEn": "Oxalic acid",
     "formula": "H2C2O4",
     "displayFormula": "H₂C₂O₄",
@@ -2483,6 +2751,8 @@
   },
   {
     "id": "Na2C2O4",
+    "nameZh": "草酸钠溶液",
+    "aliasesZh": ["草酸钠"],
     "nameEn": "Sodium oxalate",
     "formula": "Na2C2O4",
     "displayFormula": "Na₂C₂O₄",
@@ -2498,6 +2768,8 @@
   },
   {
     "id": "K2SO4",
+    "nameZh": "硫酸钾溶液",
+    "aliasesZh": ["硫酸钾"],
     "nameEn": "Potassium sulfate",
     "formula": "K2SO4",
     "displayFormula": "K₂SO₄",
@@ -2513,6 +2785,8 @@
   },
   {
     "id": "NaCl-l",
+    "nameZh": "熔融氯化钠",
+    "aliasesZh": ["液态氯化钠"],
     "nameEn": "Molten sodium chloride",
     "formula": "NaCl",
     "displayFormula": "NaCl",
@@ -2527,6 +2801,8 @@
   },
   {
     "id": "Na-l",
+    "nameZh": "液态钠",
+    "aliasesZh": ["熔融钠"],
     "nameEn": "Liquid sodium",
     "formula": "Na",
     "displayFormula": "Na",
@@ -2540,6 +2816,8 @@
   },
   {
     "id": "MgCl2-l",
+    "nameZh": "熔融氯化镁",
+    "aliasesZh": ["液态氯化镁"],
     "nameEn": "Magnesium chloride",
     "formula": "MgCl2",
     "displayFormula": "MgCl₂",
@@ -2554,6 +2832,8 @@
   },
   {
     "id": "Mg-l",
+    "nameZh": "液态镁",
+    "aliasesZh": ["熔融镁"],
     "nameEn": "Liquid magnesium",
     "formula": "Mg",
     "displayFormula": "Mg",
@@ -2567,6 +2847,8 @@
   },
   {
     "id": "Si-s",
+    "nameZh": "硅",
+    "aliasesZh": ["晶体硅", "硅单质"],
     "nameEn": "Silicon",
     "formula": "Si",
     "displayFormula": "Si",
@@ -2589,6 +2871,8 @@
   },
   {
     "id": "SiO2-s",
+    "nameZh": "二氧化硅",
+    "aliasesZh": ["石英", "硅石"],
     "nameEn": "Silicon dioxide",
     "formula": "SiO2",
     "displayFormula": "SiO₂",
@@ -2607,6 +2891,8 @@
   },
   {
     "id": "Mg-g",
+    "nameZh": "镁蒸气",
+    "aliasesZh": ["气态镁"],
     "nameEn": "Magnesium vapor",
     "formula": "Mg",
     "displayFormula": "Mg",
@@ -2620,6 +2906,8 @@
   },
   {
     "id": "ZnS-s",
+    "nameZh": "硫化锌",
+    "aliasesZh": ["闪锌矿"],
     "nameEn": "Zinc sulfide",
     "formula": "ZnS",
     "displayFormula": "ZnS",
@@ -2637,6 +2925,8 @@
   },
   {
     "id": "ZnCO3-s",
+    "nameZh": "碳酸锌",
+    "aliasesZh": ["菱锌矿"],
     "nameEn": "ZnCO3",
     "formula": "ZnCO3",
     "displayFormula": "ZnCO₃",
@@ -2652,6 +2942,8 @@
   },
   {
     "id": "SnO2-s",
+    "nameZh": "二氧化锡",
+    "aliasesZh": ["氧化锡(IV)"],
     "nameEn": "Tin(IV) oxide",
     "formula": "SnO2",
     "displayFormula": "SnO₂",
@@ -2669,6 +2961,8 @@
   },
   {
     "id": "Sn-s",
+    "nameZh": "锡",
+    "aliasesZh": ["金属锡"],
     "nameEn": "Tin",
     "formula": "Sn",
     "displayFormula": "Sn",
@@ -2687,6 +2981,8 @@
   },
   {
     "id": "MnO2-s",
+    "nameZh": "二氧化锰",
+    "aliasesZh": ["氧化锰(IV)", "软锰矿"],
     "nameEn": "Manganese(IV) oxide",
     "formula": "MnO2",
     "displayFormula": "MnO₂",
@@ -2701,6 +2997,8 @@
   },
   {
     "id": "MnO-s",
+    "nameZh": "氧化亚锰",
+    "aliasesZh": ["氧化锰(II)", "一氧化锰"],
     "nameEn": "Manganese(II) oxide",
     "formula": "MnO",
     "displayFormula": "MnO",
@@ -2715,6 +3013,8 @@
   },
   {
     "id": "Na3(CO3)(HCO3)(H2O)2-s",
+    "nameZh": "倍半碳酸钠二水合物",
+    "aliasesZh": ["天然碱", "碳酸氢三钠二水合物"],
     "nameEn": "Na3(CO3)(HCO3)(H2O)2",
     "formula": "Na3(CO3)(HCO3)(H2O)2",
     "displayFormula": "Na₃(CO₃)(HCO₃)(H₂O)₂",
@@ -2731,6 +3031,8 @@
   },
   {
     "id": "N2O4-g",
+    "nameZh": "四氧化二氮",
+    "aliasesZh": [],
     "nameEn": "Dinitrogen tetroxide",
     "formula": "N2O4",
     "displayFormula": "N₂O₄",
@@ -2745,6 +3047,8 @@
   },
   {
     "id": "HNO3-l",
+    "nameZh": "液态硝酸",
+    "aliasesZh": ["纯硝酸", "发烟硝酸"],
     "nameEn": "Liquid nitric acid",
     "formula": "HNO3",
     "displayFormula": "HNO₃",
@@ -2760,6 +3064,8 @@
   },
   {
     "id": "HPO3-s",
+    "nameZh": "偏磷酸",
+    "aliasesZh": ["固态偏磷酸"],
     "nameEn": "Metaphosphoric acid",
     "formula": "HPO3",
     "displayFormula": "HPO₃",
@@ -2775,6 +3081,8 @@
   },
   {
     "id": "ClNO-g",
+    "nameZh": "亚硝酰氯",
+    "aliasesZh": [],
     "nameEn": "Nitrosyl chloride",
     "formula": "ClNO",
     "displayFormula": "ClNO",
@@ -2790,6 +3098,8 @@
   },
   {
     "id": "Ca3(PO4)2-s",
+    "nameZh": "磷酸钙",
+    "aliasesZh": ["磷酸三钙"],
     "nameEn": "Ca3(PO4)2",
     "formula": "Ca3(PO4)2",
     "displayFormula": "Ca₃(PO₄)₂",
@@ -2805,6 +3115,8 @@
   },
   {
     "id": "CaSiO3-l",
+    "nameZh": "熔融硅酸钙",
+    "aliasesZh": ["硅酸钙熔体", "炉渣"],
     "nameEn": "CaSiO3",
     "formula": "CaSiO3",
     "displayFormula": "CaSiO₃",
@@ -2820,6 +3132,8 @@
   },
   {
     "id": "P4-g",
+    "nameZh": "磷蒸气（P₄）",
+    "aliasesZh": ["四磷蒸气", "气态磷"],
     "nameEn": "Tetraphosphorus vapor",
     "formula": "P4",
     "displayFormula": "P₄",
@@ -2833,6 +3147,8 @@
   },
   {
     "id": "O3-g",
+    "nameZh": "臭氧",
+    "aliasesZh": ["三氧"],
     "nameEn": "Ozone",
     "formula": "O3",
     "displayFormula": "O₃",
@@ -2849,6 +3165,8 @@
   },
   {
     "id": "O-g",
+    "nameZh": "氧原子",
+    "aliasesZh": ["原子氧", "游离氧"],
     "nameEn": "Atomic oxygen",
     "formula": "O",
     "displayFormula": "O",
@@ -2862,6 +3180,8 @@
   },
   {
     "id": "Al2O3-s",
+    "nameZh": "氧化铝",
+    "aliasesZh": ["三氧化二铝", "刚玉"],
     "nameEn": "Aluminum oxide",
     "formula": "Al2O3",
     "displayFormula": "Al₂O₃",
@@ -2880,6 +3200,8 @@
   },
   {
     "id": "Na2O2-s",
+    "nameZh": "过氧化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium peroxide",
     "formula": "Na2O2",
     "displayFormula": "Na₂O₂",
@@ -2897,6 +3219,8 @@
   },
   {
     "id": "SrO-s",
+    "nameZh": "氧化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium oxide",
     "formula": "SrO",
     "displayFormula": "SrO",
@@ -2914,6 +3238,8 @@
   },
   {
     "id": "SrO2-s",
+    "nameZh": "过氧化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium peroxide",
     "formula": "SrO2",
     "displayFormula": "SrO₂",
@@ -2928,6 +3254,8 @@
   },
   {
     "id": "SO3-g",
+    "nameZh": "三氧化硫",
+    "aliasesZh": ["硫酸酐"],
     "nameEn": "Sulfur trioxide",
     "formula": "SO3",
     "displayFormula": "SO₃",
@@ -2942,6 +3270,8 @@
   },
   {
     "id": "As-s",
+    "nameZh": "砷",
+    "aliasesZh": ["砷单质"],
     "nameEn": "Arsenic (As)",
     "formula": "As",
     "displayFormula": "As",
@@ -2962,6 +3292,8 @@
   },
   {
     "id": "As4O6-s",
+    "nameZh": "三氧化二砷",
+    "aliasesZh": ["六氧化四砷", "砒霜", "氧化砷(III)"],
     "nameEn": "Arsenic(III) oxide",
     "formula": "As4O6",
     "displayFormula": "As₄O₆",
@@ -2976,6 +3308,8 @@
   },
   {
     "id": "F2-g",
+    "nameZh": "氟气",
+    "aliasesZh": ["氟单质"],
     "nameEn": "Fluorine (F2)",
     "formula": "F2",
     "displayFormula": "F₂",
@@ -3051,6 +3385,8 @@
   },
   {
     "id": "AsF5-g",
+    "nameZh": "五氟化砷",
+    "aliasesZh": ["氟化砷(V)"],
     "nameEn": "Arsenic(V) fluoride",
     "formula": "AsF5",
     "displayFormula": "AsF₅",
@@ -3065,6 +3401,8 @@
   },
   {
     "id": "AsF3-l",
+    "nameZh": "三氟化砷",
+    "aliasesZh": ["氟化砷(III)"],
     "nameEn": "Arsenic(III) fluoride",
     "formula": "AsF3",
     "displayFormula": "AsF₃",
@@ -3079,6 +3417,8 @@
   },
   {
     "id": "AsCl3-l",
+    "nameZh": "三氯化砷",
+    "aliasesZh": ["氯化砷(III)"],
     "nameEn": "Arsenic(III) chloride",
     "formula": "AsCl3",
     "displayFormula": "AsCl₃",
@@ -3093,6 +3433,8 @@
   },
   {
     "id": "Br2-g",
+    "nameZh": "溴蒸气",
+    "aliasesZh": ["气态溴", "溴气"],
     "nameEn": "Bromine (Br2)",
     "formula": "Br2",
     "displayFormula": "Br₂",
@@ -3154,6 +3496,8 @@
   },
   {
     "id": "AsBr3-s",
+    "nameZh": "三溴化砷",
+    "aliasesZh": ["溴化砷(III)"],
     "nameEn": "Arsenic(III) bromide",
     "formula": "AsBr3",
     "displayFormula": "AsBr₃",
@@ -3168,6 +3512,8 @@
   },
   {
     "id": "I2-g",
+    "nameZh": "碘蒸气",
+    "aliasesZh": ["气态碘"],
     "nameEn": "Iodine (I2)",
     "formula": "I2",
     "displayFormula": "I₂",
@@ -3221,6 +3567,8 @@
   },
   {
     "id": "AsI3-s",
+    "nameZh": "三碘化砷",
+    "aliasesZh": ["碘化砷(III)"],
     "nameEn": "Arsenic(III) iodide",
     "formula": "AsI3",
     "displayFormula": "AsI₃",
@@ -3235,6 +3583,8 @@
   },
   {
     "id": "Ba-s",
+    "nameZh": "钡",
+    "aliasesZh": ["钡单质"],
     "nameEn": "Barium (Ba)",
     "formula": "Ba",
     "displayFormula": "Ba",
@@ -3253,6 +3603,8 @@
   },
   {
     "id": "BaO-s",
+    "nameZh": "氧化钡",
+    "aliasesZh": [],
     "nameEn": "Barium oxide",
     "formula": "BaO",
     "displayFormula": "BaO",
@@ -3267,6 +3619,8 @@
   },
   {
     "id": "BaO2-s",
+    "nameZh": "过氧化钡",
+    "aliasesZh": [],
     "nameEn": "Barium peroxide",
     "formula": "BaO2",
     "displayFormula": "BaO₂",
@@ -3281,6 +3635,8 @@
   },
   {
     "id": "Ba3N2-s",
+    "nameZh": "氮化钡",
+    "aliasesZh": [],
     "nameEn": "Barium nitride",
     "formula": "Ba3N2",
     "displayFormula": "Ba₃N₂",
@@ -3295,6 +3651,8 @@
   },
   {
     "id": "Be-s",
+    "nameZh": "铍",
+    "aliasesZh": ["铍单质"],
     "nameEn": "Beryllium (Be)",
     "formula": "Be",
     "displayFormula": "Be",
@@ -3313,6 +3671,8 @@
   },
   {
     "id": "BeO-s",
+    "nameZh": "氧化铍",
+    "aliasesZh": [],
     "nameEn": "Beryllium oxide",
     "formula": "BeO",
     "displayFormula": "BeO",
@@ -3327,6 +3687,8 @@
   },
   {
     "id": "Be3N2-s",
+    "nameZh": "氮化铍",
+    "aliasesZh": [],
     "nameEn": "Beryllium nitride",
     "formula": "Be3N2",
     "displayFormula": "Be₃N₂",
@@ -3341,6 +3703,8 @@
   },
   {
     "id": "BeCl2-s",
+    "nameZh": "氯化铍",
+    "aliasesZh": [],
     "nameEn": "Beryllium chloride",
     "formula": "BeCl2",
     "displayFormula": "BeCl₂",
@@ -3355,6 +3719,8 @@
   },
   {
     "id": "BeBr2-s",
+    "nameZh": "溴化铍",
+    "aliasesZh": [],
     "nameEn": "Beryllium bromide",
     "formula": "BeBr2",
     "displayFormula": "BeBr₂",
@@ -3369,6 +3735,8 @@
   },
   {
     "id": "Bi-s",
+    "nameZh": "铋",
+    "aliasesZh": ["铋单质"],
     "nameEn": "Bismuth (Bi)",
     "formula": "Bi",
     "displayFormula": "Bi",
@@ -3389,6 +3757,8 @@
   },
   {
     "id": "Bi2O3-s",
+    "nameZh": "氧化铋(III)",
+    "aliasesZh": ["三氧化二铋", "氧化铋"],
     "nameEn": "Bismuth(III) oxide",
     "formula": "Bi2O3",
     "displayFormula": "Bi₂O₃",
@@ -3403,6 +3773,8 @@
   },
   {
     "id": "BiF5-s",
+    "nameZh": "五氟化铋",
+    "aliasesZh": ["氟化铋(V)"],
     "nameEn": "Bismuth(V) fluoride",
     "formula": "BiF5",
     "displayFormula": "BiF₅",
@@ -3417,6 +3789,8 @@
   },
   {
     "id": "BiF3-s",
+    "nameZh": "三氟化铋",
+    "aliasesZh": ["氟化铋(III)"],
     "nameEn": "Bismuth(III) fluoride",
     "formula": "BiF3",
     "displayFormula": "BiF₃",
@@ -3431,6 +3805,8 @@
   },
   {
     "id": "BiCl3-s",
+    "nameZh": "三氯化铋",
+    "aliasesZh": ["氯化铋(III)"],
     "nameEn": "Bismuth(III) chloride",
     "formula": "BiCl3",
     "displayFormula": "BiCl₃",
@@ -3445,6 +3821,8 @@
   },
   {
     "id": "BiBr3-s",
+    "nameZh": "三溴化铋",
+    "aliasesZh": ["溴化铋(III)"],
     "nameEn": "Bismuth(III) bromide",
     "formula": "BiBr3",
     "displayFormula": "BiBr₃",
@@ -3459,6 +3837,8 @@
   },
   {
     "id": "BiI3-s",
+    "nameZh": "三碘化铋",
+    "aliasesZh": ["碘化铋(III)"],
     "nameEn": "Bismuth(III) iodide",
     "formula": "BiI3",
     "displayFormula": "BiI₃",
@@ -3473,6 +3853,8 @@
   },
   {
     "id": "Cs-s",
+    "nameZh": "铯",
+    "aliasesZh": ["铯单质"],
     "nameEn": "Cesium (Cs)",
     "formula": "Cs",
     "displayFormula": "Cs",
@@ -3494,6 +3876,8 @@
   },
   {
     "id": "CsO2-s",
+    "nameZh": "超氧化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium superoxide",
     "formula": "CsO2",
     "displayFormula": "CsO₂",
@@ -3508,6 +3892,8 @@
   },
   {
     "id": "CsF-s",
+    "nameZh": "氟化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium fluoride",
     "formula": "CsF",
     "displayFormula": "CsF",
@@ -3522,6 +3908,8 @@
   },
   {
     "id": "CsCl-s",
+    "nameZh": "氯化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium chloride",
     "formula": "CsCl",
     "displayFormula": "CsCl",
@@ -3536,6 +3924,8 @@
   },
   {
     "id": "CsBr-s",
+    "nameZh": "溴化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium bromide",
     "formula": "CsBr",
     "displayFormula": "CsBr",
@@ -3550,6 +3940,8 @@
   },
   {
     "id": "CsI-s",
+    "nameZh": "碘化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium iodide",
     "formula": "CsI",
     "displayFormula": "CsI",
@@ -3564,6 +3956,8 @@
   },
   {
     "id": "Ca3N2-s",
+    "nameZh": "氮化钙",
+    "aliasesZh": [],
     "nameEn": "Calcium nitride",
     "formula": "Ca3N2",
     "displayFormula": "Ca₃N₂",
@@ -3578,6 +3972,8 @@
   },
   {
     "id": "CaF2-s",
+    "nameZh": "氟化钙",
+    "aliasesZh": [],
     "nameEn": "Calcium fluoride",
     "formula": "CaF2",
     "displayFormula": "CaF₂",
@@ -3592,6 +3988,8 @@
   },
   {
     "id": "CaCl2-s",
+    "nameZh": "氯化钙",
+    "aliasesZh": ["氯化钙固体"],
     "nameEn": "Calcium chloride",
     "formula": "CaCl2",
     "displayFormula": "CaCl₂",
@@ -3606,6 +4004,8 @@
   },
   {
     "id": "CaBr2-s",
+    "nameZh": "溴化钙",
+    "aliasesZh": ["溴化钙固体"],
     "nameEn": "Calcium bromide",
     "formula": "CaBr2",
     "displayFormula": "CaBr₂",
@@ -3620,6 +4020,8 @@
   },
   {
     "id": "CaI2-s",
+    "nameZh": "碘化钙",
+    "aliasesZh": [],
     "nameEn": "Calcium iodide",
     "formula": "CaI2",
     "displayFormula": "CaI₂",
@@ -3634,6 +4036,8 @@
   },
   {
     "id": "Cr-s",
+    "nameZh": "铬",
+    "aliasesZh": ["铬单质"],
     "nameEn": "Chromium (Cr)",
     "formula": "Cr",
     "displayFormula": "Cr",
@@ -3652,6 +4056,8 @@
   },
   {
     "id": "CrF3-s",
+    "nameZh": "三氟化铬",
+    "aliasesZh": ["氟化铬(III)"],
     "nameEn": "Chromium(III) fluoride",
     "formula": "CrF3",
     "displayFormula": "CrF₃",
@@ -3666,6 +4072,8 @@
   },
   {
     "id": "CrCl3-s",
+    "nameZh": "三氯化铬",
+    "aliasesZh": ["氯化铬(III)"],
     "nameEn": "Chromium(III) chloride",
     "formula": "CrCl3",
     "displayFormula": "CrCl₃",
@@ -3680,6 +4088,8 @@
   },
   {
     "id": "CrBr3-s",
+    "nameZh": "三溴化铬",
+    "aliasesZh": ["溴化铬(III)"],
     "nameEn": "Chromium(III) bromide",
     "formula": "CrBr3",
     "displayFormula": "CrBr₃",
@@ -3694,6 +4104,8 @@
   },
   {
     "id": "CrI3-s",
+    "nameZh": "三碘化铬",
+    "aliasesZh": ["碘化铬(III)"],
     "nameEn": "Chromium(III) iodide",
     "formula": "CrI3",
     "displayFormula": "CrI₃",
@@ -3708,6 +4120,8 @@
   },
   {
     "id": "Co-s",
+    "nameZh": "钴",
+    "aliasesZh": ["钴单质"],
     "nameEn": "Cobalt (Co)",
     "formula": "Co",
     "displayFormula": "Co",
@@ -3727,6 +4141,8 @@
   },
   {
     "id": "Co3O4-s",
+    "nameZh": "四氧化三钴",
+    "aliasesZh": ["氧化钴(II,III)"],
     "nameEn": "Cobalt(II,III) oxide",
     "formula": "Co3O4",
     "displayFormula": "Co₃O₄",
@@ -3741,6 +4157,8 @@
   },
   {
     "id": "CoO-s",
+    "nameZh": "氧化钴(II)",
+    "aliasesZh": ["氧化钴"],
     "nameEn": "Cobalt(II) oxide",
     "formula": "CoO",
     "displayFormula": "CoO",
@@ -3755,6 +4173,8 @@
   },
   {
     "id": "CoBr2-s",
+    "nameZh": "溴化钴(II)",
+    "aliasesZh": ["溴化钴"],
     "nameEn": "Cobalt(II) bromide",
     "formula": "CoBr2",
     "displayFormula": "CoBr₂",
@@ -3769,6 +4189,8 @@
   },
   {
     "id": "CoCl2-s",
+    "nameZh": "氯化钴(II)",
+    "aliasesZh": ["氯化钴"],
     "nameEn": "Cobalt(II) chloride",
     "formula": "CoCl2",
     "displayFormula": "CoCl₂",
@@ -3783,6 +4205,8 @@
   },
   {
     "id": "CoI2-s",
+    "nameZh": "碘化钴(II)",
+    "aliasesZh": ["碘化钴"],
     "nameEn": "Cobalt(II) iodide",
     "formula": "CoI2",
     "displayFormula": "CoI₂",
@@ -3797,6 +4221,8 @@
   },
   {
     "id": "Cu2O-s",
+    "nameZh": "氧化亚铜",
+    "aliasesZh": ["氧化铜(I)"],
     "nameEn": "Copper(I) oxide",
     "formula": "Cu2O",
     "displayFormula": "Cu₂O",
@@ -3811,6 +4237,8 @@
   },
   {
     "id": "CuF2-s",
+    "nameZh": "氟化铜(II)",
+    "aliasesZh": ["氟化铜"],
     "nameEn": "Copper(II) fluoride",
     "formula": "CuF2",
     "displayFormula": "CuF₂",
@@ -3825,6 +4253,8 @@
   },
   {
     "id": "CuCl2-s",
+    "nameZh": "氯化铜(II)",
+    "aliasesZh": ["氯化铜"],
     "nameEn": "Copper(II) chloride",
     "formula": "CuCl2",
     "displayFormula": "CuCl₂",
@@ -3839,6 +4269,8 @@
   },
   {
     "id": "CuBr2-s",
+    "nameZh": "溴化铜(II)",
+    "aliasesZh": ["溴化铜"],
     "nameEn": "Copper(II) bromide",
     "formula": "CuBr2",
     "displayFormula": "CuBr₂",
@@ -3853,6 +4285,8 @@
   },
   {
     "id": "Ge-s",
+    "nameZh": "锗",
+    "aliasesZh": ["锗单质"],
     "nameEn": "Germanium (Ge)",
     "formula": "Ge",
     "displayFormula": "Ge",
@@ -3866,6 +4300,8 @@
   },
   {
     "id": "GeO2-s",
+    "nameZh": "二氧化锗",
+    "aliasesZh": ["氧化锗(IV)"],
     "nameEn": "Germanium(IV) oxide",
     "formula": "GeO2",
     "displayFormula": "GeO₂",
@@ -3880,6 +4316,8 @@
   },
   {
     "id": "Fe2O3-s",
+    "nameZh": "氧化铁",
+    "aliasesZh": ["三氧化二铁", "铁红", "氧化铁(III)"],
     "nameEn": "Iron(III) oxide",
     "formula": "Fe2O3",
     "displayFormula": "Fe₂O₃",
@@ -3897,6 +4335,8 @@
   },
   {
     "id": "Fe3O4-s",
+    "nameZh": "四氧化三铁",
+    "aliasesZh": ["磁性氧化铁", "氧化铁(II,III)"],
     "nameEn": "Iron(II,III) oxide",
     "formula": "Fe3O4",
     "displayFormula": "Fe₃O₄",
@@ -3914,6 +4354,8 @@
   },
   {
     "id": "FeF3-s",
+    "nameZh": "三氟化铁",
+    "aliasesZh": ["氟化铁(III)"],
     "nameEn": "Iron(III) fluoride",
     "formula": "FeF3",
     "displayFormula": "FeF₃",
@@ -3928,6 +4370,8 @@
   },
   {
     "id": "FeCl3-s",
+    "nameZh": "三氯化铁",
+    "aliasesZh": ["氯化铁(III)"],
     "nameEn": "Iron(III) chloride",
     "formula": "FeCl3",
     "displayFormula": "FeCl₃",
@@ -3942,6 +4386,8 @@
   },
   {
     "id": "FeBr3-s",
+    "nameZh": "三溴化铁",
+    "aliasesZh": ["溴化铁(III)"],
     "nameEn": "Iron(III) bromide",
     "formula": "FeBr3",
     "displayFormula": "FeBr₃",
@@ -3956,6 +4402,8 @@
   },
   {
     "id": "FeI2-s",
+    "nameZh": "碘化铁(II)",
+    "aliasesZh": ["碘化铁"],
     "nameEn": "Iron(II) iodide",
     "formula": "FeI2",
     "displayFormula": "FeI₂",
@@ -3970,6 +4418,8 @@
   },
   {
     "id": "Pb-s",
+    "nameZh": "铅",
+    "aliasesZh": ["铅单质"],
     "nameEn": "Lead (Pb)",
     "formula": "Pb",
     "displayFormula": "Pb",
@@ -3987,6 +4437,8 @@
   },
   {
     "id": "PbO-s",
+    "nameZh": "氧化铅(II)",
+    "aliasesZh": ["氧化铅"],
     "nameEn": "Lead(II) oxide",
     "formula": "PbO",
     "displayFormula": "PbO",
@@ -4001,6 +4453,8 @@
   },
   {
     "id": "PbF2-s",
+    "nameZh": "氟化铅(II)",
+    "aliasesZh": ["氟化铅"],
     "nameEn": "Lead(II) fluoride",
     "formula": "PbF2",
     "displayFormula": "PbF₂",
@@ -4015,6 +4469,8 @@
   },
   {
     "id": "PbCl2-s",
+    "nameZh": "氯化铅(II)",
+    "aliasesZh": ["氯化铅"],
     "nameEn": "Lead(II) chloride",
     "formula": "PbCl2",
     "displayFormula": "PbCl₂",
@@ -4029,6 +4485,8 @@
   },
   {
     "id": "Li2O2-s",
+    "nameZh": "过氧化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium peroxide",
     "formula": "Li2O2",
     "displayFormula": "Li₂O₂",
@@ -4043,6 +4501,8 @@
   },
   {
     "id": "LiF-s",
+    "nameZh": "氟化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium fluoride",
     "formula": "LiF",
     "displayFormula": "LiF",
@@ -4057,6 +4517,8 @@
   },
   {
     "id": "LiCl-s",
+    "nameZh": "氯化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium chloride",
     "formula": "LiCl",
     "displayFormula": "LiCl",
@@ -4071,6 +4533,8 @@
   },
   {
     "id": "LiBr-s",
+    "nameZh": "溴化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium bromide",
     "formula": "LiBr",
     "displayFormula": "LiBr",
@@ -4085,6 +4549,8 @@
   },
   {
     "id": "LiI-s",
+    "nameZh": "碘化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium iodide",
     "formula": "LiI",
     "displayFormula": "LiI",
@@ -4099,6 +4565,8 @@
   },
   {
     "id": "MgCl2-s",
+    "nameZh": "氯化镁",
+    "aliasesZh": ["氯化镁固体"],
     "nameEn": "Magnesium chloride",
     "formula": "MgCl2",
     "displayFormula": "MgCl₂",
@@ -4113,6 +4581,8 @@
   },
   {
     "id": "MgBr2-s",
+    "nameZh": "溴化镁",
+    "aliasesZh": [],
     "nameEn": "Magnesium bromide",
     "formula": "MgBr2",
     "displayFormula": "MgBr₂",
@@ -4127,6 +4597,8 @@
   },
   {
     "id": "Mn-s",
+    "nameZh": "锰",
+    "aliasesZh": ["锰单质"],
     "nameEn": "Manganese (Mn)",
     "formula": "Mn",
     "displayFormula": "Mn",
@@ -4148,6 +4620,8 @@
   },
   {
     "id": "Mn3O4-s",
+    "nameZh": "四氧化三锰",
+    "aliasesZh": ["氧化锰(II,III)"],
     "nameEn": "Manganese(II,III) oxide",
     "formula": "Mn3O4",
     "displayFormula": "Mn₃O₄",
@@ -4162,6 +4636,8 @@
   },
   {
     "id": "Mn3N2-s",
+    "nameZh": "氮化锰(II)",
+    "aliasesZh": ["氮化锰"],
     "nameEn": "Manganese(II) nitride",
     "formula": "Mn3N2",
     "displayFormula": "Mn₃N₂",
@@ -4176,6 +4652,8 @@
   },
   {
     "id": "MnCl2-s",
+    "nameZh": "氯化锰(II)",
+    "aliasesZh": ["氯化锰"],
     "nameEn": "Manganese(II) chloride",
     "formula": "MnCl2",
     "displayFormula": "MnCl₂",
@@ -4190,6 +4668,8 @@
   },
   {
     "id": "MnBr2-s",
+    "nameZh": "溴化锰(II)",
+    "aliasesZh": ["溴化锰"],
     "nameEn": "Manganese(II) bromide",
     "formula": "MnBr2",
     "displayFormula": "MnBr₂",
@@ -4204,6 +4684,8 @@
   },
   {
     "id": "MnI2-s",
+    "nameZh": "碘化锰(II)",
+    "aliasesZh": ["碘化锰"],
     "nameEn": "Manganese(II) iodide",
     "formula": "MnI2",
     "displayFormula": "MnI₂",
@@ -4218,6 +4700,8 @@
   },
   {
     "id": "MnF2-s",
+    "nameZh": "氟化锰(II)",
+    "aliasesZh": ["氟化锰"],
     "nameEn": "Manganese(II) fluoride",
     "formula": "MnF2",
     "displayFormula": "MnF₂",
@@ -4232,6 +4716,8 @@
   },
   {
     "id": "MnF3-s",
+    "nameZh": "三氟化锰",
+    "aliasesZh": ["氟化锰(III)"],
     "nameEn": "Manganese(III) fluoride",
     "formula": "MnF3",
     "displayFormula": "MnF₃",
@@ -4246,6 +4732,8 @@
   },
   {
     "id": "NiO-s",
+    "nameZh": "氧化镍(II)",
+    "aliasesZh": ["氧化镍"],
     "nameEn": "Nickel(II) oxide",
     "formula": "NiO",
     "displayFormula": "NiO",
@@ -4260,6 +4748,8 @@
   },
   {
     "id": "NiCl2-s",
+    "nameZh": "氯化镍(II)",
+    "aliasesZh": ["氯化镍"],
     "nameEn": "Nickel(II) chloride",
     "formula": "NiCl2",
     "displayFormula": "NiCl₂",
@@ -4274,6 +4764,8 @@
   },
   {
     "id": "NiBr2-s",
+    "nameZh": "溴化镍(II)",
+    "aliasesZh": ["溴化镍"],
     "nameEn": "Nickel(II) bromide",
     "formula": "NiBr2",
     "displayFormula": "NiBr₂",
@@ -4288,6 +4780,8 @@
   },
   {
     "id": "NiI2-s",
+    "nameZh": "碘化镍(II)",
+    "aliasesZh": ["碘化镍"],
     "nameEn": "Nickel(II) iodide",
     "formula": "NiI2",
     "displayFormula": "NiI₂",
@@ -4302,6 +4796,8 @@
   },
   {
     "id": "K-s",
+    "nameZh": "钾",
+    "aliasesZh": ["钾单质"],
     "nameEn": "Potassium (K)",
     "formula": "K",
     "displayFormula": "K",
@@ -4324,6 +4820,8 @@
   },
   {
     "id": "KO2-s",
+    "nameZh": "超氧化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium superoxide",
     "formula": "KO2",
     "displayFormula": "KO₂",
@@ -4338,6 +4836,8 @@
   },
   {
     "id": "KF-s",
+    "nameZh": "氟化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium fluoride",
     "formula": "KF",
     "displayFormula": "KF",
@@ -4352,6 +4852,8 @@
   },
   {
     "id": "KBr-s",
+    "nameZh": "溴化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium bromide",
     "formula": "KBr",
     "displayFormula": "KBr",
@@ -4366,6 +4868,8 @@
   },
   {
     "id": "KI-s",
+    "nameZh": "碘化钾",
+    "aliasesZh": ["碘化钾固体"],
     "nameEn": "Potassium iodide",
     "formula": "KI",
     "displayFormula": "KI",
@@ -4380,6 +4884,8 @@
   },
   {
     "id": "Rb-s",
+    "nameZh": "铷",
+    "aliasesZh": ["铷单质"],
     "nameEn": "Rubidium (Rb)",
     "formula": "Rb",
     "displayFormula": "Rb",
@@ -4401,6 +4907,8 @@
   },
   {
     "id": "RbO2-s",
+    "nameZh": "超氧化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium superoxide",
     "formula": "RbO2",
     "displayFormula": "RbO₂",
@@ -4415,6 +4923,8 @@
   },
   {
     "id": "RbF-s",
+    "nameZh": "氟化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium fluoride",
     "formula": "RbF",
     "displayFormula": "RbF",
@@ -4429,6 +4939,8 @@
   },
   {
     "id": "RbCl-s",
+    "nameZh": "氯化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium chloride",
     "formula": "RbCl",
     "displayFormula": "RbCl",
@@ -4443,6 +4955,8 @@
   },
   {
     "id": "RbBr-s",
+    "nameZh": "溴化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium bromide",
     "formula": "RbBr",
     "displayFormula": "RbBr",
@@ -4457,6 +4971,8 @@
   },
   {
     "id": "RbI-s",
+    "nameZh": "碘化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium iodide",
     "formula": "RbI",
     "displayFormula": "RbI",
@@ -4471,6 +4987,8 @@
   },
   {
     "id": "Sc-s",
+    "nameZh": "钪",
+    "aliasesZh": ["钪单质"],
     "nameEn": "Scandium (Sc)",
     "formula": "Sc",
     "displayFormula": "Sc",
@@ -4489,6 +5007,8 @@
   },
   {
     "id": "ScF3-s",
+    "nameZh": "氟化钪",
+    "aliasesZh": [],
     "nameEn": "Scandium fluoride",
     "formula": "ScF3",
     "displayFormula": "ScF₃",
@@ -4503,6 +5023,8 @@
   },
   {
     "id": "ScCl3-s",
+    "nameZh": "氯化钪",
+    "aliasesZh": [],
     "nameEn": "Scandium chloride",
     "formula": "ScCl3",
     "displayFormula": "ScCl₃",
@@ -4517,6 +5039,8 @@
   },
   {
     "id": "ScBr3-s",
+    "nameZh": "溴化钪",
+    "aliasesZh": [],
     "nameEn": "Scandium bromide",
     "formula": "ScBr3",
     "displayFormula": "ScBr₃",
@@ -4531,6 +5055,8 @@
   },
   {
     "id": "ScI3-s",
+    "nameZh": "碘化钪",
+    "aliasesZh": [],
     "nameEn": "Scandium iodide",
     "formula": "ScI3",
     "displayFormula": "ScI₃",
@@ -4545,6 +5071,8 @@
   },
   {
     "id": "Se8-s",
+    "nameZh": "硒单质（Se₈）",
+    "aliasesZh": ["环状硒", "硒"],
     "nameEn": "Selenium (Se8)",
     "formula": "Se8",
     "displayFormula": "Se₈",
@@ -4562,6 +5090,8 @@
   },
   {
     "id": "SeO2-s",
+    "nameZh": "二氧化硒",
+    "aliasesZh": ["氧化硒(IV)"],
     "nameEn": "Selenium(IV) oxide",
     "formula": "SeO2",
     "displayFormula": "SeO₂",
@@ -4576,6 +5106,8 @@
   },
   {
     "id": "SeCl4-s",
+    "nameZh": "四氯化硒",
+    "aliasesZh": ["氯化硒(IV)"],
     "nameEn": "Selenium(IV) chloride",
     "formula": "SeCl4",
     "displayFormula": "SeCl₄",
@@ -4590,6 +5122,8 @@
   },
   {
     "id": "SeBr4-s",
+    "nameZh": "四溴化硒",
+    "aliasesZh": ["溴化硒(IV)"],
     "nameEn": "Selenium(IV) bromide",
     "formula": "SeBr4",
     "displayFormula": "SeBr₄",
@@ -4604,6 +5138,8 @@
   },
   {
     "id": "AgF2-s",
+    "nameZh": "氟化银(II)",
+    "aliasesZh": ["氟化银"],
     "nameEn": "Silver(II) fluoride",
     "formula": "AgF2",
     "displayFormula": "AgF₂",
@@ -4618,6 +5154,8 @@
   },
   {
     "id": "NaF-s",
+    "nameZh": "氟化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium fluoride",
     "formula": "NaF",
     "displayFormula": "NaF",
@@ -4632,6 +5170,8 @@
   },
   {
     "id": "NaBr-s",
+    "nameZh": "溴化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium bromide",
     "formula": "NaBr",
     "displayFormula": "NaBr",
@@ -4646,6 +5186,8 @@
   },
   {
     "id": "NaI-s",
+    "nameZh": "碘化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium iodide",
     "formula": "NaI",
     "displayFormula": "NaI",
@@ -4660,6 +5202,8 @@
   },
   {
     "id": "Sr-s",
+    "nameZh": "锶",
+    "aliasesZh": ["锶单质"],
     "nameEn": "Strontium (Sr)",
     "formula": "Sr",
     "displayFormula": "Sr",
@@ -4680,6 +5224,8 @@
   },
   {
     "id": "Sr3N2-s",
+    "nameZh": "氮化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium nitride",
     "formula": "Sr3N2",
     "displayFormula": "Sr₃N₂",
@@ -4694,6 +5240,8 @@
   },
   {
     "id": "SrCl2-s",
+    "nameZh": "氯化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium chloride",
     "formula": "SrCl2",
     "displayFormula": "SrCl₂",
@@ -4708,6 +5256,8 @@
   },
   {
     "id": "SrBr2-s",
+    "nameZh": "溴化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium bromide",
     "formula": "SrBr2",
     "displayFormula": "SrBr₂",
@@ -4722,6 +5272,8 @@
   },
   {
     "id": "SrI2-s",
+    "nameZh": "碘化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium iodide",
     "formula": "SrI2",
     "displayFormula": "SrI₂",
@@ -4736,6 +5288,8 @@
   },
   {
     "id": "Ti-s",
+    "nameZh": "钛",
+    "aliasesZh": ["钛单质"],
     "nameEn": "Titanium (Ti)",
     "formula": "Ti",
     "displayFormula": "Ti",
@@ -4756,6 +5310,8 @@
   },
   {
     "id": "TiO2-s",
+    "nameZh": "二氧化钛",
+    "aliasesZh": ["钛白粉", "氧化钛(IV)"],
     "nameEn": "Titanium(IV) oxide",
     "formula": "TiO2",
     "displayFormula": "TiO₂",
@@ -4770,6 +5326,8 @@
   },
   {
     "id": "TiN-s",
+    "nameZh": "氮化钛",
+    "aliasesZh": [],
     "nameEn": "Titanium nitride",
     "formula": "TiN",
     "displayFormula": "TiN",
@@ -4784,6 +5342,8 @@
   },
   {
     "id": "TiF4-s",
+    "nameZh": "四氟化钛",
+    "aliasesZh": ["氟化钛(IV)"],
     "nameEn": "Titanium(IV) fluoride",
     "formula": "TiF4",
     "displayFormula": "TiF₄",
@@ -4798,6 +5358,8 @@
   },
   {
     "id": "TiCl4-l",
+    "nameZh": "四氯化钛",
+    "aliasesZh": ["氯化钛(IV)"],
     "nameEn": "Titanium(IV) chloride",
     "formula": "TiCl4",
     "displayFormula": "TiCl₄",
@@ -4812,6 +5374,8 @@
   },
   {
     "id": "TiBr4-s",
+    "nameZh": "四溴化钛",
+    "aliasesZh": ["溴化钛(IV)"],
     "nameEn": "Titanium(IV) bromide",
     "formula": "TiBr4",
     "displayFormula": "TiBr₄",
@@ -4826,6 +5390,8 @@
   },
   {
     "id": "TiI4-s",
+    "nameZh": "四碘化钛",
+    "aliasesZh": ["碘化钛(IV)"],
     "nameEn": "Titanium(IV) iodide",
     "formula": "TiI4",
     "displayFormula": "TiI₄",
@@ -4840,6 +5406,8 @@
   },
   {
     "id": "V-s",
+    "nameZh": "钒",
+    "aliasesZh": ["钒单质"],
     "nameEn": "Vanadium (V)",
     "formula": "V",
     "displayFormula": "V",
@@ -4856,6 +5424,8 @@
   },
   {
     "id": "V2O5-s",
+    "nameZh": "五氧化二钒",
+    "aliasesZh": ["氧化钒(V)"],
     "nameEn": "Vanadium(V) oxide",
     "formula": "V2O5",
     "displayFormula": "V₂O₅",
@@ -4870,6 +5440,8 @@
   },
   {
     "id": "VF5-l",
+    "nameZh": "五氟化钒",
+    "aliasesZh": ["氟化钒(V)"],
     "nameEn": "Vanadium(V) fluoride",
     "formula": "VF5",
     "displayFormula": "VF₅",
@@ -4884,6 +5456,8 @@
   },
   {
     "id": "ZnBr2-s",
+    "nameZh": "溴化锌",
+    "aliasesZh": [],
     "nameEn": "Zinc bromide",
     "formula": "ZnBr2",
     "displayFormula": "ZnBr₂",
@@ -4898,6 +5472,8 @@
   },
   {
     "id": "ZnI2-s",
+    "nameZh": "碘化锌",
+    "aliasesZh": [],
     "nameEn": "Zinc iodide",
     "formula": "ZnI2",
     "displayFormula": "ZnI₂",
@@ -4912,6 +5488,8 @@
   },
   {
     "id": "audit1-al-audit-Al-s",
+    "nameZh": "铝",
+    "aliasesZh": ["铝单质"],
     "nameEn": "Aluminum",
     "formula": "Al",
     "displayFormula": "Al",
@@ -4937,6 +5515,8 @@
   },
   {
     "id": "audit1-al-audit-AlN-s",
+    "nameZh": "氮化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum nitride",
     "formula": "AlN",
     "displayFormula": "AlN",
@@ -4951,6 +5531,8 @@
   },
   {
     "id": "audit1-al-audit-Al2S3-s",
+    "nameZh": "硫化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum sulfide",
     "formula": "Al2S3",
     "displayFormula": "Al₂S₃",
@@ -4965,6 +5547,8 @@
   },
   {
     "id": "audit1-al-audit-Al4C3-s",
+    "nameZh": "碳化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum carbide",
     "formula": "Al4C3",
     "displayFormula": "Al₄C₃",
@@ -4979,6 +5563,8 @@
   },
   {
     "id": "audit1-al-audit-AlCl3-s",
+    "nameZh": "氯化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum chloride",
     "formula": "AlCl3",
     "displayFormula": "AlCl₃",
@@ -4993,6 +5579,8 @@
   },
   {
     "id": "audit1-al-audit-Al2Br6-s",
+    "nameZh": "溴化铝（二聚体）",
+    "aliasesZh": ["六溴化二铝", "三溴化铝二聚体", "溴化铝"],
     "nameEn": "Aluminum bromide (dimer)",
     "formula": "Al2Br6",
     "displayFormula": "Al₂Br₆",
@@ -5007,6 +5595,8 @@
   },
   {
     "id": "audit1-al-audit-Al2I6-s",
+    "nameZh": "碘化铝（二聚体）",
+    "aliasesZh": ["六碘化二铝", "三碘化铝二聚体", "碘化铝"],
     "nameEn": "Aluminum iodide (dimer)",
     "formula": "Al2I6",
     "displayFormula": "Al₂I₆",
@@ -5021,6 +5611,8 @@
   },
   {
     "id": "audit1-al-audit-AlF3-s",
+    "nameZh": "氟化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum fluoride",
     "formula": "AlF3",
     "displayFormula": "AlF₃",
@@ -5035,6 +5627,8 @@
   },
   {
     "id": "audit1-al-audit-P-s",
+    "nameZh": "磷单质（晶型未指定）",
+    "aliasesZh": ["单质磷", "磷"],
     "nameEn": "Elemental phosphorus (source allotrope unspecified)",
     "formula": "P",
     "displayFormula": "P",
@@ -5048,6 +5642,8 @@
   },
   {
     "id": "audit1-al-audit-Se-s",
+    "nameZh": "硒单质（晶型未指定）",
+    "aliasesZh": ["单质硒", "硒"],
     "nameEn": "Elemental selenium (source allotrope unspecified)",
     "formula": "Se",
     "displayFormula": "Se",
@@ -5061,6 +5657,8 @@
   },
   {
     "id": "audit1-al-audit-AlP-s",
+    "nameZh": "磷化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum phosphide",
     "formula": "AlP",
     "displayFormula": "AlP",
@@ -5075,6 +5673,8 @@
   },
   {
     "id": "audit1-al-audit-Al2Se3-s",
+    "nameZh": "硒化铝",
+    "aliasesZh": [],
     "nameEn": "Aluminum selenide",
     "formula": "Al2Se3",
     "displayFormula": "Al₂Se₃",
@@ -5089,6 +5689,8 @@
   },
   {
     "id": "audit1-al-audit-In-s",
+    "nameZh": "铟",
+    "aliasesZh": ["铟单质"],
     "nameEn": "Indium",
     "formula": "In",
     "displayFormula": "In",
@@ -5102,6 +5704,8 @@
   },
   {
     "id": "audit1-al-audit-In2O3-s",
+    "nameZh": "氧化铟(III)",
+    "aliasesZh": ["三氧化二铟", "氧化铟"],
     "nameEn": "Indium(III) oxide",
     "formula": "In2O3",
     "displayFormula": "In₂O₃",
@@ -5116,6 +5720,8 @@
   },
   {
     "id": "audit1-al-audit-Ga-l",
+    "nameZh": "液态镓",
+    "aliasesZh": ["镓", "熔融镓"],
     "nameEn": "Gallium (liquid)",
     "formula": "Ga",
     "displayFormula": "Ga",
@@ -5132,6 +5738,8 @@
   },
   {
     "id": "audit1-al-audit-Ga2O3-s",
+    "nameZh": "氧化镓(III)",
+    "aliasesZh": ["三氧化二镓", "氧化镓"],
     "nameEn": "Gallium(III) oxide",
     "formula": "Ga2O3",
     "displayFormula": "Ga₂O₃",
@@ -5146,6 +5754,8 @@
   },
   {
     "id": "audit2-common-HF-g",
+    "nameZh": "氟化氢",
+    "aliasesZh": ["氟化氢气体"],
     "nameEn": "Hydrogen fluoride",
     "formula": "HF",
     "displayFormula": "HF",
@@ -5160,6 +5770,8 @@
   },
   {
     "id": "audit2-common-HBr-g",
+    "nameZh": "溴化氢",
+    "aliasesZh": ["溴化氢气体"],
     "nameEn": "Hydrogen bromide",
     "formula": "HBr",
     "displayFormula": "HBr",
@@ -5174,6 +5786,8 @@
   },
   {
     "id": "audit2-common-HI-g",
+    "nameZh": "碘化氢",
+    "aliasesZh": ["碘化氢气体"],
     "nameEn": "Hydrogen iodide",
     "formula": "HI",
     "displayFormula": "HI",
@@ -5188,6 +5802,8 @@
   },
   {
     "id": "audit2-common-LiH-s",
+    "nameZh": "氢化锂",
+    "aliasesZh": [],
     "nameEn": "Lithium hydride",
     "formula": "LiH",
     "displayFormula": "LiH",
@@ -5202,6 +5818,8 @@
   },
   {
     "id": "audit2-common-NaH-s",
+    "nameZh": "氢化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium hydride",
     "formula": "NaH",
     "displayFormula": "NaH",
@@ -5216,6 +5834,8 @@
   },
   {
     "id": "audit2-common-KH-s",
+    "nameZh": "氢化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium hydride",
     "formula": "KH",
     "displayFormula": "KH",
@@ -5230,6 +5850,8 @@
   },
   {
     "id": "audit2-common-RbH-s",
+    "nameZh": "氢化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium hydride",
     "formula": "RbH",
     "displayFormula": "RbH",
@@ -5244,6 +5866,8 @@
   },
   {
     "id": "audit2-common-CsH-s",
+    "nameZh": "氢化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium hydride",
     "formula": "CsH",
     "displayFormula": "CsH",
@@ -5258,6 +5882,8 @@
   },
   {
     "id": "audit2-common-SrH2-s",
+    "nameZh": "氢化锶",
+    "aliasesZh": [],
     "nameEn": "Strontium hydride",
     "formula": "SrH2",
     "displayFormula": "SrH₂",
@@ -5272,6 +5898,8 @@
   },
   {
     "id": "audit2-common-BaH2-s",
+    "nameZh": "氢化钡",
+    "aliasesZh": [],
     "nameEn": "Barium hydride",
     "formula": "BaH2",
     "displayFormula": "BaH₂",
@@ -5286,6 +5914,8 @@
   },
   {
     "id": "audit2-common-B-s",
+    "nameZh": "硼",
+    "aliasesZh": ["硼单质"],
     "nameEn": "Boron",
     "formula": "B",
     "displayFormula": "B",
@@ -5305,6 +5935,8 @@
   },
   {
     "id": "audit2-common-B2O3-s",
+    "nameZh": "三氧化二硼",
+    "aliasesZh": ["氧化硼"],
     "nameEn": "Boron(III) oxide",
     "formula": "B2O3",
     "displayFormula": "B₂O₃",
@@ -5319,6 +5951,8 @@
   },
   {
     "id": "audit2-common-BF3-g",
+    "nameZh": "三氟化硼",
+    "aliasesZh": [],
     "nameEn": "Boron trifluoride",
     "formula": "BF3",
     "displayFormula": "BF₃",
@@ -5333,6 +5967,8 @@
   },
   {
     "id": "audit2-common-BCl3-g",
+    "nameZh": "三氯化硼",
+    "aliasesZh": [],
     "nameEn": "Boron trichloride",
     "formula": "BCl3",
     "displayFormula": "BCl₃",
@@ -5347,6 +5983,8 @@
   },
   {
     "id": "audit2-common-BBr3-l",
+    "nameZh": "三溴化硼",
+    "aliasesZh": [],
     "nameEn": "Boron tribromide",
     "formula": "BBr3",
     "displayFormula": "BBr₃",
@@ -5361,6 +5999,8 @@
   },
   {
     "id": "audit2-common-BN-s",
+    "nameZh": "氮化硼",
+    "aliasesZh": ["氮化硼（晶型未指定）"],
     "nameEn": "Boron nitride (polymorph unspecified)",
     "formula": "BN",
     "displayFormula": "BN",
@@ -5375,6 +6015,8 @@
   },
   {
     "id": "audit2-common-CS2-l",
+    "nameZh": "二硫化碳",
+    "aliasesZh": [],
     "nameEn": "Carbon disulfide (collected liquid)",
     "formula": "CS2",
     "displayFormula": "CS₂",
@@ -5389,6 +6031,8 @@
   },
   {
     "id": "audit2-common-SiC-s",
+    "nameZh": "碳化硅",
+    "aliasesZh": ["金刚砂"],
     "nameEn": "Silicon carbide",
     "formula": "SiC",
     "displayFormula": "SiC",
@@ -5403,6 +6047,8 @@
   },
   {
     "id": "audit2-common-Cu2S-s",
+    "nameZh": "硫化亚铜",
+    "aliasesZh": ["硫化铜(I)"],
     "nameEn": "Copper(I) sulfide",
     "formula": "Cu2S",
     "displayFormula": "Cu₂S",
@@ -5417,6 +6063,8 @@
   },
   {
     "id": "audit2-common-CuS-s",
+    "nameZh": "硫化铜",
+    "aliasesZh": ["硫化铜(II)"],
     "nameEn": "Copper(II) sulfide",
     "formula": "CuS",
     "displayFormula": "CuS",
@@ -5431,6 +6079,8 @@
   },
   {
     "id": "audit2-common-Si3N4-s",
+    "nameZh": "氮化硅",
+    "aliasesZh": ["四氮化三硅"],
     "nameEn": "Silicon nitride",
     "formula": "Si3N4",
     "displayFormula": "Si₃N₄",
@@ -5445,6 +6095,8 @@
   },
   {
     "id": "audit2-common-SiF4-g",
+    "nameZh": "四氟化硅",
+    "aliasesZh": [],
     "nameEn": "Silicon tetrafluoride",
     "formula": "SiF4",
     "displayFormula": "SiF₄",
@@ -5459,6 +6111,8 @@
   },
   {
     "id": "audit2-common-SiCl4-g",
+    "nameZh": "四氯化硅",
+    "aliasesZh": [],
     "nameEn": "Silicon tetrachloride",
     "formula": "SiCl4",
     "displayFormula": "SiCl₄",
@@ -5473,6 +6127,8 @@
   },
   {
     "id": "audit2-common-SiBr4-l",
+    "nameZh": "四溴化硅",
+    "aliasesZh": [],
     "nameEn": "Silicon tetrabromide",
     "formula": "SiBr4",
     "displayFormula": "SiBr₄",
@@ -5487,6 +6143,8 @@
   },
   {
     "id": "audit2-common-I2-l",
+    "nameZh": "液态碘",
+    "aliasesZh": ["熔融碘"],
     "nameEn": "Iodine (I₂)",
     "formula": "I2",
     "displayFormula": "I₂",
@@ -5500,6 +6158,8 @@
   },
   {
     "id": "audit2-common-SiI4-s",
+    "nameZh": "四碘化硅",
+    "aliasesZh": [],
     "nameEn": "Silicon tetraiodide",
     "formula": "SiI4",
     "displayFormula": "SiI₄",
@@ -5514,6 +6174,8 @@
   },
   {
     "id": "audit2-common-P4-s",
+    "nameZh": "白磷",
+    "aliasesZh": ["黄磷", "四磷"],
     "nameEn": "White phosphorus (P₄)",
     "formula": "P4",
     "displayFormula": "P₄",
@@ -5534,6 +6196,8 @@
   },
   {
     "id": "audit2-common-P4O6-s",
+    "nameZh": "三氧化二磷",
+    "aliasesZh": ["六氧化四磷"],
     "nameEn": "Tetraphosphorus hexaoxide",
     "formula": "P4O6",
     "displayFormula": "P₄O₆",
@@ -5548,6 +6212,8 @@
   },
   {
     "id": "audit2-common-PCl3-l",
+    "nameZh": "三氯化磷",
+    "aliasesZh": [],
     "nameEn": "Phosphorus trichloride",
     "formula": "PCl3",
     "displayFormula": "PCl₃",
@@ -5562,6 +6228,8 @@
   },
   {
     "id": "audit2-common-PCl5-s",
+    "nameZh": "五氯化磷",
+    "aliasesZh": [],
     "nameEn": "Phosphorus pentachloride",
     "formula": "PCl5",
     "displayFormula": "PCl₅",
@@ -5576,6 +6244,8 @@
   },
   {
     "id": "audit2-common-PBr3-l",
+    "nameZh": "三溴化磷",
+    "aliasesZh": [],
     "nameEn": "Phosphorus tribromide",
     "formula": "PBr3",
     "displayFormula": "PBr₃",
@@ -5590,6 +6260,8 @@
   },
   {
     "id": "audit2-common-SF6-g",
+    "nameZh": "六氟化硫",
+    "aliasesZh": [],
     "nameEn": "Sulfur hexafluoride",
     "formula": "SF6",
     "displayFormula": "SF₆",
@@ -5604,6 +6276,8 @@
   },
   {
     "id": "audit2-common-S2Cl2-l",
+    "nameZh": "二氯化二硫",
+    "aliasesZh": ["一氯化硫"],
     "nameEn": "Disulfur dichloride",
     "formula": "S2Cl2",
     "displayFormula": "S₂Cl₂",
@@ -5618,6 +6292,8 @@
   },
   {
     "id": "audit2-common-SCl2-l",
+    "nameZh": "二氯化硫",
+    "aliasesZh": [],
     "nameEn": "Sulfur dichloride",
     "formula": "SCl2",
     "displayFormula": "SCl₂",
@@ -5632,6 +6308,8 @@
   },
   {
     "id": "audit2-common-K2O2-s",
+    "nameZh": "过氧化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium peroxide",
     "formula": "K2O2",
     "displayFormula": "K₂O₂",
@@ -5646,6 +6324,8 @@
   },
   {
     "id": "audit2-common-Rb2O2-s",
+    "nameZh": "过氧化铷",
+    "aliasesZh": [],
     "nameEn": "Rubidium peroxide",
     "formula": "Rb2O2",
     "displayFormula": "Rb₂O₂",
@@ -5660,6 +6340,8 @@
   },
   {
     "id": "audit2-common-Cs2O2-s",
+    "nameZh": "过氧化铯",
+    "aliasesZh": [],
     "nameEn": "Cesium peroxide",
     "formula": "Cs2O2",
     "displayFormula": "Cs₂O₂",
@@ -5674,6 +6356,8 @@
   },
   {
     "id": "audit2-common-MgS-s",
+    "nameZh": "硫化镁",
+    "aliasesZh": [],
     "nameEn": "Magnesium sulfide",
     "formula": "MgS",
     "displayFormula": "MgS",
@@ -5688,6 +6372,8 @@
   },
   {
     "id": "audit2-common-Na2S-s",
+    "nameZh": "硫化钠",
+    "aliasesZh": [],
     "nameEn": "Sodium sulfide",
     "formula": "Na2S",
     "displayFormula": "Na₂S",
@@ -5702,6 +6388,8 @@
   },
   {
     "id": "audit2-common-CaS-s",
+    "nameZh": "硫化钙",
+    "aliasesZh": [],
     "nameEn": "Calcium sulfide",
     "formula": "CaS",
     "displayFormula": "CaS",
@@ -5716,6 +6404,8 @@
   },
   {
     "id": "audit2-common-K2S-s",
+    "nameZh": "硫化钾",
+    "aliasesZh": [],
     "nameEn": "Potassium sulfide",
     "formula": "K2S",
     "displayFormula": "K₂S",
@@ -5730,6 +6420,8 @@
   },
   {
     "id": "audit2-common-PF5-g",
+    "nameZh": "五氟化磷",
+    "aliasesZh": [],
     "nameEn": "Phosphorus pentafluoride",
     "formula": "PF5",
     "displayFormula": "PF₅",
@@ -5744,6 +6436,8 @@
   },
   {
     "id": "audit2-common-CF4-g",
+    "nameZh": "四氟化碳",
+    "aliasesZh": ["四氟甲烷"],
     "nameEn": "Carbon tetrafluoride",
     "formula": "CF4",
     "displayFormula": "CF₄",
@@ -5758,6 +6452,8 @@
   },
   {
     "id": "audit3-metal-Sb-s",
+    "nameZh": "锑",
+    "aliasesZh": ["锑单质"],
     "nameEn": "Antimony",
     "formula": "Sb",
     "displayFormula": "Sb",
@@ -5777,6 +6473,8 @@
   },
   {
     "id": "audit3-metal-Sb2O3-s",
+    "nameZh": "氧化锑(III)",
+    "aliasesZh": ["三氧化二锑", "氧化锑"],
     "nameEn": "Antimony(III) oxide",
     "formula": "Sb2O3",
     "displayFormula": "Sb₂O₃",
@@ -5791,6 +6489,8 @@
   },
   {
     "id": "audit3-metal-SbF3-s",
+    "nameZh": "三氟化锑",
+    "aliasesZh": ["氟化锑(III)"],
     "nameEn": "Antimony(III) fluoride",
     "formula": "SbF3",
     "displayFormula": "SbF₃",
@@ -5805,6 +6505,8 @@
   },
   {
     "id": "audit3-metal-SbCl3-s",
+    "nameZh": "三氯化锑",
+    "aliasesZh": ["氯化锑(III)"],
     "nameEn": "Antimony(III) chloride",
     "formula": "SbCl3",
     "displayFormula": "SbCl₃",
@@ -5819,6 +6521,8 @@
   },
   {
     "id": "audit3-metal-SbBr3-s",
+    "nameZh": "三溴化锑",
+    "aliasesZh": ["溴化锑(III)"],
     "nameEn": "Antimony(III) bromide",
     "formula": "SbBr3",
     "displayFormula": "SbBr₃",
@@ -5833,6 +6537,8 @@
   },
   {
     "id": "audit3-metal-SbI3-s",
+    "nameZh": "三碘化锑",
+    "aliasesZh": ["碘化锑(III)"],
     "nameEn": "Antimony(III) iodide",
     "formula": "SbI3",
     "displayFormula": "SbI₃",
@@ -5847,6 +6553,8 @@
   },
   {
     "id": "audit3-metal-Cd-s",
+    "nameZh": "镉",
+    "aliasesZh": ["镉单质"],
     "nameEn": "Cadmium",
     "formula": "Cd",
     "displayFormula": "Cd",
@@ -5866,6 +6574,8 @@
   },
   {
     "id": "audit3-metal-CdO-s",
+    "nameZh": "氧化镉(II)",
+    "aliasesZh": ["氧化镉"],
     "nameEn": "Cadmium(II) oxide",
     "formula": "CdO",
     "displayFormula": "CdO",
@@ -5880,6 +6590,8 @@
   },
   {
     "id": "audit3-metal-CdF2-s",
+    "nameZh": "氟化镉(II)",
+    "aliasesZh": ["氟化镉"],
     "nameEn": "Cadmium(II) fluoride",
     "formula": "CdF2",
     "displayFormula": "CdF₂",
@@ -5894,6 +6606,8 @@
   },
   {
     "id": "audit3-metal-CdBr2-s",
+    "nameZh": "溴化镉(II)",
+    "aliasesZh": ["溴化镉"],
     "nameEn": "Cadmium(II) bromide",
     "formula": "CdBr2",
     "displayFormula": "CdBr₂",
@@ -5908,6 +6622,8 @@
   },
   {
     "id": "audit3-metal-CdI2-s",
+    "nameZh": "碘化镉(II)",
+    "aliasesZh": ["碘化镉"],
     "nameEn": "Cadmium(II) iodide",
     "formula": "CdI2",
     "displayFormula": "CdI₂",
@@ -5922,6 +6638,8 @@
   },
   {
     "id": "audit3-metal-Ce-s",
+    "nameZh": "铈",
+    "aliasesZh": ["铈单质"],
     "nameEn": "Cerium",
     "formula": "Ce",
     "displayFormula": "Ce",
@@ -5941,6 +6659,8 @@
   },
   {
     "id": "audit3-metal-CeO2-s",
+    "nameZh": "二氧化铈",
+    "aliasesZh": ["氧化铈(IV)"],
     "nameEn": "Cerium(IV) oxide",
     "formula": "CeO2",
     "displayFormula": "CeO₂",
@@ -5955,6 +6675,8 @@
   },
   {
     "id": "audit3-metal-CeF3-s",
+    "nameZh": "三氟化铈",
+    "aliasesZh": ["氟化铈(III)"],
     "nameEn": "Cerium(III) fluoride",
     "formula": "CeF3",
     "displayFormula": "CeF₃",
@@ -5969,6 +6691,8 @@
   },
   {
     "id": "audit3-metal-CeCl3-s",
+    "nameZh": "三氯化铈",
+    "aliasesZh": ["氯化铈(III)"],
     "nameEn": "Cerium(III) chloride",
     "formula": "CeCl3",
     "displayFormula": "CeCl₃",
@@ -5983,6 +6707,8 @@
   },
   {
     "id": "audit3-metal-CeBr3-s",
+    "nameZh": "三溴化铈",
+    "aliasesZh": ["溴化铈(III)"],
     "nameEn": "Cerium(III) bromide",
     "formula": "CeBr3",
     "displayFormula": "CeBr₃",
@@ -5997,6 +6723,8 @@
   },
   {
     "id": "audit3-metal-CeI3-s",
+    "nameZh": "三碘化铈",
+    "aliasesZh": ["碘化铈(III)"],
     "nameEn": "Cerium(III) iodide",
     "formula": "CeI3",
     "displayFormula": "CeI₃",
@@ -6011,6 +6739,8 @@
   },
   {
     "id": "audit3-metal-Dy-s",
+    "nameZh": "镝",
+    "aliasesZh": ["镝单质"],
     "nameEn": "Dysprosium",
     "formula": "Dy",
     "displayFormula": "Dy",
@@ -6030,6 +6760,8 @@
   },
   {
     "id": "audit3-metal-Dy2O3-s",
+    "nameZh": "氧化镝(III)",
+    "aliasesZh": ["三氧化二镝", "氧化镝"],
     "nameEn": "Dysprosium(III) oxide",
     "formula": "Dy2O3",
     "displayFormula": "Dy₂O₃",
@@ -6044,6 +6776,8 @@
   },
   {
     "id": "audit3-metal-DyF3-s",
+    "nameZh": "三氟化镝",
+    "aliasesZh": ["氟化镝(III)"],
     "nameEn": "Dysprosium(III) fluoride",
     "formula": "DyF3",
     "displayFormula": "DyF₃",
@@ -6058,6 +6792,8 @@
   },
   {
     "id": "audit3-metal-DyCl3-s",
+    "nameZh": "三氯化镝",
+    "aliasesZh": ["氯化镝(III)"],
     "nameEn": "Dysprosium(III) chloride",
     "formula": "DyCl3",
     "displayFormula": "DyCl₃",
@@ -6072,6 +6808,8 @@
   },
   {
     "id": "audit3-metal-DyBr3-s",
+    "nameZh": "三溴化镝",
+    "aliasesZh": ["溴化镝(III)"],
     "nameEn": "Dysprosium(III) bromide",
     "formula": "DyBr3",
     "displayFormula": "DyBr₃",
@@ -6086,6 +6824,8 @@
   },
   {
     "id": "audit3-metal-DyI3-s",
+    "nameZh": "三碘化镝",
+    "aliasesZh": ["碘化镝(III)"],
     "nameEn": "Dysprosium(III) iodide",
     "formula": "DyI3",
     "displayFormula": "DyI₃",
@@ -6100,6 +6840,8 @@
   },
   {
     "id": "audit3-metal-Er-s",
+    "nameZh": "铒",
+    "aliasesZh": ["铒单质"],
     "nameEn": "Erbium",
     "formula": "Er",
     "displayFormula": "Er",
@@ -6119,6 +6861,8 @@
   },
   {
     "id": "audit3-metal-Er2O3-s",
+    "nameZh": "氧化铒(III)",
+    "aliasesZh": ["三氧化二铒", "氧化铒"],
     "nameEn": "Erbium(III) oxide",
     "formula": "Er2O3",
     "displayFormula": "Er₂O₃",
@@ -6133,6 +6877,8 @@
   },
   {
     "id": "audit3-metal-ErF3-s",
+    "nameZh": "三氟化铒",
+    "aliasesZh": ["氟化铒(III)"],
     "nameEn": "Erbium(III) fluoride",
     "formula": "ErF3",
     "displayFormula": "ErF₃",
@@ -6147,6 +6893,8 @@
   },
   {
     "id": "audit3-metal-ErCl3-s",
+    "nameZh": "三氯化铒",
+    "aliasesZh": ["氯化铒(III)"],
     "nameEn": "Erbium(III) chloride",
     "formula": "ErCl3",
     "displayFormula": "ErCl₃",
@@ -6161,6 +6909,8 @@
   },
   {
     "id": "audit3-metal-ErBr3-s",
+    "nameZh": "三溴化铒",
+    "aliasesZh": ["溴化铒(III)"],
     "nameEn": "Erbium(III) bromide",
     "formula": "ErBr3",
     "displayFormula": "ErBr₃",
@@ -6175,6 +6925,8 @@
   },
   {
     "id": "audit3-metal-ErI3-s",
+    "nameZh": "三碘化铒",
+    "aliasesZh": ["碘化铒(III)"],
     "nameEn": "Erbium(III) iodide",
     "formula": "ErI3",
     "displayFormula": "ErI₃",
@@ -6189,6 +6941,8 @@
   },
   {
     "id": "audit3-metal-Eu-s",
+    "nameZh": "铕",
+    "aliasesZh": ["铕单质"],
     "nameEn": "Europium",
     "formula": "Eu",
     "displayFormula": "Eu",
@@ -6207,6 +6961,8 @@
   },
   {
     "id": "audit3-metal-Eu2O3-s",
+    "nameZh": "氧化铕(III)",
+    "aliasesZh": ["三氧化二铕", "氧化铕"],
     "nameEn": "Europium(III) oxide",
     "formula": "Eu2O3",
     "displayFormula": "Eu₂O₃",
@@ -6221,6 +6977,8 @@
   },
   {
     "id": "audit3-metal-EuF3-s",
+    "nameZh": "三氟化铕",
+    "aliasesZh": ["氟化铕(III)"],
     "nameEn": "Europium(III) fluoride",
     "formula": "EuF3",
     "displayFormula": "EuF₃",
@@ -6235,6 +6993,8 @@
   },
   {
     "id": "audit3-metal-EuCl3-s",
+    "nameZh": "三氯化铕",
+    "aliasesZh": ["氯化铕(III)"],
     "nameEn": "Europium(III) chloride",
     "formula": "EuCl3",
     "displayFormula": "EuCl₃",
@@ -6249,6 +7009,8 @@
   },
   {
     "id": "audit3-metal-EuBr3-s",
+    "nameZh": "三溴化铕",
+    "aliasesZh": ["溴化铕(III)"],
     "nameEn": "Europium(III) bromide",
     "formula": "EuBr3",
     "displayFormula": "EuBr₃",
@@ -6263,6 +7025,8 @@
   },
   {
     "id": "audit3-metal-Gd-s",
+    "nameZh": "钆",
+    "aliasesZh": ["钆单质"],
     "nameEn": "Gadolinium",
     "formula": "Gd",
     "displayFormula": "Gd",
@@ -6282,6 +7046,8 @@
   },
   {
     "id": "audit3-metal-Gd2O3-s",
+    "nameZh": "氧化钆(III)",
+    "aliasesZh": ["三氧化二钆", "氧化钆"],
     "nameEn": "Gadolinium(III) oxide",
     "formula": "Gd2O3",
     "displayFormula": "Gd₂O₃",
@@ -6296,6 +7062,8 @@
   },
   {
     "id": "audit3-metal-GdF3-s",
+    "nameZh": "三氟化钆",
+    "aliasesZh": ["氟化钆(III)"],
     "nameEn": "Gadolinium(III) fluoride",
     "formula": "GdF3",
     "displayFormula": "GdF₃",
@@ -6310,6 +7078,8 @@
   },
   {
     "id": "audit3-metal-GdCl3-s",
+    "nameZh": "三氯化钆",
+    "aliasesZh": ["氯化钆(III)"],
     "nameEn": "Gadolinium(III) chloride",
     "formula": "GdCl3",
     "displayFormula": "GdCl₃",
@@ -6324,6 +7094,8 @@
   },
   {
     "id": "audit3-metal-GdBr3-s",
+    "nameZh": "三溴化钆",
+    "aliasesZh": ["溴化钆(III)"],
     "nameEn": "Gadolinium(III) bromide",
     "formula": "GdBr3",
     "displayFormula": "GdBr₃",
@@ -6338,6 +7110,8 @@
   },
   {
     "id": "audit3-metal-GdI3-s",
+    "nameZh": "三碘化钆",
+    "aliasesZh": ["碘化钆(III)"],
     "nameEn": "Gadolinium(III) iodide",
     "formula": "GdI3",
     "displayFormula": "GdI₃",
@@ -6352,6 +7126,8 @@
   },
   {
     "id": "audit3-metal-Au-s",
+    "nameZh": "金",
+    "aliasesZh": ["金单质"],
     "nameEn": "Gold",
     "formula": "Au",
     "displayFormula": "Au",
@@ -6369,6 +7145,8 @@
   },
   {
     "id": "audit3-metal-AuCl3-s",
+    "nameZh": "三氯化金",
+    "aliasesZh": ["氯化金(III)"],
     "nameEn": "Gold(III) chloride",
     "formula": "AuCl3",
     "displayFormula": "AuCl₃",
@@ -6383,6 +7161,8 @@
   },
   {
     "id": "audit3-metal-AuBr3-s",
+    "nameZh": "三溴化金",
+    "aliasesZh": ["溴化金(III)"],
     "nameEn": "Gold(III) bromide",
     "formula": "AuBr3",
     "displayFormula": "AuBr₃",
@@ -6397,6 +7177,8 @@
   },
   {
     "id": "audit3-metal-AuI-s",
+    "nameZh": "碘化金(I)",
+    "aliasesZh": ["碘化金"],
     "nameEn": "Gold(I) iodide",
     "formula": "AuI",
     "displayFormula": "AuI",
@@ -6411,6 +7193,8 @@
   },
   {
     "id": "audit3-metal-Hf-s",
+    "nameZh": "铪",
+    "aliasesZh": ["铪单质"],
     "nameEn": "Hafnium",
     "formula": "Hf",
     "displayFormula": "Hf",
@@ -6430,6 +7214,8 @@
   },
   {
     "id": "audit3-metal-HfO2-s",
+    "nameZh": "二氧化铪",
+    "aliasesZh": ["氧化铪(IV)"],
     "nameEn": "Hafnium(IV) oxide",
     "formula": "HfO2",
     "displayFormula": "HfO₂",
@@ -6444,6 +7230,8 @@
   },
   {
     "id": "audit3-metal-HfF4-s",
+    "nameZh": "四氟化铪",
+    "aliasesZh": ["氟化铪(IV)"],
     "nameEn": "Hafnium(IV) fluoride",
     "formula": "HfF4",
     "displayFormula": "HfF₄",
@@ -6458,6 +7246,8 @@
   },
   {
     "id": "audit3-metal-HfCl4-s",
+    "nameZh": "四氯化铪",
+    "aliasesZh": ["氯化铪(IV)"],
     "nameEn": "Hafnium(IV) chloride",
     "formula": "HfCl4",
     "displayFormula": "HfCl₄",
@@ -6472,6 +7262,8 @@
   },
   {
     "id": "audit3-metal-HfBr4-s",
+    "nameZh": "四溴化铪",
+    "aliasesZh": ["溴化铪(IV)"],
     "nameEn": "Hafnium(IV) bromide",
     "formula": "HfBr4",
     "displayFormula": "HfBr₄",
@@ -6486,6 +7278,8 @@
   },
   {
     "id": "audit3-metal-HfI4-s",
+    "nameZh": "四碘化铪",
+    "aliasesZh": ["碘化铪(IV)"],
     "nameEn": "Hafnium(IV) iodide",
     "formula": "HfI4",
     "displayFormula": "HfI₄",
@@ -6500,6 +7294,8 @@
   },
   {
     "id": "audit3-metal-Ho-s",
+    "nameZh": "钬",
+    "aliasesZh": ["钬单质"],
     "nameEn": "Holmium",
     "formula": "Ho",
     "displayFormula": "Ho",
@@ -6519,6 +7315,8 @@
   },
   {
     "id": "audit3-metal-Ho2O3-s",
+    "nameZh": "氧化钬(III)",
+    "aliasesZh": ["三氧化二钬", "氧化钬"],
     "nameEn": "Holmium(III) oxide",
     "formula": "Ho2O3",
     "displayFormula": "Ho₂O₃",
@@ -6533,6 +7331,8 @@
   },
   {
     "id": "audit3-metal-HoF3-s",
+    "nameZh": "三氟化钬",
+    "aliasesZh": ["氟化钬(III)"],
     "nameEn": "Holmium(III) fluoride",
     "formula": "HoF3",
     "displayFormula": "HoF₃",
@@ -6547,6 +7347,8 @@
   },
   {
     "id": "audit3-metal-HoCl3-s",
+    "nameZh": "三氯化钬",
+    "aliasesZh": ["氯化钬(III)"],
     "nameEn": "Holmium(III) chloride",
     "formula": "HoCl3",
     "displayFormula": "HoCl₃",
@@ -6561,6 +7363,8 @@
   },
   {
     "id": "audit3-metal-HoBr3-s",
+    "nameZh": "三溴化钬",
+    "aliasesZh": ["溴化钬(III)"],
     "nameEn": "Holmium(III) bromide",
     "formula": "HoBr3",
     "displayFormula": "HoBr₃",
@@ -6575,6 +7379,8 @@
   },
   {
     "id": "audit3-metal-HoI3-s",
+    "nameZh": "三碘化钬",
+    "aliasesZh": ["碘化钬(III)"],
     "nameEn": "Holmium(III) iodide",
     "formula": "HoI3",
     "displayFormula": "HoI₃",
@@ -6589,6 +7395,8 @@
   },
   {
     "id": "audit3-metal-Ir-s",
+    "nameZh": "铱",
+    "aliasesZh": ["铱单质"],
     "nameEn": "Iridium",
     "formula": "Ir",
     "displayFormula": "Ir",
@@ -6609,6 +7417,8 @@
   },
   {
     "id": "audit3-metal-IrO2-s",
+    "nameZh": "二氧化铱",
+    "aliasesZh": ["氧化铱(IV)"],
     "nameEn": "Iridium(IV) oxide",
     "formula": "IrO2",
     "displayFormula": "IrO₂",
@@ -6623,6 +7433,8 @@
   },
   {
     "id": "audit3-metal-IrF6-s",
+    "nameZh": "六氟化铱",
+    "aliasesZh": ["氟化铱(VI)"],
     "nameEn": "Iridium(VI) fluoride",
     "formula": "IrF6",
     "displayFormula": "IrF₆",
@@ -6637,6 +7449,8 @@
   },
   {
     "id": "audit3-metal-IrF3-s",
+    "nameZh": "三氟化铱",
+    "aliasesZh": ["氟化铱(III)"],
     "nameEn": "Iridium(III) fluoride",
     "formula": "IrF3",
     "displayFormula": "IrF₃",
@@ -6651,6 +7465,8 @@
   },
   {
     "id": "audit3-metal-IrCl3-s",
+    "nameZh": "三氯化铱",
+    "aliasesZh": ["氯化铱(III)"],
     "nameEn": "Iridium(III) chloride",
     "formula": "IrCl3",
     "displayFormula": "IrCl₃",
@@ -6665,6 +7481,8 @@
   },
   {
     "id": "audit3-metal-IrBr3-s",
+    "nameZh": "三溴化铱",
+    "aliasesZh": ["溴化铱(III)"],
     "nameEn": "Iridium(III) bromide",
     "formula": "IrBr3",
     "displayFormula": "IrBr₃",
@@ -6679,6 +7497,8 @@
   },
   {
     "id": "audit3-metal-IrI3-s",
+    "nameZh": "三碘化铱",
+    "aliasesZh": ["碘化铱(III)"],
     "nameEn": "Iridium(III) iodide",
     "formula": "IrI3",
     "displayFormula": "IrI₃",
@@ -6693,6 +7513,8 @@
   },
   {
     "id": "audit3-metal-La-s",
+    "nameZh": "镧",
+    "aliasesZh": ["镧单质"],
     "nameEn": "Lanthanum",
     "formula": "La",
     "displayFormula": "La",
@@ -6712,6 +7534,8 @@
   },
   {
     "id": "audit3-metal-La2O3-s",
+    "nameZh": "氧化镧(III)",
+    "aliasesZh": ["三氧化二镧", "氧化镧"],
     "nameEn": "Lanthanum(III) oxide",
     "formula": "La2O3",
     "displayFormula": "La₂O₃",
@@ -6726,6 +7550,8 @@
   },
   {
     "id": "audit3-metal-LaF3-s",
+    "nameZh": "三氟化镧",
+    "aliasesZh": ["氟化镧(III)"],
     "nameEn": "Lanthanum(III) fluoride",
     "formula": "LaF3",
     "displayFormula": "LaF₃",
@@ -6740,6 +7566,8 @@
   },
   {
     "id": "audit3-metal-LaCl3-s",
+    "nameZh": "三氯化镧",
+    "aliasesZh": ["氯化镧(III)"],
     "nameEn": "Lanthanum(III) chloride",
     "formula": "LaCl3",
     "displayFormula": "LaCl₃",
@@ -6754,6 +7582,8 @@
   },
   {
     "id": "audit3-metal-LaBr3-s",
+    "nameZh": "三溴化镧",
+    "aliasesZh": ["溴化镧(III)"],
     "nameEn": "Lanthanum(III) bromide",
     "formula": "LaBr3",
     "displayFormula": "LaBr₃",
@@ -6768,6 +7598,8 @@
   },
   {
     "id": "audit3-metal-LaI3-s",
+    "nameZh": "三碘化镧",
+    "aliasesZh": ["碘化镧(III)"],
     "nameEn": "Lanthanum(III) iodide",
     "formula": "LaI3",
     "displayFormula": "LaI₃",
@@ -6782,6 +7614,8 @@
   },
   {
     "id": "audit3-metal-Lu-s",
+    "nameZh": "镥",
+    "aliasesZh": ["镥单质"],
     "nameEn": "Lutetium",
     "formula": "Lu",
     "displayFormula": "Lu",
@@ -6801,6 +7635,8 @@
   },
   {
     "id": "audit3-metal-Lu2O3-s",
+    "nameZh": "氧化镥(III)",
+    "aliasesZh": ["三氧化二镥", "氧化镥"],
     "nameEn": "Lutetium(III) oxide",
     "formula": "Lu2O3",
     "displayFormula": "Lu₂O₃",
@@ -6815,6 +7651,8 @@
   },
   {
     "id": "audit3-metal-LuF3-s",
+    "nameZh": "三氟化镥",
+    "aliasesZh": ["氟化镥(III)"],
     "nameEn": "Lutetium(III) fluoride",
     "formula": "LuF3",
     "displayFormula": "LuF₃",
@@ -6829,6 +7667,8 @@
   },
   {
     "id": "audit3-metal-LuCl3-s",
+    "nameZh": "三氯化镥",
+    "aliasesZh": ["氯化镥(III)"],
     "nameEn": "Lutetium(III) chloride",
     "formula": "LuCl3",
     "displayFormula": "LuCl₃",
@@ -6843,6 +7683,8 @@
   },
   {
     "id": "audit3-metal-LuBr3-s",
+    "nameZh": "三溴化镥",
+    "aliasesZh": ["溴化镥(III)"],
     "nameEn": "Lutetium(III) bromide",
     "formula": "LuBr3",
     "displayFormula": "LuBr₃",
@@ -6857,6 +7699,8 @@
   },
   {
     "id": "audit3-metal-LuI3-s",
+    "nameZh": "三碘化镥",
+    "aliasesZh": ["碘化镥(III)"],
     "nameEn": "Lutetium(III) iodide",
     "formula": "LuI3",
     "displayFormula": "LuI₃",
@@ -6871,6 +7715,8 @@
   },
   {
     "id": "audit3-metal-Hg-l",
+    "nameZh": "汞",
+    "aliasesZh": ["水银", "液态汞"],
     "nameEn": "Mercury",
     "formula": "Hg",
     "displayFormula": "Hg",
@@ -6889,6 +7735,8 @@
   },
   {
     "id": "audit3-metal-HgF2-s",
+    "nameZh": "氟化汞(II)",
+    "aliasesZh": ["氟化汞"],
     "nameEn": "Mercury(II) fluoride",
     "formula": "HgF2",
     "displayFormula": "HgF₂",
@@ -6903,6 +7751,8 @@
   },
   {
     "id": "audit3-metal-HgCl2-s",
+    "nameZh": "氯化汞(II)",
+    "aliasesZh": ["氯化汞"],
     "nameEn": "Mercury(II) chloride",
     "formula": "HgCl2",
     "displayFormula": "HgCl₂",
@@ -6917,6 +7767,8 @@
   },
   {
     "id": "audit3-metal-HgBr2-s",
+    "nameZh": "溴化汞(II)",
+    "aliasesZh": ["溴化汞"],
     "nameEn": "Mercury(II) bromide",
     "formula": "HgBr2",
     "displayFormula": "HgBr₂",
@@ -6931,6 +7783,8 @@
   },
   {
     "id": "audit3-metal-HgI2-s",
+    "nameZh": "碘化汞(II)",
+    "aliasesZh": ["碘化汞"],
     "nameEn": "Mercury(II) iodide",
     "formula": "HgI2",
     "displayFormula": "HgI₂",
@@ -6945,6 +7799,8 @@
   },
   {
     "id": "audit3-metal-Mo-s",
+    "nameZh": "钼",
+    "aliasesZh": ["钼单质"],
     "nameEn": "Molybdenum",
     "formula": "Mo",
     "displayFormula": "Mo",
@@ -6962,6 +7818,8 @@
   },
   {
     "id": "audit3-metal-MoO3-s",
+    "nameZh": "三氧化钼",
+    "aliasesZh": ["氧化钼(VI)"],
     "nameEn": "Molybdenum(VI) oxide",
     "formula": "MoO3",
     "displayFormula": "MoO₃",
@@ -6976,6 +7834,8 @@
   },
   {
     "id": "audit3-metal-MoF6-l",
+    "nameZh": "六氟化钼",
+    "aliasesZh": ["氟化钼(VI)"],
     "nameEn": "Molybdenum(VI) fluoride",
     "formula": "MoF6",
     "displayFormula": "MoF₆",
@@ -6990,6 +7850,8 @@
   },
   {
     "id": "audit3-metal-MoCl5-s",
+    "nameZh": "五氯化钼",
+    "aliasesZh": ["氯化钼(V)"],
     "nameEn": "Molybdenum(V) chloride",
     "formula": "MoCl5",
     "displayFormula": "MoCl₅",
@@ -7004,6 +7866,8 @@
   },
   {
     "id": "audit3-metal-Nd-s",
+    "nameZh": "钕",
+    "aliasesZh": ["钕单质"],
     "nameEn": "Neodymium",
     "formula": "Nd",
     "displayFormula": "Nd",
@@ -7023,6 +7887,8 @@
   },
   {
     "id": "audit3-metal-Nd2O3-s",
+    "nameZh": "氧化钕(III)",
+    "aliasesZh": ["三氧化二钕", "氧化钕"],
     "nameEn": "Neodymium(III) oxide",
     "formula": "Nd2O3",
     "displayFormula": "Nd₂O₃",
@@ -7037,6 +7903,8 @@
   },
   {
     "id": "audit3-metal-NdF3-s",
+    "nameZh": "三氟化钕",
+    "aliasesZh": ["氟化钕(III)"],
     "nameEn": "Neodymium(III) fluoride",
     "formula": "NdF3",
     "displayFormula": "NdF₃",
@@ -7051,6 +7919,8 @@
   },
   {
     "id": "audit3-metal-NdCl3-s",
+    "nameZh": "三氯化钕",
+    "aliasesZh": ["氯化钕(III)"],
     "nameEn": "Neodymium(III) chloride",
     "formula": "NdCl3",
     "displayFormula": "NdCl₃",
@@ -7065,6 +7935,8 @@
   },
   {
     "id": "audit3-metal-NdBr3-s",
+    "nameZh": "三溴化钕",
+    "aliasesZh": ["溴化钕(III)"],
     "nameEn": "Neodymium(III) bromide",
     "formula": "NdBr3",
     "displayFormula": "NdBr₃",
@@ -7079,6 +7951,8 @@
   },
   {
     "id": "audit3-metal-NdI3-s",
+    "nameZh": "三碘化钕",
+    "aliasesZh": ["碘化钕(III)"],
     "nameEn": "Neodymium(III) iodide",
     "formula": "NdI3",
     "displayFormula": "NdI₃",
@@ -7093,6 +7967,8 @@
   },
   {
     "id": "audit3-metal-Nb-s",
+    "nameZh": "铌",
+    "aliasesZh": ["铌单质"],
     "nameEn": "Niobium",
     "formula": "Nb",
     "displayFormula": "Nb",
@@ -7111,6 +7987,8 @@
   },
   {
     "id": "audit3-metal-NbF5-s",
+    "nameZh": "五氟化铌",
+    "aliasesZh": ["氟化铌(V)"],
     "nameEn": "Niobium(V) fluoride",
     "formula": "NbF5",
     "displayFormula": "NbF₅",
@@ -7125,6 +8003,8 @@
   },
   {
     "id": "audit3-metal-NbCl5-s",
+    "nameZh": "五氯化铌",
+    "aliasesZh": ["氯化铌(V)"],
     "nameEn": "Niobium(V) chloride",
     "formula": "NbCl5",
     "displayFormula": "NbCl₅",
@@ -7139,6 +8019,8 @@
   },
   {
     "id": "audit3-metal-NbBr5-s",
+    "nameZh": "五溴化铌",
+    "aliasesZh": ["溴化铌(V)"],
     "nameEn": "Niobium(V) bromide",
     "formula": "NbBr5",
     "displayFormula": "NbBr₅",
@@ -7153,6 +8035,8 @@
   },
   {
     "id": "audit3-metal-NbI5-s",
+    "nameZh": "五碘化铌",
+    "aliasesZh": ["碘化铌(V)"],
     "nameEn": "Niobium(V) iodide",
     "formula": "NbI5",
     "displayFormula": "NbI₅",
@@ -7167,6 +8051,8 @@
   },
   {
     "id": "audit3-metal-Os-s",
+    "nameZh": "锇",
+    "aliasesZh": ["锇单质"],
     "nameEn": "Osmium",
     "formula": "Os",
     "displayFormula": "Os",
@@ -7185,6 +8071,8 @@
   },
   {
     "id": "audit3-metal-OsO4-s",
+    "nameZh": "四氧化锇",
+    "aliasesZh": ["氧化锇(VIII)"],
     "nameEn": "Osmium(VIII) oxide",
     "formula": "OsO4",
     "displayFormula": "OsO₄",
@@ -7199,6 +8087,8 @@
   },
   {
     "id": "audit3-metal-OsF6-s",
+    "nameZh": "六氟化锇",
+    "aliasesZh": ["氟化锇(VI)"],
     "nameEn": "Osmium(VI) fluoride",
     "formula": "OsF6",
     "displayFormula": "OsF₆",
@@ -7213,6 +8103,8 @@
   },
   {
     "id": "audit3-metal-OsCl4-s",
+    "nameZh": "四氯化锇",
+    "aliasesZh": ["氯化锇(IV)"],
     "nameEn": "Osmium(IV) chloride",
     "formula": "OsCl4",
     "displayFormula": "OsCl₄",
@@ -7227,6 +8119,8 @@
   },
   {
     "id": "audit3-metal-OsBr4-s",
+    "nameZh": "四溴化锇",
+    "aliasesZh": ["溴化锇(IV)"],
     "nameEn": "Osmium(IV) bromide",
     "formula": "OsBr4",
     "displayFormula": "OsBr₄",
@@ -7241,6 +8135,8 @@
   },
   {
     "id": "audit3-metal-Pd-s",
+    "nameZh": "钯",
+    "aliasesZh": ["钯单质"],
     "nameEn": "Palladium",
     "formula": "Pd",
     "displayFormula": "Pd",
@@ -7257,6 +8153,8 @@
   },
   {
     "id": "audit3-metal-PdO-s",
+    "nameZh": "氧化钯(II)",
+    "aliasesZh": ["氧化钯"],
     "nameEn": "Palladium(II) oxide",
     "formula": "PdO",
     "displayFormula": "PdO",
@@ -7271,6 +8169,8 @@
   },
   {
     "id": "audit3-metal-PdCl2-s",
+    "nameZh": "氯化钯(II)",
+    "aliasesZh": ["氯化钯"],
     "nameEn": "Palladium(II) chloride",
     "formula": "PdCl2",
     "displayFormula": "PdCl₂",
@@ -7285,6 +8185,8 @@
   },
   {
     "id": "audit3-metal-Pt-s",
+    "nameZh": "铂",
+    "aliasesZh": ["铂单质"],
     "nameEn": "Platinum",
     "formula": "Pt",
     "displayFormula": "Pt",
@@ -7304,6 +8206,8 @@
   },
   {
     "id": "audit3-metal-PtF6-s",
+    "nameZh": "六氟化铂",
+    "aliasesZh": ["氟化铂(VI)"],
     "nameEn": "Platinum(VI) fluoride",
     "formula": "PtF6",
     "displayFormula": "PtF₆",
@@ -7318,6 +8222,8 @@
   },
   {
     "id": "audit3-metal-PtCl4-s",
+    "nameZh": "四氯化铂",
+    "aliasesZh": ["氯化铂(IV)"],
     "nameEn": "Platinum(IV) chloride",
     "formula": "PtCl4",
     "displayFormula": "PtCl₄",
@@ -7332,6 +8238,8 @@
   },
   {
     "id": "audit3-metal-PtBr4-s",
+    "nameZh": "四溴化铂",
+    "aliasesZh": ["溴化铂(IV)"],
     "nameEn": "Platinum(IV) bromide",
     "formula": "PtBr4",
     "displayFormula": "PtBr₄",
@@ -7346,6 +8254,8 @@
   },
   {
     "id": "audit3-metal-PtI4-s",
+    "nameZh": "四碘化铂",
+    "aliasesZh": ["碘化铂(IV)"],
     "nameEn": "Platinum(IV) iodide",
     "formula": "PtI4",
     "displayFormula": "PtI₄",
@@ -7360,6 +8270,8 @@
   },
   {
     "id": "audit3-metal-PtCl2-s",
+    "nameZh": "氯化铂(II)",
+    "aliasesZh": ["氯化铂"],
     "nameEn": "Platinum(II) chloride",
     "formula": "PtCl2",
     "displayFormula": "PtCl₂",
@@ -7374,6 +8286,8 @@
   },
   {
     "id": "audit3-metal-Pr-s",
+    "nameZh": "镨",
+    "aliasesZh": ["镨单质"],
     "nameEn": "Praseodymium",
     "formula": "Pr",
     "displayFormula": "Pr",
@@ -7393,6 +8307,8 @@
   },
   {
     "id": "audit3-metal-Pr6O11-s",
+    "nameZh": "十一氧化六镨",
+    "aliasesZh": ["氧化镨(III,IV)", "氧化镨"],
     "nameEn": "Praseodymium(III,IV) oxide",
     "formula": "Pr6O11",
     "displayFormula": "Pr₆O₁₁",
@@ -7407,6 +8323,8 @@
   },
   {
     "id": "audit3-metal-PrF3-s",
+    "nameZh": "三氟化镨",
+    "aliasesZh": ["氟化镨(III)"],
     "nameEn": "Praseodymium(III) fluoride",
     "formula": "PrF3",
     "displayFormula": "PrF₃",
@@ -7421,6 +8339,8 @@
   },
   {
     "id": "audit3-metal-PrCl3-s",
+    "nameZh": "三氯化镨",
+    "aliasesZh": ["氯化镨(III)"],
     "nameEn": "Praseodymium(III) chloride",
     "formula": "PrCl3",
     "displayFormula": "PrCl₃",
@@ -7435,6 +8355,8 @@
   },
   {
     "id": "audit3-metal-PrBr3-s",
+    "nameZh": "三溴化镨",
+    "aliasesZh": ["溴化镨(III)"],
     "nameEn": "Praseodymium(III) bromide",
     "formula": "PrBr3",
     "displayFormula": "PrBr₃",
@@ -7449,6 +8371,8 @@
   },
   {
     "id": "audit3-metal-PrI3-s",
+    "nameZh": "三碘化镨",
+    "aliasesZh": ["碘化镨(III)"],
     "nameEn": "Praseodymium(III) iodide",
     "formula": "PrI3",
     "displayFormula": "PrI₃",
@@ -7463,6 +8387,8 @@
   },
   {
     "id": "audit3-metal-Re-s",
+    "nameZh": "铼",
+    "aliasesZh": ["铼单质"],
     "nameEn": "Rhenium",
     "formula": "Re",
     "displayFormula": "Re",
@@ -7479,6 +8405,8 @@
   },
   {
     "id": "audit3-metal-Re2O7-s",
+    "nameZh": "七氧化二铼",
+    "aliasesZh": ["氧化铼(VII)"],
     "nameEn": "Rhenium(VII) oxide",
     "formula": "Re2O7",
     "displayFormula": "Re₂O₇",
@@ -7493,6 +8421,8 @@
   },
   {
     "id": "audit3-metal-ReF7-s",
+    "nameZh": "七氟化铼",
+    "aliasesZh": ["氟化铼(VII)"],
     "nameEn": "Rhenium(VII) fluoride",
     "formula": "ReF7",
     "displayFormula": "ReF₇",
@@ -7507,6 +8437,8 @@
   },
   {
     "id": "audit3-metal-Rh-s",
+    "nameZh": "铑",
+    "aliasesZh": ["铑单质"],
     "nameEn": "Rhodium",
     "formula": "Rh",
     "displayFormula": "Rh",
@@ -7526,6 +8458,8 @@
   },
   {
     "id": "audit3-metal-Rh2O3-s",
+    "nameZh": "氧化铑(III)",
+    "aliasesZh": ["三氧化二铑", "氧化铑"],
     "nameEn": "Rhodium(III) oxide",
     "formula": "Rh2O3",
     "displayFormula": "Rh₂O₃",
@@ -7540,6 +8474,8 @@
   },
   {
     "id": "audit3-metal-RhF6-s",
+    "nameZh": "六氟化铑",
+    "aliasesZh": ["氟化铑(VI)"],
     "nameEn": "Rhodium(VI) fluoride",
     "formula": "RhF6",
     "displayFormula": "RhF₆",
@@ -7554,6 +8490,8 @@
   },
   {
     "id": "audit3-metal-RhF3-s",
+    "nameZh": "三氟化铑",
+    "aliasesZh": ["氟化铑(III)"],
     "nameEn": "Rhodium(III) fluoride",
     "formula": "RhF3",
     "displayFormula": "RhF₃",
@@ -7568,6 +8506,8 @@
   },
   {
     "id": "audit3-metal-RhCl3-s",
+    "nameZh": "三氯化铑",
+    "aliasesZh": ["氯化铑(III)"],
     "nameEn": "Rhodium(III) chloride",
     "formula": "RhCl3",
     "displayFormula": "RhCl₃",
@@ -7582,6 +8522,8 @@
   },
   {
     "id": "audit3-metal-RhBr3-s",
+    "nameZh": "三溴化铑",
+    "aliasesZh": ["溴化铑(III)"],
     "nameEn": "Rhodium(III) bromide",
     "formula": "RhBr3",
     "displayFormula": "RhBr₃",
@@ -7596,6 +8538,8 @@
   },
   {
     "id": "audit3-metal-Ru-s",
+    "nameZh": "钌",
+    "aliasesZh": ["钌单质"],
     "nameEn": "Ruthenium",
     "formula": "Ru",
     "displayFormula": "Ru",
@@ -7612,6 +8556,8 @@
   },
   {
     "id": "audit3-metal-RuO2-s",
+    "nameZh": "二氧化钌",
+    "aliasesZh": ["氧化钌(IV)"],
     "nameEn": "Ruthenium(IV) oxide",
     "formula": "RuO2",
     "displayFormula": "RuO₂",
@@ -7626,6 +8572,8 @@
   },
   {
     "id": "audit3-metal-RuF6-s",
+    "nameZh": "六氟化钌",
+    "aliasesZh": ["氟化钌(VI)"],
     "nameEn": "Ruthenium(VI) fluoride",
     "formula": "RuF6",
     "displayFormula": "RuF₆",
@@ -7640,6 +8588,8 @@
   },
   {
     "id": "audit3-metal-Sm-s",
+    "nameZh": "钐",
+    "aliasesZh": ["钐单质"],
     "nameEn": "Samarium",
     "formula": "Sm",
     "displayFormula": "Sm",
@@ -7659,6 +8609,8 @@
   },
   {
     "id": "audit3-metal-Sm2O3-s",
+    "nameZh": "氧化钐(III)",
+    "aliasesZh": ["三氧化二钐", "氧化钐"],
     "nameEn": "Samarium(III) oxide",
     "formula": "Sm2O3",
     "displayFormula": "Sm₂O₃",
@@ -7673,6 +8625,8 @@
   },
   {
     "id": "audit3-metal-SmF3-s",
+    "nameZh": "三氟化钐",
+    "aliasesZh": ["氟化钐(III)"],
     "nameEn": "Samarium(III) fluoride",
     "formula": "SmF3",
     "displayFormula": "SmF₃",
@@ -7687,6 +8641,8 @@
   },
   {
     "id": "audit3-metal-SmCl3-s",
+    "nameZh": "三氯化钐",
+    "aliasesZh": ["氯化钐(III)"],
     "nameEn": "Samarium(III) chloride",
     "formula": "SmCl3",
     "displayFormula": "SmCl₃",
@@ -7701,6 +8657,8 @@
   },
   {
     "id": "audit3-metal-SmBr3-s",
+    "nameZh": "三溴化钐",
+    "aliasesZh": ["溴化钐(III)"],
     "nameEn": "Samarium(III) bromide",
     "formula": "SmBr3",
     "displayFormula": "SmBr₃",
@@ -7715,6 +8673,8 @@
   },
   {
     "id": "audit3-metal-SmI3-s",
+    "nameZh": "三碘化钐",
+    "aliasesZh": ["碘化钐(III)"],
     "nameEn": "Samarium(III) iodide",
     "formula": "SmI3",
     "displayFormula": "SmI₃",
@@ -7729,6 +8689,8 @@
   },
   {
     "id": "audit3-metal-Ta-s",
+    "nameZh": "钽",
+    "aliasesZh": ["钽单质"],
     "nameEn": "Tantalum",
     "formula": "Ta",
     "displayFormula": "Ta",
@@ -7747,6 +8709,8 @@
   },
   {
     "id": "audit3-metal-TaF5-s",
+    "nameZh": "五氟化钽",
+    "aliasesZh": ["氟化钽(V)"],
     "nameEn": "Tantalum(V) fluoride",
     "formula": "TaF5",
     "displayFormula": "TaF₅",
@@ -7761,6 +8725,8 @@
   },
   {
     "id": "audit3-metal-TaCl5-s",
+    "nameZh": "五氯化钽",
+    "aliasesZh": ["氯化钽(V)"],
     "nameEn": "Tantalum(V) chloride",
     "formula": "TaCl5",
     "displayFormula": "TaCl₅",
@@ -7775,6 +8741,8 @@
   },
   {
     "id": "audit3-metal-TaBr5-s",
+    "nameZh": "五溴化钽",
+    "aliasesZh": ["溴化钽(V)"],
     "nameEn": "Tantalum(V) bromide",
     "formula": "TaBr5",
     "displayFormula": "TaBr₅",
@@ -7789,6 +8757,8 @@
   },
   {
     "id": "audit3-metal-TaI5-s",
+    "nameZh": "五碘化钽",
+    "aliasesZh": ["碘化钽(V)"],
     "nameEn": "Tantalum(V) iodide",
     "formula": "TaI5",
     "displayFormula": "TaI₅",
@@ -7803,6 +8773,8 @@
   },
   {
     "id": "audit3-metal-Tc-s",
+    "nameZh": "锝",
+    "aliasesZh": ["锝单质"],
     "nameEn": "Technetium",
     "formula": "Tc",
     "displayFormula": "Tc",
@@ -7819,6 +8791,8 @@
   },
   {
     "id": "audit3-metal-Tc2O7-s",
+    "nameZh": "七氧化二锝",
+    "aliasesZh": ["氧化锝(VII)"],
     "nameEn": "Technetium(VII) oxide",
     "formula": "Tc2O7",
     "displayFormula": "Tc₂O₇",
@@ -7833,6 +8807,8 @@
   },
   {
     "id": "audit3-metal-TcF6-s",
+    "nameZh": "六氟化锝",
+    "aliasesZh": ["氟化锝(VI)"],
     "nameEn": "Technetium(VI) fluoride",
     "formula": "TcF6",
     "displayFormula": "TcF₆",
@@ -7847,6 +8823,8 @@
   },
   {
     "id": "audit3-metal-Te-s",
+    "nameZh": "碲",
+    "aliasesZh": ["碲单质"],
     "nameEn": "Tellurium",
     "formula": "Te",
     "displayFormula": "Te",
@@ -7860,6 +8838,8 @@
   },
   {
     "id": "audit3-metal-TeO2-s",
+    "nameZh": "二氧化碲",
+    "aliasesZh": ["氧化碲(IV)"],
     "nameEn": "Tellurium(IV) oxide",
     "formula": "TeO2",
     "displayFormula": "TeO₂",
@@ -7874,6 +8854,8 @@
   },
   {
     "id": "audit3-metal-Tb-s",
+    "nameZh": "铽",
+    "aliasesZh": ["铽单质"],
     "nameEn": "Terbium",
     "formula": "Tb",
     "displayFormula": "Tb",
@@ -7893,6 +8875,8 @@
   },
   {
     "id": "audit3-metal-Tb4O7-s",
+    "nameZh": "七氧化四铽",
+    "aliasesZh": ["氧化铽(III,IV)", "氧化铽"],
     "nameEn": "Terbium(III,IV) oxide",
     "formula": "Tb4O7",
     "displayFormula": "Tb₄O₇",
@@ -7907,6 +8891,8 @@
   },
   {
     "id": "audit3-metal-TbF3-s",
+    "nameZh": "三氟化铽",
+    "aliasesZh": ["氟化铽(III)"],
     "nameEn": "Terbium(III) fluoride",
     "formula": "TbF3",
     "displayFormula": "TbF₃",
@@ -7921,6 +8907,8 @@
   },
   {
     "id": "audit3-metal-TbCl3-s",
+    "nameZh": "三氯化铽",
+    "aliasesZh": ["氯化铽(III)"],
     "nameEn": "Terbium(III) chloride",
     "formula": "TbCl3",
     "displayFormula": "TbCl₃",
@@ -7935,6 +8923,8 @@
   },
   {
     "id": "audit3-metal-TbBr3-s",
+    "nameZh": "三溴化铽",
+    "aliasesZh": ["溴化铽(III)"],
     "nameEn": "Terbium(III) bromide",
     "formula": "TbBr3",
     "displayFormula": "TbBr₃",
@@ -7949,6 +8939,8 @@
   },
   {
     "id": "audit3-metal-TbI3-s",
+    "nameZh": "三碘化铽",
+    "aliasesZh": ["碘化铽(III)"],
     "nameEn": "Terbium(III) iodide",
     "formula": "TbI3",
     "displayFormula": "TbI₃",
@@ -7963,6 +8955,8 @@
   },
   {
     "id": "audit3-metal-Tl-s",
+    "nameZh": "铊",
+    "aliasesZh": ["铊单质"],
     "nameEn": "Thallium",
     "formula": "Tl",
     "displayFormula": "Tl",
@@ -7979,6 +8973,8 @@
   },
   {
     "id": "audit3-metal-Tl2O-s",
+    "nameZh": "氧化铊(I)",
+    "aliasesZh": ["氧化亚铊", "氧化铊"],
     "nameEn": "Thallium(I) oxide",
     "formula": "Tl2O",
     "displayFormula": "Tl₂O",
@@ -7993,6 +8989,8 @@
   },
   {
     "id": "audit3-metal-TlF3-s",
+    "nameZh": "三氟化铊",
+    "aliasesZh": ["氟化铊(III)"],
     "nameEn": "Thallium(III) fluoride",
     "formula": "TlF3",
     "displayFormula": "TlF₃",
@@ -8007,6 +9005,8 @@
   },
   {
     "id": "audit3-metal-Tm-s",
+    "nameZh": "铥",
+    "aliasesZh": ["铥单质"],
     "nameEn": "Thulium",
     "formula": "Tm",
     "displayFormula": "Tm",
@@ -8026,6 +9026,8 @@
   },
   {
     "id": "audit3-metal-Tm2O3-s",
+    "nameZh": "氧化铥(III)",
+    "aliasesZh": ["三氧化二铥", "氧化铥"],
     "nameEn": "Thulium(III) oxide",
     "formula": "Tm2O3",
     "displayFormula": "Tm₂O₃",
@@ -8040,6 +9042,8 @@
   },
   {
     "id": "audit3-metal-TmF3-s",
+    "nameZh": "三氟化铥",
+    "aliasesZh": ["氟化铥(III)"],
     "nameEn": "Thulium(III) fluoride",
     "formula": "TmF3",
     "displayFormula": "TmF₃",
@@ -8054,6 +9058,8 @@
   },
   {
     "id": "audit3-metal-TmCl3-s",
+    "nameZh": "三氯化铥",
+    "aliasesZh": ["氯化铥(III)"],
     "nameEn": "Thulium(III) chloride",
     "formula": "TmCl3",
     "displayFormula": "TmCl₃",
@@ -8068,6 +9074,8 @@
   },
   {
     "id": "audit3-metal-TmBr3-s",
+    "nameZh": "三溴化铥",
+    "aliasesZh": ["溴化铥(III)"],
     "nameEn": "Thulium(III) bromide",
     "formula": "TmBr3",
     "displayFormula": "TmBr₃",
@@ -8082,6 +9090,8 @@
   },
   {
     "id": "audit3-metal-TmI3-s",
+    "nameZh": "三碘化铥",
+    "aliasesZh": ["碘化铥(III)"],
     "nameEn": "Thulium(III) iodide",
     "formula": "TmI3",
     "displayFormula": "TmI₃",
@@ -8096,6 +9106,8 @@
   },
   {
     "id": "audit3-metal-W-s",
+    "nameZh": "钨",
+    "aliasesZh": ["钨单质"],
     "nameEn": "Tungsten",
     "formula": "W",
     "displayFormula": "W",
@@ -8114,6 +9126,8 @@
   },
   {
     "id": "audit3-metal-WO3-s",
+    "nameZh": "三氧化钨",
+    "aliasesZh": ["氧化钨(VI)"],
     "nameEn": "Tungsten(VI) oxide",
     "formula": "WO3",
     "displayFormula": "WO₃",
@@ -8128,6 +9142,8 @@
   },
   {
     "id": "audit3-metal-WF6-g",
+    "nameZh": "六氟化钨",
+    "aliasesZh": ["氟化钨(VI)"],
     "nameEn": "Tungsten(VI) fluoride",
     "formula": "WF6",
     "displayFormula": "WF₆",
@@ -8142,6 +9158,8 @@
   },
   {
     "id": "audit3-metal-WCl6-s",
+    "nameZh": "六氯化钨",
+    "aliasesZh": ["氯化钨(VI)"],
     "nameEn": "Tungsten(VI) chloride",
     "formula": "WCl6",
     "displayFormula": "WCl₆",
@@ -8156,6 +9174,8 @@
   },
   {
     "id": "audit3-metal-WCl5-s",
+    "nameZh": "五氯化钨",
+    "aliasesZh": ["氯化钨(V)"],
     "nameEn": "Tungsten(V) chloride",
     "formula": "WCl5",
     "displayFormula": "WCl₅",
@@ -8170,6 +9190,8 @@
   },
   {
     "id": "audit3-metal-Yb-s",
+    "nameZh": "镱",
+    "aliasesZh": ["镱单质"],
     "nameEn": "Ytterbium",
     "formula": "Yb",
     "displayFormula": "Yb",
@@ -8189,6 +9211,8 @@
   },
   {
     "id": "audit3-metal-Yb2O3-s",
+    "nameZh": "氧化镱(III)",
+    "aliasesZh": ["三氧化二镱", "氧化镱"],
     "nameEn": "Ytterbium(III) oxide",
     "formula": "Yb2O3",
     "displayFormula": "Yb₂O₃",
@@ -8203,6 +9227,8 @@
   },
   {
     "id": "audit3-metal-YbF3-s",
+    "nameZh": "三氟化镱",
+    "aliasesZh": ["氟化镱(III)"],
     "nameEn": "Ytterbium(III) fluoride",
     "formula": "YbF3",
     "displayFormula": "YbF₃",
@@ -8217,6 +9243,8 @@
   },
   {
     "id": "audit3-metal-YbCl3-s",
+    "nameZh": "三氯化镱",
+    "aliasesZh": ["氯化镱(III)"],
     "nameEn": "Ytterbium(III) chloride",
     "formula": "YbCl3",
     "displayFormula": "YbCl₃",
@@ -8231,6 +9259,8 @@
   },
   {
     "id": "audit3-metal-YbBr3-s",
+    "nameZh": "三溴化镱",
+    "aliasesZh": ["溴化镱(III)"],
     "nameEn": "Ytterbium(III) bromide",
     "formula": "YbBr3",
     "displayFormula": "YbBr₃",
@@ -8245,6 +9275,8 @@
   },
   {
     "id": "audit3-metal-YbI3-s",
+    "nameZh": "三碘化镱",
+    "aliasesZh": ["碘化镱(III)"],
     "nameEn": "Ytterbium(III) iodide",
     "formula": "YbI3",
     "displayFormula": "YbI₃",
@@ -8259,6 +9291,8 @@
   },
   {
     "id": "audit3-metal-Y-s",
+    "nameZh": "钇",
+    "aliasesZh": ["钇单质"],
     "nameEn": "Yttrium",
     "formula": "Y",
     "displayFormula": "Y",
@@ -8278,6 +9312,8 @@
   },
   {
     "id": "audit3-metal-Y2O3-s",
+    "nameZh": "氧化钇(III)",
+    "aliasesZh": ["三氧化二钇", "氧化钇"],
     "nameEn": "Yttrium(III) oxide",
     "formula": "Y2O3",
     "displayFormula": "Y₂O₃",
@@ -8292,6 +9328,8 @@
   },
   {
     "id": "audit3-metal-YF3-s",
+    "nameZh": "三氟化钇",
+    "aliasesZh": ["氟化钇(III)"],
     "nameEn": "Yttrium(III) fluoride",
     "formula": "YF3",
     "displayFormula": "YF₃",
@@ -8306,6 +9344,8 @@
   },
   {
     "id": "audit3-metal-YCl3-s",
+    "nameZh": "三氯化钇",
+    "aliasesZh": ["氯化钇(III)"],
     "nameEn": "Yttrium(III) chloride",
     "formula": "YCl3",
     "displayFormula": "YCl₃",
@@ -8320,6 +9360,8 @@
   },
   {
     "id": "audit3-metal-YBr3-s",
+    "nameZh": "三溴化钇",
+    "aliasesZh": ["溴化钇(III)"],
     "nameEn": "Yttrium(III) bromide",
     "formula": "YBr3",
     "displayFormula": "YBr₃",
@@ -8334,6 +9376,8 @@
   },
   {
     "id": "audit3-metal-YI3-s",
+    "nameZh": "三碘化钇",
+    "aliasesZh": ["碘化钇(III)"],
     "nameEn": "Yttrium(III) iodide",
     "formula": "YI3",
     "displayFormula": "YI₃",
@@ -8348,6 +9392,8 @@
   },
   {
     "id": "audit3-metal-Zr-s",
+    "nameZh": "锆",
+    "aliasesZh": ["锆单质"],
     "nameEn": "Zirconium",
     "formula": "Zr",
     "displayFormula": "Zr",
@@ -8367,6 +9413,8 @@
   },
   {
     "id": "audit3-metal-ZrO2-s",
+    "nameZh": "二氧化锆",
+    "aliasesZh": ["氧化锆(IV)"],
     "nameEn": "Zirconium(IV) oxide",
     "formula": "ZrO2",
     "displayFormula": "ZrO₂",
@@ -8381,6 +9429,8 @@
   },
   {
     "id": "audit3-metal-ZrF4-s",
+    "nameZh": "四氟化锆",
+    "aliasesZh": ["氟化锆(IV)"],
     "nameEn": "Zirconium(IV) fluoride",
     "formula": "ZrF4",
     "displayFormula": "ZrF₄",
@@ -8395,6 +9445,8 @@
   },
   {
     "id": "audit3-metal-ZrCl4-s",
+    "nameZh": "四氯化锆",
+    "aliasesZh": ["氯化锆(IV)"],
     "nameEn": "Zirconium(IV) chloride",
     "formula": "ZrCl4",
     "displayFormula": "ZrCl₄",
@@ -8409,6 +9461,8 @@
   },
   {
     "id": "audit3-metal-ZrBr4-s",
+    "nameZh": "四溴化锆",
+    "aliasesZh": ["溴化锆(IV)"],
     "nameEn": "Zirconium(IV) bromide",
     "formula": "ZrBr4",
     "displayFormula": "ZrBr₄",
@@ -8423,6 +9477,8 @@
   },
   {
     "id": "audit3-metal-ZrI4-s",
+    "nameZh": "四碘化锆",
+    "aliasesZh": ["碘化锆(IV)"],
     "nameEn": "Zirconium(IV) iodide",
     "formula": "ZrI4",
     "displayFormula": "ZrI₄",
@@ -8437,6 +9493,8 @@
   },
   {
     "id": "audit3-metal-CdCl2-s",
+    "nameZh": "氯化镉(II)",
+    "aliasesZh": ["氯化镉"],
     "nameEn": "Cadmium(II) chloride",
     "formula": "CdCl2",
     "displayFormula": "CdCl₂",
@@ -8451,6 +9509,8 @@
   },
   {
     "id": "audit3-metal-GaBr3-s",
+    "nameZh": "三溴化镓",
+    "aliasesZh": ["溴化镓(III)"],
     "nameEn": "Gallium(III) bromide",
     "formula": "GaBr3",
     "displayFormula": "GaBr₃",
@@ -8465,6 +9525,8 @@
   },
   {
     "id": "audit3-metal-SnCl2-s",
+    "nameZh": "氯化锡(II)",
+    "aliasesZh": ["氯化锡"],
     "nameEn": "Tin(II) chloride",
     "formula": "SnCl2",
     "displayFormula": "SnCl₂",
@@ -8479,6 +9541,8 @@
   },
   {
     "id": "audit3-metal-SnCl4-l",
+    "nameZh": "四氯化锡",
+    "aliasesZh": ["氯化锡(IV)"],
     "nameEn": "Tin(IV) chloride",
     "formula": "SnCl4",
     "displayFormula": "SnCl₄",

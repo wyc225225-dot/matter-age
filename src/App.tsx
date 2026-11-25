@@ -21,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { useGame } from "./stores/game";
+import { useViewport } from "./hooks/useViewport";
 import { substances } from "./data";
 import { SubstanceIcon } from "./components/SubstanceIcon";
 import type { Substance } from "./types";
@@ -78,45 +79,103 @@ const desktopPrimaryNav: { id: Page; name: string; icon: typeof Atom }[] = [
   { id: "tree", name: "发现网络", icon: Network },
 ];
 
+type PrimaryPillar = "home" | "experiment" | "manage" | "archive" | "more";
+
+const domainSubNav: Record<
+  Exclude<PrimaryPillar, "home">,
+  { id: Page; name: string; icon: typeof Atom }[]
+> = {
+  experiment: [
+    { id: "lab", name: "自由实验", icon: FlaskConical },
+    { id: "challenge", name: "目标挑战", icon: Target },
+    { id: "history", name: "挑战历史", icon: ScrollText },
+  ],
+  manage: [
+    { id: "management", name: "实验室经营", icon: Building2 },
+    { id: "tech", name: "科技研究", icon: Cpu },
+    { id: "world", name: "世界探索", icon: Compass },
+  ],
+  archive: [
+    { id: "book", name: "物质图鉴", icon: BookOpen },
+    { id: "tree", name: "发现网络", icon: Network },
+    { id: "museum", name: "科学博物馆", icon: Landmark },
+  ],
+  more: [
+    { id: "eras", name: "科技演进", icon: Sparkles },
+    { id: "achievements", name: "探索成就", icon: Trophy },
+    { id: "settings", name: "实验室设置", icon: Settings },
+  ],
+};
+
+function getPrimaryPillar(p: Page): PrimaryPillar {
+  if (p === "home") return "home";
+  if (p === "lab" || p === "challenge" || p === "history") return "experiment";
+  if (p === "management" || p === "tech" || p === "world") return "manage";
+  if (p === "book" || p === "tree" || p === "museum") return "archive";
+  return "more";
+}
+
 const archiveDrawerItems: {
   id: Page;
   name: string;
   desc: string;
+  group: "里程碑与系统" | "玩法快捷直达";
   icon: typeof Atom;
 }[] = [
   {
-    id: "history",
-    name: "挑战历史",
-    desc: "10 章时间线 · 5 章可玩",
-    icon: ScrollText,
+    id: "eras",
+    name: "科技演进",
+    desc: "四大化学文明时代与研究路线",
+    group: "里程碑与系统",
+    icon: Sparkles,
   },
-  { id: "world", name: "世界探索", desc: "2D 区域地图与采集", icon: Compass },
-  { id: "tech", name: "科技研究", desc: "24 项无环科技树", icon: Cpu },
-  { id: "book", name: "物质图鉴", desc: "129 物质 + 知识库", icon: BookOpen },
-  { id: "tree", name: "发现网络", desc: "物质合成反应图谱", icon: Network },
-  {
-    id: "museum",
-    name: "科学博物馆",
-    desc: "16 件成就里程碑馆藏",
-    icon: Landmark,
-  },
-  { id: "eras", name: "科技演进", desc: "四大化学文明时代", icon: Sparkles },
   {
     id: "achievements",
     name: "探索成就",
-    desc: "34 项科学成就与奖励",
+    desc: "34 项科学成就与幂等奖励",
+    group: "里程碑与系统",
     icon: Trophy,
   },
   {
     id: "settings",
     name: "实验室设置",
-    desc: "存档迁移 v3 与偏好",
+    desc: "音效动画、存档导入导出 v3",
+    group: "里程碑与系统",
     icon: Settings,
+  },
+  {
+    id: "history",
+    name: "挑战历史",
+    desc: "实验域 · 10 章时间线（5 章可玩）",
+    group: "玩法快捷直达",
+    icon: ScrollText,
+  },
+  {
+    id: "world",
+    name: "世界探索",
+    desc: "经营域 · 2D 区域地图与采集",
+    group: "玩法快捷直达",
+    icon: Compass,
+  },
+  {
+    id: "tech",
+    name: "科技研究",
+    desc: "经营域 · 24 项无环科技树",
+    group: "玩法快捷直达",
+    icon: Cpu,
+  },
+  {
+    id: "museum",
+    name: "科学博物馆",
+    desc: "图鉴域 · 16 件成就里程碑馆藏",
+    group: "玩法快捷直达",
+    icon: Landmark,
   },
 ];
 
 export default function App() {
   const game = useGame();
+  const vp = useViewport();
   const [page, setPage] = useState<Page>(() => parseHashState().page);
   const [deepHistoryId, setDeepHistoryId] = useState<string | null>(
     () => parseHashState().chapterId,
@@ -138,6 +197,22 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!drawerOpen && !supply) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (supply) setSupply(false);
+        else if (drawerOpen) setDrawerOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [drawerOpen, supply]);
+
+  useEffect(() => {
+    if (!vp.isMobile && drawerOpen) setDrawerOpen(false);
+  }, [vp.isMobile, drawerOpen]);
+
+  useEffect(() => {
     if (toast) {
       const id = setTimeout(() => setToast(""), 4200);
       return () => clearTimeout(id);
@@ -148,9 +223,15 @@ export default function App() {
     location.hash = p;
     setPage(p);
     setDrawerOpen(false);
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }
 
   const count = Object.keys(game.save.discovered).length;
+  const activePillar = getPrimaryPillar(page);
+  const subNavItems =
+    activePillar === "home" ? null : domainSubNav[activePillar];
+  const hideSubNavInActiveHistory =
+    page === "history" && Boolean(game.save.activeHistoryChapterId);
 
   if (!game.ready)
     return (
@@ -161,7 +242,11 @@ export default function App() {
     );
 
   return (
-    <div className={`app ${game.save.settings.motion ? "" : "reduce-motion"}`}>
+    <div
+      className={`app ${game.save.settings.motion ? "" : "reduce-motion"}`}
+      data-viewport={vp.mode}
+      data-page={page}
+    >
       <header className="topbar">
         <button className="brand" onClick={() => go("home")}>
           <span className="brand-mark">
@@ -171,6 +256,26 @@ export default function App() {
             物质纪元<small>MATTER AGE</small>
           </span>
         </button>
+
+        {vp.isMobileLandscape && subNavItems && !hideSubNavInActiveHistory && (
+          <nav
+            className="domain-subnav inline-landscape-subnav mobile-scroll-strip"
+            aria-label="二级模式导航"
+          >
+            {subNavItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-current={page === item.id ? "page" : undefined}
+                className={page === item.id ? "active" : ""}
+                onClick={() => go(item.id)}
+              >
+                <item.icon size={13} />
+                <span>{item.name}</span>
+              </button>
+            ))}
+          </nav>
+        )}
 
         <nav className="desktop-nav" aria-label="主导航">
           {desktopPrimaryNav.map((p) => (
@@ -238,6 +343,26 @@ export default function App() {
         </span>
       </div>
 
+      {vp.isMobilePortrait && subNavItems && !hideSubNavInActiveHistory && (
+        <nav
+          className="domain-subnav portrait-domain-subnav mobile-scroll-strip"
+          aria-label="二级模式导航"
+        >
+          {subNavItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-current={page === item.id ? "page" : undefined}
+              className={page === item.id ? "active" : ""}
+              onClick={() => go(item.id)}
+            >
+              <item.icon size={14} />
+              <span>{item.name}</span>
+            </button>
+          ))}
+        </nav>
+      )}
+
       {game.error && (
         <div role="alert" className="error-banner">
           {game.error}
@@ -289,38 +414,44 @@ export default function App() {
         <span>V1.6 开发预览 · 探索 / 经营 / 科学史 / 世界地图 · 本地离线</span>
       </footer>
 
-      {/* Mobile Bottom Navigation Bar (5 clean entries + drawer for secondary archives) */}
+      {/* Mobile Bottom Navigation Bar / Landscape Left Rail (5 stable L1 player goals) */}
       <nav className="mobile-bottom-nav" aria-label="移动端主导航">
         <button
-          className={page === "home" ? "active" : ""}
+          className={activePillar === "home" && !drawerOpen ? "active" : ""}
+          aria-current={activePillar === "home" ? "page" : undefined}
           onClick={() => go("home")}
         >
           <HomeIcon size={18} />
           <span>大厅</span>
         </button>
         <button
-          className={page === "lab" ? "active" : ""}
+          className={
+            activePillar === "experiment" && !drawerOpen ? "active" : ""
+          }
+          aria-current={activePillar === "experiment" ? "page" : undefined}
           onClick={() => go("lab")}
         >
           <FlaskConical size={18} />
-          <span>探索</span>
+          <span>实验</span>
         </button>
         <button
-          className={page === "management" ? "active" : ""}
+          className={activePillar === "manage" && !drawerOpen ? "active" : ""}
+          aria-current={activePillar === "manage" ? "page" : undefined}
           onClick={() => go("management")}
         >
           <Building2 size={18} />
           <span>经营</span>
         </button>
         <button
-          className={page === "challenge" ? "active" : ""}
-          onClick={() => go("challenge")}
+          className={activePillar === "archive" && !drawerOpen ? "active" : ""}
+          aria-current={activePillar === "archive" ? "page" : undefined}
+          onClick={() => go("book")}
         >
-          <Target size={18} />
-          <span>挑战</span>
+          <BookOpen size={18} />
+          <span>图鉴</span>
         </button>
         <button
-          className={drawerOpen ? "active" : ""}
+          className={drawerOpen || activePillar === "more" ? "active" : ""}
           aria-expanded={drawerOpen}
           onClick={() => setDrawerOpen((v) => !v)}
         >
@@ -340,7 +471,7 @@ export default function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="drawer-head">
-              <strong>更多模式与科学档案</strong>
+              <strong>更多功能与模式直达</strong>
               <button
                 className="icon-button"
                 aria-label="关闭导航抽屉"
@@ -349,21 +480,28 @@ export default function App() {
                 <X size={18} />
               </button>
             </div>
-            <div className="drawer-grid">
-              {archiveDrawerItems.map((item) => (
-                <button
-                  key={item.id}
-                  className={`drawer-item ${page === item.id ? "active" : ""}`}
-                  onClick={() => go(item.id)}
-                >
-                  <item.icon size={18} />
-                  <div>
-                    <strong>{item.name}</strong>
-                    <small>{item.desc}</small>
-                  </div>
-                </button>
-              ))}
-            </div>
+            {(["里程碑与系统", "玩法快捷直达"] as const).map((group) => (
+              <div className="drawer-group" key={group}>
+                <p className="drawer-group-label">{group}</p>
+                <div className="drawer-grid">
+                  {archiveDrawerItems
+                    .filter((item) => item.group === group)
+                    .map((item) => (
+                      <button
+                        key={item.id}
+                        className={`drawer-item ${page === item.id ? "active" : ""}`}
+                        onClick={() => go(item.id)}
+                      >
+                        <item.icon size={18} />
+                        <div>
+                          <strong>{item.name}</strong>
+                          <small>{item.desc}</small>
+                        </div>
+                      </button>
+                    ))}
+                </div>
+              </div>
+            ))}
           </section>
         </div>
       )}

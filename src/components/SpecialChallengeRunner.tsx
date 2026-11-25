@@ -86,26 +86,43 @@ export function SpecialChallengeRunner({
     );
   }
 
+  const selectedSummary =
+    challenge.type === "extreme_experiment" || challenge.type === "zero_waste"
+      ? Object.entries(inputs)
+          .map(([id, n]) => `${byId[id].name}×${n}`)
+          .join(" + ") || "尚未投料"
+      : challenge.type === "shortest_path" ||
+          challenge.type === "reverse_inference"
+        ? selectedSubs.map((id) => byId[id].name).join(" + ") || "尚未选物质"
+        : guessId
+          ? `已指认：${byId[guessId].name}`
+          : `已检验 ${testedReagents.length} 项试剂`;
+
   return (
     <section className="panel special-runner">
-      <div className="runner-head">
-        <button className="secondary small" onClick={onClose}>
-          <ChevronLeft size={15} /> 返回挑战列表
-        </button>
-        <span className="tag-pill">
-          {challenge.typeName} · {challenge.difficulty}
-        </span>
-        <button className="secondary small" onClick={resetAll}>
-          <RotateCcw size={14} /> 重置本关
-        </button>
-      </div>
+      <div className="runner-sticky-top">
+        <div className="runner-head">
+          <button className="secondary small" onClick={onClose}>
+            <ChevronLeft size={15} /> 返回挑战列表
+          </button>
+          <span className="tag-pill">
+            {challenge.typeName} · {challenge.difficulty}
+          </span>
+          <button className="secondary small" onClick={resetAll}>
+            <RotateCcw size={14} /> 重置本关
+          </button>
+        </div>
 
-      <h2>{challenge.name}</h2>
-      <p className="muted">{challenge.description}</p>
-      <p className="runner-meta">
-        已操作 {attempts} 次 · 三星参考上限 {challenge.limit} 次 · 首次奖励 +
-        {challenge.reward.coins} 金币 / +{challenge.reward.researchPoints} RP
-      </p>
+        <div className="runner-title-strip">
+          <h2>{challenge.name}</h2>
+          <p className="runner-meta">
+            已操作 {attempts} / {challenge.limit} 次 · 奖励 +
+            {challenge.reward.coins} 金币 / +{challenge.reward.researchPoints}{" "}
+            RP
+          </p>
+        </div>
+        <p className="muted runner-desc">{challenge.description}</p>
+      </div>
 
       {/* TYPE 1 & 3: EXTREME EXPERIMENT & ZERO WASTE */}
       {(challenge.type === "extreme_experiment" ||
@@ -201,38 +218,49 @@ export function SpecialChallengeRunner({
                     : ""}
                 </div>
               )}
-              <button
-                className="primary"
-                disabled={solved || Object.keys(inputs).length === 0}
-                onClick={() => {
-                  const nextAttempts = attempts + 1;
-                  setAttempts(nextAttempts);
-                  const out = runFiniteSpecialStep(
-                    challenge,
-                    inv,
-                    inputs,
-                    selConds,
-                    selCat ? [selCat] : [],
-                    reactions,
-                    byId,
-                  );
-                  setMessage(out.message);
-                  if (out.inventory) {
-                    setInv(out.inventory);
-                    setInputs({});
-                  }
-                  if (out.solved) {
-                    recordWin(
-                      nextAttempts,
-                      out.utilization !== undefined
-                        ? `利用率 ${Math.round(out.utilization * 100)}%`
-                        : undefined,
+              <div className="runner-sticky-footer">
+                <div className="runner-selection-summary">
+                  <small>当前配置</small>
+                  <strong>
+                    {selectedSummary}
+                    {selConds.length > 0
+                      ? ` · ${selConds.map(conditionName).join("+")}`
+                      : ""}
+                  </strong>
+                </div>
+                <button
+                  className="primary"
+                  disabled={solved || Object.keys(inputs).length === 0}
+                  onClick={() => {
+                    const nextAttempts = attempts + 1;
+                    setAttempts(nextAttempts);
+                    const out = runFiniteSpecialStep(
+                      challenge,
+                      inv,
+                      inputs,
+                      selConds,
+                      selCat ? [selCat] : [],
+                      reactions,
+                      byId,
                     );
-                  }
-                }}
-              >
-                <FlaskConical size={15} /> 执行定量步骤
-              </button>
+                    setMessage(out.message);
+                    if (out.inventory) {
+                      setInv(out.inventory);
+                      setInputs({});
+                    }
+                    if (out.solved) {
+                      recordWin(
+                        nextAttempts,
+                        out.utilization !== undefined
+                          ? `利用率 ${Math.round(out.utilization * 100)}%`
+                          : undefined,
+                      );
+                    }
+                  }}
+                >
+                  <FlaskConical size={15} /> 执行定量步骤
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -279,32 +307,43 @@ export function SpecialChallengeRunner({
               </button>
             ))}
           </div>
-          <button
-            className="primary"
-            disabled={solved || selectedSubs.length === 0}
-            onClick={() => {
-              const nextAttempts = attempts + 1;
-              setAttempts(nextAttempts);
-              const out = runShortestPathStep(
-                challenge,
-                owned,
-                selectedSubs,
-                selConds,
-                attempts,
-                reactions,
-              );
-              setMessage(out.message);
-              if (out.discoveredInRun) {
-                setOwned(out.discoveredInRun);
-                setSelectedSubs([]);
-              }
-              if (out.solved) {
-                recordWin(nextAttempts, `${nextAttempts} 步达成`);
-              }
-            }}
-          >
-            执行路径步骤
-          </button>
+          <div className="runner-sticky-footer">
+            <div className="runner-selection-summary">
+              <small>已选材料</small>
+              <strong>
+                {selectedSummary}
+                {selConds.length > 0
+                  ? ` · ${selConds.map(conditionName).join("+")}`
+                  : ""}
+              </strong>
+            </div>
+            <button
+              className="primary"
+              disabled={solved || selectedSubs.length === 0}
+              onClick={() => {
+                const nextAttempts = attempts + 1;
+                setAttempts(nextAttempts);
+                const out = runShortestPathStep(
+                  challenge,
+                  owned,
+                  selectedSubs,
+                  selConds,
+                  attempts,
+                  reactions,
+                );
+                setMessage(out.message);
+                if (out.discoveredInRun) {
+                  setOwned(out.discoveredInRun);
+                  setSelectedSubs([]);
+                }
+                if (out.solved) {
+                  recordWin(nextAttempts, `${nextAttempts} 步达成`);
+                }
+              }}
+            >
+              执行路径步骤
+            </button>
+          </div>
         </div>
       )}
 
@@ -351,26 +390,35 @@ export function SpecialChallengeRunner({
               </button>
             ))}
           </div>
-          <button
-            className="primary"
-            disabled={solved || !guessId}
-            onClick={() => {
-              const nextAttempts = attempts + 1;
-              setAttempts(nextAttempts);
-              const res = evaluateUnknownIdentification(
-                challenge,
-                testedReagents,
-                guessId,
-                byId,
-              );
-              setMessage(res.message);
-              if (res.solved) {
-                recordWin(nextAttempts, `${testedReagents.length} 项试剂确诊`);
-              }
-            }}
-          >
-            确认鉴定结果
-          </button>
+          <div className="runner-sticky-footer">
+            <div className="runner-selection-summary">
+              <small>鉴定上下文</small>
+              <strong>{selectedSummary}</strong>
+            </div>
+            <button
+              className="primary"
+              disabled={solved || !guessId}
+              onClick={() => {
+                const nextAttempts = attempts + 1;
+                setAttempts(nextAttempts);
+                const res = evaluateUnknownIdentification(
+                  challenge,
+                  testedReagents,
+                  guessId,
+                  byId,
+                );
+                setMessage(res.message);
+                if (res.solved) {
+                  recordWin(
+                    nextAttempts,
+                    `${testedReagents.length} 项试剂确诊`,
+                  );
+                }
+              }}
+            >
+              确认鉴定结果
+            </button>
+          </div>
         </div>
       )}
 
@@ -420,26 +468,37 @@ export function SpecialChallengeRunner({
               </button>
             ))}
           </div>
-          <button
-            className="primary"
-            disabled={solved || selectedSubs.length === 0}
-            onClick={() => {
-              const nextAttempts = attempts + 1;
-              setAttempts(nextAttempts);
-              const res = evaluateReverseInference(
-                challenge,
-                selectedSubs,
-                selConds,
-                reactions,
-              );
-              setMessage(res.message);
-              if (res.solved) {
-                recordWin(nextAttempts, "逆推成功");
-              }
-            }}
-          >
-            <Sparkles size={15} /> 验证逆向推理
-          </button>
+          <div className="runner-sticky-footer">
+            <div className="runner-selection-summary">
+              <small>反推配置</small>
+              <strong>
+                {selectedSummary}
+                {selConds.length > 0
+                  ? ` · ${selConds.map(conditionName).join("+")}`
+                  : ""}
+              </strong>
+            </div>
+            <button
+              className="primary"
+              disabled={solved || selectedSubs.length === 0}
+              onClick={() => {
+                const nextAttempts = attempts + 1;
+                setAttempts(nextAttempts);
+                const res = evaluateReverseInference(
+                  challenge,
+                  selectedSubs,
+                  selConds,
+                  reactions,
+                );
+                setMessage(res.message);
+                if (res.solved) {
+                  recordWin(nextAttempts, "逆推成功");
+                }
+              }}
+            >
+              <Sparkles size={15} /> 验证逆向推理
+            </button>
+          </div>
         </div>
       )}
 

@@ -24,11 +24,23 @@ export default function Achievements({
 }) {
   const game = useGame();
   const save = game.save;
-  const [cat, setCat] = useState<AchievementCategory | "all">("all");
+  const [cat, setCat] = useState<AchievementCategory | "all" | "claimable">(
+    "all",
+  );
 
   const all = detailedAchievements(save);
   const earnedCount = all.filter((a) => a.earned).length;
-  const visible = cat === "all" ? all : all.filter((a) => a.category === cat);
+  const claimableCount = all.filter(
+    (a) => a.earned && !save.claimedAchievementRewards.includes(a.name),
+  ).length;
+  const visible =
+    cat === "all"
+      ? all
+      : cat === "claimable"
+        ? all.filter(
+            (a) => a.earned && !save.claimedAchievementRewards.includes(a.name),
+          )
+        : all.filter((a) => a.category === cat);
 
   return (
     <div className="page-width standard-page">
@@ -40,18 +52,28 @@ export default function Achievements({
         />
       </div>
 
-      <div className="filter-pills">
-        {(Object.keys(catLabels) as (AchievementCategory | "all")[]).map(
-          (k) => (
+      <div className="mobile-sticky-bar">
+        <div className="filter-pills mobile-scroll-strip">
+          {claimableCount > 0 && (
             <button
-              key={k}
-              className={cat === k ? "active" : ""}
-              onClick={() => setCat(k)}
+              className={cat === "claimable" ? "active" : ""}
+              onClick={() => setCat("claimable")}
             >
-              {catLabels[k]}
+              可领取（{claimableCount}）
             </button>
-          ),
-        )}
+          )}
+          {(Object.keys(catLabels) as (AchievementCategory | "all")[]).map(
+            (k) => (
+              <button
+                key={k}
+                className={cat === k ? "active" : ""}
+                onClick={() => setCat(k)}
+              >
+                {catLabels[k]}
+              </button>
+            ),
+          )}
+        </div>
       </div>
 
       <div className="achievement-grid">
