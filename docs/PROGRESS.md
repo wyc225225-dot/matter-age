@@ -53,4 +53,4 @@
 - **完整验证通过**：`npm test`（7 文件 **232/232**）、`npm run validate`（0 错误，532/532 中文物质、435/435 转化）、`npm run validate:release`（预期退出码 1 阻断 `pending`）、`npm run build`（22 项 PWA 预缓存）、`npm run format:check`（全部通过）、`npm run test:e2e`（**15/15** 通过，含 13 路由 × 5 视口矩阵、横竖屏实操与状态保持、L1/L2 路由、失败催化诊断与撤回、中文知识库检索，并逐张人工审阅 `output/playwright/mobile-ux/` 截图且现场修复 5 项视觉细节）。详见 `docs/MOBILE_UX_DESIGN.md`、`docs/TEST_REPORT.md` 与 `docs/AGY_MOBILE_UX_RESULT.md`。
 - **诚实限制**：所有移动竖屏/横屏交互均基于桌面 Chromium 视口模拟验证，尚未在真机 iOS Safari / Android Chrome 上实测触控手感、刘海安全区与系统软键盘弹出表现；科学及科学史内容仍为 `pending` 待人工审校。
 
-Codex复核：232项单元测试、15组完整浏览器测试、数据校验（中文532/532、转化435/435）、构建和格式校验全部通过。已查看手机横屏实验台、竖屏催化剂失败诊断和中文转化路径截图。正在将此轮更新推送GitHub Pages。
+Codex复核：232项单元测试、15组完整浏览器测试、数据校验（中文532/532、转化435/435）、构建和格式校验全部通过。已查看手机横屏实验台、竖屏催化剂失败诊断和中文转化路径截图。已推送提交809fba8，GitHub Actions构建与Pages部署成功；线上验证手机二级导航、氯化氢中文搜索、中文转化路径及横屏显示通过。
