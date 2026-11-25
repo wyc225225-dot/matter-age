@@ -103,7 +103,9 @@ test("discover, repeat, refresh, search, import/export and multi-step isolated c
 test("360px layout and true missing-condition feedback", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto("/#lab");
+  await page.getByRole("button", { name: "物质槽位 1", exact: true }).click();
   await page.getByRole("button", { name: "添加水", exact: true }).click();
+  await page.getByRole("button", { name: "完成选择", exact: true }).click();
   await page.getByRole("button", { name: "开始实验", exact: true }).click();
   await expect(page.getByText(/组合有已收录路径/)).toBeVisible();
   expect(

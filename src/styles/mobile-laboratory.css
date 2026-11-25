@@ -1,0 +1,270 @@
+.mobile-material-launcher,
+.mobile-experiment-dock,
+.material-picker-backdrop,
+.picker-selection,
+.picker-footer {
+  display: none;
+}
+@media (max-width: 760px) {
+  .lab {
+    padding-bottom: 110px;
+  }
+  .lab .workbench {
+    scroll-margin-top: 12px;
+  }
+  .lab-columns > .warehouse:not(.mobile-picker-open) {
+    display: none;
+  }
+  .mobile-material-launcher {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+    background: #294959;
+    border: 1px solid #578299;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 13px;
+    text-align: left;
+    color: #bce4f3;
+  }
+  .mobile-material-launcher strong {
+    font-size: 12px;
+    flex: 1;
+  }
+  .mobile-material-launcher > span {
+    font-size: 11px;
+    color: #9cc6d9;
+  }
+  .mobile-experiment-dock {
+    display: flex;
+    position: fixed;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    z-index: 48;
+    gap: 12px;
+    padding: 10px 16px;
+    background: #142633f5;
+    border-top: 1px solid #486577;
+    box-shadow: 0 -7px 22px #0003;
+    backdrop-filter: blur(12px);
+  }
+  .dock-materials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #496577;
+    background: #223b4c;
+    border-radius: 8px;
+    min-height: 48px;
+    min-width: 118px;
+    padding: 5px 13px;
+    color: #b6d2e3;
+  }
+  .dock-materials > span {
+    font-size: 12px;
+    text-align: left;
+  }
+  .dock-materials small {
+    display: block;
+    font-size: 10px;
+    color: #8baabe;
+    margin-top: 3px;
+  }
+  .dock-run {
+    flex: 1;
+    min-height: 48px;
+    font-size: 13px;
+  }
+  .material-picker-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: #050c16c9;
+    backdrop-filter: blur(5px);
+    z-index: 79;
+    border-radius: 0;
+  }
+  .lab-columns > .warehouse.mobile-picker-open {
+    position: fixed;
+    inset: max(12px, env(safe-area-inset-top)) 10px
+      max(12px, env(safe-area-inset-bottom));
+    width: auto;
+    max-height: none;
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+    background: #192b38;
+    box-shadow: 0 14px 65px #0008;
+    border: 1px solid #54758b;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .mobile-picker-open > .panel-title {
+    min-height: 52px;
+    flex-shrink: 0;
+    padding-right: 9px;
+  }
+  .mobile-picker-open .panel-title > span {
+    margin-left: auto;
+  }
+  .picker-close {
+    min-width: 40px;
+    min-height: 40px;
+    margin-left: 4px;
+  }
+  .picker-selection {
+    display: block;
+    flex-shrink: 0;
+    padding: 12px;
+    background: #122431;
+    border-bottom: 1px solid #354d60;
+  }
+  .picker-selection-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .picker-selection-title strong {
+    font-size: 11px;
+    color: #b6dce9;
+  }
+  .picker-selection-title > span {
+    font-size: 9px;
+    color: #89a9bd;
+  }
+  .picker-selected-slots {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .picker-selected-item,
+  .picker-empty-item {
+    min-width: 0;
+    min-height: 70px;
+    border: 1px solid #4f7488;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: #294454;
+    padding: 5px 3px;
+  }
+  .picker-selected-item > span {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 9px;
+    color: #c4e3ef;
+  }
+  .picker-selected-item small {
+    margin-left: 3px;
+    color: #eac477;
+    font-size: 9px;
+  }
+  .picker-selected-item > svg:last-child {
+    position: absolute;
+    right: 3px;
+    top: 4px;
+    color: #a6c5d5;
+  }
+  .picker-empty-item {
+    border-style: dashed;
+    border-color: #3c586b;
+    background: transparent;
+    color: #597f95;
+  }
+  .picker-empty-item > span {
+    font-size: 9px;
+  }
+  .mobile-picker-open .warehouse-tabs,
+  .mobile-picker-open > .search-box,
+  .mobile-picker-open .warehouse-selects,
+  .mobile-picker-open .supply-button,
+  .mobile-picker-open .finite-catalyst-note {
+    flex-shrink: 0;
+  }
+  .mobile-picker-open .warehouse-tabs button {
+    min-height: 40px;
+    padding: 9px 0;
+  }
+  .mobile-picker-open > .search-box {
+    height: 42px;
+    margin-top: 10px;
+  }
+  .mobile-picker-open input {
+    font-size: 16px;
+  }
+  .mobile-picker-open .warehouse-selects {
+    margin-bottom: 10px;
+  }
+  .mobile-picker-open .warehouse-selects select {
+    min-height: 38px;
+    font-size: 11px;
+  }
+  .mobile-picker-open .warehouse-grid {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+    align-content: start;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mobile-picker-open .material-add {
+    min-height: 108px;
+    padding-top: 19px;
+    touch-action: manipulation;
+  }
+  .mobile-picker-open .material-info {
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    right: 2px;
+    line-height: 27px;
+    font-size: 12px;
+    border-color: transparent;
+  }
+  .mobile-picker-open .material-number {
+    top: 10px;
+  }
+  .mobile-picker-open .supply-button {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    min-height: 46px;
+  }
+  .picker-footer {
+    display: block;
+    padding: 12px;
+    flex-shrink: 0;
+    background: #142633;
+    border-top: 1px solid #38566a;
+  }
+  .picker-footer .primary {
+    width: 100%;
+    min-height: 48px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .picker-footer .primary > span {
+    margin-left: auto;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+  }
+  .lab .workbench-instruction {
+    font-size: 9px;
+    line-height: 1.7;
+  }
+}

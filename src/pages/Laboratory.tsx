@@ -51,6 +51,7 @@ import {
 import { useGame } from "../stores/game";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula, fmt } from "../components/Shared";
+import "../styles/mobile-laboratory.css";
 
 function playDiscovery() {
   try {
@@ -113,7 +114,70 @@ export default function Laboratory({
   const [hintLevel, setHintLevel] = useState(0);
   const [hint, setHint] = useState("");
   const [animating, setAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia("(max-width: 760px)").matches,
+  );
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const pickerRef = useRef<HTMLElement>(null);
+  const workbenchRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 760px)");
+    const update = () => {
+      setIsMobile(media.matches);
+      if (!media.matches) setPickerOpen(false);
+    };
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    if (!isMobile || !pickerOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = "hidden";
+    pickerRef.current
+      ?.querySelector<HTMLButtonElement>(".picker-close")
+      ?.focus();
+    const keys = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setPickerOpen(false);
+      }
+      if (event.key === "Tab") {
+        const items = Array.from(
+          pickerRef.current?.querySelectorAll<HTMLElement>(
+            "button:not([disabled]),input,select",
+          ) || [],
+        ).filter((el) => el.getClientRects().length > 0);
+        const first = items[0],
+          last = items.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", keys);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", keys);
+      if (previousFocus?.isConnected && previousFocus.getClientRects().length)
+        previousFocus.focus({ preventScroll: true });
+    };
+  }, [isMobile, pickerOpen]);
+  const finishPicking = () => {
+    setPickerOpen(false);
+    requestAnimationFrame(() =>
+      workbenchRef.current?.scrollIntoView({
+        block: "start",
+        behavior: game.save.settings.motion ? "smooth" : "instant",
+      }),
+    );
+  };
 
   useEffect(
     () => () => {
@@ -672,14 +736,73 @@ export default function Laboratory({
         </div>
       ) : (
         <div className="lab-columns">
-          <section className="panel warehouse">
+          {isMobile && pickerOpen && (
+            <button
+              className="material-picker-backdrop"
+              aria-label="关闭物质选择"
+              onClick={() => setPickerOpen(false)}
+            />
+          )}
+          <section
+            ref={pickerRef}
+            className={`panel warehouse ${pickerOpen ? "mobile-picker-open" : ""}`}
+            role={isMobile && pickerOpen ? "dialog" : undefined}
+            aria-modal={isMobile && pickerOpen ? true : undefined}
+            aria-label={isMobile && pickerOpen ? "选择实验物质" : undefined}
+          >
             <div className="panel-title">
               <h2>
                 <LayoutGrid size={16} />
                 {qRun ? "有限份数库存" : run ? "挑战材料库" : "物质仓库"}
               </h2>
               <span>{inventory.length} 种可用</span>
+              {isMobile && (
+                <button
+                  className="icon-button picker-close"
+                  aria-label="收起物质选择"
+                  onClick={() => setPickerOpen(false)}
+                >
+                  <X size={22} />
+                </button>
+              )}
             </div>
+            {isMobile && (
+              <div className="picker-selection">
+                <div className="picker-selection-title">
+                  <strong>实验台已选 {slots.length}/4</strong>
+                  <span>
+                    {isAdvanced
+                      ? "重复点击物质可增加份数"
+                      : "选择后点击完成，返回实验台"}
+                  </span>
+                </div>
+                <div className="picker-selected-slots">
+                  {Array.from({ length: 4 }, (_, i) => {
+                    const id = slots[i];
+                    return id ? (
+                      <button
+                        key={i}
+                        className="picker-selected-item"
+                        aria-label={`移除已选${byId[id].name}`}
+                        onClick={() => removeSlot(i)}
+                      >
+                        <SubstanceIcon s={byId[id]} size={30} />
+                        <span>
+                          {byId[id].name}
+                          {isAdvanced && <small>×{amounts[id] || 1}</small>}
+                        </span>
+                        <X size={12} />
+                      </button>
+                    ) : (
+                      <div className="picker-empty-item" key={i}>
+                        <Plus size={17} />
+                        <span>待添加</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             {qRun && qRun.catalysts.length > 0 && (
               <div className="finite-catalyst-note">
                 独立保留催化剂：
@@ -737,7 +860,7 @@ export default function Laboratory({
                 >
                   <button
                     className="material-add"
-                    draggable
+                    draggable={!isMobile}
                     onDragStart={(e) =>
                       e.dataTransfer.setData("text/plain", s.id)
                     }
@@ -755,7 +878,10 @@ export default function Laboratory({
                   </button>
                   <button
                     className="material-info"
-                    onClick={() => setDetail(s)}
+                    onClick={() => {
+                      setPickerOpen(false);
+                      setDetail(s);
+                    }}
                     aria-label={`查看${s.name}详情`}
                   >
                     i
@@ -774,7 +900,13 @@ export default function Laboratory({
               {!owned.length && <p className="empty small">没有匹配的物质。</p>}
             </div>
             {!run && !qRun && (
-              <button className="supply-button" onClick={() => setSupply(true)}>
+              <button
+                className="supply-button"
+                onClick={() => {
+                  setPickerOpen(false);
+                  setSupply(true);
+                }}
+              >
                 <PackagePlus size={16} />
                 <span>
                   领取实验室标本<small>补充探索所需的基础原料</small>
@@ -782,9 +914,21 @@ export default function Laboratory({
                 <ChevronRight size={16} />
               </button>
             )}
+            {isMobile && (
+              <div className="picker-footer">
+                <button
+                  className="primary"
+                  aria-label="完成选择"
+                  onClick={finishPicking}
+                >
+                  <Check size={18} />
+                  完成选择 · 返回实验台 <span>{slots.length}/4</span>
+                </button>
+              </div>
+            )}
           </section>
 
-          <section className="panel workbench">
+          <section ref={workbenchRef} className="panel workbench">
             <div className="panel-title">
               <h2>
                 <FlaskConical size={16} />
@@ -800,11 +944,26 @@ export default function Laboratory({
             </div>
             <div className="workspace">
               <div className="workspace-grid" />
+              {isMobile && (
+                <button
+                  className="mobile-material-launcher"
+                  onClick={() => setPickerOpen(true)}
+                >
+                  <Plus size={19} />
+                  <strong>
+                    {slots.length ? "继续选择物质" : "选择实验物质"}
+                  </strong>
+                  <span>{slots.length}/4</span>
+                  <ChevronRight size={17} />
+                </button>
+              )}
               <div className="workbench-instruction">
                 <span className="status-dot" />
                 {isAdvanced
                   ? "添加材料默认 1 份，重复点击或使用 +/- / 数字输入调整投入份数（自由探索不扣全局库存）"
-                  : "点击或拖入物质到槽位，再选定条件开始实验"}
+                  : isMobile
+                    ? "点空槽或选物质添加材料，再选择条件开始实验"
+                    : "点击或拖入物质到槽位，再选定条件开始实验"}
               </div>
               <div className={`slots ${isAdvanced ? "advanced-slots" : ""}`}>
                 {Array.from({ length: 4 }, (_, i) => {
@@ -878,7 +1037,9 @@ export default function Laboratory({
                         e.preventDefault();
                         add(e.dataTransfer.getData("text/plain"));
                       }}
-                      onClick={() => id && removeSlot(i)}
+                      onClick={() =>
+                        id ? removeSlot(i) : isMobile && setPickerOpen(true)
+                      }
                     >
                       {id ? (
                         <>
@@ -1301,6 +1462,43 @@ export default function Laboratory({
               </p>
             </div>
           </aside>
+          {isMobile && !pickerOpen && (
+            <div
+              className="mobile-experiment-dock"
+              role="region"
+              aria-label="手机实验操作"
+            >
+              <button
+                className="dock-materials"
+                onClick={() => setPickerOpen(true)}
+              >
+                <LayoutGrid size={20} />
+                <span>
+                  选物质<small>已选 {slots.length}/4</small>
+                </span>
+              </button>
+              <button
+                className="primary dock-run"
+                aria-label="执行当前实验"
+                disabled={
+                  !slots.length ||
+                  animating ||
+                  !!run?.complete ||
+                  !!qRun?.complete
+                }
+                onClick={() => {
+                  workbenchRef.current?.scrollIntoView({
+                    block: "start",
+                    behavior: "instant",
+                  });
+                  experiment();
+                }}
+              >
+                <Play size={17} fill="currentColor" />
+                {animating ? "反应中…" : "开始实验"}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
