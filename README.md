@@ -1,4 +1,7 @@
-# 物质纪元 · Matter Age（V1.6 开发预览）
+# 物质纪元 · Matter Age
+
+**直接试玩：[打开物质纪元](https://wyc225225-dot.github.io/matter-age/)** · 无需安装或注册，进度保存在各自浏览器。
+（V1.6 开发预览）
 
 移动优先、本地离线运行的化学探索、定量化学与科学策略模拟游戏，基于 React + TypeScript + Vite + Tailwind + Zustand + Dexie + Zod 构建。数据、纯引擎、状态存储、存档迁移与界面严格分层解耦。
 
@@ -47,3 +50,4 @@ npm run format:check               # Prettier 代码格式检查
 - 进度与测试：[PROGRESS.md](docs/PROGRESS.md) · [TEST_REPORT.md](docs/TEST_REPORT.md) · [V1.6 交付报告](docs/AGY_V16_RESULT.md)
 - 系统设计：[GAME_DESIGN.md](docs/GAME_DESIGN.md) · [ECONOMY_BALANCE.md](docs/ECONOMY_BALANCE.md) · [HISTORY_CONTENT.md](docs/HISTORY_CONTENT.md)
 - 架构与数据：[ARCHITECTURE.md](docs/ARCHITECTURE.md) · [DATA_SCHEMA.md](docs/DATA_SCHEMA.md) · [CONTENT_EXPANSION.md](docs/CONTENT_EXPANSION.md) · [ROADMAP.md](docs/ROADMAP.md) · [CHEMISTRY_REVIEW.md](docs/CHEMISTRY_REVIEW.md)
+

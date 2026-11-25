@@ -44,3 +44,8 @@
 2. **前四阶段剧透优化**：阶段 1–4 顶部 `fact-notice` 改用防剧透声明，完整人物与史实边界说明在阶段 5「历史揭晓」呈现。
 3. **Tailwind `.fixed` 冲突导致 CH.07 周期表错位**：参考格类名 `pg-cell fixed` 被 Tailwind `position: fixed` 覆盖 → 重命名为 `pg-cell ref-cell`，周期表 4×4 网格完全对齐。
 4. **CH.02 SVG 天平梁/立柱零宽渐变不可见**：SVG 水平/垂直 `<line>` 使用实色铜金描边，等臂天平结构完整呈现。
+
+## 公开分享部署验证
+
+来源信息网页隐藏后：224单元、11组Playwright回归通过。GitHub Actions运行45583547226成功；线上Pages的/matter-age/子路径、图标、知识库氦元素搜索、来源隐藏和离线刷新均经Chromium验证，0 pageerror / 0 HTTP错误。
+
