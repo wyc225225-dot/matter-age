@@ -113,6 +113,20 @@ export default function Management({
     (o) => canDeliverOrder(save, o, byId).ok,
   ).length;
 
+  const readyRecipeCount = useMemo(
+    () =>
+      reactions.filter(
+        (r) =>
+          r.conditions.every((c) => allowedConditions.includes(c)) &&
+          r.reactants.every(
+            (p) =>
+              (save.managementInventory[p.substanceId] ?? 0) >= p.coefficient,
+          ) &&
+          r.catalysts.every((cid) => (save.managementInventory[cid] ?? 0) >= 1),
+      ).length,
+    [allowedConditions, save.managementInventory],
+  );
+
   // Recipes operable in Management mode (prioritize ones matching current conditions & stock)
   const craftableReactions = useMemo(() => {
     const q = recipeSearch.trim().toLowerCase();
@@ -538,13 +552,19 @@ export default function Management({
                       aria-pressed={onlyReadyRecipes}
                       onClick={() => setOnlyReadyRecipes((v) => !v)}
                     >
-                      {onlyReadyRecipes ? "✓ 仅看可生产" : "仅看可生产"}
+                      {onlyReadyRecipes
+                        ? `✓ 仅看可生产 (${readyRecipeCount})`
+                        : `仅看可生产 (${readyRecipeCount})`}
                     </button>
                   </div>
                 </div>
                 <p className="muted">
                   直接调用共享反应/化学计量引擎：扣除有限库存反应物、产物入经营库、催化剂不消耗。当前单次最高批量：×
-                  {maxBatch}。
+                  {maxBatch}
+                  {craftableReactions.length > 24
+                    ? ` · 显示前 24 / 共 ${craftableReactions.length} 条配方`
+                    : ` · 共 ${craftableReactions.length} 条配方`}
+                  。
                 </p>
                 <div className="recipe-grid">
                   {craftableReactions.slice(0, 24).map((r) => {

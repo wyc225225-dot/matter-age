@@ -126,6 +126,7 @@ export default function App() {
     null,
   );
   const [supply, setSupply] = useState(false);
+  const [supplyQuery, setSupplyQuery] = useState("");
   const [toast, setToast] = useState("");
 
   useEffect(() => {
@@ -635,54 +636,100 @@ export default function App() {
         />
       )}
 
-      {supply && (
-        <div className="modal-backdrop" onClick={() => setSupply(false)}>
-          <section
-            className="modal wide"
-            role="dialog"
-            aria-modal="true"
-            aria-label="标本补给"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="close icon-button"
-              aria-label="关闭补给"
-              onClick={() => setSupply(false)}
-            >
-              <X />
-            </button>
-            <p className="eyebrow">SPECIMEN COLLECTION</p>
-            <h2>实验室标本补给（自由探索）</h2>
-            <p className="muted">
-              有些原料需要来自实验室，而不是凭空合成。领取仅解锁自由探索标本，不会直接增加实验室经营模式的有限库存。
-            </p>
-            <div className="supply-grid">
-              {substances
-                .filter((s) => s.supply)
-                .map((s) => (
+      {supply &&
+        (() => {
+          const allSupply = substances.filter((s) => s.supply);
+          const collectedSupplyCount = allSupply.filter(
+            (s) => s.id in game.save.discovered,
+          ).length;
+          const sq = supplyQuery.trim().toLowerCase();
+          const filteredSupply = allSupply.filter(
+            (s) =>
+              !sq ||
+              `${s.name}${s.nameEn}${s.formula || ""}${s.aliases.join("")}`
+                .toLowerCase()
+                .includes(sq),
+          );
+          return (
+            <div className="modal-backdrop" onClick={() => setSupply(false)}>
+              <section
+                className="modal wide supply-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-label="标本补给"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="modal-sticky-head">
+                  <div>
+                    <p className="eyebrow">
+                      SPECIMEN COLLECTION · {collectedSupplyCount}/
+                      {allSupply.length}
+                    </p>
+                    <h2>实验室标本补给（自由探索）</h2>
+                  </div>
                   <button
-                    disabled={s.id in game.save.discovered}
-                    key={s.id}
-                    onClick={() => game.collect(s.id)}
+                    className="close icon-button"
+                    aria-label="关闭补给"
+                    onClick={() => setSupply(false)}
                   >
-                    <SubstanceIcon s={s} size={36} />
-                    <span>
-                      {s.name}
-                      <small>
-                        {s.id in game.save.discovered ? "已收集" : "领取标本"}
-                      </small>
-                    </span>
-                    {s.id in game.save.discovered ? (
-                      <Check size={16} />
-                    ) : (
-                      <Plus size={16} />
-                    )}
+                    <X />
                   </button>
-                ))}
+                </div>
+                <p className="muted supply-desc">
+                  领取仅解锁自由探索标本，不会直接增加实验室经营模式的有限库存。
+                </p>
+                <label className="search-box supply-search-box">
+                  <input
+                    type="search"
+                    aria-label="搜索标本"
+                    placeholder="搜索标本名称 / 俗名 / 化学式"
+                    value={supplyQuery}
+                    onChange={(e) => setSupplyQuery(e.target.value)}
+                  />
+                  {supplyQuery && (
+                    <button
+                      type="button"
+                      className="search-clear-mini"
+                      aria-label="清空标本搜索"
+                      onClick={() => setSupplyQuery("")}
+                    >
+                      <X size={13} />
+                    </button>
+                  )}
+                </label>
+                <div className="modal-scroll-body">
+                  <div className="supply-grid">
+                    {filteredSupply.map((s) => (
+                      <button
+                        disabled={s.id in game.save.discovered}
+                        key={s.id}
+                        onClick={() => game.collect(s.id)}
+                      >
+                        <SubstanceIcon s={s} size={36} />
+                        <span>
+                          {s.name}
+                          <small>
+                            {s.id in game.save.discovered
+                              ? "已收集"
+                              : "领取标本"}
+                          </small>
+                        </span>
+                        {s.id in game.save.discovered ? (
+                          <Check size={16} />
+                        ) : (
+                          <Plus size={16} />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  {!filteredSupply.length && (
+                    <p className="empty small">没有匹配的实验室标本。</p>
+                  )}
+                </div>
+              </section>
             </div>
-          </section>
-        </div>
-      )}
+          );
+        })()}
 
       {toast && (
         <div className="toast" role="status">

@@ -2103,18 +2103,6 @@ export default function History({
                       >
                         + 干燥绝缘纸（对照测试）
                       </button>
-                      <button
-                        className="secondary small"
-                        disabled={(pz.voltaicStack ?? []).length === 0}
-                        onClick={() =>
-                          patchSession((cur) => ({
-                            ...cur,
-                            puzzle: { ...cur.puzzle, voltaicStack: [] },
-                          }))
-                        }
-                      >
-                        清空电堆
-                      </button>
                     </div>
 
                     <div className="voltaic-stage">
@@ -2191,6 +2179,19 @@ export default function History({
                           {voltaicLive?.reversedCells ?? 0}
                         </span>
                         <span>净串联单元：{voltaicLive?.netCells ?? 0} 组</span>
+                        <button
+                          type="button"
+                          className="secondary small voltaic-clear-btn"
+                          disabled={(pz.voltaicStack ?? []).length === 0}
+                          onClick={() =>
+                            patchSession((cur) => ({
+                              ...cur,
+                              puzzle: { ...cur.puzzle, voltaicStack: [] },
+                            }))
+                          }
+                        >
+                          <Trash2 size={12} /> 清空电堆
+                        </button>
                         <small className="muted">
                           教学简化示意值（非 1800 年历史实测）
                         </small>

@@ -9,6 +9,7 @@ import {
 import type { Condition, SpecialChallengeDef } from "../types";
 import { byId, conditionName, reactions } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import {
   evaluateReverseInference,
   evaluateUnknownIdentification,
@@ -27,6 +28,7 @@ export function SpecialChallengeRunner({
   toast: (s: string) => void;
 }) {
   const game = useGame();
+  const vp = useViewport();
   const [attempts, setAttempts] = useState(0);
   const [solved, setSolved] = useState(false);
   const [message, setMessage] = useState("");
@@ -102,9 +104,11 @@ export function SpecialChallengeRunner({
     <section className="panel special-runner">
       <div className="runner-sticky-top">
         <div className="runner-head">
-          <button className="secondary small" onClick={onClose}>
-            <ChevronLeft size={15} /> 返回挑战列表
-          </button>
+          {!vp.isMobile && (
+            <button className="secondary small" onClick={onClose}>
+              <ChevronLeft size={15} /> 返回挑战列表
+            </button>
+          )}
           <span className="tag-pill">
             {challenge.typeName} · {challenge.difficulty}
           </span>
@@ -124,6 +128,13 @@ export function SpecialChallengeRunner({
         <p className="muted runner-desc">{challenge.description}</p>
       </div>
 
+      {message && (
+        <div className={`runner-feedback ${solved ? "win" : ""}`}>
+          {solved && <CheckCircle2 size={16} />}
+          <span>{message}</span>
+        </div>
+      )}
+
       {/* TYPE 1 & 3: EXTREME EXPERIMENT & ZERO WASTE */}
       {(challenge.type === "extreme_experiment" ||
         challenge.type === "zero_waste") && (
@@ -137,15 +148,32 @@ export function SpecialChallengeRunner({
                   .map(([id, count]) => {
                     const amt = inputs[id] ?? 0;
                     return (
-                      <div key={id} className="special-inv-item">
-                        <SubstanceIcon s={byId[id]} size={24} />
-                        <div>
-                          <strong>{byId[id].name}</strong>
-                          <small>库存 {count} 份</small>
-                        </div>
+                      <div
+                        key={id}
+                        className={`special-inv-item ${amt > 0 ? "selected" : ""}`}
+                      >
+                        <button
+                          type="button"
+                          className="special-inv-info"
+                          onClick={() =>
+                            setInputs((prev) => ({
+                              ...prev,
+                              [id]: Math.min(count, (prev[id] ?? 0) + 1),
+                            }))
+                          }
+                        >
+                          <SubstanceIcon s={byId[id]} size={28} />
+                          <div className="special-inv-text">
+                            <strong>{byId[id].name}</strong>
+                            <small>库存 {count} 份</small>
+                          </div>
+                        </button>
                         <div className="qty-stepper">
                           <button
+                            type="button"
                             className="secondary small"
+                            aria-label={`减少${byId[id].name}份数`}
+                            disabled={amt <= 0}
                             onClick={() =>
                               setInputs((prev) => {
                                 const next = Math.max(0, (prev[id] ?? 0) - 1);
@@ -156,11 +184,14 @@ export function SpecialChallengeRunner({
                               })
                             }
                           >
-                            -
+                            −
                           </button>
                           <span>{amt}</span>
                           <button
+                            type="button"
                             className="secondary small"
+                            aria-label={`增加${byId[id].name}份数`}
+                            disabled={amt >= count}
                             onClick={() =>
                               setInputs((prev) => ({
                                 ...prev,
@@ -176,9 +207,30 @@ export function SpecialChallengeRunner({
                   })}
               </div>
               {challenge.catalysts && challenge.catalysts.length > 0 && (
-                <label className="cat-row">
+                <div className="cat-row special-cat-box">
                   <span>可用催化剂（不消耗）：</span>
+                  <div className="catalyst-chips">
+                    <button
+                      type="button"
+                      className={`cat-chip ${selCat === "" ? "active" : ""}`}
+                      onClick={() => setSelCat("")}
+                    >
+                      不使用
+                    </button>
+                    {challenge.catalysts.map((cid) => (
+                      <button
+                        type="button"
+                        key={cid}
+                        className={`cat-chip ${selCat === cid ? "active" : ""}`}
+                        onClick={() => setSelCat(selCat === cid ? "" : cid)}
+                      >
+                        <SubstanceIcon s={byId[cid]} size={16} />
+                        <span>{byId[cid].name}</span>
+                      </button>
+                    ))}
+                  </div>
                   <select
+                    className="catalyst-select-sync"
                     aria-label="特殊挑战催化剂"
                     value={selCat}
                     onChange={(e) => setSelCat(e.target.value)}
@@ -190,7 +242,7 @@ export function SpecialChallengeRunner({
                       </option>
                     ))}
                   </select>
-                </label>
+                </div>
               )}
             </div>
             <div>
@@ -499,13 +551,6 @@ export function SpecialChallengeRunner({
               <Sparkles size={15} /> 验证逆向推理
             </button>
           </div>
-        </div>
-      )}
-
-      {message && (
-        <div className={`runner-feedback ${solved ? "win" : ""}`}>
-          {solved && <CheckCircle2 size={16} />}
-          <span>{message}</span>
         </div>
       )}
     </section>

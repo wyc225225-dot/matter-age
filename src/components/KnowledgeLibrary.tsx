@@ -214,6 +214,7 @@ export function KnowledgeLibrary({
                     setSelected(null);
                   }}
                 />
+                <span className="archive-inline-count">{total} 条</span>
               </label>
               {view !== "species" && (
                 <select
@@ -239,7 +240,6 @@ export function KnowledgeLibrary({
                   ))}
                 </select>
               )}
-              <span>{total} 条结果</span>
             </div>
           )}
         </div>

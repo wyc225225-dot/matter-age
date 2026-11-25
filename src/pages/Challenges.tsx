@@ -147,100 +147,112 @@ export default function Challenges({
         : specialChallenges.length;
 
   return (
-    <div className="page-width standard-page">
-      <div className="page-heading">
-        <div>
-          <p className="eyebrow">
-            MISSION CONTROL · SIMPLE, QUANTITATIVE & SPECIAL
-          </p>
-          <h1>目标挑战</h1>
-          <p>
-            包含 {challenges.length} 道简单探索关、
-            {quantitativeChallenges.length} 道进阶定量关与{" "}
-            {specialChallenges.length} 道 V1.6
-            特殊推理挑战（极限实验、最短路径、零浪费、未知鉴定与逆向推理）。
-          </p>
-        </div>
-        <div className="lab-progress">
-          <span>
-            <strong>{curStars}</strong> / {curTotal * 3} 星 · {curSolved} /{" "}
-            {curTotal} 关
-          </span>
-          <div className="progress-track">
-            <i
-              style={{
-                width: `${(curStars / Math.max(1, curTotal * 3)) * 100}%`,
-              }}
-            />
+    <div
+      className={`page-width standard-page ${activeSpecial ? "special-active-page" : ""}`}
+    >
+      {!activeSpecial && (
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">
+              MISSION CONTROL · SIMPLE, QUANTITATIVE & SPECIAL
+            </p>
+            <h1>目标挑战</h1>
+            <p>
+              包含 {challenges.length} 道简单探索关、
+              {quantitativeChallenges.length} 道进阶定量关与{" "}
+              {specialChallenges.length} 道 V1.6
+              特殊推理挑战（极限实验、最短路径、零浪费、未知鉴定与逆向推理）。
+            </p>
+          </div>
+          <div className="lab-progress">
+            <span>
+              <strong>{curStars}</strong> / {curTotal * 3} 星 · {curSolved} /{" "}
+              {curTotal} 关
+            </span>
+            <div className="progress-track">
+              <i
+                style={{
+                  width: `${(curStars / Math.max(1, curTotal * 3)) * 100}%`,
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <div className="mobile-sticky-bar challenges-sticky-bar">
-        <div className="challenge-mode-tabs mobile-scroll-strip">
-          <button
-            type="button"
-            className={modeTab === "simple" ? "active" : ""}
-            onClick={() => {
-              setActiveSpecial(null);
-              setGroupFilter("auto");
-              setModeTab("simple");
-            }}
-          >
-            <FlaskConical size={15} />
-            简单模式挑战（{challenges.length} 关）
-          </button>
-          <button
-            type="button"
-            className={modeTab === "advanced" ? "active" : ""}
-            onClick={() => {
-              setActiveSpecial(null);
-              setGroupFilter("auto");
-              setModeTab("advanced");
-            }}
-          >
-            <Scale size={15} />
-            进阶定量挑战（{quantitativeChallenges.length} 关）
-          </button>
-          <button
-            type="button"
-            className={modeTab === "special" ? "active" : ""}
-            onClick={() => {
-              setGroupFilter("auto");
-              setModeTab("special");
-            }}
-          >
-            <Sparkles size={15} />
-            特殊挑战（{specialChallenges.length} 关）
-          </button>
-        </div>
-
-        {!activeSpecial && vp.isMobile && (
-          <div
-            className="filter-pills mobile-scroll-strip challenge-group-pills"
-            role="group"
-            aria-label="挑战分组筛选"
-          >
+      {!activeSpecial && (
+        <div className="mobile-sticky-bar challenges-sticky-bar">
+          <div className="challenge-mode-tabs">
             <button
               type="button"
-              className={activeGroupFilter === "all" ? "active" : ""}
-              onClick={() => setGroupFilter("all")}
+              className={modeTab === "simple" ? "active" : ""}
+              onClick={() => {
+                setActiveSpecial(null);
+                setGroupFilter("auto");
+                setModeTab("simple");
+              }}
             >
-              全部 ({curTotal})
+              <FlaskConical size={15} />
+              {vp.isMobile
+                ? `简单 (${challenges.length})`
+                : `简单模式挑战（${challenges.length} 关）`}
             </button>
-            {currentGroups.map((g) => (
+            <button
+              type="button"
+              className={modeTab === "advanced" ? "active" : ""}
+              onClick={() => {
+                setActiveSpecial(null);
+                setGroupFilter("auto");
+                setModeTab("advanced");
+              }}
+            >
+              <Scale size={15} />
+              {vp.isMobile
+                ? `进阶定量 (${quantitativeChallenges.length})`
+                : `进阶定量挑战（${quantitativeChallenges.length} 关）`}
+            </button>
+            <button
+              type="button"
+              className={modeTab === "special" ? "active" : ""}
+              onClick={() => {
+                setGroupFilter("auto");
+                setModeTab("special");
+              }}
+            >
+              <Sparkles size={15} />
+              {vp.isMobile
+                ? `特殊挑战 (${specialChallenges.length})`
+                : `特殊挑战（${specialChallenges.length} 关）`}
+            </button>
+          </div>
+
+          {vp.isMobile && (
+            <div
+              className="filter-pills mobile-scroll-strip challenge-group-pills"
+              role="group"
+              aria-label="挑战分组筛选"
+            >
               <button
                 type="button"
-                key={g}
-                className={activeGroupFilter === g ? "active" : ""}
-                onClick={() => setGroupFilter(g)}
+                className={activeGroupFilter === "all" ? "active" : ""}
+                onClick={() => setGroupFilter("all")}
               >
-                {g}
+                全部 ({curTotal})
               </button>
-            ))}
-          </div>
-        )}
-      </div>
+              {currentGroups.map((g) => (
+                <button
+                  type="button"
+                  key={g}
+                  className={activeGroupFilter === g ? "active" : ""}
+                  onClick={() => setGroupFilter(g)}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {modeTab === "special" ? (
         activeSpecial ? (

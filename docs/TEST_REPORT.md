@@ -157,3 +157,23 @@
 4. 发现 `食盐溶解`（物理溶解）误命中可逆化学平衡提示文案 → 在纯引擎精确限定 `reactionType === "equilibrium"`，严格区分物理溶解与化学平衡混合体系。
 
 以上 4 项均已修复并重跑全量 `npm test`、`npm run validate`、`npm run format:check`、`npm run test:e2e` 及二次截图复查确认。详细交付报告见 `docs/AGY_IMPLEMENT_SIMPLIFY_RESULT.md`。
+
+---
+
+## 内部页面与实验台交互自主优化验证（2026-11-25）
+
+### 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 8 个测试文件，**256 / 256** 通过 |
+| 数据与闭环校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**（131 物质 / 149 规则 / 87 挑战 / 24 科技 / 102 步经营闭环 / 532 中文物质 / 435 转化） |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 严格阻断全部 `pending` 科学、知识库与科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite + Workbox 预缓存 22 项资产 |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+| 端到端与视觉验证 | `npm run test:e2e` | **通过（exit 0）** | **18 / 18** Playwright 用例全通过（原有 17 组全回归 + 新增 `tests/e2e/inner-pages.spec.ts`） |
+
+### 2. 新增端到端回归与目视截图审阅（`output/playwright/inner-polish/`）
+
+- 新增 `tests/e2e/inner-pages.spec.ts`：覆盖手机横屏（`844×390`）仓库卡片高度校验与直接点选投料冷却发现冰、手机竖屏（`390×844`）首屏条件+催化剂同屏、选料类别胶囊、标本补给搜索领取过氧化氢/二氧化锰、一键催化剂胶囊执行分解、进阶槽位与配平上下题切换、挑战三模式无截断、特殊挑战聚焦态无双层头部/重复返回按钮、Ch.04 伏打电堆、图鉴/知识库/世界探索及桌面（`1280×800`）简单/进阶主执行按钮免滚动首屏可见。
+- 逐张审阅 `output/playwright/inner-polish/` 全部 16 张前后对照截图，并针对初轮审阅发现的 3 项细节（桌面 `1280×800` 催化剂栏换行导致主按钮贴底 24px 截断、原生 number 输入框右侧微调箭头挤压数字左偏、标本搜索占位符在 390px 略长）现场修复并二次全量复跑通过。详见 `docs/AGY_INNER_PAGES_RESULT.md`。

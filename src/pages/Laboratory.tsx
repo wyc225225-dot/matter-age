@@ -4,6 +4,7 @@ import {
   LayoutGrid,
   Search,
   Check,
+  ChevronLeft,
   ChevronRight,
   Plus,
   PackagePlus,
@@ -23,6 +24,7 @@ import {
   RotateCcw,
   Scale,
   Lock,
+  ArrowUpDown,
 } from "lucide-react";
 import type {
   Substance,
@@ -155,6 +157,7 @@ export default function Laboratory({
   >("materials");
   const pickerRef = useRef<HTMLElement>(null);
   const workbenchRef = useRef<HTMLElement>(null);
+  const resultAreaRef = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -704,12 +707,29 @@ export default function Laboratory({
   const conditionsBlock = (
     <div className="conditions-panel">
       <div className="conditions-title">
-        <h3>实验条件</h3>
-        <span>
-          {qRun
-            ? "有限库存挑战 · 仅消耗反应份数"
-            : "可多选 · 不消耗全局解锁库存"}
-        </span>
+        <div className="conditions-title-left">
+          <h3>实验条件</h3>
+          {selected.length > 0 && (
+            <span className="cond-selected-badge">已选 {selected.length}</span>
+          )}
+        </div>
+        <div className="conditions-title-right">
+          {selected.length > 0 ? (
+            <button
+              type="button"
+              className="text-button cond-clear-btn"
+              onClick={() => setSelected([])}
+            >
+              清空条件
+            </button>
+          ) : (
+            <span>
+              {qRun
+                ? "有限库存挑战 · 仅消耗反应份数"
+                : "可多选 · 不消耗全局解锁库存"}
+            </span>
+          )}
+        </div>
       </div>
       <div className="conditions-grid">
         {visibleConditions.map((c) => (
@@ -731,11 +751,13 @@ export default function Laboratory({
           </button>
         ))}
       </div>
-      <div className="catalyst-row catalyst-role-slot">
-        <span>
-          独立催化剂栏 <small>催化剂角色（加速反应，不参与消耗）</small>
-        </span>
-        <div className="catalyst-control-wrap">
+      <div
+        className={`catalyst-row catalyst-role-slot ${catalyst.length > 0 ? "has-catalyst" : ""}`}
+      >
+        <div className="catalyst-head">
+          <span>
+            独立催化剂栏 <small>催化剂角色（加速反应，不参与消耗）</small>
+          </span>
           {catalyst.length > 0 && (
             <span className="catalyst-active-pill">
               已选：{catalyst.map((id) => byId[id]?.name ?? id).join("、")}
@@ -749,7 +771,47 @@ export default function Laboratory({
               </button>
             </span>
           )}
+        </div>
+        <div className="catalyst-control-wrap">
+          {availableCatalysts.length === 0 ? (
+            <span className="catalyst-empty-note">
+              暂未解锁催化剂（解锁二氧化锰等后可选）
+            </span>
+          ) : (
+            <div
+              className="catalyst-chips"
+              role="group"
+              aria-label="快捷选择催化剂"
+            >
+              <button
+                type="button"
+                className={`cat-chip ${catalyst.length === 0 ? "active" : ""}`}
+                onClick={() => setCatalyst([])}
+              >
+                不使用
+              </button>
+              {availableCatalysts.map((id) => {
+                const active = catalyst.includes(id);
+                return (
+                  <button
+                    type="button"
+                    key={id}
+                    className={`cat-chip ${active ? "active" : ""}`}
+                    onClick={() => setCatalyst(active ? [] : [id])}
+                  >
+                    <SubstanceIcon s={byId[id]} size={16} />
+                    <span>{byId[id].name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
           <select
+            className={
+              availableCatalysts.length <= 4
+                ? "catalyst-select-sync"
+                : "catalyst-select-visible"
+            }
             aria-label="选择催化剂"
             value={catalyst[0] || ""}
             onChange={(e) =>
@@ -802,7 +864,9 @@ export default function Laboratory({
     <div
       className={`lab page-width ${isMobileLandscape ? "lab-landscape-mode" : ""}`}
     >
-      <div className="page-heading">
+      <div
+        className={`page-heading ${!run && !qRun ? "lab-free-heading" : "lab-challenge-heading"}`}
+      >
         <div>
           <p className="eyebrow">
             {isAdvanced
@@ -982,24 +1046,63 @@ export default function Laboratory({
       {isAdvanced &&
       (advancedView === "balancing" || qChallenge?.kind === "balancing") ? (
         <div className="balancing-workspace">
-          {!qChallenge && balancingPool.length > 0 && (
-            <div className="balancing-picker panel">
-              <label>
-                选择研究方程式：
-                <select
-                  aria-label="选择配平方程式"
-                  value={activeBalancingReaction?.id || ""}
-                  onChange={(e) => setSelectedBalanceId(e.target.value)}
-                >
-                  {balancingPool.map((r) => (
-                    <option key={r.id} value={r.id}>
-                      {r.id.toUpperCase()} · {r.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-          )}
+          {!qChallenge &&
+            balancingPool.length > 0 &&
+            (() => {
+              const curIdx = Math.max(
+                0,
+                balancingPool.findIndex(
+                  (r) => r.id === activeBalancingReaction?.id,
+                ),
+              );
+              const prevRule =
+                balancingPool[
+                  (curIdx - 1 + balancingPool.length) % balancingPool.length
+                ];
+              const nextRule =
+                balancingPool[(curIdx + 1) % balancingPool.length];
+              return (
+                <div className="balancing-picker panel">
+                  <div className="balancing-picker-head">
+                    <span className="balancing-picker-label">
+                      选择研究方程式
+                    </span>
+                    <span className="balancing-picker-count">
+                      {curIdx + 1} / {balancingPool.length}
+                    </span>
+                  </div>
+                  <div className="balancing-picker-row">
+                    <button
+                      type="button"
+                      className="secondary small balancing-nav-btn"
+                      aria-label="上一道方程式"
+                      onClick={() => setSelectedBalanceId(prevRule.id)}
+                    >
+                      <ChevronLeft size={14} />
+                    </button>
+                    <select
+                      aria-label="选择配平方程式"
+                      value={activeBalancingReaction?.id || ""}
+                      onChange={(e) => setSelectedBalanceId(e.target.value)}
+                    >
+                      {balancingPool.map((r) => (
+                        <option key={r.id} value={r.id}>
+                          {r.id.toUpperCase()} · {r.name}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      className="secondary small balancing-nav-btn"
+                      aria-label="下一道方程式"
+                      onClick={() => setSelectedBalanceId(nextRule.id)}
+                    >
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
 
           {activeBalancingReaction && (
             <EquationStudio
@@ -1180,6 +1283,33 @@ export default function Laboratory({
                   {t}
                 </button>
               ))}
+              {isMobile && (
+                <button
+                  type="button"
+                  className="warehouse-sort-pill"
+                  aria-label="切换物质排序"
+                  onClick={() => setSort(sort === "recent" ? "name" : "recent")}
+                >
+                  <ArrowUpDown size={12} />
+                  {sort === "name"
+                    ? "按名称"
+                    : qRun
+                      ? "按份数"
+                      : run
+                        ? "按合成"
+                        : "按发现"}
+                </button>
+              )}
+              {isMobileLandscape && !run && !qRun && (
+                <button
+                  type="button"
+                  className="warehouse-supply-chip"
+                  onClick={() => setSupply(true)}
+                >
+                  <PackagePlus size={12} />
+                  领标本
+                </button>
+              )}
             </div>
             <label className="search-box">
               <Search size={16} />
@@ -1189,30 +1319,61 @@ export default function Laboratory({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
+              {search && (
+                <button
+                  type="button"
+                  className="search-clear-mini"
+                  aria-label="清空搜索"
+                  onClick={() => setSearch("")}
+                >
+                  <X size={13} />
+                </button>
+              )}
             </label>
-            <div className="warehouse-selects">
-              <select
-                aria-label="物质类别"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+            {isMobile ? (
+              <div
+                className="warehouse-cat-pills mobile-scroll-strip"
+                role="group"
+                aria-label="物质类别筛选"
               >
                 {["全部", ...new Set(substances.map((s) => s.group))].map(
                   (c) => (
-                    <option key={c}>{c}</option>
+                    <button
+                      type="button"
+                      key={c}
+                      className={category === c ? "active" : ""}
+                      onClick={() => setCategory(c)}
+                    >
+                      {c}
+                    </button>
                   ),
                 )}
-              </select>
-              <select
-                aria-label="物质排序"
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-              >
-                <option value="recent">
-                  {qRun ? "份数最多" : run ? "最新合成" : "最近发现"}
-                </option>
-                <option value="name">名称排序</option>
-              </select>
-            </div>
+              </div>
+            ) : (
+              <div className="warehouse-selects">
+                <select
+                  aria-label="物质类别"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {["全部", ...new Set(substances.map((s) => s.group))].map(
+                    (c) => (
+                      <option key={c}>{c}</option>
+                    ),
+                  )}
+                </select>
+                <select
+                  aria-label="物质排序"
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                >
+                  <option value="recent">
+                    {qRun ? "份数最多" : run ? "最新合成" : "最近发现"}
+                  </option>
+                  <option value="name">名称排序</option>
+                </select>
+              </div>
+            )}
             <div className="warehouse-grid">
               {owned.map((s) => (
                 <div
@@ -1260,7 +1421,7 @@ export default function Laboratory({
               ))}
               {!owned.length && <p className="empty small">没有匹配的物质。</p>}
             </div>
-            {!run && !qRun && (
+            {!run && !qRun && !isMobileLandscape && (
               <button
                 className="supply-button"
                 onClick={() => {
@@ -1355,9 +1516,18 @@ export default function Laboratory({
                         >
                           <X size={13} />
                         </button>
-                        <SubstanceIcon s={sub} size={46} />
-                        <strong>{sub.name}</strong>
-                        <Formula value={sub.formula} />
+                        <div className="adv-slot-head">
+                          <SubstanceIcon s={sub} size={36} />
+                          <div className="adv-slot-meta">
+                            <strong>{sub.name}</strong>
+                            <Formula value={sub.formula} />
+                            {qRun && (
+                              <small className="adv-slot-cap">
+                                库存 {cap} 份
+                              </small>
+                            )}
+                          </div>
+                        </div>
                         <div className="portion-controls">
                           <button
                             type="button"
@@ -1438,7 +1608,8 @@ export default function Laboratory({
               </div>
 
               <div
-                className={`result-area ${fresh.length ? "new-discovery" : ""}`}
+                ref={resultAreaRef}
+                className={`result-area ${fresh.length ? "new-discovery" : ""} ${!result && !advStoich && !message && !diagnostic ? "idle-compact" : ""}`}
                 aria-live="polite"
               >
                 {isAdvanced && advStoich ? (
@@ -1679,17 +1850,18 @@ export default function Laboratory({
                     )}
                   </div>
                 ) : (
-                  <>
-                    <div className="result-orbit">
-                      <Atom size={27} />
-                    </div>
+                  <div className="result-idle-bar">
+                    <span className="result-idle-icon" aria-hidden="true">
+                      <Atom size={16} />
+                    </span>
                     <p>
-                      {isAdvanced
-                        ? "配置反应物份数与条件，验证化学计量与守恒"
-                        : "每一个发现，都始于一次尝试"}
+                      {slots.length > 0
+                        ? `已选 ${slots.map((id) => (isAdvanced ? `${byId[id].name}×${amounts[id] || 1}` : byId[id].name)).join(" + ")}${selected.length ? ` · ${selected.map(conditionName).join("+")}` : ""}${catalyst.length ? ` · 催化:${catalyst.map((id) => byId[id].name).join("、")}` : ""}`
+                        : isAdvanced
+                          ? "添加材料并调整份数，选定条件后执行定量实验"
+                          : "点击空槽放入材料，选定条件后开始实验"}
                     </p>
-                    <small>实验结果将在这里出现</small>
-                  </>
+                  </div>
                 )}
                 {animating && result && (
                   <>
@@ -1993,11 +2165,15 @@ export default function Laboratory({
                 }
                 onClick={() => {
                   setMobileLabPane("bench");
-                  workbenchRef.current?.scrollIntoView({
-                    block: "start",
-                    behavior: "instant",
-                  });
                   experiment();
+                  requestAnimationFrame(() => {
+                    resultAreaRef.current?.scrollIntoView({
+                      block: "nearest",
+                      behavior: game.save.settings.motion
+                        ? "smooth"
+                        : "instant",
+                    });
+                  });
                 }}
               >
                 <Play size={17} fill="currentColor" />
