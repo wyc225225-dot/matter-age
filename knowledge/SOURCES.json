@@ -1,0 +1,31 @@
+{
+  "retrievedAt": "2026-11-25T07:11:15.206Z",
+  "sources": [
+    {
+      "repository": "https://github.com/BlueObelisk/bodr",
+      "commit": "abff999b6bc6a893252eed7df0fae52ddfeed9dd",
+      "purpose": "元素周期/族/区与共价半径事实",
+      "license": "COPYING: CC0-1.0; elements.xml metadata also names MIT; both retained in raw clone"
+    },
+    {
+      "repository": "https://github.com/Bowserinator/Periodic-Table-JSON",
+      "commit": "a4859536499c2cb7ddf2666d8273e4ec98084d0a",
+      "purpose": "已下载参考，未导入叙述、图片或程序",
+      "license": "CC-BY-SA-3.0; no runtime fields copied"
+    },
+    {
+      "repository": "https://github.com/rfeynman/element-nuwa",
+      "commit": "752e6ba7d63baeb29c47b97f15dba3d4b3f84bb3",
+      "purpose": "仅提取物质式、组成、相态、系数、条件标签和来源链接等化学事实；未复制原创解释或应用代码",
+      "license": "No root application license found; no application code or narrative imported"
+    }
+  ],
+  "counts": {
+    "elements": 118,
+    "species": 532,
+    "transformations": 435,
+    "balanced": 435,
+    "equationOnly": 193,
+    "sourceLinks": 131
+  }
+}

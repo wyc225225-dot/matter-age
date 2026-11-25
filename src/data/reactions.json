@@ -1,0 +1,6238 @@
+[
+  {
+    "id": "r001",
+    "name": "水的凝固",
+    "reactants": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "ice",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["cool"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "H2O → H2O",
+    "animation": "freeze",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "phase_change",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "透明液态水逐渐凝结为无色透明固态冰晶，体积略微膨胀。"
+    ],
+    "explanation": "在标准大气压下冷却至 0 ℃ 及以下时，液态水放热凝固为固态冰。水分子的化学组成未变，属于物理变化。"
+  },
+  {
+    "id": "r002",
+    "name": "冰的熔化",
+    "reactants": [
+      {
+        "substanceId": "ice",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "H2O → H2O",
+    "animation": "melt",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "phase_change",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "固态冰晶表面逐渐润湿、边缘软化并熔化为无色透明液体。"
+    ],
+    "explanation": "冰受热吸收熔化潜热后转变为液态水，两者共享同一化学实体 H₂O，属于可逆物理变化。"
+  },
+  {
+    "id": "r003",
+    "name": "水的汽化",
+    "reactants": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "steam",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "H2O → H2O",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "phase_change",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "液面升温产生大量气泡并翻滚，无色水蒸气逸出并在较冷空气中形成白雾。"
+    ],
+    "explanation": "液态水吸热汽化为气态水蒸气，化学组成保持 H₂O 不变。水蒸气本身无色透明，肉眼所见“白雾”是其遇冷凝结的小液滴。"
+  },
+  {
+    "id": "r004",
+    "name": "水蒸气冷凝",
+    "reactants": [
+      {
+        "substanceId": "steam",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["cool"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "H2O → H2O",
+    "animation": "condense",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "phase_change",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["降温表面析出细密水雾并汇聚成无色透明水滴。"],
+    "explanation": "气态水蒸气遇冷放出汽化潜热，重新液化为液态水，属于物理相变。"
+  },
+  {
+    "id": "r005",
+    "name": "水的电解",
+    "reactants": [
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["electricity"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2H2O → 2H2 + O2",
+    "animation": "bubbles",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "装置简化：现实电解纯水需加入少量适宜电解质增强导电性，并配备直流电源与电极，本游戏仅表达总反应。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/17-7-electrolysis",
+      "https://portal.ed.rsc.org/resources/identifying-the-products-of-electrolysis/110637"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "两电极表面持续冒出无色气泡，产生气体的体积比约为 2:1。"
+    ],
+    "explanation": "直流电能驱动水发生氧化还原分解，阴极产生氢气、阳极产生氧气（体积比约 2:1）。"
+  },
+  {
+    "id": "r006",
+    "name": "氢的燃烧",
+    "reactants": [
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2H2 + O2 → 2H2O",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "产生淡蓝色火焰并释放显著热量，较冷容器壁上可凝结无色水雾。"
+    ],
+    "explanation": "氢气在氧气中点燃发生剧烈放热化合反应生成水。"
+  },
+  {
+    "id": "r007",
+    "name": "铁在氧气中燃烧",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnetite",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "3Fe + 2O2 → Fe3O4",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "演示简化：实际实验常使用细铁丝并在集气瓶底铺水或细沙防止炸裂，本游戏仅展示总反应。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "剧烈燃烧、火星四射，放出大量热，冷却后留下黑色熔融状固体。"
+    ],
+    "explanation": "细铁丝在纯氧中点燃会剧烈燃烧生成黑色四氧化三铁（Fe₃O₄），而不是氧化铁。"
+  },
+  {
+    "id": "r008",
+    "name": "铜的氧化",
+    "reactants": [
+      {
+        "substanceId": "copper",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2Cu + O2 → 2CuO",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "紫红色铜表面逐渐失去光泽，转为黑色氧化铜粉末层。"
+    ],
+    "explanation": "金属铜在氧气中加热，表面与氧气化合生成黑色氧化铜（CuO）。"
+  },
+  {
+    "id": "r009",
+    "name": "镁的燃烧",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_oxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2Mg + O2 → 2MgO",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "发出极其耀眼的白色强光，产生大量白烟，生成白色蓬松氧化镁固体。"
+    ],
+    "explanation": "镁在氧气中点燃发生剧烈氧化反应，释放强光和热量并生成白色氧化镁固体。"
+  },
+  {
+    "id": "r010",
+    "name": "锌的氧化",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_oxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2Zn + O2 → 2ZnO",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "蓝白色金属锌在高温下发出淡蓝绿色焰光并生成絮状白色氧化锌烟尘。"
+    ],
+    "explanation": "金属锌在高温氧气中氧化生成氧化锌（ZnO）；氧化锌在热态偏淡黄，冷却后呈白色。"
+  },
+  {
+    "id": "r011",
+    "name": "铝的氧化",
+    "reactants": [
+      {
+        "substanceId": "aluminium",
+        "coefficient": 4
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "aluminium_oxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "4Al + 3O2 → 2Al2O3",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "形态简化：现实中块状铝表面的致密氧化膜会阻碍反应，铝粉或极高温下才剧烈燃烧。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["发出明亮白光并放出大量热，生成白色氧化铝固体。"],
+    "explanation": "铝与氧气化合生成致密高熔点的氧化铝（Al₂O₃）。常态块状铝因表面氧化膜保护难以直接点燃，细铝粉或高温条件下方明显燃烧。"
+  },
+  {
+    "id": "r012",
+    "name": "碳的充分燃烧",
+    "reactants": [
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "C + O2 → CO2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "氧气充分假设：氧气不足时会生成有毒一氧化碳，本规则仅表示充分燃烧总反应。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-4-structure-and-general-properties-of-the-nonmetals",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "在氧气中发出炽热白光并释放热量，产生可使澄清石灰水变浑浊的无色气体。"
+    ],
+    "explanation": "碳单质在充足氧气中点燃充分燃烧，完全氧化生成无色二氧化碳气体。"
+  },
+  {
+    "id": "r013",
+    "name": "一氧化碳燃烧",
+    "reactants": [
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2CO + O2 → 2CO2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "燃烧时呈现清晰的蓝色火焰，放出热量，生成二氧化碳气体。"
+    ],
+    "explanation": "一氧化碳在氧气中点燃进一步氧化为二氧化碳，同时放出热量。"
+  },
+  {
+    "id": "r014",
+    "name": "硫的燃烧",
+    "reactants": [
+      {
+        "substanceId": "sulfur",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sulfur_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "S + O2 → SO2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "化学式简化：常温硫主要为 S₈ 环状分子，方程式按习惯简写为单原子 S。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-10-occurrence-preparation-and-properties-of-sulfur",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "淡黄色硫熔化并在氧气中发出明亮蓝紫色火焰，生成刺激性无色气体。"
+    ],
+    "explanation": "硫在氧气中点燃生成具有刺激性气味的二氧化硫气体。"
+  },
+  {
+    "id": "r015",
+    "name": "钙的氧化",
+    "reactants": [
+      {
+        "substanceId": "calcium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2Ca + O2 → 2CaO",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["发出砖红色火焰并释放热量，生成白色氧化钙固体。"],
+    "explanation": "活泼金属钙在氧气中点燃氧化，生成白色碱性氧化物氧化钙（生石灰）。"
+  },
+  {
+    "id": "r016",
+    "name": "硅的氧化",
+    "reactants": [
+      {
+        "substanceId": "silicon",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "silica",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "Si + O2 → SiO2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "动力学简化：块状单晶硅表面氧化层会限制体相完全氧化，高温粉末更易充分反应。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-3-structure-and-general-properties-of-the-metalloids"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["高温下表面氧化形成白色二氧化硅固体层。"],
+    "explanation": "晶体硅常温稳定，在高温氧气中可被氧化生成耐高温的二氧化硅（SiO₂）。"
+  },
+  {
+    "id": "r017",
+    "name": "碳酸钙分解",
+    "reactants": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "CaCO3 → CaO + CO2",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://edu.rsc.org/experiments/thermal-decomposition-of-calcium-carbonate/704.article",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色碳酸钙固体强热后质量减轻，释放无色二氧化碳气体，残留白色块状生石灰。"
+    ],
+    "explanation": "碳酸钙在约 825–900 ℃ 高温煅烧下吸热分解，生成氧化钙（生石灰）并释放二氧化碳气体，是石灰循环的起点。"
+  },
+  {
+    "id": "r018",
+    "name": "生石灰与水",
+    "reactants": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "CaO + H2O → Ca(OH)2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://edu.rsc.org/experiments/thermal-decomposition-of-calcium-carbonate/704.article",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "固体膨胀疏松并剧烈放热，伴随水雾升腾，转化为白色氢氧化钙粉末或石灰乳。"
+    ],
+    "explanation": "氧化钙与水化合（熟化）生成氢氧化钙（熟石灰），过程放出大量热量。"
+  },
+  {
+    "id": "r019",
+    "name": "石灰体系吸收二氧化碳",
+    "reactants": [
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "Ca(OH)2 + CO2 → CaCO3 + H2O",
+    "animation": "precipitate",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "含水介质与用量简化：默认在含水体系中通入适量 CO₂；若继续通入过量 CO₂ 会进一步转化为可溶碳酸氢钙，本规则未模拟该后续过程。"
+    ],
+    "references": [
+      "https://edu.rsc.org/experiments/thermal-decomposition-of-calcium-carbonate/704.article",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["澄清石灰水迅速变浑浊，析出白色碳酸钙沉淀。"],
+    "explanation": "在含水体系（如澄清石灰水）中，氢氧化钙与少量二氧化碳反应生成难溶的碳酸钙白色沉淀和水。"
+  },
+  {
+    "id": "r020",
+    "name": "氧化钠与水",
+    "reactants": [
+      {
+        "substanceId": "sodium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "Na2O + H2O → 2NaOH",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["白色固体迅速溶解并放出显著热量，溶液呈强碱性。"],
+    "explanation": "强碱性氧化物氧化钠与水剧烈放热反应，生成强碱氢氧化钠。"
+  },
+  {
+    "id": "r021",
+    "name": "钠与水",
+    "reactants": [
+      {
+        "substanceId": "sodium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "2Na + 2H2O → 2NaOH + H2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "钠块浮于水面熔成闪亮小球迅速游动、发出嘶嘶声并剧烈产生氢气。"
+    ],
+    "explanation": "金属钠密度小于水且熔点低，遇水剧烈放热置换出氢气并生成氢氧化钠强碱。现实操作危险性极高，本游戏仅作原理模拟。"
+  },
+  {
+    "id": "r022",
+    "name": "钙与水",
+    "reactants": [
+      {
+        "substanceId": "calcium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Ca + 2H2O → Ca(OH)2 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "金属钙表面产生大量无色氢气气泡，溶液逐渐变浑浊（析出微溶氢氧化钙）。"
+    ],
+    "explanation": "活泼金属钙沉入水中与水反应，持续释放氢气并生成微溶的氢氧化钙。"
+  },
+  {
+    "id": "r023",
+    "name": "二氧化碳溶于水",
+    "reactants": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbonic_acid",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "CO2 + H2O → H2CO3",
+    "animation": "dissolve",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "平衡简化：溶于水的 CO₂ 仅小部分转化为 H₂CO₃ 分子，本游戏以「碳酸水」收集项概括该平衡体系。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/14-3-relative-strengths-of-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "气体部分溶入水中，溶液显弱酸性，实际体系中大部分仍以溶解态 CO₂ 存在。"
+    ],
+    "explanation": "二氧化碳溶解于水并与水建立碳酸平衡（H₂O + CO₂ ⇌ H₂CO₃），使水溶液呈弱酸性。"
+  },
+  {
+    "id": "r024",
+    "name": "碳酸分解",
+    "reactants": [
+      {
+        "substanceId": "carbonic_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "H2CO3 → H2O + CO2",
+    "animation": "bubbles",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "受热后液体中迅速冒出大量无色二氧化碳气泡，酸性减弱。"
+    ],
+    "explanation": "碳酸水不稳定，常温下也会缓慢逸出 CO₂，加热会显著降低气体溶解度并加速分解为水和二氧化碳。"
+  },
+  {
+    "id": "r025",
+    "name": "三氧化硫水合",
+    "reactants": [
+      {
+        "substanceId": "sulfur_trioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "SO3 + H2O → H2SO4",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "工业安全简化：现实中用浓硫酸吸收 SO₃ 而非直接加水，本规则绝非实验操作指南。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-10-occurrence-preparation-and-properties-of-sulfur"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "反应剧烈放热并易生成浓白酸雾，转化为强酸性硫酸体系。"
+    ],
+    "explanation": "酸性氧化物三氧化硫与水剧烈放热化合生成硫酸。工业上因直接加水会产生难吸收酸雾，实际改用 98% 浓硫酸吸收；本规则仅表示总化学计量变化。"
+  },
+  {
+    "id": "r026",
+    "name": "过氧化氢受热分解",
+    "reactants": [
+      {
+        "substanceId": "peroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2H2O2 → 2H2O + O2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "浓度简化：现实实验室通常使用稀过氧化氢水溶液，高浓度受热分解极为剧烈。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+      "https://openstax.org/books/chemistry-2e/pages/12-7-catalysis"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "无色液体受热后产生持续气泡，释放可使带火星木条复燃的氧气。"
+    ],
+    "explanation": "过氧化氢分子中的过氧键较不稳定，加热会显著加快其分解为水和氧气。"
+  },
+  {
+    "id": "r027",
+    "name": "过氧化氢催化分解",
+    "reactants": [
+      {
+        "substanceId": "peroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": ["manganese_dioxide"],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2H2O2 → 2H2O + O2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "催化剂不写入消耗反应物，默认在过氧化氢水溶液中进行。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/12-7-catalysis",
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "加入黑色二氧化锰粉末后立刻剧烈冒出大量氧气气泡并微微放热，反应结束后黑色催化剂仍可回收。"
+    ],
+    "explanation": "二氧化锰作为多相催化剂提供更低活化能的反应路径，在常温下显著加速过氧化氢分解为水和氧气，催化剂本身在总反应前后不被消耗。"
+  },
+  {
+    "id": "r028",
+    "name": "碳酸氢钠分解",
+    "reactants": [
+      {
+        "substanceId": "sodium_bicarbonate",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2NaHCO3 → Na2CO3 + CO2 + H2O",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色粉末受热释放二氧化碳气体，试管冷壁出现水珠，残留白色碳酸钠固体。"
+    ],
+    "explanation": "碳酸氢钠（小苏打）受热分解生成碳酸钠、二氧化碳和水，这是其用作烘焙膨松剂和干粉灭火的重要化学基础。"
+  },
+  {
+    "id": "r029",
+    "name": "氢氧化铜分解",
+    "reactants": [
+      {
+        "substanceId": "copper_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "Cu(OH)2 → CuO + H2O",
+    "animation": "color_change",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "天蓝色絮状固体受热逐渐变黑，生成黑色氧化铜并析出水。"
+    ],
+    "explanation": "难溶性碱氢氧化铜热稳定性低，加热脱水分解为黑色氧化铜和水。"
+  },
+  {
+    "id": "r030",
+    "name": "氢氧化铁分解",
+    "reactants": [
+      {
+        "substanceId": "iron_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2Fe(OH)3 → Fe2O3 + 3H2O",
+    "animation": "color_change",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "红褐色固体受热颜色加深变暗，脱水转化为红棕色氧化铁粉末。"
+    ],
+    "explanation": "红褐色氢氧化铁受热失去水分，分解转化为红棕色氧化铁（Fe₂O₃）和水。"
+  },
+  {
+    "id": "r031",
+    "name": "氢氧化镁分解",
+    "reactants": [
+      {
+        "substanceId": "magnesium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "Mg(OH)2 → MgO + H2O",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["白色粉末强热吸热并释放水蒸气，残留白色氧化镁。"],
+    "explanation": "氢氧化镁在约 350 ℃ 以上强热吸热分解，生成白色氧化镁并释放水蒸气。"
+  },
+  {
+    "id": "r032",
+    "name": "氢氧化钙分解",
+    "reactants": [
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "Ca(OH)2 → CaO + H2O",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://edu.rsc.org/experiments/thermal-decomposition-of-calcium-carbonate/704.article",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色粉末在高温下释放水蒸气，转化为白色氧化钙固体。"
+    ],
+    "explanation": "氢氧化钙在约 512–580 ℃ 高温下吸热脱水，重新分解回氧化钙（生石灰）和水。"
+  },
+  {
+    "id": "r033",
+    "name": "氯化氢与氨",
+    "reactants": [
+      {
+        "substanceId": "ammonia",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "ammonium_chloride",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "NH3 + HCl → NH4Cl",
+    "animation": "crystallize",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "混合后迅速产生白色氯化铵烟雾（在稀溶液中则形成澄清氯化铵水溶液）。"
+    ],
+    "explanation": "碱性气体氨与盐酸发生酸碱中和反应生成氯化铵；氨气遇浓盐酸挥发出的氯化氢气体会立即产生浓厚白烟（微小氯化铵固体颗粒）。"
+  },
+  {
+    "id": "r034",
+    "name": "锌与盐酸",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Zn + 2HCl → ZnCl2 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["锌粒表面产生大量无色氢气气泡，金属逐渐溶解。"],
+    "explanation": "位于金属活动性顺序氢前的锌与稀盐酸发生置换反应，生成氯化锌和氢气。"
+  },
+  {
+    "id": "r035",
+    "name": "氧化锌与盐酸",
+    "reactants": [
+      {
+        "substanceId": "zinc_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "ZnO + 2HCl → ZnCl2 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化锌粉末逐渐溶解于稀酸中，得到澄清无色锌盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化锌与稀盐酸发生酸碱反应，生成氯化锌和水。"
+  },
+  {
+    "id": "r036",
+    "name": "锌与硫酸",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Zn + H2SO4 → ZnSO4 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["锌粒表面产生大量无色氢气气泡，金属逐渐溶解。"],
+    "explanation": "位于金属活动性顺序氢前的锌与稀硫酸发生置换反应，生成硫酸锌和氢气。"
+  },
+  {
+    "id": "r037",
+    "name": "氧化锌与硫酸",
+    "reactants": [
+      {
+        "substanceId": "zinc_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "ZnO + H2SO4 → ZnSO4 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化锌粉末逐渐溶解于稀酸中，得到澄清无色锌盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化锌与稀硫酸发生酸碱反应，生成硫酸锌和水。"
+  },
+  {
+    "id": "r038",
+    "name": "镁与硫酸",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Mg + H2SO4 → MgSO4 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "镁条与稀酸剧烈反应，迅速冒出大量氢气气泡并明显放热。"
+    ],
+    "explanation": "位于金属活动性顺序氢前的镁与稀硫酸发生置换反应，生成硫酸镁和氢气。"
+  },
+  {
+    "id": "r039",
+    "name": "氧化镁与硫酸",
+    "reactants": [
+      {
+        "substanceId": "magnesium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "MgO + H2SO4 → MgSO4 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化镁粉末溶解于稀酸，生成无色透明镁盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化镁与稀硫酸发生酸碱反应，生成硫酸镁和水。"
+  },
+  {
+    "id": "r040",
+    "name": "氢氧化镁与硫酸",
+    "reactants": [
+      {
+        "substanceId": "magnesium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Mg(OH)2 + H2SO4 → MgSO4 + 2H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["白色氢氧化镁悬浊物逐渐中和溶解，溶液转澄清。"],
+    "explanation": "碱氢氧化镁与稀硫酸发生酸碱中和反应，生成硫酸镁和水。"
+  },
+  {
+    "id": "r041",
+    "name": "钙与盐酸",
+    "reactants": [
+      {
+        "substanceId": "calcium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Ca + 2HCl → CaCl2 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "金属钙与稀酸剧烈反应放热并迅速放出大量氢气气泡。"
+    ],
+    "explanation": "位于金属活动性顺序氢前的钙与稀盐酸发生置换反应，生成氯化钙和氢气。"
+  },
+  {
+    "id": "r042",
+    "name": "氧化钙与盐酸",
+    "reactants": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "CaO + 2HCl → CaCl2 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化钙迅速与稀酸放热反应并溶解，形成无色钙盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化钙与稀盐酸发生酸碱反应，生成氯化钙和水。"
+  },
+  {
+    "id": "r043",
+    "name": "氢氧化钙与盐酸",
+    "reactants": [
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Ca(OH)2 + 2HCl → CaCl2 + 2H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氢氧化钙与稀酸发生放热中和反应，悬浊液逐渐澄清。"
+    ],
+    "explanation": "碱氢氧化钙与稀盐酸发生酸碱中和反应，生成氯化钙和水。"
+  },
+  {
+    "id": "r044",
+    "name": "氧化铜与盐酸",
+    "reactants": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "CuO + 2HCl → CuCl2 + H2O",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色氧化铜粉末在稀酸中逐渐溶解，溶液转为亮蓝色（或蓝绿色）铜盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化铜与稀盐酸发生酸碱反应，生成氯化铜（无水）和水。"
+  },
+  {
+    "id": "r045",
+    "name": "氢氧化铜与盐酸",
+    "reactants": [
+      {
+        "substanceId": "copper_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Cu(OH)2 + 2HCl → CuCl2 + 2H2O",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "天蓝色氢氧化铜沉淀迅速与稀酸中和溶解，得到澄清蓝/蓝绿色铜盐溶液。"
+    ],
+    "explanation": "碱氢氧化铜与稀盐酸发生酸碱中和反应，生成氯化铜（无水）和水。"
+  },
+  {
+    "id": "r046",
+    "name": "氧化铜与硫酸",
+    "reactants": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "CuO + H2SO4 → CuSO4 + H2O",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/reacting-copper-ii-oxide-with-sulfuric-acid/506807",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色氧化铜粉末在稀酸中逐渐溶解，溶液转为亮蓝色（或蓝绿色）铜盐溶液。"
+    ],
+    "explanation": "金属氧化物氧化铜与稀硫酸发生酸碱反应，生成硫酸铜（无水）和水。"
+  },
+  {
+    "id": "r047",
+    "name": "氢氧化铜与硫酸",
+    "reactants": [
+      {
+        "substanceId": "copper_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Cu(OH)2 + H2SO4 → CuSO4 + 2H2O",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "天蓝色氢氧化铜沉淀迅速与稀酸中和溶解，得到澄清蓝/蓝绿色铜盐溶液。"
+    ],
+    "explanation": "碱氢氧化铜与稀硫酸发生酸碱中和反应，生成硫酸铜（无水）和水。"
+  },
+  {
+    "id": "r048",
+    "name": "铁与稀硫酸",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Fe + H2SO4 → FeSO4 + H2",
+    "animation": "bubbles",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "酸浓度限定：仅表示稀硫酸反应；冷浓硫酸会使铁钝化，热浓硫酸则生成三价铁盐与二氧化硫。",
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "铁表面持续冒出细密氢气气泡，无色稀酸逐渐转为浅绿色硫酸亚铁溶液。"
+    ],
+    "explanation": "金属铁与稀硫酸发生置换反应，生成浅绿色的硫酸亚铁（二价铁盐）并释放氢气；本规则仅限定为稀硫酸。"
+  },
+  {
+    "id": "r049",
+    "name": "盐酸中和氢氧化钠",
+    "reactants": [
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "NaOH + HCl → NaCl + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "无明显气体或沉淀生成，体系温度轻微升高，强酸与强碱中和转为中性盐水。"
+    ],
+    "explanation": "强碱氢氧化钠与强酸盐酸在水溶液中发生中和反应（H⁺ + OH⁻ → H₂O），放热并生成中性氯化钠溶液。"
+  },
+  {
+    "id": "r050",
+    "name": "盐酸中和氢氧化钾",
+    "reactants": [
+      {
+        "substanceId": "potassium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "potassium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "KOH + HCl → KCl + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["溶液保持澄清并温和放热，得到中性氯化钾溶液。"],
+    "explanation": "强碱氢氧化钾与盐酸在水溶液中放热中和，生成氯化钾和水。"
+  },
+  {
+    "id": "r051",
+    "name": "硫酸中和氢氧化钠",
+    "reactants": [
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "2NaOH + H2SO4 → Na2SO4 + 2H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "反应放热，溶液保持无色澄清，生成中性硫酸钠水溶液。"
+    ],
+    "explanation": "二元强酸稀硫酸与强碱氢氧化钠按 1:2 化学计量发生中和反应，生成硫酸钠和水。"
+  },
+  {
+    "id": "r052",
+    "name": "碳酸钙与盐酸",
+    "reactants": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "acid_carbonate",
+    "changeType": "chemical",
+    "equation": "CaCO3 + 2HCl → CaCl2 + CO2 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/preparing-salts-by-neutralisation-of-oxides-and-carbonates/506852",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色碳酸钙固体遇稀盐酸立即剧烈冒泡并逐渐溶解，放出无色二氧化碳气体。"
+    ],
+    "explanation": "难溶碳酸钙与稀盐酸迅速反应溶解，生成氯化钙、水并释放大量二氧化碳气体（实验室制取 CO₂ 的经典原理）。"
+  },
+  {
+    "id": "r053",
+    "name": "碳酸钠与盐酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "acid_carbonate",
+    "changeType": "chemical",
+    "equation": "Na2CO3 + 2HCl → 2NaCl + CO2 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "混合后迅速产生大量无色二氧化碳气泡，碳酸钠完全反应。"
+    ],
+    "explanation": "碳酸钠与足量稀盐酸反应生成氯化钠、水和二氧化碳气体。"
+  },
+  {
+    "id": "r054",
+    "name": "碳酸氢钠与盐酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_bicarbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "acid_carbonate",
+    "changeType": "chemical",
+    "equation": "NaHCO3 + HCl → NaCl + CO2 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色粉末遇稀酸立刻剧烈起泡，产生大量无色二氧化碳气体。"
+    ],
+    "explanation": "小苏打（碳酸氢钠）与稀盐酸剧烈反应，迅速释放二氧化碳并生成氯化钠和水。"
+  },
+  {
+    "id": "r055",
+    "name": "二氧化碳与氢氧化钠",
+    "reactants": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "CO2 + 2NaOH → Na2CO3 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "用量限定：假定氢氧化钠足量；若二氧化碳持续过量则会进一步生成碳酸氢钠。",
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "无色二氧化碳气体被碱液迅速吸收，溶液仍保持澄清。"
+    ],
+    "explanation": "二氧化碳被足量氢氧化钠水溶液吸收，生成碳酸钠和水。"
+  },
+  {
+    "id": "r056",
+    "name": "碳酸氢钠的形成",
+    "reactants": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_bicarbonate",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "Na2CO3 + CO2 + H2O → 2NaHCO3",
+    "animation": "crystallize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "随着二氧化碳吸收，饱和碳酸钠溶液中逐渐析出白色细小碳酸氢钠结晶。"
+    ],
+    "explanation": "向饱和碳酸钠水溶液中持续通入二氧化碳，生成溶解度较低的碳酸氢钠；达到过饱和时可析出白色细晶。"
+  },
+  {
+    "id": "r057",
+    "name": "碳酸氢钠与碱",
+    "reactants": [
+      {
+        "substanceId": "sodium_bicarbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "NaHCO3 + NaOH → Na2CO3 + H2O",
+    "animation": "dissolve",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "溶液保持无色澄清，酸式碳酸盐被强碱中和转为碳酸钠。"
+    ],
+    "explanation": "酸式盐碳酸氢钠中的碳酸氢根与强碱氢氧化钠反应，重新转化为正盐碳酸钠和水。"
+  },
+  {
+    "id": "r058",
+    "name": "石灰苛化",
+    "reactants": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "Na2CO3 + Ca(OH)2 → CaCO3 + 2NaOH",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "溶液中迅速产生大量白色碳酸钙沉淀，上层清液转为强碱性氢氧化钠溶液。"
+    ],
+    "explanation": "历史悠久的工业制碱方法（苛化法）：碳酸钠溶液与氢氧化钙反应，生成难溶碳酸钙沉淀和强碱氢氧化钠。"
+  },
+  {
+    "id": "r059",
+    "name": "铁置换铜",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Fe + CuSO4 → FeSO4 + Cu",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "铁表面逐渐析出紫红色金属铜覆盖层，蓝色溶液渐变为浅绿色。"
+    ],
+    "explanation": "铁的金属活动性强于铜，在水溶液中可将硫酸铜里的 Cu²⁺ 还原置换为金属铜，自身氧化为硫酸亚铁。"
+  },
+  {
+    "id": "r060",
+    "name": "锌置换铜",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Zn + CuSO4 → ZnSO4 + Cu",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "锌粒表面迅速析出暗红至紫红色海绵状铜，溶液蓝色逐渐褪去转为无色。"
+    ],
+    "explanation": "活泼金属锌在硫酸铜水溶液中置换出金属铜并生成无色硫酸锌，伴随明显放热。"
+  },
+  {
+    "id": "r061",
+    "name": "镁置换铜",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Mg + CuSO4 → MgSO4 + Cu",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "副反应简化：硫酸铜溶液略显酸性，现实中镁还会产生少量氢气，本规则仅表达主置换反应。",
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "镁表面迅速析出紫红色铜并明显放热，溶液蓝色变浅褪去（现实中因 Cu²⁺ 水解呈弱酸性还常伴少量氢气副反应）。"
+    ],
+    "explanation": "金属镁活动性远强于铜，可剧烈置换硫酸铜水溶液中的铜并生成硫酸镁。"
+  },
+  {
+    "id": "r062",
+    "name": "锌置换铁",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "iron_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "iron",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Zn + FeSO4 → ZnSO4 + Fe",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "浅绿色硫酸亚铁溶液逐渐褪色变澄清，锌表面析出灰黑色铁粉。"
+    ],
+    "explanation": "锌的活动性强于铁，可从硫酸亚铁水溶液中置换出细小灰黑色铁颗粒并生成无色硫酸锌。"
+  },
+  {
+    "id": "r063",
+    "name": "镁置换铁",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "iron_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "iron",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Mg + FeSO4 → MgSO4 + Fe",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["浅绿色溶液逐渐褪色，析出灰黑色铁颗粒。"],
+    "explanation": "镁的活动性强于铁，可将硫酸亚铁溶液中的 Fe²⁺ 置换为铁并生成硫酸镁。"
+  },
+  {
+    "id": "r064",
+    "name": "氢氧化铜沉淀",
+    "reactants": [
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "CuSO4 + 2NaOH → Cu(OH)2 + Na2SO4",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["混合后立刻产生醒目的天蓝色絮状氢氧化铜沉淀。"],
+    "explanation": "硫酸铜与氢氧化钠在水溶液中发生复分解反应，生成难溶的蓝色絮状氢氧化铜沉淀和硫酸钠。"
+  },
+  {
+    "id": "r065",
+    "name": "氢氧化镁沉淀",
+    "reactants": [
+      {
+        "substanceId": "magnesium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "MgSO4 + 2NaOH → Mg(OH)2 + Na2SO4",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["澄清溶液混合后立即生成白色乳状氢氧化镁沉淀。"],
+    "explanation": "硫酸镁与氢氧化钠在水溶液中复分解生成难溶的白色氢氧化镁沉淀和硫酸钠。"
+  },
+  {
+    "id": "r066",
+    "name": "一氧化碳还原氧化铁",
+    "reactants": [
+      {
+        "substanceId": "iron_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "Fe2O3 + 3CO → 2Fe + 3CO2",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "步骤简化：现实高炉中氧化铁经 Fe₂O₃ → Fe₃O₄ → FeO → Fe 逐级还原，本规则展示总方程式。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "红棕色氧化铁粉末在高温气流中逐渐转为灰黑色金属铁粉，尾气含二氧化碳。"
+    ],
+    "explanation": "高炉炼铁的核心反应之一：高温下一氧化碳夺取红棕色氧化铁中的氧，将其还原为金属铁并生成二氧化碳。"
+  },
+  {
+    "id": "r067",
+    "name": "一氧化碳还原氧化铜",
+    "reactants": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "CuO + CO → Cu + CO2",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色氧化铜粉末受热逐渐转变为光亮的紫红色铜，生成气体可使石灰水变浑浊。"
+    ],
+    "explanation": "加热条件下，一氧化碳将黑色氧化铜还原为紫红色金属铜，自身氧化为二氧化碳。"
+  },
+  {
+    "id": "r068",
+    "name": "氢气还原氧化铜",
+    "reactants": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "CuO + H2 → Cu + H2O",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/microscale-extraction-of-copper/511929",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色粉末逐渐变成紫红色铜，试管较冷管壁凝结无色水珠。"
+    ],
+    "explanation": "加热时氢气将黑色氧化铜还原为紫红色金属铜，并生成水。"
+  },
+  {
+    "id": "r069",
+    "name": "碳还原氧化铜",
+    "reactants": [
+      {
+        "substanceId": "copper_oxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "2CuO + C → 2Cu + CO2",
+    "animation": "color_change",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds",
+      "https://openstax.org/books/chemistry-2e/pages/18-4-structure-and-general-properties-of-the-nonmetals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色混合粉末强热后出现紫红色金属铜粒，并释放二氧化碳气体。"
+    ],
+    "explanation": "高温下碳单质夺取氧化铜中的氧，生成紫红色铜和二氧化碳气体（古代火法炼铜的化学基础）。"
+  },
+  {
+    "id": "r070",
+    "name": "二氧化碳与碳",
+    "reactants": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "CO2 + C → 2CO",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "炽热碳层与二氧化碳气流反应转化为无色一氧化碳气体，无液相冒泡。"
+    ],
+    "explanation": "布杜阿尔反应（Boudouard 反应）：高温下二氧化碳被炽热碳还原为一氧化碳，是高炉内产生还原气 CO 的关键吸热反应。"
+  },
+  {
+    "id": "r071",
+    "name": "铁与水蒸气",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 4
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnetite",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 4
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "3Fe + 4H2O → Fe3O4 + 4H2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "红热铁表面逐渐变黑形成四氧化三铁，气流中产生可燃氢气。"
+    ],
+    "explanation": "常温下铁不与纯水迅速反应，但红热铁在高温下能与水蒸气反应生成黑色四氧化三铁和氢气。"
+  },
+  {
+    "id": "r072",
+    "name": "镁与水蒸气",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Mg + H2O → MgO + H2",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "发出耀眼白光，生成白色氧化镁固体并放出大量氢气。"
+    ],
+    "explanation": "高温下活泼金属镁与水蒸气剧烈反应，发出白光并生成白色氧化镁和氢气。"
+  },
+  {
+    "id": "r073",
+    "name": "铝热总反应",
+    "reactants": [
+      {
+        "substanceId": "aluminium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "iron_oxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "aluminium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "iron",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "2Al + Fe2O3 → Al2O3 + 2Fe",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "安全限定：仅表达总化学计量关系，不涉及现实引燃剂或操作流程。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/the-thermite-reaction-between-aluminium-and-iron-iii-oxide/489208",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "发出极其炽热的白光与火星，产生高温熔融金属铁与氧化铝熔渣。"
+    ],
+    "explanation": "高温引发后，铝还原氧化铁生成氧化铝和熔融态铁，放出极高热量，工业上曾用于钢轨现场焊接。本游戏仅呈现总变化，不提供现实引发配方。"
+  },
+  {
+    "id": "r074",
+    "name": "食盐溶解",
+    "reactants": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "salt_solution",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "NaCl + H2O → 氯化钠溶液",
+    "animation": "dissolve",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "混合物收集项：氯化钠溶液浓度可变，无单一分子式，不参与自动原子守恒计算。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-1-the-dissolution-process"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["白色氯化钠颗粒逐渐消失，形成无色澄清咸味溶液。"],
+    "explanation": "氯化钠晶体在水中解离为水合 Na⁺ 和 Cl⁻ 形成均一透明的氯化钠溶液；没有生成新化合物，属于物理变化。"
+  },
+  {
+    "id": "r075",
+    "name": "食盐结晶",
+    "reactants": [
+      {
+        "substanceId": "salt_solution",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "salt_crystal",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["evaporate"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "氯化钠溶液 → NaCl + H2O",
+    "animation": "crystallize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "混合物收集项：溶剂蒸发分离，收集项不含固定浓度，需人工核验质量描述。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility",
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "水分不断汽化减少，器皿底部逐渐析出晶莹白色食盐晶体。"
+    ],
+    "explanation": "加热蒸发氯化钠溶液，水分以水蒸气形式逸出，溶质浓缩至过饱和后析出规则立方体食盐晶体，属于物理分离过程。"
+  },
+  {
+    "id": "r076",
+    "name": "盐晶体再溶解",
+    "reactants": [
+      {
+        "substanceId": "salt_crystal",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "salt_solution",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "NaCl + H2O → 氯化钠溶液",
+    "animation": "dissolve",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "同一化学实体（NaCl）不同游戏收集形态的物理可逆溶解。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-1-the-dissolution-process"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "立方食盐晶体在水中迅速溶散，恢复无色透明氯化钠溶液。"
+    ],
+    "explanation": "食盐晶体与氯化钠属于同一化学实体 NaCl，再次加水搅拌仍可重新溶解为氯化钠溶液。"
+  },
+  {
+    "id": "r077",
+    "name": "盐水蒸馏",
+    "reactants": [
+      {
+        "substanceId": "salt_solution",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["distill"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "氯化钠溶液 → H2O + NaCl",
+    "animation": "condense",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "物理分离过程：未产生新化学物质，溶液整体无单一分子式。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions",
+      "https://openstax.org/books/chemistry-2e/pages/11-1-the-dissolution-process"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "冷凝管出口滴落无色纯净液态水，原容器残留白色氯化钠固体。"
+    ],
+    "explanation": "利用水与氯化钠沸点差异极大，加热蒸发后再冷凝收集纯水，并回收固体氯化钠，属于物理分离。"
+  },
+  {
+    "id": "r078",
+    "name": "硫酸铜溶解",
+    "reactants": [
+      {
+        "substanceId": "copper_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_solution",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "physical",
+    "changeType": "physical",
+    "equation": "CuSO4 + H2O → 硫酸铜溶液",
+    "animation": "dissolve",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "物理溶解伴随离子水合过程；溶液整体为混合物，无单一分子式。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-1-the-dissolution-process",
+      "https://portal.ed.rsc.org/resources/reacting-copper-ii-oxide-with-sulfuric-acid/506807"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "灰白色粉末一接触水即转为亮蓝色并逐渐完全溶解，溶液呈透明天蓝色。"
+    ],
+    "explanation": "灰白色无水硫酸铜遇水迅速水合并溶解，形成标志性的天蓝色硫酸铜水溶液。"
+  },
+  {
+    "id": "r079",
+    "name": "黏土烧制",
+    "reactants": [
+      {
+        "substanceId": "clay",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "ceramic",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "material_process",
+    "changeType": "chemical",
+    "equation": "黏土 → 陶瓷",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "material_process_unsupported",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "混合物加工简化：省略结合水逸出与多相硅酸盐反应，禁止据此计算质量守恒。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-3-structure-and-general-properties-of-the-metalloids"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "松软土状黏土经高温烧结收缩变硬，质地致密且敲击发声清脆。"
+    ],
+    "explanation": "黏土在高温窑炉中脱去结构水并发生复杂硅酸盐矿物相变与烧结，最终形成坚硬致密的陶瓷材料。"
+  },
+  {
+    "id": "r080",
+    "name": "石英玻璃成形",
+    "reactants": [
+      {
+        "substanceId": "silica",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "glass",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "material_process",
+    "changeType": "physical",
+    "equation": "SiO2 → 石英玻璃",
+    "animation": "melt",
+    "energyType": "unspecified",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "material_process_unsupported",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "工艺概括：高温操作概括熔融与冷却玻璃化过程；产品按加工材料记录。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-3-structure-and-general-properties-of-the-metalloids"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色二氧化硅在极高温下熔融透明化，冷却后形成无色透明石英玻璃。"
+    ],
+    "explanation": "高纯二氧化硅在约 1700 ℃ 以上高温熔融并经受控冷却玻璃化，形成透明无定形石英玻璃（不同于含钠钙的普通平板玻璃）。"
+  },
+  {
+    "id": "r081",
+    "name": "硫酸铜溶液中的铁置换",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper_solution",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Fe + 硫酸铜溶液 → FeSO4 + Cu + H2O",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple"],
+    "stoichiometrySupported": false,
+    "calculationStrategy": "mixture_unsupported",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "溶液收集项简化：硫酸铜溶液整体无固定分子式，不能对游戏收集项直接执行化学计量计算。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "蓝色硫酸铜溶液逐渐变为浅绿色，铁表面附着一层紫红色铜。"
+    ],
+    "explanation": "铁在硫酸铜水溶液中发生置换反应，表面析出紫红色铜，溶质转化为浅绿色硫酸亚铁，同时将溶剂水单独归还为游戏收集项。"
+  },
+  {
+    "id": "r082",
+    "name": "氧化钠与盐酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrochloric_acid",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Na2O + 2HCl → 2NaCl + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化钠迅速溶解并放出热量，得到无色澄清氯化钠溶液。"
+    ],
+    "explanation": "强碱性氧化物氧化钠与稀盐酸剧烈放热中和，生成氯化钠和水。"
+  },
+  {
+    "id": "r083",
+    "name": "氧化钠与硫酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "neutralization",
+    "changeType": "chemical",
+    "equation": "Na2O + H2SO4 → Na2SO4 + H2O",
+    "animation": "dissolve",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["固体迅速溶解并放热，生成无色透明硫酸钠溶液。"],
+    "explanation": "氧化钠与稀硫酸发生酸碱中和反应，生成硫酸钠和水。"
+  },
+  {
+    "id": "r084",
+    "name": "氧化钠吸收二氧化碳",
+    "reactants": [
+      {
+        "substanceId": "sodium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "Na2O + CO2 → Na2CO3",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "动力学说明：干燥气固反应速率受表面积与微量水分影响，本规则表示总化合方程式。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色氧化钠吸收二氧化碳逐渐转化为白色碳酸钠固体，并伴放热。"
+    ],
+    "explanation": "强碱性氧化物氧化钠吸收酸性氧化物二氧化碳，直接化合生成碳酸钠固体。"
+  },
+  {
+    "id": "r085",
+    "name": "氧化钙吸收二氧化碳",
+    "reactants": [
+      {
+        "substanceId": "calcium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "CaO + CO2 → CaCO3",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": true,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "动力学说明：常温干燥条件下 CaO 与 CO₂ 反应较慢，微量水分或适当升温可显著加速碳酸化。"
+    ],
+    "references": [
+      "https://edu.rsc.org/experiments/thermal-decomposition-of-calcium-carbonate/704.article",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["白色氧化钙吸收二氧化碳气体转化为碳酸钙固体。"],
+    "explanation": "氧化钙（生石灰）吸收二氧化碳碳酸化生成碳酸钙，是碳酸钙热分解的逆向过程。"
+  },
+  {
+    "id": "r086",
+    "name": "碳酸钠与硫酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "acid_carbonate",
+    "changeType": "chemical",
+    "equation": "Na2CO3 + H2SO4 → Na2SO4 + CO2 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": ["混合后立即剧烈冒泡，放出大量无色二氧化碳气体。"],
+    "explanation": "碳酸钠与稀硫酸反应生成硫酸钠、水和大量二氧化碳气体。"
+  },
+  {
+    "id": "r087",
+    "name": "碳酸氢钠与硫酸",
+    "reactants": [
+      {
+        "substanceId": "sodium_bicarbonate",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "sulfuric_acid",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_sulfate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "acid_carbonate",
+    "changeType": "chemical",
+    "equation": "2NaHCO3 + H2SO4 → Na2SO4 + 2CO2 + 2H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "立即产生大量细密二氧化碳泡沫，固体迅速溶解消失。"
+    ],
+    "explanation": "碳酸氢钠与稀硫酸反应生成硫酸钠、二氧化碳和水。"
+  },
+  {
+    "id": "r088",
+    "name": "碳酸钙沉淀",
+    "reactants": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_carbonate",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_carbonate",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "CaCl2 + Na2CO3 → CaCO3 + 2NaCl",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "两种无色澄清溶液混合后迅速变浑浊，析出大量白色碳酸钙沉淀。"
+    ],
+    "explanation": "氯化钙与碳酸钠在水溶液中发生复分解反应，Ca²⁺ 与 CO₃²⁻ 结合生成难溶的白色碳酸钙沉淀，同时生成氯化钠。"
+  },
+  {
+    "id": "r089",
+    "name": "氯化铜溶液的沉淀反应",
+    "reactants": [
+      {
+        "substanceId": "copper_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "copper_hydroxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "CuCl2 + 2NaOH → Cu(OH)2 + 2NaCl",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "蓝绿色氯化铜溶液遇氢氧化钠立即产生天蓝色絮状沉淀。"
+    ],
+    "explanation": "氯化铜与氢氧化钠在水溶液中发生复分解反应，生成天蓝色氢氧化铜絮状沉淀和氯化钠。"
+  },
+  {
+    "id": "r090",
+    "name": "锌与氯化铜",
+    "reactants": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper_chloride",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "single_displacement",
+    "changeType": "chemical",
+    "equation": "Zn + CuCl2 → ZnCl2 + Cu",
+    "animation": "color_change",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "水溶液介质简化：反应默认在适宜含水体系中进行，盐类与酸碱收集项以溶质化学实体记录，不代表产物在反应瞬间直接析出干燥晶体。"
+    ],
+    "references": [
+      "https://portal.ed.rsc.org/resources/exothermic-metal-displacement-reactions/510824",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "锌粒表面迅速析出紫红色铜，溶液蓝绿色逐渐褪去变无色。"
+    ],
+    "explanation": "较活泼的金属锌将氯化铜水溶液中的 Cu²⁺ 置换为紫红色金属铜，同时生成氯化锌。"
+  },
+  {
+    "id": "r091",
+    "name": "铵盐与氢氧化钾",
+    "reactants": [
+      {
+        "substanceId": "ammonium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "potassium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "potassium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "ammonia",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "NH4Cl + KOH → KCl + NH3 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "介质说明：可在固相共热或浓碱水溶液加热条件下发生。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "加热后逸出具有强烈刺激性气味、能使湿润红色石蕊试纸变蓝的氨气。"
+    ],
+    "explanation": "氯化铵与强碱氢氧化钾共热，铵根离子与氢氧根反应生成刺激性氨气、水和氯化钾。"
+  },
+  {
+    "id": "r092",
+    "name": "铵盐与氢氧化钠",
+    "reactants": [
+      {
+        "substanceId": "ammonium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "sodium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "ammonia",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "NH4Cl + NaOH → NaCl + NH3 + H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": ["介质说明：常在含水体系或浓碱加热条件下进行。"],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen",
+      "https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "加热后迅速放出刺鼻氨气，使湿润红色石蕊试纸变蓝。"
+    ],
+    "explanation": "氯化铵与氢氧化钠共热释放氨气，同时生成氯化钠和水（铵盐检验的典型反应）。"
+  },
+  {
+    "id": "r093",
+    "name": "铵盐与氢氧化钙",
+    "reactants": [
+      {
+        "substanceId": "ammonium_chloride",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "calcium_hydroxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "calcium_chloride",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "ammonia",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "double_displacement",
+    "changeType": "chemical",
+    "equation": "2NH4Cl + Ca(OH)2 → CaCl2 + 2NH3 + 2H2O",
+    "animation": "bubbles",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "白色混合粉末受热释放强烈刺鼻氨气，试管口内壁出现细小水珠。"
+    ],
+    "explanation": "氯化铵与熟石灰（氢氧化钙）固体混合加热，生成氯化钙、水并释放氨气（实验室经典固相制氨原理）。"
+  },
+  {
+    "id": "r094",
+    "name": "一氧化碳还原磁铁矿",
+    "reactants": [
+      {
+        "substanceId": "magnetite",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 4
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 4
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "Fe3O4 + 4CO → 3Fe + 4CO2",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色磁铁矿粉末在高温还原气氛中逐渐转化为灰黑色金属铁粉。"
+    ],
+    "explanation": "高温下一氧化碳将黑色四氧化三铁（磁铁矿主要成分）还原为金属铁，自身氧化为二氧化碳。"
+  },
+  {
+    "id": "r095",
+    "name": "氢气还原氧化铁",
+    "reactants": [
+      {
+        "substanceId": "iron_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "Fe2O3 + 3H2 → 2Fe + 3H2O",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "红棕色氧化铁逐渐变为灰黑色金属铁粉，并产生水蒸气冷凝水珠。"
+    ],
+    "explanation": "高温下氢气将红棕色氧化铁还原为金属铁并生成水（氢冶金的绿色炼铁思路基础）。"
+  },
+  {
+    "id": "r096",
+    "name": "氢气还原磁铁矿",
+    "reactants": [
+      {
+        "substanceId": "magnetite",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 4
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "iron",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 4
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "Fe3O4 + 4H2 → 3Fe + 4H2O",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "高温水相简化：反应温度下生成的水通常先呈气态水蒸气，本游戏以冷却收集后的液态水表示总产物。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "黑色四氧化三铁逐渐还原为灰黑色铁粉，气流带出水蒸气。"
+    ],
+    "explanation": "高温下氢气还原四氧化三铁生成金属铁和水。"
+  },
+  {
+    "id": "r097",
+    "name": "碳还原氧化锌",
+    "reactants": [
+      {
+        "substanceId": "zinc_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "ZnO + C → Zn + CO",
+    "animation": "color_change",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "相态简化：反应温度高于锌的沸点（907 ℃），产物锌实际先呈气态再经冷凝收集为固态锌。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/19-1-occurrence-preparation-and-properties-of-transition-metals-and-their-compounds"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "高温下白色氧化锌与碳反应，经冷凝回收蓝白色金属锌并放出 CO 气体。"
+    ],
+    "explanation": "高温下（约 1000 ℃ 以上）碳将氧化锌还原为金属锌蒸气（冷却收集为金属锌）并生成一氧化碳，属于传统火法炼锌原理。"
+  },
+  {
+    "id": "r098",
+    "name": "镁与二氧化碳",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_oxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "2Mg + CO2 → 2MgO + C",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "在二氧化碳中继续剧烈燃烧发出耀眼白光，器壁留下白色氧化镁与黑色碳粉。"
+    ],
+    "explanation": "点燃的镁条能在二氧化碳中继续剧烈燃烧，夺取二氧化碳中的氧生成白色氧化镁和黑色碳颗粒——这也是不能用 CO₂ 灭火器扑救镁火的原因。"
+  },
+  {
+    "id": "r099",
+    "name": "水煤气总反应",
+    "reactants": [
+      {
+        "substanceId": "carbon",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["high_heat"],
+    "catalysts": [],
+    "reactionType": "redox",
+    "changeType": "chemical",
+    "equation": "C + H2O → CO + H2",
+    "animation": "vaporize",
+    "energyType": "endothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "平衡简化：实际气化过程还伴随水煤气变换等副反应与热力学平衡，本规则仅表达主反应。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://openstax.org/books/chemistry-2e/pages/18-4-structure-and-general-properties-of-the-nonmetals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "水蒸气通过炽热碳层转化为可燃混合气体（CO 与 H₂），体系强烈吸热。"
+    ],
+    "explanation": "高温（约 800–1000 ℃）下炽热碳与水蒸气发生吸热反应，生成一氧化碳与氢气的混合气体（水煤气 / 合成气）。"
+  },
+  {
+    "id": "r100",
+    "name": "钠与氯气",
+    "reactants": [
+      {
+        "substanceId": "sodium",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "chlorine",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "sodium_chloride",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2Na + Cl2 → 2NaCl",
+    "animation": "energy_release",
+    "energyType": "exothermic",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "安全提示：涉及剧毒氯气与极活泼金属钠，现实操作极其危险，本游戏仅作虚拟演示。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "发出耀眼黄色火焰，产生大量白色氯化钠烟尘，黄绿色氯气迅速褪去。"
+    ],
+    "explanation": "活泼金属钠在黄绿色氯气中点燃剧烈化合，电子从钠转移给氯，形成离子化合物氯化钠。"
+  },
+  {
+    "id": "github_iron_sulfur",
+    "name": "铁与环状硫分子（S₈）的转化",
+    "reactants": [
+      {
+        "substanceId": "iron",
+        "coefficient": 8
+      },
+      {
+        "substanceId": "kb_S8",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_FeS",
+        "coefficient": 8
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "8Fe + S8 → 8FeS",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：iron-sulfur；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://scilearn.sydney.edu.au/fychemistry/demonstrations/files/8.11.pdf"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "铁与环状硫分子（S₈）在来源情境中转化为硫化亚铁。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_copper_silver",
+    "name": "铜与硝酸银（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "copper",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_AgNO3",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_CuNO3",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_Ag",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "Cu + 2AgNO3 → Cu(NO3)2 + 2Ag",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：copper-silver；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://intro.chem.okstate.edu/ChemSource/ChemRx/chemrx8.htm"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "铜与硝酸银（溶液）在来源情境中转化为硝酸铜（溶液）、银。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_methane_combustion",
+    "name": "甲烷与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_CH4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "CH4 + 2O2 → CO2 + 2H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：methane-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "甲烷与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_ethane_combustion",
+    "name": "乙烷与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C2H6",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 7
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 4
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 6
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2C2H6 + 7O2 → 4CO2 + 6H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：ethane-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "乙烷与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_brine_electrolysis",
+    "name": "氯化钠（溶液）与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_NaCl",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_NaOH",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "chlorine",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["electricity"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2NaCl + 2H2O → 2NaOH + H2 + Cl2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：brine-electrolysis；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
+      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氯化钠（溶液）与水在来源情境中转化为氢氧化钠（溶液）、氢气、氯气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_lead_iodide",
+    "name": "碘化钾（溶液）与硝酸铅（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_KI",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "kb_Pb_NO3_2",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_PbI2",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_KNO3",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2KI + Pb(NO3)2 → PbI2 + 2KNO3",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：lead-iodide；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "碘化钾（溶液）与硝酸铅（溶液）在来源情境中转化为碘化铅、硝酸钾（溶液）。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_ethanol_combustion",
+    "name": "乙醇与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C2H5OH",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "C2H5OH + 3O2 → 2CO2 + 3H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：ethanol-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/5-3-enthalpy"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "乙醇与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_acetylene_combustion",
+    "name": "乙炔与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C2H2",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 5
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 4
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2C2H2 + 5O2 → 4CO2 + 2H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：acetylene-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/5-3-enthalpy"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "乙炔与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_methanol_combustion",
+    "name": "甲醇与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_CH3OH",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 4
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2CH3OH + 3O2 → 2CO2 + 4H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：methanol-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/5-3-enthalpy"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "甲醇与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_isooctane_combustion",
+    "name": "异辛烷与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C8H18",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 25
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 16
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 18
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2C8H18 + 25O2 → 16CO2 + 18H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：isooctane-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/5-3-enthalpy"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "异辛烷与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_magnesium_nitride_water",
+    "name": "氮化镁与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Mg3N2",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 6
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "magnesium_hydroxide",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "ammonia",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "Mg3N2 + 6H2O → 3Mg(OH)2 + 2NH3",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：magnesium-nitride-water；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氮化镁与水在来源情境中转化为氢氧化镁、氨气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_bromine_iodide",
+    "name": "溴（溶液）与氢碘酸（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Br2_aq",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_HI",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_HBr",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "kb_I2_aq",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "Br2 + 2HI → 2HBr + I2",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：bromine-iodide；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "溴（溶液）与氢碘酸（溶液）在来源情境中转化为氢溴酸（溶液）、碘（溶液）。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_potassium_bicarbonate_base",
+    "name": "碳酸氢钾（溶液）与氢氧化钾（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_KHCO3",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_KOH",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_K2CO3",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "KHCO3 + KOH → K2CO3 + H2O",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：potassium-bicarbonate-base；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-6-occurrence-preparation-and-properties-of-carbonates"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "碳酸氢钾（溶液）与氢氧化钾（溶液）在来源情境中转化为碳酸钾（溶液）、水。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_nitric_oxide_oxidation",
+    "name": "一氧化氮与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_NO",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_NO2",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "2NO + O2 → 2NO2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：nitric-oxide-oxidation；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "一氧化氮与氧气在来源情境中转化为二氧化氮。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_nitrogen_pentoxide_water",
+    "name": "五氧化二氮与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_N2O5",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_HNO3",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "N2O5 + H2O → 2HNO3",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：nitrogen-pentoxide-water；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "五氧化二氮与水在来源情境中转化为硝酸（溶液）。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_nitrous_oxide_decomposition",
+    "name": "一氧化二氮的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_N2O",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "nitrogen",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2N2O → 2N2 + O2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：nitrous-oxide-decomposition；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "一氧化二氮在来源情境中转化为氮气、氧气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_lithium_nitride",
+    "name": "锂与氮气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Li",
+        "coefficient": 6
+      },
+      {
+        "substanceId": "nitrogen",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_Li3N",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "6Li + N2 → 2Li3N",
+    "animation": "color_change",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：lithium-nitride；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "锂与氮气在来源情境中转化为氮化锂。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_phosphorus_oxide_water",
+    "name": "十氧化四磷与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_P4O10",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 6
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_H3PO4",
+        "coefficient": 4
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "P4O10 + 6H2O → 4H3PO4",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：phosphorus-oxide-water；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-8-occurrence-preparation-and-properties-of-phosphorus"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "十氧化四磷与水在来源情境中转化为磷酸（溶液）。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_lithium_water",
+    "name": "锂与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Li",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_LiOH",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "hydrogen",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2Li + 2H2O → 2LiOH + H2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：lithium-water；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "锂与水在来源情境中转化为氢氧化锂（溶液）、氢气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_lithium_oxide_water",
+    "name": "氧化锂与水的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Li2O",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_LiOH",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "combination",
+    "changeType": "chemical",
+    "equation": "Li2O + H2O → 2LiOH",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：lithium-oxide-water；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氧化锂与水在来源情境中转化为氢氧化锂（溶液）。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_butane_combustion",
+    "name": "丁烷与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C4H10",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 13
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 8
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 10
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2C4H10 + 13O2 → 8CO2 + 10H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：butane-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "丁烷与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_potassium_chlorate_decomposition",
+    "name": "氯酸钾的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_KClO3",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "potassium_chloride",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2KClO3 → 2KCl + 3O2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：potassium-chlorate-decomposition；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氯酸钾在来源情境中转化为氯化钾、氧气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_cyclohexane_combustion",
+    "name": "环己烷与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C6H12",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 9
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 6
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 6
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "C6H12 + 9O2 → 6CO2 + 6H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：cyclohexane-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "环己烷与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_phosphoric_acid_complete",
+    "name": "氢氧化钾（溶液）与磷酸（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_KOH",
+        "coefficient": 3
+      },
+      {
+        "substanceId": "kb_H3PO4",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_K3PO4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "3KOH + H3PO4 → K3PO4 + 3H2O",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：phosphoric-acid-complete；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氢氧化钾（溶液）与磷酸（溶液）在来源情境中转化为磷酸钾（溶液）、水。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_magnesium_nickel",
+    "name": "镁与氯化镍（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "magnesium",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_NiCl2",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_MgCl2",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_Ni",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "Mg + NiCl2 → MgCl2 + Ni",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：magnesium-nickel；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "镁与氯化镍（溶液）在来源情境中转化为氯化镁（溶液）、镍。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_ethylene_combustion",
+    "name": "乙烯与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_C2H4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "carbon_dioxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["ignite"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "C2H4 + 3O2 → 2CO2 + 2H2O",
+    "animation": "energy_release",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：ethylene-combustion；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "乙烯与氧气在来源情境中转化为二氧化碳、水蒸气。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_calcium_acetic_acid",
+    "name": "乙酸（溶液）与氢氧化钙（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_CH3COOH",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "kb_Ca_OH_2",
+        "coefficient": 1
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_Ca_CH3COO_2",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2CH3COOH + Ca(OH)2 → Ca(CH3COO)2 + 2H2O",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：calcium-acetic-acid；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "乙酸（溶液）与氢氧化钙（溶液）在来源情境中转化为乙酸钙（溶液）、水。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_oxalic_neutralization",
+    "name": "草酸（溶液）与氢氧化钠（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_H2C2O4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_NaOH",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_Na2C2O4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "H2C2O4 + 2NaOH → Na2C2O4 + 2H2O",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：oxalic-neutralization；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "草酸（溶液）与氢氧化钠（溶液）在来源情境中转化为草酸钠（溶液）、水。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_sulfuric_potassium_neutralization",
+    "name": "硫酸（溶液）与氢氧化钾（溶液）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_H2SO4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "kb_KOH",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_K2SO4",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "water",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["mix"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "H2SO4 + 2KOH → K2SO4 + 2H2O",
+    "animation": "precipitate",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：sulfuric-potassium-neutralization；保留具体物态；本操作概括变化，不构成现实实验流程。",
+      "水溶液规则用份数描述溶质实体，理论质量为溶质质量；不模拟浓度、溶剂体积或晶体分离。"
+    ],
+    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "硫酸（溶液）与氢氧化钾（溶液）在来源情境中转化为硫酸钾（溶液）、水。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_elements_zinc_sulfide_roasting",
+    "name": "硫化锌与氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_ZnS_s",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "zinc_oxide",
+        "coefficient": 2
+      },
+      {
+        "substanceId": "sulfur_dioxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "2ZnS + 3O2 → 2ZnO + 2SO2",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：elements-zinc-sulfide-roasting；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "硫化锌与氧气在来源情境中转化为氧化锌、二氧化硫。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_elements_tin_oxide_carbon",
+    "name": "二氧化锡与碳（石墨）的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_SnO2_s",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_Sn_s",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "carbon_monoxide",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "exchange",
+    "changeType": "chemical",
+    "equation": "SnO2 + 2C → Sn + 2CO",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：elements-tin-oxide-carbon；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "二氧化锡与碳（石墨）在来源情境中转化为锡、一氧化碳。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_elements_no2_dimerization",
+    "name": "二氧化氮的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_NO2",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_N2O4_g",
+        "coefficient": 1
+      }
+    ],
+    "conditions": ["cool"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2NO2 → N2O4",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：elements-no2-dimerization；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "二氧化氮在来源情境中转化为四氧化二氮。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_elements_ozone_formation",
+    "name": "氧气的转化",
+    "reactants": [
+      {
+        "substanceId": "oxygen",
+        "coefficient": 3
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "kb_O3_g",
+        "coefficient": 2
+      }
+    ],
+    "conditions": ["electricity"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "3O2 → 2O3",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：elements-ozone-formation；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氧气在来源情境中转化为臭氧。查看所引资料可了解该情境的适用范围。"
+  },
+  {
+    "id": "github_elements_aluminium_hydroxide_decomposition",
+    "name": "氢氧化铝的转化",
+    "reactants": [
+      {
+        "substanceId": "kb_Al_OH_3",
+        "coefficient": 2
+      }
+    ],
+    "products": [
+      {
+        "substanceId": "aluminium_oxide",
+        "coefficient": 1
+      },
+      {
+        "substanceId": "steam",
+        "coefficient": 3
+      }
+    ],
+    "conditions": ["heat"],
+    "catalysts": [],
+    "reactionType": "decomposition",
+    "changeType": "chemical",
+    "equation": "2Al(OH)3 → Al2O3 + 3H2O",
+    "animation": "vaporize",
+    "energyType": "unspecified",
+    "supportedModes": ["simple", "advanced"],
+    "stoichiometrySupported": true,
+    "calculationStrategy": "stoichiometric",
+    "reversible": false,
+    "simulationOnly": true,
+    "simplificationNotes": [
+      "来源目录：elements-aluminium-hydroxide-decomposition；保留具体物态；本操作概括变化，不构成现实实验流程。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    ],
+    "reviewStatus": "pending",
+    "priority": 0,
+    "expectedObservations": [
+      "本条以守恒方程式和生成物的相态呈现变化，颜色与动态粒子为教学示意。"
+    ],
+    "explanation": "氢氧化铝在来源情境中转化为氧化铝、水蒸气。查看所引资料可了解该情境的适用范围。"
+  }
+]

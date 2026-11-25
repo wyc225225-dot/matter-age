@@ -1,0 +1,231 @@
+[
+  {
+    "id": "fig_scheele",
+    "name": "卡尔·威廉·舍勒",
+    "nameEn": "Carl Wilhelm Scheele",
+    "lifespan": "1742–1786",
+    "nationality": "瑞典-德意志药剂师与化学家",
+    "summary": "约在 1771–1772 年最早通过加热氧化汞、硝酸钾等物质独立分离出助燃气体（他称之为「火空气」），因书稿延至 1777 年出版而晚于普里斯特利公开发表。",
+    "contributions": [
+      "最早在实验室中独立制得并描述氧气（「火空气」）的助燃性质",
+      "发现氯气并系统研究酒石酸、柠檬酸、氢氟酸等多种化合物"
+    ],
+    "collaborationNote": "氧气的发现体现了 18 世纪欧洲科学界的多重独立突破：舍勒最早制得、普里斯特利 1774 年独立制得并率先于 1775 年发表、拉瓦锡最终阐明氧化本质并命名。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/carl-wilhelm-scheele/",
+      "https://www.britannica.com/biography/Carl-Wilhelm-Scheele"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_priestley",
+    "name": "约瑟夫·普里斯特里",
+    "nameEn": "Joseph Priestley",
+    "lifespan": "1733–1804",
+    "nationality": "英国自然哲学家与化学家",
+    "summary": "1774 年 8 月 1 日利用凸透镜聚焦阳光加热红色氧化汞分离出氧气，并于 1775 年率先公开发表实验记录；受当时燃素说框架影响，他称之为「脱燃素空气」。",
+    "contributions": [
+      "1774 年独立分离氧气并于 1775 年率先发表，推动全欧气体化学研究",
+      "改进水银槽集气法，陆续分离氨气、氯化氢、二氧化硫、一氧化二氮等多种气体"
+    ],
+    "collaborationNote": "1774 年 10 月普里斯特里访问巴黎并向拉瓦锡介绍了该实验，直接触发了拉瓦锡对燃烧与金属煅烧本质的定量重检。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/joseph-priestley/",
+      "https://www.acs.org/education/whatischemistry/landmarks/josephpriestleyoxygen.html"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_lavoisier",
+    "name": "安托万-洛朗·德·拉瓦锡",
+    "nameEn": "Antoine-Laurent de Lavoisier",
+    "lifespan": "1743–1794",
+    "nationality": "法国化学家",
+    "summary": "以精密天平与密闭体系定量实验为核心，系统验证质量守恒、推翻燃素说、阐明氧气与氧化理论、验证水的组成，并于 1789 年出版《化学基础论》确立现代化学命名体系。",
+    "contributions": [
+      "通过密闭容器煅烧与定量核算确立质量守恒原则",
+      "阐明燃烧是与氧结合的氧化反应，命名氧气（oxygène）与氢气（hydrogène）",
+      "著《化学基础论》（1789），将化学推进为严格的定量实验科学"
+    ],
+    "collaborationNote": "拉瓦锡的研究与玛丽-安娜·保尔兹·拉瓦锡的翻译、日志记录与仪器绘图密不可分，并吸纳了普里斯特里、卡文迪许、拉普拉斯等人的关键实验。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/",
+      "https://www.britannica.com/biography/Antoine-Lavoisier"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_marie_lavoisier",
+    "name": "玛丽-安娜·保尔兹·拉瓦锡",
+    "nameEn": "Marie-Anne Paulze Lavoisier",
+    "lifespan": "1758–1836",
+    "nationality": "法国科学合作者、译者与插画家",
+    "summary": "巴黎兵工厂实验室不可或缺的科学合作者：精通英、拉丁语并翻译关键化学论文，维护实验称量日志，亲手绘制并蚀刻《化学基础论》的全部 13 幅精密仪器铜版画。",
+    "contributions": [
+      "翻译普利斯特里、卡文迪许与基尔万的英语化学著作并附学术批注",
+      "绘制蚀刻高精度实验装置图版，使欧洲同行得以准确复现密闭称量与气量计装置",
+      "系统记录实验室数据并在拉瓦锡遇难后编辑整理其科学手稿"
+    ],
+    "collaborationNote": "现代科学史明确确认她在化学革命中扮演的是核心科学合作者角色。",
+    "references": [
+      "https://www.sciencehistory.org/stories/magazine/marie-anne-paulze-lavoisier/",
+      "https://www.britannica.com/biography/Marie-Anne-Pierrette-Paulze-Lavoisier"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_cavendish",
+    "name": "亨利·卡文迪许",
+    "nameEn": "Henry Cavendish",
+    "lifespan": "1731–1810",
+    "nationality": "英国物理学家与化学家",
+    "summary": "1766 年系统分离并测定「可燃空气」（氢气），1781–1784 年在密闭玻璃球泡中以电火花引燃氢气与空气/氧气，首次定量证明产物正是纯水，动摇了「水是单一元素」的千年观念。",
+    "contributions": [
+      "定量测定「可燃空气」（氢气）密度与化学性质",
+      "1781–1784 年完成氢氧燃烧合成水的经典定量实验"
+    ],
+    "collaborationNote": "卡文迪许本人仍使用燃素说术语解释产物；随后拉瓦锡与拉普拉斯通过合成与红热铁管分解双向验证，给出了「水是氢与氧的化合物」的现代解释。",
+    "references": [
+      "https://www.britannica.com/biography/Henry-Cavendish",
+      "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_volta",
+    "name": "亚历山德罗·伏特",
+    "nameEn": "Alessandro Volta",
+    "lifespan": "1745–1827",
+    "nationality": "意大利物理学家",
+    "summary": "1800 年 3 月 20 日致信英国皇家学会会长约瑟夫·班克斯（刊于《哲学汇刊》），公布由锌片、银片（或铜片）与浸盐水纸板/布片交替堆叠组成的伏打电堆，首次提供持续直流电源。",
+    "contributions": [
+      "1800 年发明世界上第一台可持续供电的化学电池——伏打电堆",
+      "回应伽伐尼「动物电」实验争论，开启持续电流与电化学研究时代"
+    ],
+    "collaborationNote": "伏打电堆公布仅数周，尼科尔森与卡莱尔即据此完成水的持续电解，戴维随后借助大型电堆分离出钠、钾等活泼金属。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/alessandro-volta/",
+      "https://www.britannica.com/biography/Alessandro-Volta"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_mendeleev",
+    "name": "德米特里·门捷列夫",
+    "nameEn": "Dmitri Mendeleev",
+    "lifespan": "1834–1907",
+    "nationality": "俄国化学家",
+    "summary": "1869 年依据相对原子质量与氧化物等化学性质规律编制元素周期表，敢于在铝、硼、硅下方预留空位并定量预言未知元素性质；1875–1886 年镓、钪、锗的发现高度印证其预言。",
+    "contributions": [
+      "1869 年发表具有系统预测力的元素周期表与周期律",
+      "定量预言「类铝（镓）」「类硼（钪）」「类硅（锗）」的原子量、密度与氧化物通式"
+    ],
+    "collaborationNote": "同期德国化学家尤利乌斯·洛塔尔·迈耶尔独立构建了原子体积曲线与周期表；此前德贝莱纳（三元素组）、尚古多（螺旋图）与纽兰兹（八音律）亦作出重要先驱探索。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/dmitri-mendeleev/",
+      "https://www.rsc.org/periodic-table/history/about"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_meyer",
+    "name": "尤利乌斯·洛塔尔·迈耶尔",
+    "nameEn": "Julius Lothar Meyer",
+    "lifespan": "1830–1895",
+    "nationality": "德国化学家",
+    "summary": "与门捷列夫同期独立发现元素性质随相对原子质量呈周期性起伏，绘制著名的原子体积—原子量周期曲线，并于 1870 年正式发表完整周期表。",
+    "contributions": [
+      "独立构建元素周期表并揭示物理性质（原子体积）的周期性规律",
+      "1882 年与门捷列夫共同获颁英国皇家学会戴维奖章"
+    ],
+    "collaborationNote": "周期律是 19 世纪多位化学家共同推进的成果，迈耶尔与门捷列夫的独立发现彼此印证。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/julius-lothar-meyer-and-dmitri-ivanovich-mendeleev/",
+      "https://www.britannica.com/biography/Lothar-Meyer"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_wohler",
+    "name": "弗里德里希·维勒",
+    "nameEn": "Friedrich Wöhler",
+    "lifespan": "1800–1882",
+    "nationality": "德国化学家",
+    "summary": "1828 年意外由无机盐氰酸铵转化得到典型生物代谢物尿素，成为动摇「生命力论」与现代有机化学兴起的标志性节点。",
+    "contributions": [
+      "1828 年完成无机物向尿素的人工转化",
+      "与李比希合作研究苯甲酰基等有机基团理论"
+    ],
+    "collaborationNote": "后续预告章节（CH.05）核心人物；科学史指出「生命力论」的退出是 19 世纪中叶多位有机化学家逐步促成的过程。",
+    "references": ["https://www.britannica.com/biography/Friedrich-Wohler"],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_faraday",
+    "name": "迈克尔·法拉第",
+    "nameEn": "Michael Faraday",
+    "lifespan": "1791–1867",
+    "nationality": "英国物理学家与化学家",
+    "summary": "1833–1834 年建立定量电解第一、第二定律，并引入电极、阳极、阴极、电解质、离子等现代电化学术语。",
+    "contributions": [
+      "建立电量与电解产物物质的量之间的定量关系（法拉第电解定律）",
+      "与休厄尔共同确立现代电化学命名术语"
+    ],
+    "collaborationNote": "后续预告章节（CH.06）核心人物。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/michael-faraday/"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_curies",
+    "name": "玛丽·居里与皮埃尔·居里",
+    "nameEn": "Marie Skłodowska-Curie & Pierre Curie",
+    "lifespan": "1867–1934 / 1859–1906",
+    "nationality": "波兰-法国物理学家与化学家",
+    "summary": "1898 年通过对沥青铀矿的精密电离测量与繁重分步提纯，相继发现两种强放射性新元素钋（Po）与镭（Ra），并提出「放射性」术语。",
+    "contributions": [
+      "1898 年共同发现钋与镭元素",
+      "推动放射性定量分析与原子可分性研究"
+    ],
+    "collaborationNote": "后续预告章节（CH.08，仅限虚拟数据分析）核心合作者，与贝克勒尔共享 1903 年诺贝尔物理学奖，玛丽·居里独享 1911 年诺贝尔化学奖。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1911/marie-curie/facts/"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_rutherford_team",
+    "name": "卢瑟福、盖革与马斯登",
+    "nameEn": "Ernest Rutherford, Hans Geiger & Ernest Marsden",
+    "lifespan": "1871–1937 / 1882–1945 / 1889–1970",
+    "nationality": "新西兰-英国、德国与英国物理学家",
+    "summary": "1909 年盖革与马斯登在卢瑟福指导下完成 α 粒子金箔散射实验，观测到极少数大角度反弹；1911 年卢瑟福据此提出原子核模型。",
+    "contributions": [
+      "金箔散射实验推翻「葡萄干布丁」均匀原子模型",
+      "确立微小致密带正电原子核与核外广阔空间的现代原子图像"
+    ],
+    "collaborationNote": "后续预告章节（CH.09）多人协作典范：实验观测由盖革与年轻的马斯登完成，理论模型由卢瑟福阐明。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1908/rutherford/biographical/"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
+    "id": "fig_haber_bosch",
+    "name": "弗里茨·哈伯与卡尔·博施",
+    "nameEn": "Fritz Haber & Carl Bosch",
+    "lifespan": "1868–1934 / 1874–1940",
+    "nationality": "德国化学家与化学工程师",
+    "summary": "1909–1913 年将高温高压催化合成氨从实验室示范推进到大规模工业化生产，深刻改变了现代氮肥农业与化学工业格局。",
+    "contributions": [
+      "哈伯实现氮气与氢气催化合成氨的实验室高压工艺",
+      "博施攻克高压反应釜材料与催化剂工程难题，建成工业合成氨装置"
+    ],
+    "collaborationNote": "后续预告章节（CH.10）核心人物，体现基础化学平衡研究与高压化工工程的衔接。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1918/haber/facts/"
+    ],
+    "reviewStatus": "pending"
+  }
+]

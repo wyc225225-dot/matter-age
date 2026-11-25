@@ -1,0 +1,408 @@
+[
+  {
+    "id": "tech_phase_control",
+    "name": "物态与冷热控制",
+    "en": "PHASE CONTROL",
+    "category": "basic_chemistry",
+    "tier": 1,
+    "description": "系统掌握凝固、熔化与冷凝条件，解锁经营模式「冷却设备」。",
+    "costRP": 15,
+    "costCoins": 30,
+    "prereqTechIds": [],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "conditions": ["cool"],
+      "equipmentIds": ["eq_cooler"],
+      "bonusNote": "可在经营实验台建造冷却设备"
+    },
+    "position": { "col": 0, "row": 0 }
+  },
+  {
+    "id": "tech_solution_basics",
+    "name": "溶液与溶解基础",
+    "en": "SOLUTION BASICS",
+    "category": "basic_chemistry",
+    "tier": 1,
+    "description": "理解纯化合物与水溶液的区别，明确混合与化学反应的边界。",
+    "costRP": 15,
+    "costCoins": 25,
+    "prereqTechIds": [],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "bonusNote": "提升基础溶解与溶液订单收益说明"
+    },
+    "position": { "col": 0, "row": 1 }
+  },
+  {
+    "id": "tech_gas_chemistry",
+    "name": "气体收集与检验",
+    "en": "GAS CHEMISTRY",
+    "category": "basic_chemistry",
+    "tier": 2,
+    "description": "掌握氧气、氢气、二氧化碳的制备、收集与气密检验技术。",
+    "costRP": 25,
+    "costCoins": 55,
+    "prereqTechIds": ["tech_phase_control"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "开放气体定量制备类研究订单"
+    },
+    "position": { "col": 1, "row": 0 }
+  },
+  {
+    "id": "tech_catalysis_study",
+    "name": "多相催化机理",
+    "en": "CATALYSIS STUDY",
+    "category": "basic_chemistry",
+    "tier": 3,
+    "description": "理解催化剂降低活化能且自身不消耗的定量规律，优化分解反应效率。",
+    "costRP": 40,
+    "costCoins": 90,
+    "prereqTechIds": ["tech_gas_chemistry", "tech_quant_analysis"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "解锁催化留存类高阶研究项目"
+    },
+    "position": { "col": 2, "row": 0 }
+  },
+
+  {
+    "id": "tech_thermal_basics",
+    "name": "基础热化学操作",
+    "en": "THERMAL BASICS",
+    "category": "thermal_process",
+    "tier": 1,
+    "description": "建立安全可控的加热与点燃流程，解锁经营模式「加热设备」。",
+    "costRP": 15,
+    "costCoins": 30,
+    "prereqTechIds": [],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "conditions": ["heat", "ignite"],
+      "equipmentIds": ["eq_heater"],
+      "bonusNote": "可在经营实验台建造加热设备"
+    },
+    "position": { "col": 0, "row": 2 }
+  },
+  {
+    "id": "tech_combustion_control",
+    "name": "受控氧化与燃烧",
+    "en": "COMBUSTION CONTROL",
+    "category": "thermal_process",
+    "tier": 2,
+    "description": "精确控制可燃物与氧气的整数配比，减少未反应剩余物浪费。",
+    "costRP": 25,
+    "costCoins": 60,
+    "prereqTechIds": ["tech_thermal_basics"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "开放零浪费氧化燃烧类委托"
+    },
+    "position": { "col": 1, "row": 2 }
+  },
+  {
+    "id": "tech_high_temp_furnace",
+    "name": "高温炉窑技术",
+    "en": "HIGH-TEMP FURNACE",
+    "category": "thermal_process",
+    "tier": 3,
+    "description": "攻克耐火炉膛与高温控温难题，解锁经营模式「高温加工设备」。",
+    "costRP": 45,
+    "costCoins": 120,
+    "prereqTechIds": ["tech_combustion_control", "tech_lab_expansion_3"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "conditions": ["high_heat"],
+      "equipmentIds": ["eq_furnace"],
+      "bonusNote": "可在 Lv.3 实验室建造高温加工设备"
+    },
+    "position": { "col": 2, "row": 2 }
+  },
+  {
+    "id": "tech_ceramic_glass",
+    "name": "硅酸盐烧制工艺",
+    "en": "SILICATE FIRING",
+    "category": "thermal_process",
+    "tier": 4,
+    "description": "将二氧化硅与黏土在高温下转化为玻璃与陶瓷，拓展无机非金属材料谱系。",
+    "costRP": 55,
+    "costCoins": 150,
+    "prereqTechIds": ["tech_high_temp_furnace"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "bonusNote": "解锁玻璃与陶瓷高温烧制高阶订单"
+    },
+    "position": { "col": 3, "row": 2 }
+  },
+
+  {
+    "id": "tech_mechanical_prep",
+    "name": "矿物机械前处理",
+    "en": "MINERAL MILLING",
+    "category": "metal_materials",
+    "tier": 1,
+    "description": "通过粉碎与研磨增大固体比表面积，解锁经营模式「研磨设备」。",
+    "costRP": 15,
+    "costCoins": 30,
+    "prereqTechIds": [],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "conditions": ["grind"],
+      "equipmentIds": ["eq_grinder"],
+      "bonusNote": "可在经营实验台建造研磨设备"
+    },
+    "position": { "col": 0, "row": 3 }
+  },
+  {
+    "id": "tech_mountain_survey",
+    "name": "矿脉地质勘探",
+    "en": "MINERAL SURVEY",
+    "category": "metal_materials",
+    "tier": 2,
+    "description": "识别石灰岩、铁矿与铜矿露头分布，解锁世界探索区域「矿石山脉」。",
+    "costRP": 25,
+    "costCoins": 55,
+    "prereqTechIds": ["tech_mechanical_prep"],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "regionIds": ["mountains"],
+      "bonusNote": "解锁世界地图「矿石山脉」区域"
+    },
+    "position": { "col": 1, "row": 3 }
+  },
+  {
+    "id": "tech_metal_redox",
+    "name": "金属活动性与置换",
+    "en": "METAL REDOX",
+    "category": "metal_materials",
+    "tier": 3,
+    "description": "掌握铁、锌、镁、铜在溶液与高温下的氧化还原规律。",
+    "costRP": 40,
+    "costCoins": 100,
+    "prereqTechIds": ["tech_mountain_survey", "tech_acid_base_intro"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "解锁金属置换与还原精炼订单"
+    },
+    "position": { "col": 2, "row": 3 }
+  },
+  {
+    "id": "tech_metallurgy_refining",
+    "name": "高温冶金与铝热还原",
+    "en": "METALLURGY REFINING",
+    "category": "metal_materials",
+    "tier": 4,
+    "description": "运用一氧化碳、碳与铝在高温下还原铁矿与铜矿，迈向现代冶金体系。",
+    "costRP": 60,
+    "costCoins": 160,
+    "prereqTechIds": ["tech_metal_redox", "tech_high_temp_furnace"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "bonusNote": "解锁高温冶炼与铝热法高阶委托"
+    },
+    "position": { "col": 3, "row": 3 }
+  },
+
+  {
+    "id": "tech_acid_base_intro",
+    "name": "酸碱中和基础",
+    "en": "ACID-BASE BASICS",
+    "category": "acid_base_salt",
+    "tier": 1,
+    "description": "建立常见无机酸、碱、氧化物的反应规律，安全开展常温中和实验。",
+    "costRP": 18,
+    "costCoins": 35,
+    "prereqTechIds": ["tech_solution_basics"],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "bonusNote": "开放酸碱中和类研究委托"
+    },
+    "position": { "col": 1, "row": 1 }
+  },
+  {
+    "id": "tech_salt_crystallization",
+    "name": "海盐与蒸发结晶",
+    "en": "BRINE & SALTS",
+    "category": "acid_base_salt",
+    "tier": 2,
+    "description": "利用盐水蒸发和分步结晶提取矿物盐，解锁世界探索区域「海洋与盐湖」。",
+    "costRP": 28,
+    "costCoins": 65,
+    "prereqTechIds": ["tech_acid_base_intro"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "regionIds": ["ocean"],
+      "bonusNote": "解锁世界地图「海洋与盐湖」区域"
+    },
+    "position": { "col": 2, "row": 1 }
+  },
+  {
+    "id": "tech_neutralization_ctrl",
+    "name": "盐类复分解与沉淀",
+    "en": "PRECIPITATION CTRL",
+    "category": "acid_base_salt",
+    "tier": 3,
+    "description": "控制离子配比精准生成氢氧化铜、碳酸钙等特征沉淀产物。",
+    "costRP": 40,
+    "costCoins": 100,
+    "prereqTechIds": ["tech_salt_crystallization"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "解锁特征沉淀合成类精密订单"
+    },
+    "position": { "col": 3, "row": 1 }
+  },
+  {
+    "id": "tech_alkali_carbonates",
+    "name": "纯碱与烧碱化工路线",
+    "en": "ALKALI ROUTES",
+    "category": "acid_base_salt",
+    "tier": 4,
+    "description": "贯通碳酸钙、碳酸钠与氢氧化钠转化链，为 V1.7 基础化工奠定理论基础。",
+    "costRP": 55,
+    "costCoins": 140,
+    "prereqTechIds": ["tech_neutralization_ctrl"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "bonusNote": "完整打通纯碱/烧碱经典化工反应链"
+    },
+    "position": { "col": 4, "row": 1 }
+  },
+
+  {
+    "id": "tech_electrolysis",
+    "name": "直流电解原理",
+    "en": "ELECTROLYSIS",
+    "category": "electrochemistry",
+    "tier": 2,
+    "description": "利用持续直流电流分解稳定化合物，解锁经营模式「电解设备」。",
+    "costRP": 28,
+    "costCoins": 65,
+    "prereqTechIds": ["tech_lab_expansion_2"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "conditions": ["electricity"],
+      "equipmentIds": ["eq_electrolyzer"],
+      "bonusNote": "可在 Lv.2 实验室建造电解设备"
+    },
+    "position": { "col": 1, "row": 4 }
+  },
+  {
+    "id": "tech_voltaic_principles",
+    "name": "原电池与电势差",
+    "en": "VOLTAIC CELLS",
+    "category": "electrochemistry",
+    "tier": 2,
+    "description": "研究异种金属与电解质叠层的化学电源机制，衔接伏打电堆科学史课题。",
+    "costRP": 26,
+    "costCoins": 55,
+    "prereqTechIds": ["tech_electrolysis"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "bonusNote": "深化电化学研究并预留能源接口参数"
+    },
+    "position": { "col": 2, "row": 4 }
+  },
+  {
+    "id": "tech_chlor_alkali",
+    "name": "食盐水电化学转化",
+    "en": "CHLOR-ALKALI",
+    "category": "electrochemistry",
+    "tier": 3,
+    "description": "掌握氯化钠水溶液电解制烧碱、氢气与氯气的完整化学计量关系。",
+    "costRP": 45,
+    "costCoins": 110,
+    "prereqTechIds": ["tech_voltaic_principles", "tech_salt_crystallization"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "bonusNote": "解锁氯碱工业先导定量课题"
+    },
+    "position": { "col": 3, "row": 4 }
+  },
+  {
+    "id": "tech_electro_synthesis",
+    "name": "电化学高能制备",
+    "en": "ELECTRO SYNTHESIS",
+    "category": "electrochemistry",
+    "tier": 4,
+    "description": "拓展高能放电与电化学氧化合成（如臭氧制备），面向未来工业能源体系。",
+    "costRP": 60,
+    "costCoins": 150,
+    "prereqTechIds": ["tech_chlor_alkali"],
+    "requiredLabLevel": 3,
+    "unlocks": {
+      "bonusNote": "完成 V1.6 电化学分支全科技研究"
+    },
+    "position": { "col": 4, "row": 4 }
+  },
+
+  {
+    "id": "tech_lab_expansion_2",
+    "name": "标准实验室扩建规划",
+    "en": "LAB EXPANSION II",
+    "category": "laboratory_engineering",
+    "tier": 1,
+    "description": "设计通风台面、供电线路与器皿架规范，满足升级至 Lv.2 标准研究实验室的核心前置。",
+    "costRP": 20,
+    "costCoins": 40,
+    "prereqTechIds": ["tech_thermal_basics"],
+    "requiredLabLevel": 1,
+    "unlocks": {
+      "labLevel": 2,
+      "bonusNote": "满足升级 Lv.2 标准研究实验室科技条件"
+    },
+    "position": { "col": 0, "row": 5 }
+  },
+  {
+    "id": "tech_separation_eng",
+    "name": "分离纯化工程",
+    "en": "SEPARATION RIG",
+    "category": "laboratory_engineering",
+    "tier": 2,
+    "description": "集成过滤、蒸发与蒸馏组件，解锁经营模式「分离设备」。",
+    "costRP": 28,
+    "costCoins": 60,
+    "prereqTechIds": ["tech_lab_expansion_2"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "conditions": ["filter", "evaporate", "distill"],
+      "equipmentIds": ["eq_separator"],
+      "bonusNote": "可在 Lv.2 实验室建造分离设备"
+    },
+    "position": { "col": 1, "row": 5 }
+  },
+  {
+    "id": "tech_quant_analysis",
+    "name": "定量分析与精密称量",
+    "en": "QUANTITATIVE ANALYSIS",
+    "category": "laboratory_engineering",
+    "tier": 2,
+    "description": "引入精密天平与质量守恒校验流程，解锁经营模式「精密天平」。",
+    "costRP": 28,
+    "costCoins": 60,
+    "prereqTechIds": ["tech_lab_expansion_2"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "equipmentIds": ["eq_balance"],
+      "bonusNote": "可在 Lv.2 实验室建造精密天平并提升批量上限"
+    },
+    "position": { "col": 2, "row": 5 }
+  },
+  {
+    "id": "tech_lab_expansion_3",
+    "name": "高级实验中心工程",
+    "en": "LAB EXPANSION III",
+    "category": "laboratory_engineering",
+    "tier": 3,
+    "description": "完成耐高温隔热层与大功率配电设计，满足升级至 Lv.3 高级定量实验中心的核心前置。",
+    "costRP": 45,
+    "costCoins": 110,
+    "prereqTechIds": ["tech_separation_eng", "tech_quant_analysis"],
+    "requiredLabLevel": 2,
+    "unlocks": {
+      "labLevel": 3,
+      "bonusNote": "满足升级 Lv.3 高级定量实验中心科技条件"
+    },
+    "position": { "col": 3, "row": 5 }
+  }
+]

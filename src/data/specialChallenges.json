@@ -1,0 +1,401 @@
+[
+  {
+    "id": "sp_ext_1",
+    "type": "extreme_experiment",
+    "typeName": "极限实验",
+    "name": "极限氢氧：4 份水起手",
+    "description": "仅给你 4 份水与通电、加热条件，在有限步数内先电解制氢，再用氢气还原 2 份氧化铜得到 2 份单质铜。",
+    "difficulty": "进阶",
+    "limit": 2,
+    "reward": { "coins": 65, "researchPoints": 22, "experience": 55 },
+    "finiteInventory": { "water": 4, "copper_oxide": 2 },
+    "catalysts": [],
+    "allowedConditions": ["electricity", "heat"],
+    "targetAmount": { "substanceId": "copper", "minAmount": 2 },
+    "solutionSteps": [
+      {
+        "reactionId": "r005",
+        "inputs": { "water": 2 },
+        "conditions": ["electricity"]
+      },
+      {
+        "reactionId": "r068",
+        "inputs": { "copper_oxide": 2, "hydrogen": 2 },
+        "conditions": ["heat"]
+      }
+    ]
+  },
+  {
+    "id": "sp_ext_2",
+    "type": "extreme_experiment",
+    "typeName": "极限实验",
+    "name": "紧缺催化：两步炼氧化镁",
+    "description": "仅 2 份过氧化氢、2 份镁和 1 份二氧化锰催化剂，在 2 步内制得 2 份氧化镁，注意催化剂不被消耗。",
+    "difficulty": "进阶",
+    "limit": 2,
+    "reward": { "coins": 70, "researchPoints": 24, "experience": 60 },
+    "finiteInventory": { "peroxide": 2, "magnesium": 2 },
+    "catalysts": ["manganese_dioxide"],
+    "allowedConditions": ["mix", "ignite"],
+    "targetAmount": { "substanceId": "magnesium_oxide", "minAmount": 2 },
+    "solutionSteps": [
+      {
+        "reactionId": "r027",
+        "inputs": { "peroxide": 2 },
+        "conditions": ["mix"],
+        "catalysts": ["manganese_dioxide"]
+      },
+      {
+        "reactionId": "r009",
+        "inputs": { "magnesium": 2, "oxygen": 1 },
+        "conditions": ["ignite"]
+      }
+    ]
+  },
+  {
+    "id": "sp_ext_3",
+    "type": "extreme_experiment",
+    "typeName": "极限实验",
+    "name": "高温碳循环炼铁",
+    "description": "仅 3 份二氧化碳、3 份碳和 2 份氧化铁，先制一氧化碳再高温炼出 4 份纯铁，任何浪费都会导致库存不足。",
+    "difficulty": "推演",
+    "limit": 2,
+    "reward": { "coins": 85, "researchPoints": 28, "experience": 70 },
+    "finiteInventory": { "carbon_dioxide": 3, "carbon": 3, "iron_oxide": 2 },
+    "catalysts": [],
+    "allowedConditions": ["high_heat"],
+    "targetAmount": { "substanceId": "iron", "minAmount": 4 },
+    "solutionSteps": [
+      {
+        "reactionId": "r070",
+        "inputs": { "carbon_dioxide": 3, "carbon": 3 },
+        "conditions": ["high_heat"]
+      },
+      {
+        "reactionId": "r066",
+        "inputs": { "iron_oxide": 2, "carbon_monoxide": 6 },
+        "conditions": ["high_heat"]
+      }
+    ]
+  },
+
+  {
+    "id": "sp_path_1",
+    "type": "shortest_path",
+    "typeName": "最短路径",
+    "name": "两步直达熟石灰",
+    "description": "从碳酸钙和水出发，在最多 2 步内合成氢氧化钙（跳过所有冗余步骤）。",
+    "difficulty": "简单",
+    "limit": 2,
+    "reward": { "coins": 55, "researchPoints": 18, "experience": 45 },
+    "initialSubstances": ["calcium_carbonate", "water"],
+    "allowedConditions": ["high_heat", "mix", "heat", "cool"],
+    "targetSubstanceId": "calcium_hydroxide",
+    "maxOptimalSteps": 2,
+    "solutionReactionIds": ["r017", "r018"]
+  },
+  {
+    "id": "sp_path_2",
+    "type": "shortest_path",
+    "typeName": "最短路径",
+    "name": "两步制备硫酸铜",
+    "description": "从铜、氧气、三氧化硫和水出发，在 3 步内高效合成硫酸铜。",
+    "difficulty": "进阶",
+    "limit": 3,
+    "reward": { "coins": 68, "researchPoints": 22, "experience": 55 },
+    "initialSubstances": ["copper", "oxygen", "sulfur_trioxide", "water"],
+    "allowedConditions": ["heat", "mix"],
+    "targetSubstanceId": "copper_sulfate",
+    "maxOptimalSteps": 3,
+    "solutionReactionIds": ["r008", "r025", "r046"]
+  },
+  {
+    "id": "sp_path_3",
+    "type": "shortest_path",
+    "typeName": "最短路径",
+    "name": "三步直取天蓝沉淀",
+    "description": "从氧化钠、氧化铜、硫酸和水出发，在 3 步内精准合成氢氧化铜沉淀。",
+    "difficulty": "推演",
+    "limit": 3,
+    "reward": { "coins": 78, "researchPoints": 26, "experience": 65 },
+    "initialSubstances": [
+      "sodium_oxide",
+      "copper_oxide",
+      "sulfuric_acid",
+      "water"
+    ],
+    "allowedConditions": ["mix"],
+    "targetSubstanceId": "copper_hydroxide",
+    "maxOptimalSteps": 3,
+    "solutionReactionIds": ["r020", "r046", "r064"]
+  },
+
+  {
+    "id": "sp_zero_1",
+    "type": "zero_waste",
+    "typeName": "零浪费挑战",
+    "name": "零余料：3:2 四氧化三铁",
+    "description": "库存有 5 份铁与 4 份氧气，请仅投入恰好 100% 完全消耗的整数配比，制得 1 份四氧化三铁且当步无任何未反应剩余物。",
+    "difficulty": "进阶",
+    "limit": 2,
+    "reward": { "coins": 65, "researchPoints": 22, "experience": 55 },
+    "finiteInventory": { "iron": 5, "oxygen": 4 },
+    "catalysts": [],
+    "allowedConditions": ["ignite"],
+    "targetAmount": {
+      "substanceId": "magnetite",
+      "minAmount": 1,
+      "exactZeroLeftover": true
+    },
+    "solutionSteps": [
+      {
+        "reactionId": "r007",
+        "inputs": { "iron": 3, "oxygen": 2 },
+        "conditions": ["ignite"]
+      }
+    ]
+  },
+  {
+    "id": "sp_zero_2",
+    "type": "zero_waste",
+    "typeName": "零浪费挑战",
+    "name": "零余料：4:3 氧化铝合成",
+    "description": "库存有 6 份铝与 5 份氧气，精确投料使当步反应份数利用率达到 100%，制得 2 份氧化铝。",
+    "difficulty": "进阶",
+    "limit": 2,
+    "reward": { "coins": 72, "researchPoints": 24, "experience": 60 },
+    "finiteInventory": { "aluminium": 6, "oxygen": 5 },
+    "catalysts": [],
+    "allowedConditions": ["ignite"],
+    "targetAmount": {
+      "substanceId": "aluminium_oxide",
+      "minAmount": 2,
+      "exactZeroLeftover": true
+    },
+    "solutionSteps": [
+      {
+        "reactionId": "r011",
+        "inputs": { "aluminium": 4, "oxygen": 3 },
+        "conditions": ["ignite"]
+      }
+    ]
+  },
+  {
+    "id": "sp_zero_3",
+    "type": "zero_waste",
+    "typeName": "零浪费挑战",
+    "name": "零余料：8:1 铁硫化物",
+    "description": "库存有 10 份铁与 2 份环状硫分子（S₈），精确计算投入份数以 100% 利用率合成 8 份硫化亚铁（无余料）。",
+    "difficulty": "推演",
+    "limit": 2,
+    "reward": { "coins": 80, "researchPoints": 28, "experience": 68 },
+    "finiteInventory": { "iron": 10, "kb_S8": 2 },
+    "catalysts": [],
+    "allowedConditions": ["heat"],
+    "targetAmount": {
+      "substanceId": "kb_FeS",
+      "minAmount": 8,
+      "exactZeroLeftover": true
+    },
+    "solutionSteps": [
+      {
+        "reactionId": "github_iron_sulfur",
+        "inputs": { "iron": 8, "kb_S8": 1 },
+        "conditions": ["heat"]
+      }
+    ]
+  },
+
+  {
+    "id": "sp_id_1",
+    "type": "unknown_identification",
+    "typeName": "未知物质鉴定",
+    "name": "无色气体鉴别（编号 X-01）",
+    "description": "实验台发现一瓶标签脱落的无色气体。请选用试剂与检验操作收集证据，然后从候选清单中准确指认该物质。",
+    "difficulty": "简单",
+    "limit": 3,
+    "reward": { "coins": 55, "researchPoints": 20, "experience": 48 },
+    "unknownTargetId": "carbon_dioxide",
+    "candidateIds": ["oxygen", "hydrogen", "carbon_dioxide", "ammonia"],
+    "identificationClue": "可先测试燃烧反应与澄清石灰水反应，排除可燃、助燃与碱性气体。",
+    "reagentTests": [
+      {
+        "reagentId": "test_splint",
+        "reagentName": "燃着木条",
+        "actionLabel": "伸入燃着木条",
+        "observation": "火焰立刻熄灭，且气体本身不燃烧。",
+        "scientificBasis": "排除助燃的氧气与可燃的氢气。"
+      },
+      {
+        "reagentId": "test_limewater",
+        "reagentName": "澄清石灰水",
+        "actionLabel": "通入澄清石灰水",
+        "observation": "溶液迅速变浑浊，出现白色碳酸钙沉淀（r019）。",
+        "scientificBasis": "Ca(OH)₂ + CO₂ → CaCO₃↓ + H₂O 为二氧化碳特征反应。"
+      },
+      {
+        "reagentId": "test_hcl",
+        "reagentName": "浓盐酸蒸汽",
+        "actionLabel": "靠近盐酸挥发气",
+        "observation": "无白烟产生。",
+        "scientificBasis": "若为氨气则会与氯化氢生成白色氯化铵烟雾（r033）。"
+      }
+    ]
+  },
+  {
+    "id": "sp_id_2",
+    "type": "unknown_identification",
+    "typeName": "未知物质鉴定",
+    "name": "蓝色晶体鉴定（编号 X-02）",
+    "description": "样品瓶内为蓝色可溶性无机盐固体。通过 3 项对照试剂实验确定其真实化学身份。",
+    "difficulty": "进阶",
+    "limit": 3,
+    "reward": { "coins": 68, "researchPoints": 24, "experience": 58 },
+    "unknownTargetId": "copper_sulfate",
+    "candidateIds": [
+      "copper_sulfate",
+      "sodium_chloride",
+      "iron_sulfate",
+      "calcium_carbonate"
+    ],
+    "identificationClue": "观察其水溶液颜色，再测试与氢氧化钠及铁钉的反应现象。",
+    "reagentTests": [
+      {
+        "reagentId": "test_water",
+        "reagentName": "纯水溶解",
+        "actionLabel": "加水溶解观察",
+        "observation": "固体迅速溶解，形成清澈的天蓝色溶液（r078）。",
+        "scientificBasis": "水合铜离子 Cu²⁺ 使溶液呈典型蓝色，可排除不溶的碳酸钙与无色氯化钠。"
+      },
+      {
+        "reagentId": "test_naoh",
+        "reagentName": "氢氧化钠溶液",
+        "actionLabel": "滴加氢氧化钠",
+        "observation": "立即生成天蓝色絮状氢氧化铜沉淀（r064）。",
+        "scientificBasis": "CuSO₄ + 2NaOH → Cu(OH)₂↓ + Na₂SO₄。"
+      },
+      {
+        "reagentId": "test_iron",
+        "reagentName": "洁净铁钉",
+        "actionLabel": "投入洁净铁钉",
+        "observation": "铁钉表面析出紫红色金属铜，溶液逐渐由蓝变浅绿（r059）。",
+        "scientificBasis": "Fe + CuSO₄ → FeSO₄ + Cu，证实溶液中含 Cu²⁺。"
+      }
+    ]
+  },
+  {
+    "id": "sp_id_3",
+    "type": "unknown_identification",
+    "typeName": "未知物质鉴定",
+    "name": "白色粉末排查（编号 X-03）",
+    "description": "厨房与实验室都常见的白色粉末，受热会放出气体并留下碱性碳酸盐。通过检验确定它的身份。",
+    "difficulty": "推演",
+    "limit": 3,
+    "reward": { "coins": 75, "researchPoints": 26, "experience": 65 },
+    "unknownTargetId": "sodium_bicarbonate",
+    "candidateIds": [
+      "sodium_bicarbonate",
+      "sodium_chloride",
+      "calcium_oxide",
+      "silica"
+    ],
+    "identificationClue": "重点观察它遇稀盐酸和受热分解时的气体产物。",
+    "reagentTests": [
+      {
+        "reagentId": "test_hcl_powder",
+        "reagentName": "稀盐酸",
+        "actionLabel": "滴加稀盐酸",
+        "observation": "剧烈冒出大量无色气泡，气体能使澄清石灰水变浑浊（r054）。",
+        "scientificBasis": "NaHCO₃ + HCl → NaCl + CO₂↑ + H₂O，排除氯化钠、氧化钙与二氧化硅。"
+      },
+      {
+        "reagentId": "test_heat_powder",
+        "reagentName": "酒精灯加热",
+        "actionLabel": "试管温和加热",
+        "observation": "管壁凝结水珠并释放二氧化碳，剩余固体为碳酸钠（r028）。",
+        "scientificBasis": "2NaHCO₃ → Na₂CO₃ + CO₂↑ + H₂O，碳酸氢钠热稳定性低于碳酸钠。"
+      },
+      {
+        "reagentId": "test_water_temp",
+        "reagentName": "常温水",
+        "actionLabel": "加水测温",
+        "observation": "缓慢溶解，无剧烈放热沸腾现象。",
+        "scientificBasis": "排除遇水剧烈放热的生石灰（CaO）。"
+      }
+    ]
+  },
+
+  {
+    "id": "sp_rev_1",
+    "type": "reverse_inference",
+    "typeName": "逆向推理",
+    "name": "逆推：无烟白雾的来源",
+    "description": "实验日志残页显示：常温混合两种气体/试剂后生成了大量白烟「氯化铵（NH₄Cl）」。请从候选原料中反推出正确的反应物与反应条件！",
+    "difficulty": "简单",
+    "limit": 3,
+    "reward": { "coins": 58, "researchPoints": 20, "experience": 50 },
+    "targetReactionId": "r033",
+    "givenProductIds": ["ammonium_chloride"],
+    "givenObservations": [
+      "产物为白色固体氯化铵（NH₄Cl）",
+      "两种挥发性物质相遇立即冒出浓白烟，无需加热"
+    ],
+    "reactantPoolIds": [
+      "ammonia",
+      "hydrochloric_acid",
+      "sodium_hydroxide",
+      "water",
+      "carbon_dioxide"
+    ],
+    "conditionPool": ["mix", "heat", "ignite", "electricity"]
+  },
+  {
+    "id": "sp_rev_2",
+    "type": "reverse_inference",
+    "typeName": "逆向推理",
+    "name": "逆推：石灰窑的高温产物",
+    "description": "产物罐里同时收集到了「氧化钙（CaO）」与「二氧化碳（CO₂）」，且整个过程仅投入了 1 种单一固体反应物。反推出原料与条件！",
+    "difficulty": "进阶",
+    "limit": 3,
+    "reward": { "coins": 68, "researchPoints": 24, "experience": 58 },
+    "targetReactionId": "r017",
+    "givenProductIds": ["calcium_oxide", "carbon_dioxide"],
+    "givenObservations": [
+      "单一白色固体受极端高温分解",
+      "同时生成生石灰（CaO）与二氧化碳气体（CO₂）"
+    ],
+    "reactantPoolIds": [
+      "calcium_carbonate",
+      "calcium_hydroxide",
+      "sodium_bicarbonate",
+      "carbon",
+      "oxygen"
+    ],
+    "conditionPool": ["mix", "heat", "high_heat", "cool"]
+  },
+  {
+    "id": "sp_rev_3",
+    "type": "reverse_inference",
+    "typeName": "逆向推理",
+    "name": "逆推：剧烈放热的铁轨焊接",
+    "description": "高温反应结束后得到「氧化铝（Al₂O₃）」和熔融「铁（Fe）」。请根据元素守恒反推出参与反应的两种原料与所需条件！",
+    "difficulty": "推演",
+    "limit": 3,
+    "reward": { "coins": 80, "researchPoints": 28, "experience": 68 },
+    "targetReactionId": "r073",
+    "givenProductIds": ["aluminium_oxide", "iron"],
+    "givenObservations": [
+      "反应释放极高热量，生成白热液态铁与氧化铝",
+      "属于经典金属热还原反应，由两种固体在高温下启动"
+    ],
+    "reactantPoolIds": [
+      "aluminium",
+      "iron_oxide",
+      "iron",
+      "oxygen",
+      "carbon",
+      "copper_oxide"
+    ],
+    "conditionPool": ["mix", "heat", "high_heat", "electricity"]
+  }
+]

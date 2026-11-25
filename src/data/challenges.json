@@ -1,0 +1,362 @@
+[
+  {
+    "id": "c1",
+    "name": "水的凝固",
+    "description": "通过降低温度，将液态水转化为固态冰，认识物理相变。",
+    "initial": ["water"],
+    "conditions": ["cool", "heat"],
+    "target": "ice",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c2",
+    "name": "水蒸气的诞生",
+    "description": "对液态水施加合适条件，使其汽化为水蒸气。",
+    "initial": ["water"],
+    "conditions": ["heat", "cool", "mix"],
+    "target": "steam",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c3",
+    "name": "水的电解",
+    "description": "用直流电分解水分子，收集单质气体氢气。",
+    "initial": ["water"],
+    "conditions": ["electricity", "heat", "cool"],
+    "target": "hydrogen",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c4",
+    "name": "催化制氧",
+    "description": "利用催化剂加速过氧化氢分解，记住催化剂应放在催化剂栏位而非反应槽。",
+    "initial": ["peroxide", "manganese_dioxide"],
+    "conditions": ["mix", "cool"],
+    "target": "oxygen",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c5",
+    "name": "石灰煅烧",
+    "description": "石灰循环的第一步：高温煅烧碳酸钙制取生石灰（氧化钙）。",
+    "initial": ["calcium_carbonate", "water"],
+    "conditions": ["heat", "high_heat", "mix"],
+    "target": "calcium_oxide",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c6",
+    "name": "铁丝燃氧",
+    "description": "在氧气中点燃铁，探索生成的磁性铁氧化物。",
+    "initial": ["iron", "oxygen", "water"],
+    "conditions": ["ignite", "heat", "mix"],
+    "target": "magnetite",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c7",
+    "name": "酸碱中和制盐",
+    "description": "使用盐酸与合适的碱中和，得到中性盐氯化钠。",
+    "initial": ["sodium_hydroxide", "hydrochloric_acid", "copper"],
+    "conditions": ["mix", "heat"],
+    "target": "sodium_chloride",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c8",
+    "name": "石碱生泡",
+    "description": "用稀盐酸与大理石主要成分碳酸钙反应，收集二氧化碳气体。",
+    "initial": ["calcium_carbonate", "hydrochloric_acid", "sand"],
+    "conditions": ["mix", "cool"],
+    "target": "carbon_dioxide",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c9",
+    "name": "蓝色絮状沉淀",
+    "description": "让铜盐与强碱在水溶液中发生复分解反应，生成天蓝色氢氧化铜。",
+    "initial": ["copper_sulfate", "sodium_hydroxide", "water"],
+    "conditions": ["mix", "heat"],
+    "target": "copper_hydroxide",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c10",
+    "name": "窑火成陶",
+    "description": "用高温将天然黏土烧结成坚硬致密的陶瓷材料。",
+    "initial": ["clay", "sand", "water"],
+    "conditions": ["heat", "high_heat", "mix"],
+    "target": "ceramic",
+    "limit": 2,
+    "group": "基础探索"
+  },
+  {
+    "id": "c11",
+    "name": "电解氢还原氧化铜",
+    "description": "先从水中提取还原性气体氢气，再用它加热还原黑色氧化铜得到金属铜。",
+    "initial": ["water", "copper_oxide"],
+    "conditions": ["electricity", "heat", "cool"],
+    "target": "copper",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c12",
+    "name": "生石灰熟化之路",
+    "description": "从碳酸钙出发，先高温煅烧得到氧化钙，再与水熟化制得氢氧化钙。",
+    "initial": ["calcium_carbonate", "water"],
+    "conditions": ["high_heat", "mix", "heat"],
+    "target": "calcium_hydroxide",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c13",
+    "name": "食盐溶解与结晶",
+    "description": "先将氯化钠溶于水配制盐水，再通过蒸发结晶析出食盐晶体。",
+    "initial": ["sodium_chloride", "water"],
+    "conditions": ["mix", "evaporate", "distill"],
+    "target": "salt_crystal",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c14",
+    "name": "水合制酸再制盐",
+    "description": "先由三氧化硫水合得到硫酸，再与金属锌反应制取硫酸锌。",
+    "initial": ["sulfur_trioxide", "water", "zinc"],
+    "conditions": ["mix", "heat"],
+    "target": "zinc_sulfate",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c15",
+    "name": "金属钠到纯碱",
+    "description": "先让金属钠与水反应制取氢氧化钠，再吸收二氧化碳转化为碳酸钠。",
+    "initial": ["sodium", "water", "carbon_dioxide"],
+    "conditions": ["mix", "heat"],
+    "target": "sodium_carbonate",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c16",
+    "name": "黑粉变蓝絮",
+    "description": "将黑色氧化铜溶于稀硫酸制得铜盐，再与氢氧化钠反应生成蓝色氢氧化铜沉淀。",
+    "initial": ["copper_oxide", "sulfuric_acid", "sodium_hydroxide"],
+    "conditions": ["mix", "heat"],
+    "target": "copper_hydroxide",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c17",
+    "name": "催化制氧燃镁",
+    "description": "先用二氧化锰催化过氧化氢制取氧气，再点燃金属镁得到白色氧化镁。",
+    "initial": ["peroxide", "manganese_dioxide", "magnesium"],
+    "conditions": ["mix", "ignite", "cool"],
+    "target": "magnesium_oxide",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c18",
+    "name": "小苏打验二氧化碳",
+    "description": "先让碳酸氢钠与盐酸反应释放二氧化碳，再通入氢氧化钙检验并生成碳酸钙沉淀。",
+    "initial": ["sodium_bicarbonate", "hydrochloric_acid", "calcium_hydroxide"],
+    "conditions": ["mix", "heat"],
+    "target": "calcium_carbonate",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c19",
+    "name": "炽铁遇蒸汽",
+    "description": "先将液态水加热汽化为水蒸气，再在高温下与铁反应生成四氧化三铁。",
+    "initial": ["iron", "water"],
+    "conditions": ["heat", "high_heat", "mix"],
+    "target": "magnetite",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c20",
+    "name": "焙碱苛化制烧碱",
+    "description": "先加热分解碳酸氢钠得到碳酸钠，再用氢氧化钙苛化制取氢氧化钠。",
+    "initial": ["sodium_bicarbonate", "calcium_hydroxide"],
+    "conditions": ["heat", "mix", "high_heat"],
+    "target": "sodium_hydroxide",
+    "limit": 3,
+    "group": "组合实验"
+  },
+  {
+    "id": "c21",
+    "name": "高炉炼铁推演",
+    "description": "模拟高炉气氛：先由碳充分燃烧得二氧化碳，再与炽热碳生成一氧化碳，最终高温还原氧化铁炼出金属铁。",
+    "initial": ["carbon", "oxygen", "iron_oxide"],
+    "conditions": ["ignite", "high_heat", "heat"],
+    "target": "iron",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c22",
+    "name": "水煤气炼铁",
+    "description": "先将水汽化，再与高温碳制取水煤气，最终用还原性气体高温还原氧化铁得到金属铁。",
+    "initial": ["water", "carbon", "iron_oxide"],
+    "conditions": ["heat", "high_heat", "mix"],
+    "target": "iron",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c23",
+    "name": "从碳酸钙到烧碱",
+    "description": "三步工业路线：煅烧碳酸钙得生石灰，加水熟化得氢氧化钙，再与碳酸钠苛化制取氢氧化钠。",
+    "initial": ["calcium_carbonate", "water", "sodium_carbonate"],
+    "conditions": ["high_heat", "mix", "heat"],
+    "target": "sodium_hydroxide",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c24",
+    "name": "铜的氧化沉淀链",
+    "description": "先将金属铜加热氧化为氧化铜，再用稀硫酸溶解制铜盐，最后与烧碱沉淀出天蓝色氢氧化铜。",
+    "initial": ["copper", "oxygen", "sulfuric_acid", "sodium_hydroxide"],
+    "conditions": ["heat", "mix", "high_heat"],
+    "target": "copper_hydroxide",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c25",
+    "name": "自制双剂制蓝絮",
+    "description": "分别制备氯化铜与氢氧化钠，再将两者混合沉淀出天蓝色氢氧化铜。",
+    "initial": ["copper_oxide", "hydrochloric_acid", "sodium_oxide", "water"],
+    "conditions": ["mix", "heat"],
+    "target": "copper_hydroxide",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c26",
+    "name": "石灰循环制氨",
+    "description": "煅烧碳酸钙得生石灰，加水熟化得氢氧化钙，再与氯化铵共热释放刺激性氨气。",
+    "initial": ["ammonium_chloride", "calcium_carbonate", "water"],
+    "conditions": ["high_heat", "mix", "heat"],
+    "target": "ammonia",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c27",
+    "name": "二氧化碳取碳炼锌",
+    "description": "煅烧碳酸钙得二氧化碳，用燃烧的镁夺氧析出碳单质，再高温碳热还原氧化锌得到金属锌。",
+    "initial": ["calcium_carbonate", "magnesium", "zinc_oxide"],
+    "conditions": ["high_heat", "ignite", "heat"],
+    "target": "zinc",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c28",
+    "name": "氢冶金还原路线",
+    "description": "电解水获取氢气，同时加热分解氢氧化铁制得氧化铁，最终在高温下用氢气将其还原为铁。",
+    "initial": ["water", "iron_hydroxide"],
+    "conditions": ["electricity", "heat", "high_heat"],
+    "target": "iron",
+    "limit": 4,
+    "group": "科学推演"
+  },
+  {
+    "id": "c29",
+    "name": "小苏打全链合成",
+    "description": "四步推演：煅烧碳酸钙得二氧化碳，钠与水制烧碱，合成碳酸钠后再通入二氧化碳与水得碳酸氢钠。",
+    "initial": ["calcium_carbonate", "sodium", "water"],
+    "conditions": ["high_heat", "mix"],
+    "target": "sodium_bicarbonate",
+    "limit": 5,
+    "group": "科学推演"
+  },
+  {
+    "id": "c30",
+    "name": "从金属钠到食盐晶体",
+    "description": "四步综合挑战：金属钠与水得烧碱，盐酸中和得氯化钠，溶解配制盐水，最后蒸发结晶析出食盐晶体。",
+    "initial": ["sodium", "water", "hydrochloric_acid"],
+    "conditions": ["mix", "evaporate"],
+    "target": "salt_crystal",
+    "limit": 5,
+    "group": "科学推演"
+  },
+  {
+    "id": "github_c1",
+    "name": "新物质：硫化亚铁",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["iron", "kb_S8"],
+    "conditions": ["heat"],
+    "target": "kb_FeS",
+    "limit": 2
+  },
+  {
+    "id": "github_c2",
+    "name": "新物质：硝酸铜（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["copper", "kb_AgNO3"],
+    "conditions": ["mix"],
+    "target": "kb_CuNO3",
+    "limit": 2
+  },
+  {
+    "id": "github_c3",
+    "name": "新物质：氢氧化钠（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["kb_NaCl", "water"],
+    "conditions": ["electricity"],
+    "target": "kb_NaOH",
+    "limit": 2
+  },
+  {
+    "id": "github_c4",
+    "name": "新物质：碘化铅",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["kb_KI", "kb_Pb_NO3_2"],
+    "conditions": ["mix"],
+    "target": "kb_PbI2",
+    "limit": 2
+  },
+  {
+    "id": "github_c5",
+    "name": "新物质：氢溴酸（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["kb_Br2_aq", "kb_HI"],
+    "conditions": ["mix"],
+    "target": "kb_HBr",
+    "limit": 2
+  },
+  {
+    "id": "github_c6",
+    "name": "新物质：碳酸钾（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["kb_KHCO3", "kb_KOH"],
+    "conditions": ["mix"],
+    "target": "kb_K2CO3",
+    "limit": 2
+  }
+]

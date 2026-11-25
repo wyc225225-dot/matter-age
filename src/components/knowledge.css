@@ -1,0 +1,502 @@
+.archive-tabs {
+  display: flex;
+  gap: 7px;
+  margin: 0 0 22px;
+  flex-wrap: wrap;
+  padding: 7px;
+  background: #14232f;
+  border: 1px solid #324859;
+  border-radius: 10px;
+}
+.archive-tabs button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #829fb5;
+}
+.archive-tabs button.active {
+  background: #304e5e;
+  color: #c0e7f5;
+}
+.archive-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.archive-toolbar .search-box {
+  flex: 1;
+  max-width: 600px;
+}
+.archive-toolbar > span {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.archive-toolbar select {
+  font-size: 11px;
+}
+.archive-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 16px;
+  background: #233d4933;
+  border: 1px solid #3a5b6b;
+  border-radius: 8px;
+  margin-bottom: 22px;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #96b4c8;
+}
+.archive-note svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.element-library-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 9px;
+}
+.element-library-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(145deg, #244051, #1a2b38);
+  border: 1px solid #426176;
+  border-radius: 8px;
+  padding: 12px 5px;
+}
+.element-library-card > small:first-child {
+  align-self: flex-start;
+  margin-left: 6px;
+  color: #92acbf;
+}
+.element-library-card strong {
+  font-size: 27px;
+  font-family: Consolas, monospace;
+  font-weight: 500;
+  color: #a7daed;
+}
+.element-library-card span {
+  font-size: 11px;
+}
+.element-library-card small {
+  font-size: 9px;
+  color: #7d9bb0;
+}
+.knowledge-species-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+.knowledge-species-grid button {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: center;
+  padding: 24px 12px;
+  border: 1px solid #385366;
+  background: #1a2c39;
+  border-radius: 9px;
+  min-width: 0;
+}
+.knowledge-species-grid button > svg {
+  color: #7cafc3;
+}
+.knowledge-species-grid .formula {
+  font-size: 21px;
+  color: #b9ddeb;
+}
+.knowledge-species-grid strong {
+  font-size: 11px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+.knowledge-species-grid small {
+  font-size: 9px;
+  color: #7c9cb2;
+}
+.knowledge-reaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.knowledge-reaction-list button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+  border: 1px solid #344f61;
+  background: #192d3b;
+  border-radius: 8px;
+  padding: 19px;
+}
+.knowledge-reaction-list .formula {
+  font-size: 15px;
+  color: #c1dfeb;
+  overflow-wrap: anywhere;
+  line-height: 1.8;
+}
+.knowledge-reaction-list small {
+  margin-left: auto;
+  color: #819eb4;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.knowledge-reaction-list svg {
+  color: #87bed1;
+  flex-shrink: 0;
+}
+.archive-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin: 25px 0;
+  color: #91adc0;
+  font-size: 11px;
+}
+.archive-detail {
+  padding: 25px;
+  margin-bottom: 25px;
+  overflow-wrap: anywhere;
+}
+.archive-detail h2 {
+  font-size: 24px;
+  margin: 24px 0 15px;
+}
+.archive-detail h3 {
+  font-size: 14px;
+  margin: 22px 0 15px;
+}
+.archive-detail h2 .formula {
+  font-size: 22px;
+  line-height: 1.9;
+  color: #bfe1ee;
+}
+.archive-detail p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #8baabd;
+  margin: 12px 0;
+}
+.archive-detail a,
+.knowledge-lessons > a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 11px;
+}
+.element-summary {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+.element-summary h2 {
+  margin-top: 0;
+}
+.element-large {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  background: #2b485b;
+  border: 1px solid #6293ac;
+  border-radius: 11px;
+  font-size: 43px;
+  color: #c0e5f3;
+}
+.element-large small {
+  font-size: 10px;
+  color: #8cbbd2;
+  margin-top: 8px;
+}
+.archive-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 24px 0;
+}
+.archive-facts > div {
+  padding: 14px;
+  background: #152733;
+  border: 1px solid #334d5f;
+  border-radius: 7px;
+}
+.archive-facts dt {
+  color: #7497af;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+.archive-facts dd {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #bed6e4;
+}
+.archive-chips {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.archive-chips span {
+  font-size: 11px;
+  padding: 6px 10px;
+  background: #2b4252;
+  border: 1px solid #456173;
+  border-radius: 5px;
+}
+.archive-equation {
+  padding: 12px;
+  margin: 8px 0;
+  background: #132530;
+  border-radius: 5px;
+}
+.archive-equation .formula {
+  font-size: 13px;
+}
+.archive-attribution {
+  font-size: 10px;
+  color: #718fa5;
+  border-top: 1px solid #2e485b;
+  padding-top: 20px;
+  margin-top: 28px;
+  line-height: 2.2;
+}
+.archive-attribution span {
+  display: block;
+}
+.knowledge-lessons {
+  max-width: 850px;
+  padding: 30px;
+}
+.knowledge-lessons h2 {
+  font-size: 24px;
+}
+.knowledge-lessons > p:not(.eyebrow) {
+  font-size: 12px;
+  color: #8eabbf;
+  line-height: 1.9;
+  margin: 14px 0;
+}
+.lesson-prompt {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 20px;
+  background: #132633;
+  border-radius: 8px;
+  border: 1px solid #35566c;
+  margin: 25px 0;
+}
+.lesson-prompt > span {
+  font-family: Consolas, monospace;
+  color: #b8d8e9;
+  font-size: 20px;
+}
+.lesson-prompt > span + span:before {
+  content: "+";
+  font-size: 16px;
+  margin-right: 18px;
+  color: #6c94aa;
+}
+.lesson-prompt .formula {
+  font-size: 23px;
+  color: #b8d8e9;
+}
+.lesson-prompt strong {
+  color: #7cb6d0;
+  font-size: 25px;
+}
+.lesson-choices {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+  margin-top: 20px;
+}
+.lesson-choices button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 9px;
+  background: #233c4c;
+  border: 1px solid #405e73;
+  border-radius: 8px;
+}
+.lesson-choices button.selected {
+  border-color: #97d1ea;
+  background: #33576a;
+}
+.lesson-choices small {
+  font-size: 9px;
+  line-height: 1.6;
+  color: #8ba9bf;
+  overflow-wrap: anywhere;
+}
+.lesson-choices .formula {
+  font-size: 20px;
+  color: #c0e1ef;
+}
+.lesson-feedback {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #a7c9b6 !important;
+}
+.knowledge-lessons .save-actions {
+  margin-bottom: 20px;
+}
+@media (max-width: 1000px) {
+  .element-library-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .knowledge-species-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .archive-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .archive-tabs {
+    gap: 3px;
+    padding: 5px;
+    margin-bottom: 17px;
+  }
+  .archive-tabs button {
+    font-size: 9px;
+    padding: 8px 10px;
+    flex: 1;
+    white-space: nowrap;
+  }
+  .archive-toolbar {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .archive-toolbar .search-box {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .archive-toolbar select {
+    font-size: 10px;
+    max-width: 70%;
+  }
+  .archive-toolbar > span {
+    font-size: 9px;
+  }
+  .element-library-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .element-library-card strong {
+    font-size: 25px;
+  }
+  .knowledge-species-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .knowledge-species-grid button {
+    padding: 18px 7px;
+    gap: 10px;
+  }
+  .knowledge-species-grid .formula {
+    font-size: 16px;
+  }
+  .knowledge-species-grid strong {
+    font-size: 9px;
+  }
+  .knowledge-species-grid small {
+    font-size: 8px;
+  }
+  .knowledge-reaction-list button {
+    padding: 13px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .knowledge-reaction-list .formula {
+    font-size: 12px;
+    flex-basis: 100%;
+  }
+  .knowledge-reaction-list small {
+    margin-left: 0;
+    font-size: 9px;
+  }
+  .knowledge-reaction-list svg {
+    margin-left: auto;
+  }
+  .archive-detail {
+    padding: 18px 14px;
+  }
+  .archive-detail h2 .formula {
+    font-size: 16px;
+  }
+  .archive-detail h2 {
+    font-size: 21px;
+  }
+  .element-summary {
+    gap: 16px;
+  }
+  .element-large {
+    width: 80px;
+    height: 88px;
+    font-size: 31px;
+  }
+  .archive-facts {
+    gap: 7px;
+    margin: 18px 0;
+  }
+  .archive-facts > div {
+    padding: 12px 9px;
+  }
+  .archive-facts dd {
+    font-size: 10px;
+  }
+  .archive-note {
+    padding: 13px;
+    font-size: 10px;
+  }
+  .archive-attribution {
+    font-size: 9px;
+  }
+  .knowledge-lessons {
+    padding: 23px 16px;
+  }
+  .knowledge-lessons h2 {
+    font-size: 20px;
+  }
+  .knowledge-lessons > p:not(.eyebrow) {
+    font-size: 11px;
+  }
+  .lesson-prompt {
+    padding: 17px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lesson-prompt .formula {
+    font-size: 20px;
+  }
+  .lesson-prompt > span + span:before {
+    margin-right: 10px;
+  }
+  .lesson-choices {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+  }
+  .lesson-choices .formula {
+    font-size: 18px;
+  }
+  .lesson-choices small {
+    font-size: 8px;
+  }
+}

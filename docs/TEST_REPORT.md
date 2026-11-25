@@ -1,0 +1,46 @@
+# Matter Age · V1.6 与挑战历史深化测试报告（TEST REPORT）
+
+验证时间：2026-11-25（Node v26.13 · Vitest v5.1.1 · Vite v8.3.8 · Playwright v1.65.1 · Windows）
+
+## 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 6 个测试文件，**224 / 224** 通过 |
+| 数据与闭环校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**；129 物质 / 134 规则 / 87 挑战 / 24 科技 DAG / 10 章历史与 13 人物 / 102 步 Lv.1→Lv.3 模拟通过 |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 正确阻断 `pending` 科学及科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite 构建 + Workbox 预缓存 22 项资产 |
+| 端到端与离线验证 | `npm run test:e2e` | **通过（exit 0）** | **11 / 11** Playwright 用例通过（含生产离线 PWA、V1.6 全闭环、挑战历史 5 章全通关与 360/390/768/1440px 响应式） |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+
+## 2. 单元测试覆盖清单（224 项）
+
+- `tests/unit/engine.test.ts`（183 项）：反应匹配、条件与催化、化学式/离子解析、元素守恒、可达性、36 简单挑战与三级提示、v3 存档拒绝 v4/异常输入。
+- `tests/unit/stoichiometry.test.ts`：整数份数计量、双利用率、1 mol 基准质量、守恒、配平与 36 定量挑战有限库存回放。
+- `tests/unit/knowledge.test.ts`：118 元素、532 物质资料、435 转化事实、24 学习任务与扩展路线完整性。
+- `tests/unit/progress.test.ts`（4 项）：星级评分、成就持久保留、化学式排版、`v1 → v3` 无损迁移与历史奖励不重放。
+- `tests/unit/v16.test.ts`（16 项）：经济/XP 与 RP 分离、幂等奖励账本、经营库存隔离、24 科技 DAG、设备条件限制与催化留存、订单防双次提交、零金币森林免费采集恢复、Lv.1→Lv.3 102 步闭环、博物馆/34 成就幂等领奖、世界探索奇遇与任务、15 特殊挑战可解性、`v2 → v3` 迁移与 `v4` 拒绝。
+- `tests/unit/history-polish.test.ts`（8 项）：
+  - 10 章时间线对齐 `HISTORY_MODE_BRIEF.md` 且全部 `pending`；
+  - 纯引擎阶段门禁 `canAccessHistoryStage()` 拒绝跳过未完成前置阶段；难度切换保留原有尝试与提示不清空；
+  - CH.01 氧气：缺失石灰水对照给出证据缺口提示不泄密、限定三气候选池鉴别、进阶复用 `r026` 计量核算；
+  - CH.02 质量守恒：缺失密闭对照拦截、进阶 `g / kg / mg` 单位换算严格校验（`0.044 kg` 通过、`44 kg` 拒绝）；
+  - CH.03 水的身份：强制先执行共享 `execute(r006)`、进阶要求电解对照 + `checkEquationBalance` 最简比 + 系数/下标原理检验；
+  - CH.04 伏打电堆：同类金属 0 V、干燥纸板断路 0 V、反向极性抵消净电压、1800 锌-银原型进阶 3 组 2.4 V 通过；
+  - CH.07 周期表：强制显式标记铝下空位、进阶氧化物 `E₂O₃` + 原子量区间 `[66, 72]`；
+  - 多维 1–3 星评定边界、有限复玩奖励上限（超过 2 次后返回 0 金币/RP 反刷）、进阶首通奖励幂等与中途会话存档往返恢复。
+
+## 3. Playwright 端到端与视觉审阅（11 组）
+
+- 原有 10 组（`game.spec.ts` ×2、`product.spec.ts` ×3 含离线 PWA、`advanced.spec.ts` ×1、`knowledge.spec.ts` ×2、`v16.spec.ts` ×2）全部通过无回归。
+- 新增 `tests/e2e/history-polish.spec.ts`（1 组完整长链路）：
+  - 完整通关全部 5 个可玩章节（CH.01 简单 + 中途刷新恢复、CH.02 进阶含 `0.044 kg` 单位换算、CH.03 共享反应引擎、CH.04 1800 锌-银原型、CH.07 深链 `#history/hist_07` + 显式空位标记）；
+  - 校验第 5 阶段一键跳转 `#museum` 验证藏品点亮，进入 `#history`「科学家档案与历史手稿」核验解锁档案；
+  - 校验 360px / 390px / 768px / 1440px 零横向溢出并输出截图至 `output/playwright/history-polish/`。
+
+## 4. 本轮目视截图发现并当场修复的真实缺陷
+
+1. **深链关闭状态回弹 bug**：刷新 `#history/hist_01` 后返回时间线时，`history.replaceState` 未触发 `hashchange` 导致旧 `deepHistoryId` 重新打开章节 → 改为 `location.hash = "history"` + `handledDeepRef` 去重处理，彻底修复。
+2. **前四阶段剧透优化**：阶段 1–4 顶部 `fact-notice` 改用防剧透声明，完整人物与史实边界说明在阶段 5「历史揭晓」呈现。
+3. **Tailwind `.fixed` 冲突导致 CH.07 周期表错位**：参考格类名 `pg-cell fixed` 被 Tailwind `position: fixed` 覆盖 → 重命名为 `pg-cell ref-cell`，周期表 4×4 网格完全对齐。
+4. **CH.02 SVG 天平梁/立柱零宽渐变不可见**：SVG 水平/垂直 `<line>` 使用实色铜金描边，等臂天平结构完整呈现。

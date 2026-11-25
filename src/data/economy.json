@@ -1,0 +1,167 @@
+{
+  "version": "1.6.0",
+  "startingCoins": 120,
+  "startingResearchPoints": 30,
+  "startingInventory": {
+    "water": 8,
+    "air": 4,
+    "wood": 4,
+    "sand": 4,
+    "iron": 4,
+    "calcium_oxide": 2,
+    "peroxide": 2,
+    "manganese_dioxide": 1
+  },
+  "rewards": {
+    "firstDiscovery": { "coins": 18, "researchPoints": 8, "experience": 20 },
+    "firstReaction": { "coins": 12, "researchPoints": 6, "experience": 15 },
+    "quantitativeCompletion": {
+      "coins": 20,
+      "researchPoints": 10,
+      "experience": 25
+    },
+    "balancingSolved": { "coins": 15, "researchPoints": 10, "experience": 20 },
+    "simpleChallengeClear": {
+      "coins": 25,
+      "researchPoints": 10,
+      "experience": 30
+    },
+    "quantChallengeClear": {
+      "coins": 35,
+      "researchPoints": 15,
+      "experience": 40
+    },
+    "specialChallengeClear": {
+      "coins": 50,
+      "researchPoints": 22,
+      "experience": 55
+    }
+  },
+  "researchLevels": [
+    {
+      "level": 1,
+      "title": "科学学徒",
+      "en": "SCIENCE APPRENTICE",
+      "minExperience": 0,
+      "badgeColor": "#6fd3e8",
+      "perks": [
+        "解锁基础实验台与原始森林免费采集",
+        "开启实验室经营与首批研究订单"
+      ]
+    },
+    {
+      "level": 2,
+      "title": "实验助手",
+      "en": "LAB ASSISTANT",
+      "minExperience": 120,
+      "badgeColor": "#53d89f",
+      "perks": ["掌握热学与冷却条件控制", "开放更多基础原料市场采购"]
+    },
+    {
+      "level": 3,
+      "title": "初级研究员",
+      "en": "JUNIOR RESEARCHER",
+      "minExperience": 320,
+      "badgeColor": "#7fb8ff",
+      "perks": [
+        "胜任标准实验室升级与多步定量订单",
+        "开放矿石山脉与海洋盐湖勘探任务"
+      ]
+    },
+    {
+      "level": 4,
+      "title": "化学研究员",
+      "en": "CHEMISTRY RESEARCHER",
+      "minExperience": 650,
+      "badgeColor": "#a892ff",
+      "perks": ["熟练运用电化学、分离与精密计量分析", "解锁高价值精密配比委托"]
+    },
+    {
+      "level": 5,
+      "title": "高级研究员",
+      "en": "SENIOR RESEARCHER",
+      "minExperience": 1100,
+      "badgeColor": "#f4b95a",
+      "perks": ["掌控高温冶金与材料烧制工艺", "胜任高级定量实验中心全套研究"]
+    },
+    {
+      "level": 6,
+      "title": "首席科学家",
+      "en": "CHIEF SCIENTIST",
+      "minExperience": 1700,
+      "badgeColor": "#ff8d6b",
+      "perks": [
+        "贯通科学史里程碑、多区域采集与科技树分支",
+        "拥有高阶特殊挑战荣誉称号"
+      ]
+    },
+    {
+      "level": 7,
+      "title": "科学探索大师",
+      "en": "MASTER OF DISCOVERY",
+      "minExperience": 2500,
+      "badgeColor": "#f7d469",
+      "perks": [
+        "物质纪元 V1.6 最高研究等级",
+        "为 V1.7 工业文明与能源系统做好准备"
+      ]
+    }
+  ],
+  "materialPrices": {
+    "water": { "buy": 4, "sell": 2, "minLabLevel": 1 },
+    "air": { "buy": 4, "sell": 2, "minLabLevel": 1 },
+    "wood": { "buy": 6, "sell": 3, "minLabLevel": 1 },
+    "sand": { "buy": 6, "sell": 3, "minLabLevel": 1 },
+    "iron": { "buy": 10, "sell": 5, "minLabLevel": 1 },
+    "charcoal": { "buy": 8, "sell": 4, "minLabLevel": 1 },
+    "carbon": { "buy": 10, "sell": 5, "minLabLevel": 1 },
+    "clay": { "buy": 9, "sell": 4, "minLabLevel": 1 },
+    "limestone": { "buy": 12, "sell": 6, "minLabLevel": 1 },
+    "calcium_carbonate": { "buy": 14, "sell": 7, "minLabLevel": 1 },
+    "calcium_oxide": { "buy": 14, "sell": 8, "minLabLevel": 1 },
+    "sodium_oxide": { "buy": 16, "sell": 9, "minLabLevel": 1 },
+    "carbon_dioxide": { "buy": 12, "sell": 7, "minLabLevel": 1 },
+    "peroxide": { "buy": 15, "sell": 8, "minLabLevel": 1 },
+    "manganese_dioxide": { "buy": 24, "sell": 12, "minLabLevel": 1 },
+    "ammonia": { "buy": 14, "sell": 7, "minLabLevel": 1 },
+    "hydrochloric_acid": { "buy": 14, "sell": 7, "minLabLevel": 1 },
+    "sulfuric_acid": { "buy": 16, "sell": 8, "minLabLevel": 1 },
+    "sodium_hydroxide": { "buy": 16, "sell": 9, "minLabLevel": 1 },
+    "sodium_bicarbonate": { "buy": 14, "sell": 8, "minLabLevel": 1 },
+    "sodium_carbonate": { "buy": 18, "sell": 10, "minLabLevel": 2 },
+    "sodium_chloride": { "buy": 12, "sell": 7, "minLabLevel": 1 },
+    "brine": { "buy": 10, "sell": 5, "minLabLevel": 1 },
+    "zinc": { "buy": 15, "sell": 8, "minLabLevel": 1 },
+    "copper": { "buy": 18, "sell": 10, "minLabLevel": 1 },
+    "copper_oxide": { "buy": 18, "sell": 10, "minLabLevel": 1 },
+    "copper_sulfate": { "buy": 20, "sell": 11, "minLabLevel": 1 },
+    "magnesium": { "buy": 18, "sell": 10, "minLabLevel": 2 },
+    "aluminium": { "buy": 22, "sell": 12, "minLabLevel": 2 },
+    "silicon": { "buy": 24, "sell": 13, "minLabLevel": 2 },
+    "silica": { "buy": 18, "sell": 10, "minLabLevel": 2 },
+    "iron_oxide": { "buy": 20, "sell": 11, "minLabLevel": 2 },
+    "carbon_monoxide": { "buy": 18, "sell": 10, "minLabLevel": 2 },
+    "sulfur": { "buy": 14, "sell": 7, "minLabLevel": 2 },
+    "kb_S8": { "buy": 22, "sell": 12, "minLabLevel": 2 },
+    "ice": { "buy": null, "sell": 6 },
+    "steam": { "buy": null, "sell": 6 },
+    "hydrogen": { "buy": null, "sell": 12 },
+    "oxygen": { "buy": null, "sell": 12 },
+    "calcium_hydroxide": { "buy": null, "sell": 15 },
+    "carbonic_acid": { "buy": null, "sell": 14 },
+    "ammonium_chloride": { "buy": null, "sell": 18 },
+    "zinc_chloride": { "buy": null, "sell": 20 },
+    "iron_sulfate": { "buy": null, "sell": 20 },
+    "magnesium_sulfate": { "buy": null, "sell": 22 },
+    "copper_hydroxide": { "buy": null, "sell": 26 },
+    "sodium_sulfate": { "buy": null, "sell": 22 },
+    "salt_solution": { "buy": null, "sell": 12 },
+    "salt_crystal": { "buy": null, "sell": 20 },
+    "zinc_oxide": { "buy": null, "sell": 24 },
+    "aluminium_oxide": { "buy": null, "sell": 30 },
+    "magnetite": { "buy": null, "sell": 28 },
+    "glass": { "buy": null, "sell": 32 },
+    "ceramic": { "buy": null, "sell": 28 },
+    "kb_FeS": { "buy": null, "sell": 24 }
+  }
+}

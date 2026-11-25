@@ -1,0 +1,901 @@
+[
+  {
+    "id": "hist_01",
+    "number": 1,
+    "eraYear": "1770年代（1774 普里斯特利实验）",
+    "title": "空气中的秘密",
+    "en": "CHAPTER 01 · SECRETS OF THE AIR",
+    "subtitle": "未知气体线索与比较：空气是单一元素，还是多种气体的组合？",
+    "knowledgeTheme": "气体性质 · 物质分解 · 证据鉴别",
+    "playable": true,
+    "figureIds": ["fig_priestley", "fig_scheele", "fig_lavoisier"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "史实脉络：1771–1772 年舍勒最早独立分离「火空气」，1774 年普里斯特利聚焦阳光加热氧化汞制得并于 1775 年率先发表，1777–1779 年拉瓦锡定量阐明氧化理论并命名。本关三瓶气体检验为限定候选范围的教学模拟实验，进阶分解计量采用过氧化氢分解（r026）作现代教学类比，旁白为虚构教学引导。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/joseph-priestley/",
+      "https://www.sciencehistory.org/education/scientific-biographies/carl-wilhelm-scheele/",
+      "https://www.acs.org/education/whatischemistry/landmarks/josephpriestleyoxygen.html"
+    ],
+    "firstReward": { "coins": 95, "researchPoints": 35, "experience": 80 },
+    "advancedFirstBonus": {
+      "coins": 40,
+      "researchPoints": 18,
+      "experience": 35
+    },
+    "repeatReward": { "coins": 20, "researchPoints": 6, "experience": 15 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_oxygen_jar",
+    "archiveRewards": {
+      "manuscriptTitle": "1774–1779 气体集气与燃烧观察手稿",
+      "manuscriptSummary": "记录了三瓶无色气体在助燃与石灰水对照中的差异证据，以及燃素说向氧化理论转向的关键节点。",
+      "theoryTitle": "空气组成与助燃气体鉴别边界",
+      "theorySummary": "空气是多种气体组成的混合物；特征试剂反应可鉴别氧气与二氧化碳，而在限定候选池内方可用排除法识别氮气。",
+      "medalName": "集气钟探索勋章",
+      "commemorativeInstrument": "18 世纪聚光镜与集气钟纪念仪"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "三瓶肉眼完全相同的无色气体，它们真的是同一种「空气元素」吗？如何只凭实验现象把它们区分开？",
+        "contextSummary": "18 世纪 70 年代，学界长期沿用「空气是单一元素」与「燃烧释放燃素」的旧观念。然而在几间欧洲实验室里，加热矿石或燃烧实验却收集到了性质截然不同的「不同空气」。",
+        "historicalFacts": [
+          "1770 年代欧洲多位实验者改进了水槽与水银槽集气法，开始系统收集并比较看不见的无色气体。",
+          "同一时期，瑞典、英国与法国的化学家分别对加热红丹/氧化汞产生的助燃气体展开了观察与争论。",
+          "在正式揭晓历史命名与人物归属之前，请你先像 18 世纪研究者一样，只依据实验现象完成推理。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "实验室助手（虚构教学旁白）",
+            "line": "桌上封存着甲、乙、丙三瓶已知属于「助燃组分 / 二氧化碳 / 空气主要惰性组分」三者之一的未知气体。先别猜名字——把木条和澄清石灰水都试一试，让现象说话。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "若空气并非单一元素，而是由性质不同的气体组成，那么对甲、乙、丙三瓶无色气体做木条燃烧与澄清石灰水对照时，最合理的预期是？",
+        "options": [
+          {
+            "id": "h1_a",
+            "text": "三瓶无色气体的检验现象应当完全一致，差异只能归因于温度波动。",
+            "isRecommended": false,
+            "feedback": "如果它们是性质不同的气体，即使外观同样无色透明，助燃性与化学反应现象也会明显不同。"
+          },
+          {
+            "id": "h1_b",
+            "text": "助燃气体将显著增强燃烧甚至使带火星木条复燃，而另两瓶会在燃烧与石灰水检验中呈现可区分的差异。",
+            "isRecommended": true,
+            "feedback": "合理的实验假设！现在进入证据实验台，用多项对照检验验证你的推断。"
+          },
+          {
+            "id": "h1_c",
+            "text": "无色气体无法与液体试剂发生可见变化，因此只能凭气味猜测。",
+            "isRecommended": false,
+            "feedback": "许多无色气体无气味且不宜直接嗅闻，特征液体试剂（如澄清石灰水）与燃烧行为是可靠的实验证据。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "gas_identification",
+        "objectiveSimple": "对甲、乙、丙三瓶未知气体收集充分的对比证据（至少完成 4 项检验，且对熄灭木条的两瓶都完成澄清石灰水检验），在限定 3 种候选气体范围内准确指认各自身份。",
+        "objectiveAdvanced": "进阶要求：完成至少 6 项交叉对比检验并指认全部三瓶气体，同时使用共享定量化学规律核算 6 份过氧化氢分解（2H₂O₂ → 2H₂O + O₂ 教学类比）可制得多少份氧气。",
+        "gasScopeNote": "科学严谨注记：本实验已限定三瓶样品分别取自 {氧气, 二氧化碳, 氮气} 三种已知候选气体，因此排除「复燃（O₂）」与「石灰水浑浊（CO₂）」后可确定剩余样品为氮气；在一般未知气体的通用检验中，「熄灭木条且石灰水不变浑浊」并不足以唯一鉴定氮气（如氩气等稀有气体也会呈现相同现象）。",
+        "hints": [
+          "提示 1：仅靠「熄灭木条」无法区分二氧化碳和空气中的惰性氮气，请务必对熄灭木条的样本补充「澄清石灰水」检验。",
+          "提示 2：能使带火星木条剧烈复燃的是强助燃气体；能使澄清石灰水变浑浊（生成碳酸钙沉淀）的是二氧化碳。",
+          "提示 3：进阶计算中，按 2H₂O₂ → 2H₂O + O₂，每 2 份过氧化氢产生 1 份氧气，因此 6 份过氧化氢产生 3 份氧气。"
+        ],
+        "chapterMaterials": [
+          "oxygen",
+          "carbon_dioxide",
+          "nitrogen",
+          "calcium_hydroxide"
+        ],
+        "gasSamples": [
+          {
+            "id": "sample_a",
+            "label": "气瓶甲",
+            "actualGasId": "carbon_dioxide",
+            "actualGasName": "二氧化碳",
+            "tests": {
+              "glowingSplint": "带火星木条立即熄灭。",
+              "burningSplint": "燃着的木条迅速熄灭。",
+              "limewater": "澄清石灰水明显变浑浊（析出白色碳酸钙沉淀）。"
+            }
+          },
+          {
+            "id": "sample_b",
+            "label": "气瓶乙",
+            "actualGasId": "oxygen",
+            "actualGasName": "氧气",
+            "tests": {
+              "glowingSplint": "带火星木条骤然复燃，发出耀眼白光！",
+              "burningSplint": "火焰明显变旺变亮。",
+              "limewater": "澄清石灰水保持澄清，无明显沉淀。"
+            }
+          },
+          {
+            "id": "sample_c",
+            "label": "气瓶丙",
+            "actualGasId": "nitrogen",
+            "actualGasName": "氮气",
+            "tests": {
+              "glowingSplint": "带火星木条熄灭，无复燃现象。",
+              "burningSplint": "燃着的木条平稳熄灭。",
+              "limewater": "澄清石灰水保持澄清，无浑浊。"
+            }
+          }
+        ],
+        "advancedYieldCheck": {
+          "reactionId": "r026",
+          "prompt": "进阶定量类比（复用 r026：2H₂O₂ → 2H₂O + O₂）：投入 6 份过氧化氢完全分解，理论上可制得多少份氧气？",
+          "peroxidePortions": 6,
+          "expectedOxygenPortions": 3
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "气瓶乙使带火星木条复燃，证实空气中存在独立助燃组分（O₂）。",
+          "气瓶甲熄灭木条且令澄清石灰水浑浊，证实为二氧化碳（CO₂）。",
+          "在限定三气候选池内，气瓶丙既不助燃也不与石灰水反应，排除前两者后归属氮气（N₂）。"
+        ],
+        "question": "综合你的对比实验记录，以下哪项推论最严谨地概括了本实验证据？",
+        "options": [
+          {
+            "id": "a1_1",
+            "text": "外观相同的无色气体具有截然不同的化学性质：空气并非单一元素，且区分不助燃气体需要结合澄清石灰水等交叉证据。",
+            "correct": true,
+            "explanation": "严谨！你不仅识别了助燃气体，也把握住了交叉对照与限定候选集排除法的边界。"
+          },
+          {
+            "id": "a1_2",
+            "text": "只要某种无色气体能让燃着木条熄灭且石灰水不变浑浊，在任何未知场景下都必然是氮气。",
+            "correct": false,
+            "explanation": "不够严谨：稀有气体（如氩气）同样熄灭木条且不使石灰水浑浊，该排除结论仅在已限定候选集时成立。"
+          },
+          {
+            "id": "a1_3",
+            "text": "二氧化碳是支持蜡烛燃烧的主要成分。",
+            "correct": false,
+            "explanation": "实验记录显示气瓶甲（二氧化碳）会令木条迅速熄灭。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "空气并非单一元素 · 氧气的发现与化学革命序幕",
+        "scientificConclusion": "空气是由氮气、氧气等多种气体组成的混合物；氧气是支持燃烧与呼吸的关键助燃成分，燃烧本质是氧化反应而非释放「燃素」。",
+        "historicalImpact": "推翻沿用百年的燃素说与古典空气元素观，直接开启了 18 世纪末的近代化学革命。",
+        "multiContributorNote": "多贡献者史实对照：瑞典药剂师舍勒约于 1771–1772 年最早独立分离出「火空气」（1777 年出版）；英国学者普里斯特利于 1774 年 8 月 1 日加热氧化汞独立制得并率先于 1775 年发表；法国化学家拉瓦锡结合巴黎交流线索与定量实验，于 1777–1779 年阐明氧化本质并命名氧气（oxygène）。"
+      }
+    }
+  },
+  {
+    "id": "hist_02",
+    "number": 2,
+    "eraYear": "18世纪后期",
+    "title": "消失的质量",
+    "en": "CHAPTER 02 · THE VANISHING MASS",
+    "subtitle": "开放系统 vs 密闭系统：物质穿过容器边界时，总质量真的消失了吗？",
+    "knowledgeTheme": "质量守恒 · 系统边界 · 氧化反应",
+    "playable": true,
+    "figureIds": ["fig_lavoisier", "fig_marie_lavoisier"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "史实依据：18 世纪后期安托万与玛丽-安娜·保尔兹·拉瓦锡通过长期密闭容器精密称量确立质量守恒，并于《化学基础论》（1789）系统总结。本关 100.0 g / 63.5 g / 300.0 g 读数均显式标为「教学模拟数据」，并非拉瓦锡实验室原始磅秤手稿读数。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/",
+      "https://www.sciencehistory.org/stories/magazine/marie-anne-paulze-lavoisier/",
+      "https://openstax.org/books/chemistry-2e/pages/2-1-early-ideas-in-atomic-theory"
+    ],
+    "firstReward": { "coins": 105, "researchPoints": 38, "experience": 85 },
+    "advancedFirstBonus": {
+      "coins": 45,
+      "researchPoints": 20,
+      "experience": 40
+    },
+    "repeatReward": { "coins": 22, "researchPoints": 7, "experience": 16 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_lavoisier_balance",
+    "archiveRewards": {
+      "manuscriptTitle": "1789 密闭称量与质量守恒记录册",
+      "manuscriptSummary": "对照记录了开放体系气体逸出/吸入与密闭体系恒重的数据，揭示系统边界对定量称量的决定性作用。",
+      "theoryTitle": "质量守恒定律与体系边界原则",
+      "theorySummary": "化学反应前后体系总质量守恒；开放容器示数增减源于气体穿过边界，而非物质凭空产生或毁灭。",
+      "medalName": "精密天平守恒勋章",
+      "commemorativeInstrument": "双盘玻璃罩等臂天平纪念模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "石灰石高温煅烧后变轻，铜粉在空气中加热后却变重——化学变化会让物质的总质量凭空增减吗？",
+        "contextSummary": "18 世纪后期，许多观察者看到木炭燃成轻灰、金属煅烧成重灰，以为质量在反应中可以随意消失或增加。如果把「看得见的固体」与「看不见的气体」一起放进密闭边界称量，会发生什么？",
+        "historicalFacts": [
+          "18 世纪后期，精密等臂天平逐步成为化学实验室的核心定量仪器。",
+          "对比「敞口容器」与「密封曲颈甑/刚性容器」的称量结果，是检验气体是否参与反应的关键手段。",
+          "请你先切换开放系统与密闭系统执行虚拟称量，再归纳质量变化的真正原因。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "称量记录员（虚构教学旁白）",
+            "line": "天平已经调平。别忘了分别切到「开放系统」和「密闭系统」完成全部三组教学模拟称量，留意气体是离开还是进入了称量边界。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "在完全密闭且坚固的容器中加热分解碳酸钙（CaCO₃ → CaO + CO₂），容器整体的天平示数会如何变化？",
+        "options": [
+          {
+            "id": "h2_a",
+            "text": "天平总示数保持不变，因为产生的气体被留在密闭边界之内，所有原子仍在体系中。",
+            "isRecommended": true,
+            "feedback": "直击要害！接下来通过开放 vs 密闭两组系统的虚拟称量验证这一预测。"
+          },
+          {
+            "id": "h2_b",
+            "text": "天平示数仍会显著变轻，因为高温分解必然消灭一部分质量。",
+            "isRecommended": false,
+            "feedback": "不妨在实验台里亲自称量密闭体系，看看气体不逃逸时示数是否真的变轻。"
+          },
+          {
+            "id": "h2_c",
+            "text": "天平示数会变重，因为一种固体变成了固体加气体两种物质。",
+            "isRecommended": false,
+            "feedback": "物质种类增多不等于原子总数或总质量增加，让我们用天平数据检验。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "mass_conservation_compare",
+        "objectiveSimple": "切换「开放系统」与「密闭系统」执行全部 3 组教学模拟称量，比较反应前后示数，解释为何开放系统示数改变而密闭系统恒重。",
+        "objectiveAdvanced": "进阶要求：完成全部 3 组称量对照与原理解释，并精确计算开放碳酸钙分解中逸出体系边界的 CO₂ 质量（支持选择 g / kg / mg 单位并严格校验单位换算）。",
+        "hints": [
+          "提示 1：请切换顶部「开放系统 / 密闭系统」标签，确保 3 组称量实验全部执行完毕。",
+          "提示 2：开放系统读数变化并非「质量不守恒」，而是气体产物逸出或空气中氧气进入称量边界导致「容器内剩余物质量」改变。",
+          "提示 3：进阶核算中，100.0 g - 56.0 g = 44.0 g（若切换单位为 kg 则为 0.044 kg，mg 则为 44000 mg）。"
+        ],
+        "chapterMaterials": [
+          "calcium_carbonate",
+          "calcium_oxide",
+          "carbon_dioxide",
+          "copper",
+          "oxygen",
+          "copper_oxide"
+        ],
+        "massTrials": [
+          {
+            "id": "trial_open_caco3",
+            "title": "开放系统 A：敞口坩埚加热碳酸钙",
+            "vessel": "open",
+            "description": "教学模拟数据：100.0 g CaCO₃ 在敞口坩埚中受热分解，产生的 CO₂ 自由逸散到空气中。",
+            "beforeMassG": 100.0,
+            "afterMassG": 56.0,
+            "escapedGasNote": "天平仅称量留在坩埚内的固体 CaO（56.0 g），另有 44.0 g CO₂ 离开开放体系边界（总质量 56.0 + 44.0 = 100.0 g 仍然守恒）。"
+          },
+          {
+            "id": "trial_open_cu",
+            "title": "开放系统 B：敞口加热铜粉氧化",
+            "vessel": "open",
+            "description": "教学模拟数据：63.5 g Cu 在敞口空气中加热，与外界进入的 O₂ 反应生成黑色 CuO。",
+            "beforeMassG": 63.5,
+            "afterMassG": 79.5,
+            "escapedGasNote": "空气中 16.0 g O₂ 进入体系与铜化合（63.5 + 16.0 = 79.5 g），总质量同样严格守恒。"
+          },
+          {
+            "id": "trial_closed_caco3",
+            "title": "密闭系统 C：密封刚性容器加热碳酸钙",
+            "vessel": "closed",
+            "description": "教学模拟数据：密封容器（200.0 g）+ 100.0 g CaCO₃ 在密闭边界内完全分解，无物质进出。",
+            "beforeMassG": 300.0,
+            "afterMassG": 300.0,
+            "escapedGasNote": "容器 200.0 g + 固体 CaO 56.0 g + 密闭气体 CO₂ 44.0 g = 300.0 g，总质量分毫不差！"
+          }
+        ],
+        "massQuestion": {
+          "prompt": "对比开放系统 A/B 与密闭系统 C 的虚拟称量记录，哪项解释科学准确？",
+          "options": [
+            "开放系统中质量不守恒，只有密闭容器中质量才守恒。",
+            "质量守恒在两个体系中均成立；开放系统天平读数变轻或变重，是因为气体离开或进入了称量边界，未被同时称入。",
+            "密闭容器阻止了碳酸钙发生分解反应，因此读数不变。"
+          ],
+          "correctIndex": 1,
+          "advancedNumericCheck": {
+            "prompt": "进阶定量核算（含单位校验）：根据开放系统 A 教学模拟数据（100.0 g → 56.0 g），逸出容器边界的 CO₂ 质量为多少？",
+            "expectedGrams": 44,
+            "toleranceGrams": 0.1
+          }
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "开放系统 A 减少的 44.0 g 正好等于密闭系统 C 中保留在容器内的 CO₂ 质量。",
+          "开放系统 B 增加的 16.0 g 源自进入边界与铜结合的空气氧气。",
+          "只要计入全部反应物、生成物与未反应剩余物，化学反应前后总质量恒等。"
+        ],
+        "question": "质量守恒定律对化学实验分析与定量计算的直接启示是？",
+        "options": [
+          {
+            "id": "a2_1",
+            "text": "分析质量变化必须先界定体系边界（含气体进出），定量守恒校验应同时计入生成物与未反应剩余物。",
+            "correct": true,
+            "explanation": "非常准确！这也是本游戏进阶定量引擎同时统计生成物与未反应剩余物的核心原理。"
+          },
+          {
+            "id": "a2_2",
+            "text": "只要固体反应后变轻，就说明原子在高温下被彻底消灭了。",
+            "correct": false,
+            "explanation": "固体变轻通常意味着气体产物逃离了开放容器，原子并未消失。"
+          },
+          {
+            "id": "a2_3",
+            "text": "气体非常轻，在定量化学计算中可以永远忽略不计。",
+            "correct": false,
+            "explanation": "本关数据中 44.0 g CO₂ 占碳酸钙质量的 44%，绝不可忽略。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "消失的质量并未消失 · 质量守恒定律",
+        "scientificConclusion": "在化学变化中，物质既不能凭空产生，也不能凭空消失；反应前所有参与物质的总质量必然等于反应后所有产物与剩余物的总质量。",
+        "historicalImpact": "精密称量与质量守恒使化学方程式得以建立，为定比定律、原子论与现代化学计量奠定基石。",
+        "multiContributorNote": "历史归属：安托万-洛朗·德·拉瓦锡与玛丽-安娜·保尔兹·拉瓦锡长期协作完成了密闭煅烧、记录与《化学基础论》（1789）仪器铜版绘图，将定量天平确立为现代化学的标准语言。"
+      }
+    }
+  },
+  {
+    "id": "hist_03",
+    "number": 3,
+    "eraYear": "1780年代",
+    "title": "水的真正身份",
+    "en": "CHAPTER 03 · THE TRUE IDENTITY OF WATER",
+    "subtitle": "从「水元素」到氢氧化合物：用真实反应与配平引擎揭示水的组成",
+    "knowledgeTheme": "化合物 · 化合反应 · 化学方程式配平",
+    "playable": true,
+    "figureIds": ["fig_cavendish", "fig_lavoisier", "fig_marie_lavoisier"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "史实与现代教学区分：1781–1784 年卡文迪许通过电火花引燃「可燃空气」（氢气）与空气/氧气发现生成纯水；1783–1785 年拉瓦锡与拉普拉斯通过合成与红热铁管分解水蒸气确立「水是氢与氧的化合物」。本关后半段的水电解（1800 年后实现）与现代分子式系数配平（2H₂ + O₂ → 2H₂O）属于现代教学衔接演示，并非 1780 年代原貌。",
+    "references": [
+      "https://www.britannica.com/biography/Henry-Cavendish",
+      "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/",
+      "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations"
+    ],
+    "firstReward": { "coins": 115, "researchPoints": 42, "experience": 90 },
+    "advancedFirstBonus": {
+      "coins": 48,
+      "researchPoints": 22,
+      "experience": 42
+    },
+    "repeatReward": { "coins": 24, "researchPoints": 8, "experience": 18 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_water_synthesis",
+    "archiveRewards": {
+      "manuscriptTitle": "1781–1785 水的合成与分解对照报告",
+      "manuscriptSummary": "区分了 1780 年代卡文迪许/拉瓦锡的合成与热分解史实，以及后世定量化学方程式的分子计量表述。",
+      "theoryTitle": "化合物的合成—分解双向证明与配平规则",
+      "theorySummary": "水由氢、氧元素按定比构成（H₂O）；配平方程式只能调节化学式前系数，不可改动化学式下标。",
+      "medalName": "水之真身破译勋章",
+      "commemorativeInstrument": "氢氧电火花合成玻璃球泡模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "被视作「基本元素」长达两千年的水，究竟是不可再分的单质元素，还是由其他物质化合而成的化合物？",
+        "contextSummary": "直到 18 世纪 80 年代，绝大多数自然哲学家仍把水当作最纯粹的基本元素。然而在密闭玻璃球泡中引燃「可燃空气」后，玻璃内壁凝结出的清澈露珠引发了一场震撼整个科学界的争论。",
+        "historicalFacts": [
+          "1766 年以来，「可燃空气」（后称氢气）因极低密度与淡蓝色火焰引起广泛关注。",
+          "1780 年代初，伦敦与巴黎的实验者先后在密闭玻璃容器内引燃可燃空气与助燃空气，并对凝结液体展开成分检测。",
+          "请先在实验台上实际执行合成反应观察产物证据，再判断水的真正身份。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "气量计助手（虚构教学旁白）",
+            "line": "我们先用游戏共享化学引擎启动密闭点燃合成，再对比现代水电解教学演示——注意把「1780 年代的历史合成证据」与「现代分子配平」分清层次。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "要无可争议地证明「水是化合物而非基本元素」，最具说服力的证据链是什么？",
+        "options": [
+          {
+            "id": "h3_a",
+            "text": "既能由两种不同气体化合生成纯水（合成证据），又能从水中分解出这两种组分（分解证据），形成双向闭环。",
+            "isRecommended": true,
+            "feedback": "严密的科学思路！双向合成与分解正是推翻古典水元素论的决定性方法。"
+          },
+          {
+            "id": "h3_b",
+            "text": "把水冻成冰、再煮成水蒸气，说明水能改变形态就足以证明它是化合物。",
+            "isRecommended": false,
+            "feedback": "固态冰、液态水、水蒸气只是物理物态变化，化学组成并未改变，不能证明它由多种元素构成。"
+          },
+          {
+            "id": "h3_c",
+            "text": "往水里加入食盐并尝出咸味，即可证明纯净水含有钠和氯。",
+            "isRecommended": false,
+            "feedback": "食盐水是人为配制的混合物，不能反映纯净水自身的组成。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "water_composition_balance",
+        "objectiveSimple": "先调用共享化学引擎完成「氢氧点燃合成水（r006）」并观察产物证据，再判断氢气与氧气的化合份数比（同时可查看现代电解教学演示）。",
+        "objectiveAdvanced": "进阶要求：完成合成与现代电解双证据对照，用真实配平引擎将 H₂ + O₂ → H₂O 配平至最简整数比（2:1:2），并准确回答「系数 vs 下标」原理检验。",
+        "waterHistoryVsDemoNote": "历史与教学分层说明：1781–1785 年卡文迪许与拉瓦锡分别通过氢氧燃烧合成与红热铁管分解水蒸气确立水的组成；水电解（2H₂O → 2H₂ + O₂）是在 1800 年伏打电堆发明后才实现的，本关将电解与 2H₂+O₂→2H₂O 配平作为现代定量教学对照。",
+        "hints": [
+          "提示 1：请先点击「执行共享反应：氢氧合成水（r006）」获取实际产物与方程式观测记录。",
+          "提示 2：氧气分子含 2 个氧原子（O₂），水分子含 1 个氧原子（H₂O），因此配平必须调整化学式前的系数（2 H₂ + 1 O₂ → 2 H₂O），绝不能改成 H₂O₂。",
+          "提示 3：化学式下标决定物质种类（把 H₂O 改成 H₂O₂ 会变成过氧化氢），化学式前的系数只改变参与反应的分子/份数比例。"
+        ],
+        "chapterMaterials": ["hydrogen", "oxygen", "water"],
+        "waterReactionId": "r006",
+        "waterElectrolysisId": "r005",
+        "waterVolumeRatioOptions": [
+          { "label": "氢气 : 氧气 = 1 : 1", "correct": false },
+          { "label": "氢气 : 氧气 = 2 : 1", "correct": true },
+          { "label": "氢气 : 氧气 = 1 : 2", "correct": false }
+        ],
+        "waterSubscriptQuestion": {
+          "prompt": "进阶原理检验：配平 H₂ + O₂ → H₂O 时，为什么不能把产物改成 H₂O₂ 来让左右氧原子相等？",
+          "options": [
+            {
+              "label": "修改下标会改变物质本身的化学身份（H₂O₂ 是过氧化氢而非水），配平只能调整化学式前的计量系数。",
+              "correct": true,
+              "explanation": "精准！系数表示分子/份数比例，下标决定分子组成。"
+            },
+            {
+              "label": "因为化学式里不允许出现两个数字 2。",
+              "correct": false,
+              "explanation": "H₂O₂ 是真实存在的化合物（过氧化氢），不能修改下标是因为它不再是水。"
+            },
+            {
+              "label": "系数和下标完全等价，改哪个都可以。",
+              "correct": false,
+              "explanation": "二者含义根本不同：2H₂O 表示 2 份水，H₂O₂ 则是另一种完全不同的物质。"
+            }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "真实反应引擎（r006）表明氢气与氧气点燃化合唯一生成水，确认水含氢、氧两种元素。",
+          "现代定量对照与配平引擎确认 2H₂ + O₂ → 2H₂O 满足氢原子（4=4）与氧原子（2=2）守恒。",
+          "历史合成（1781–1784）与后世电解（1800 后）共同证明水是定比化合物。"
+        ],
+        "question": "这项发现如何从根本上改变了人类对「元素」与「化合物」的认识？",
+        "options": [
+          {
+            "id": "a3_1",
+            "text": "证明了传统「四元素」中的水可由更基本的氢、氧按定比化合而成，推动「无法再经化学方法分解」成为现代元素操作定义。",
+            "correct": true,
+            "explanation": "准确！空气与水两大古典「元素」相继被拆解后，现代化学元素体系才得以建立。"
+          },
+          {
+            "id": "a3_2",
+            "text": "证明氢气和氧气只能通过通电才能变成水。",
+            "correct": false,
+            "explanation": "氢氧点燃化合生成水，通电是水的分解（电解）过程。"
+          },
+          {
+            "id": "a3_3",
+            "text": "证明 1781 年卡文迪许已经用伏打电堆电解了水。",
+            "correct": false,
+            "explanation": "伏打电堆发明于 1800 年；1781 年卡文迪许是用电火花引燃氢气与空气完成合成。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "水是化合物（H₂O）· 古典四元素说终结",
+        "scientificConclusion": "水不是不可再分的基本元素，而是由氢和氧按固定原子数比 2:1 结合而成的化合物。",
+        "historicalImpact": "彻底告别古典四元素哲学，直接推动定比定律与现代元素表确立。",
+        "multiContributorNote": "历史贡献分清：英国学者亨利·卡文迪许（1781–1784）率先完成关键的氢氧合成水定量实验（但仍用燃素说诠释）；法国化学家拉瓦锡与拉普拉斯（1783–1785）重复合成并利用红热铁管分解水蒸气，确立现代化合物解释并命名「氢」（hydrogène）。"
+      }
+    }
+  },
+  {
+    "id": "hist_04",
+    "number": 4,
+    "eraYear": "1800年",
+    "title": "人类的第一块电池",
+    "en": "CHAPTER 04 · THE FIRST ELECTRIC BATTERY",
+    "subtitle": "叠层极性、异种金属与湿润电解质：动手组装并调试你的伏打电堆",
+    "knowledgeTheme": "电化学 · 化学能与电能 · 原电池串联",
+    "playable": true,
+    "figureIds": ["fig_volta"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "史实与教学模型边界：1800 年伏特致英国皇家学会信（《哲学汇刊》）记载的伏打电堆使用「锌片 + 银片（或铜片）」与浸盐水纸板/布/皮革交替堆叠。本关默认提供「锌-铜」与「锌-银（1800 原型）」两组金属对及「干燥纸板/同类金属」对照故障测试；单节 0.8 V 为教学简化示意值，并非 1800 年历史实测值，亦未模拟真实伏打电堆的极化衰减。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/alessandro-volta/",
+      "https://www.britannica.com/biography/Alessandro-Volta",
+      "https://openstax.org/books/chemistry-2e/pages/17-2-galvanic-cells"
+    ],
+    "firstReward": { "coins": 125, "researchPoints": 45, "experience": 95 },
+    "advancedFirstBonus": {
+      "coins": 55,
+      "researchPoints": 25,
+      "experience": 45
+    },
+    "repeatReward": { "coins": 25, "researchPoints": 9, "experience": 20 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_voltaic_pile",
+    "archiveRewards": {
+      "manuscriptTitle": "1800 皇家学会电堆通信手稿",
+      "manuscriptSummary": "梳理了异种金属电极、盐水电解质隔层与串联极性对持续直流电输出的影响。",
+      "theoryTitle": "原电池串联与电化学能量转化",
+      "theorySummary": "异种金属在电解质中产生电势差，统一极性串联可叠加电压，干燥断路或反向叠层会削弱/抵消输出。",
+      "medalName": "科莫直流电堆勋章",
+      "commemorativeInstrument": "1800 锌-银/铜叠层伏打电堆模型"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "1800 年之前，摩擦起电机只能放出转瞬即逝的静电火花——如何用常见金属片与盐水布片拼出一台持续输出电流的化学电源？",
+        "contextSummary": "18 世纪末，伽伐尼关于「青蛙腿肌肉抽搐」的发现引发了「动物电」与「金属接触电」的激烈争论。在意大利科莫，一位物理学家尝试将不同金属圆片与盐水湿纸板一层层叠高……",
+        "historicalFacts": [
+          "18 世纪末的莱顿瓶只能瞬间放电，无法维持长时间化学反应。",
+          "伏特最初在 1800 年的电堆中使用了锌片与银片（或铜片），并在金属对之间夹入浸有盐水的纸板、布片或皮革。",
+          "请你亲自选择金属组合、叠放并调整层级顺序，通过电压表观察电流变化规律。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "仪器工坊助手（虚构教学旁白）",
+            "line": "你可以随时切换金属对、添加湿布或干燥纸、使用上移/下移调整任意一层顺序！试试看：同类金属、干燥纸板、或者反向叠放都会让电压表立刻露出端倪。",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "要使多层堆叠的金属—隔层装置产生持续且随层数递增的直流电压，每一基本单元必须具备什么条件？",
+        "options": [
+          {
+            "id": "h4_a",
+            "text": "必须由两种不同金属（如锌与铜/银）夹着含离子的湿润电解质隔层构成，并按相同极性方向重复串联堆叠。",
+            "isRecommended": true,
+            "feedback": "核心洞察准确！现在进入电堆装配台，通过实际叠层与排错验证串联规律。"
+          },
+          {
+            "id": "h4_b",
+            "text": "全部叠放相同铜片即可，金属片越厚电势越高。",
+            "isRecommended": false,
+            "feedback": "相同金属之间对称无电势差，可以在装配台切换「铜+铜」亲自验证。"
+          },
+          {
+            "id": "h4_c",
+            "text": "隔层越干燥绝缘越好，避免盐水接触金属。",
+            "isRecommended": false,
+            "feedback": "电化学电池内部需要离子在电解质中迁移形成闭合回路，干燥绝缘纸会直接断路。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "voltaic_pile_assembly",
+        "objectiveSimple": "选择异种金属组合（锌+铜 或 1800 原型 锌+银），按统一极性串联堆叠至少 2 组完整「锌 → 盐水湿隔层 → 铜/银」单元（教学示意 ≥ 1.6 V），可随时拆除或上下重排纠错。",
+        "objectiveAdvanced": "进阶要求：严格按统一极性无失误串联至少 3 组完整单元（教学示意 ≥ 2.4 V，足以驱动模拟电解水指示灯），不得存在干燥断路层、同类金属对或反向抵消单元。",
+        "hints": [
+          "提示 1：先确认金属组合为异种金属（「锌 + 铜」或「锌 + 银」），不要使用「铜 + 铜」。",
+          "提示 2：每一组完整单元共 3 层：底层「锌片」→ 中层「盐水湿布/纸板」→ 顶层「铜片/银片」，绝不能用「干燥纸板」。",
+          "提示 3：第 2、3 组必须沿用完全相同的顺序往上堆叠；若放错层，可用每层旁的「↑ / ↓」或「移除」按钮直接调整。"
+        ],
+        "chapterMaterials": ["zinc", "copper", "brine", "water"],
+        "voltaicLayers": {
+          "requiredSequence": ["zinc", "brine_cloth", "copper"],
+          "minCellsSimple": 2,
+          "minCellsAdvanced": 3,
+          "voltagePerCellV": 0.8,
+          "historicalMaterialNote": "历史材料对照：1800 年伏特在《哲学汇刊》中首选锌片与银片（其次为锌片与铜片），隔层采用浸有盐水或稀碱液的纸板、布或皮革。",
+          "modelSimplificationNote": "教学模型声明：单节 0.8 V 为简化的线性串联教学示意值，并非 1800 年原始仪器测量值，未计入电极极化与内阻压降。"
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "异种金属 + 湿润盐水隔层构成单节原电池，统一极性串联后教学示意电压随单元数叠加。",
+          "同类金属（铜-铜）电势差为零，干燥纸板阻断离子传导导致回路断开，反向叠层会抵消净电压。",
+          "稳定直流电源使后续水电解与活泼金属分离成为可能。"
+        ],
+        "question": "伏打电堆问世后，为什么仅在短短数年内就引发了水电解与钠、钾等新元素的发现潮？",
+        "options": [
+          {
+            "id": "a4_1",
+            "text": "它首次提供了持续可控的直流电流，使化学家能够利用电能驱动原本难以热分解的稳定化合物发生氧化还原分解。",
+            "correct": true,
+            "explanation": "准确！持续电流把电学与化学紧密连接，标志着电化学学科正式诞生。"
+          },
+          {
+            "id": "a4_2",
+            "text": "电堆本身可以在没有盐水的情况下无限放出高压静电。",
+            "correct": false,
+            "explanation": "实验表明干燥无电解质时离子通路断开，且电堆靠化学能转化为持续低电压直流电。"
+          },
+          {
+            "id": "a4_3",
+            "text": "电堆通过改变原子核把锌变成了铜。",
+            "correct": false,
+            "explanation": "原电池发生的是电极表面的氧化还原电子转移，不会改变元素原子核。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "持续直流电的诞生 · 电化学时代开启",
+        "scientificConclusion": "两种不同活泼性的金属与含离子的电解质隔层按统一极性串联，可持续将化学能转化为电能。",
+        "historicalImpact": "直接催生水的持续电解（尼科尔森与卡莱尔，1800 年 5 月）、活泼碱金属发现（戴维，1807）以及现代电池与电化学工业。",
+        "multiContributorNote": "历史脉络：伏特在回应伽伐尼实验的基础上于 1800 年发明伏打电堆；随后尼科尔森、卡莱尔、戴维与法拉第接力建立起完整的电化学实验与定量定律体系。"
+      }
+    }
+  },
+  {
+    "id": "hist_05",
+    "number": 5,
+    "eraYear": "1828年",
+    "title": "生命物质的边界",
+    "en": "CHAPTER 05 · BOUNDARY OF ORGANIC MATTER · TEASED",
+    "subtitle": "维勒人工合成尿素：无机原料与有机化合物之间并非不可逾越",
+    "knowledgeTheme": "有机化学 · 物质转化",
+    "playable": false,
+    "teasedNote": "V1.7 历史扩展预告章节（已对齐 10 章时间线，当前版本明确标为预告，不冒充已实装）",
+    "figureIds": ["fig_wohler"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "预告章节：1828 年弗里德里希·维勒由无机盐氰酸铵制得尿素，动摇「生命力论」；将在 V1.7 开放完整虚拟产物分析关卡。",
+    "references": ["https://www.britannica.com/biography/Friedrich-Wohler"],
+    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
+    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+  },
+  {
+    "id": "hist_06",
+    "number": 6,
+    "eraYear": "1830年代",
+    "title": "电流的化学法则",
+    "en": "CHAPTER 06 · LAWS OF ELECTROLYSIS · TEASED",
+    "subtitle": "法拉第电解定律：电量与电解产物数量之间的定量关系",
+    "knowledgeTheme": "电解 · 定量化学",
+    "playable": false,
+    "teasedNote": "V1.7 历史扩展预告章节（将衔接 CH.04 伏打电堆与定量电解参数分析）",
+    "figureIds": ["fig_faraday"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "预告章节：1833–1834 年迈克尔·法拉第建立定量电解定律并提出电极/离子术语；将在 V1.7 开放完整定量电解参数关卡。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/michael-faraday/"
+    ],
+    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
+    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+  },
+  {
+    "id": "hist_07",
+    "number": 7,
+    "eraYear": "1869年",
+    "title": "尚未发现的元素",
+    "en": "CHAPTER 07 · THE UNDISCOVERED ELEMENTS",
+    "subtitle": "1869 元素卡片排布：不依赖现代原子序数，仅凭原子量与氧化物规律预言空位",
+    "knowledgeTheme": "元素周期律 · 科学预测",
+    "playable": true,
+    "figureIds": ["fig_mendeleev", "fig_meyer"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "史实依据：1869 年门捷列夫按相对原子质量与化合价/氧化物规律发表周期表，留白并预言「类铝」「类硼」「类硅」；同期迈耶尔独立发表原子体积周期曲线与周期表。为还原 1869 年推理情境，实验阶段刻意隐去现代原子序数与后世发现元素名称，仅在最终「历史揭晓」阶段呈现 1875 年镓（Ga）的实测对照。",
+    "references": [
+      "https://www.sciencehistory.org/education/scientific-biographies/dmitri-mendeleev/",
+      "https://www.sciencehistory.org/education/scientific-biographies/julius-lothar-meyer-and-dmitri-ivanovich-mendeleev/",
+      "https://www.rsc.org/periodic-table/history/about"
+    ],
+    "firstReward": { "coins": 140, "researchPoints": 50, "experience": 110 },
+    "advancedFirstBonus": {
+      "coins": 60,
+      "researchPoints": 28,
+      "experience": 50
+    },
+    "repeatReward": { "coins": 30, "researchPoints": 10, "experience": 22 },
+    "maxRepeatRewardClaims": 2,
+    "museumUnlockId": "mus_periodic_draft",
+    "archiveRewards": {
+      "manuscriptTitle": "1869 元素卡片与空白预言手稿",
+      "manuscriptSummary": "还原了 1869 年依据相对原子质量与氧化物通式排布周期网格、勇敢留白并定量预言「类铝」的推理过程。",
+      "theoryTitle": "元素周期律与可证伪科学预言",
+      "theorySummary": "同族元素遵循一致的化合价与氧化物通式，周期律不仅分类已知元素，更具备定量预测未知元素的力量。",
+      "medalName": "周期律预言勋章",
+      "commemorativeInstrument": "1869 周期卡片整理桌纪念版"
+    },
+    "stages": {
+      "background": {
+        "researchQuestion": "1869 年已有 60 多种化学元素，但原子核与质子数尚未被发现——仅靠相对原子质量和化学性质，能否排出一张连「未知元素」都能预测的地图？",
+        "contextSummary": "19 世纪 60 年代，元素清单越拉越长，化合价、氧化物组成与原子量看似杂乱无章。俄国与德国的几位化学家尝试把元素性质写在卡片上反复排列，寻找潜藏在数字背后的周期节奏。",
+        "historicalFacts": [
+          "1869 年尚无「原子序数」或「核外电子排布」概念，研究者唯一可用的定量尺度是相对原子质量、密度与最高价氧化物通式。",
+          "更早之前，德贝莱纳（三元素组）、尚古多（螺旋图）与纽兰兹（八音律）都曾察觉元素性质的周期重复。",
+          "在实验阶段，我们将为你隐藏 1875 年之后的现代答案，请你仅凭 1869 年手稿线索完成排布与空位预言。"
+        ],
+        "teachingDialogue": [
+          {
+            "speaker": "手稿整理助手（虚构教学旁白）",
+            "line": "桌上摆着 4 张 1869 年手写元素卡片。把它们放进对应的周期与族位后，别急着硬塞已知元素——请亲自在铝（Al）下方标出「未知空位」，再推断这个空位元素的性质！",
+            "fictionalized": true
+          }
+        ]
+      },
+      "hypothesis": {
+        "question": "整理卡片时，如果发现在铝（Al，氧化物 Al₂O₃）下方、锌（≈65）右侧找不到氧化物为 R₂O₃ 的已知元素，哪项做法符合科学周期律思维？",
+        "options": [
+          {
+            "id": "h7_a",
+            "text": "强行把下一个已知元素（如砷，最高氧化物 As₂O₅）填入铝下方，以免表格出现难看的空格。",
+            "isRecommended": false,
+            "feedback": "强行填入会导致同族化合价与氧化物通式冲突，破坏整个周期规律。"
+          },
+          {
+            "id": "h7_b",
+            "text": "坚持同族化学性质一致的原则，主动在铝下方预留未知空位，并依据上下左右相邻元素推断其原子量与氧化物通式。",
+            "isRecommended": true,
+            "feedback": "正是这种「敢于留白并提出可检验预言」的科学方法，让周期表完成了从整理清单到科学定律的飞跃！"
+          },
+          {
+            "id": "h7_c",
+            "text": "说明元素之间根本没有规律，应放弃按周期分组。",
+            "isRecommended": false,
+            "feedback": "碱金属（R₂O）、第 III 族（R₂O₃）、第 IV 族（RO₂）已呈现出非常清晰的周期重复。"
+          }
+        ]
+      },
+      "experiment": {
+        "puzzleType": "periodic_table_prediction",
+        "objectiveSimple": "步骤 1：将 4 张 1869 元素卡片归位至对应周期/族格；步骤 2：显式在铝（Al）下方标记「预留未知空位」；步骤 3：根据同族规律预言该未知元素（「类铝」）的宏观性质。",
+        "objectiveAdvanced": "进阶要求（更少表头提示 + 定量比较）：完成全部卡片归位与空位标记，独立选定「类铝」最高价氧化物通式（E₂O₃），并结合左右邻元素（Zn ≈ 65，As ≈ 75）定量估算其相对原子质量（66–72）。",
+        "hints": [
+          "提示 1：观察第 2 周期参考行：Li 对应 R₂O、B 对应 R₂O₃、C 对应 RO₂；同列元素具有相同的氧化物通式。",
+          "提示 2：同一横行相对原子质量大致从左向右递增：Na(23) < Al(27) < Si(28)，而 K(39) 属于更重一周期的 R₂O 家族。",
+          "提示 3：请点击铝下方格子完成「标记预留空位」；该空位位于第 III 族（E₂O₃），原子量介于 Zn(65) 与 As(75) 之间（约 68–70）。"
+        ],
+        "chapterMaterials": ["sodium", "aluminium", "silicon", "carbon"],
+        "periodicCards": [
+          {
+            "symbol": "Na",
+            "name": "钠",
+            "atomicWeightTeaching": 23,
+            "oxideFormula": "R₂O (Na₂O)",
+            "densityTeaching": "0.97 g/cm³",
+            "groupSlot": 1,
+            "periodSlot": 3
+          },
+          {
+            "symbol": "Al",
+            "name": "铝",
+            "atomicWeightTeaching": 27,
+            "oxideFormula": "R₂O₃ (Al₂O₃)",
+            "densityTeaching": "2.70 g/cm³",
+            "groupSlot": 3,
+            "periodSlot": 3
+          },
+          {
+            "symbol": "Si",
+            "name": "硅",
+            "atomicWeightTeaching": 28,
+            "oxideFormula": "RO₂ (SiO₂)",
+            "densityTeaching": "2.33 g/cm³",
+            "groupSlot": 4,
+            "periodSlot": 3
+          },
+          {
+            "symbol": "K",
+            "name": "钾",
+            "atomicWeightTeaching": 39,
+            "oxideFormula": "R₂O (K₂O)",
+            "densityTeaching": "0.86 g/cm³",
+            "groupSlot": 1,
+            "periodSlot": 4
+          }
+        ],
+        "gapPrediction": {
+          "gapName": "类铝（Eka-aluminium，铝下方预留空位）",
+          "actualElement": "镓（Ga，1875 年由布瓦博德朗在闪锌矿中发现）",
+          "prompt": "仅凭 1869 年相邻元素规律，铝（Al，Al₂O₃）下方、锌（≈65）右侧空位最可能具备哪组特征？",
+          "options": [
+            {
+              "label": "相对原子质量约 68–70，氧化物通式为 E₂O₃，中等密度低熔点金属",
+              "correct": true,
+              "explanation": "预言与周期规律完全吻合！进入「历史揭晓」即可查看 1875 年真实发现对照。"
+            },
+            {
+              "label": "相对原子质量约 12，常温惰性气体，不形成任何氧化物",
+              "correct": false,
+              "explanation": "第 4 周期铝下方元素的原子量应显著高于 Al(27)，且应遵循第 III 族 E₂O₃ 规律。"
+            },
+            {
+              "label": "相对原子质量约 120，氧化物为 E₂O，遇水剧烈爆炸的碱金属",
+              "correct": false,
+              "explanation": "E₂O 为第 I 族碱金属特征，与铝所在的第 III 族（E₂O₃）不符。"
+            }
+          ],
+          "advancedWeightRange": [66, 72],
+          "advancedOxideOptions": [
+            { "label": "E₂O", "correct": false },
+            { "label": "E₂O₃", "correct": true },
+            { "label": "EO₂", "correct": false },
+            { "label": "E₂O₅", "correct": false }
+          ]
+        }
+      },
+      "analysis": {
+        "evidenceSummary": [
+          "按 1869 年相对原子质量与氧化物通式，Na/K（R₂O）、Al（R₂O₃）、Si（RO₂）形成清晰周期矩阵。",
+          "在铝下方主动预留空位并定量推算出 E₂O₃ 与约 68–70 相对原子质量。",
+          "后续实验发现验证了空位预言，使周期律确立为可检验的科学理论。"
+        ],
+        "question": "在评估 19 世纪元素周期律的确立时，哪项认识最全面客观？",
+        "options": [
+          {
+            "id": "a7_1",
+            "text": "门捷列夫因大胆留白并准确预言未知元素性质而最具影响力，同时迈耶尔独立绘制了原子体积周期曲线，前人德贝莱纳与纽兰兹等也奠定了分类基础。",
+            "correct": true,
+            "explanation": "全面而客观！既肯定可证伪预言的决定性意义，也如实呈现多位科学家的共同探索。"
+          },
+          {
+            "id": "a7_2",
+            "text": "1869 年门捷列夫已经用 X 射线测出了所有元素的原子序数（质子数）。",
+            "correct": false,
+            "explanation": "原子序数直到 1913 年才由莫塞莱通过 X 射线光谱确立；1869 年周期表主要依据相对原子质量与化学性质。"
+          },
+          {
+            "id": "a7_3",
+            "text": "周期表只是一张记忆顺口溜，不能用于预测未知物质。",
+            "correct": false,
+            "explanation": "预言镓、钪、锗的存在与性质正是元素周期表最强有力的科学价值体现。"
+          }
+        ]
+      },
+      "discovery": {
+        "milestoneTitle": "1875 实测印证预言 · 元素周期律确立",
+        "scientificConclusion": "元素的化学与物理性质随相对原子质量（现代确立为原子序数）呈周期性变化，同族元素具有相似的化合价与反应模式。",
+        "historicalImpact": "将零散的元素知识织成具备定量预测力的科学地图，并在 20 世纪原子结构理论建立后获得深层微观解释。",
+        "multiContributorNote": "多元贡献对照：门捷列夫（1869）系统发表周期表并定量预言「类铝」等空位；迈耶尔（1869/1870）独立发表原子体积周期曲线与周期表并共获 1882 年戴维奖章；此前德贝莱纳、尚古多、纽兰兹及后来的莫塞莱均作出重要贡献。",
+        "modernComparisonNote": "预言 vs 1875 实测对照：门捷列夫预言「类铝」相对原子质量 ≈ 68、密度 ≈ 5.9 g/cm³、氧化物 E₂O₃、低熔点；1875 年布瓦博德朗发现的镓（Ga，现代原子序数 31）实测相对原子质量 69.72、密度 5.91 g/cm³、氧化物 Ga₂O₃、熔点仅 29.8 °C！"
+      }
+    }
+  },
+  {
+    "id": "hist_08",
+    "number": 8,
+    "eraYear": "1898年",
+    "title": "矿石中的未知信号",
+    "en": "CHAPTER 08 · SIGNALS IN PITCHBLENDE · TEASED",
+    "subtitle": "玛丽·居里与皮埃尔·居里发现钋与镭（仅限虚拟数据分析）",
+    "knowledgeTheme": "放射性 · 元素发现（虚拟数据分析）",
+    "playable": false,
+    "teasedNote": "V1.7 历史扩展预告章节（将仅以虚拟矿样电离数据推理形式呈现，不涉及危险操作指南）",
+    "figureIds": ["fig_curies"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "预告章节：1898 年玛丽·居里与皮埃尔·居里从沥青铀矿异常电离信号中发现钋与镭；将在后续版本仅以虚拟数据分析形式开放。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1911/marie-curie/facts/"
+    ],
+    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
+    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+  },
+  {
+    "id": "hist_09",
+    "number": 9,
+    "eraYear": "1909–1911年",
+    "title": "原子内部的世界",
+    "en": "CHAPTER 09 · INSIDE THE ATOM · TEASED",
+    "subtitle": "卢瑟福、盖革与马斯登散射实验与原子核模型的建立",
+    "knowledgeTheme": "原子结构 · 科学模型",
+    "playable": false,
+    "teasedNote": "V1.7/V1.8 历史扩展预告章节（将通过虚拟粒子散射轨迹分析推断原子核结构）",
+    "figureIds": ["fig_rutherford_team"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "预告章节：1909 年盖革与马斯登金箔散射实验与 1911 年卢瑟福原子核模型，将在后续版本开放。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1908/rutherford/biographical/"
+    ],
+    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
+    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+  },
+  {
+    "id": "hist_10",
+    "number": 10,
+    "eraYear": "1909–1913年",
+    "title": "来自空气的农业革命",
+    "en": "CHAPTER 10 · HABER-BOSCH AMMONIA · TEASED",
+    "subtitle": "弗里茨·哈伯与卡尔·博施：合成氨技术与化学工业化",
+    "knowledgeTheme": "催化 · 化学平衡 · 工业化学",
+    "playable": false,
+    "teasedNote": "V1.7 工业文明版本预告终章（配合抽象能源与产线平衡模型开放）",
+    "figureIds": ["fig_haber_bosch"],
+    "reviewStatus": "pending",
+    "factDistinctionNote": "预告章节：1909–1913 年哈伯与博施实现高温高压催化合成氨并工业化；将在 V1.7 工业文明版本配合能源/平衡模型开放。",
+    "references": [
+      "https://www.nobelprize.org/prizes/chemistry/1918/haber/facts/"
+    ],
+    "firstReward": { "coins": 0, "researchPoints": 0, "experience": 0 },
+    "repeatReward": { "coins": 0, "researchPoints": 0, "experience": 0 }
+  }
+]

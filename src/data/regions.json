@@ -1,0 +1,269 @@
+[
+  {
+    "id": "forest",
+    "name": "原始森林",
+    "en": "PRIMEVAL FOREST",
+    "playable": true,
+    "themeColor": "#4cc38a",
+    "tagline": "清泉、林木、溪畔石英砂与天然黏土的起点采集区。",
+    "description": "实验室外围的自然林地与溪谷，提供永久免费的基础自然采集点，确保任何状态下都不会发生资源死锁。",
+    "mapCoord": { "x": 185, "y": 310 },
+    "unlockRequirement": {},
+    "nodes": [
+      {
+        "id": "node_forest_spring",
+        "name": "林间溪泉",
+        "description": "免费汲取清泉水与空气标本，任何资源状态下均可采集。",
+        "x": 145,
+        "y": 295,
+        "costCoins": 0,
+        "yields": [
+          { "substanceId": "water", "amount": 4 },
+          { "substanceId": "air", "amount": 2 }
+        ],
+        "experienceGain": 8,
+        "freeStarter": true
+      },
+      {
+        "id": "node_forest_timber",
+        "name": "古木与炭窑遗址",
+        "description": "收集干燥木材与天然木炭，作为热学与还原基础原料。",
+        "x": 230,
+        "y": 245,
+        "costCoins": 0,
+        "yields": [
+          { "substanceId": "wood", "amount": 3 },
+          { "substanceId": "charcoal", "amount": 2 },
+          { "substanceId": "carbon", "amount": 1 }
+        ],
+        "experienceGain": 10,
+        "freeStarter": true
+      },
+      {
+        "id": "node_forest_clay",
+        "name": "河湾黏土与细砂",
+        "description": "采集河床硅砂与细质黏土，为硅酸盐材料研究做准备。",
+        "x": 210,
+        "y": 370,
+        "costCoins": 8,
+        "yields": [
+          { "substanceId": "sand", "amount": 3 },
+          { "substanceId": "clay", "amount": 3 },
+          { "substanceId": "silica", "amount": 1 }
+        ],
+        "experienceGain": 14
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task_forest_1",
+        "title": "林地基础取样",
+        "description": "在原始森林完成 3 次野外采集，建立首批标本档案。",
+        "targetGatherCount": 3,
+        "reward": { "coins": 65, "researchPoints": 16, "experience": 35 }
+      },
+      {
+        "id": "task_forest_2",
+        "title": "溪水熟石灰试样",
+        "description": "交付 2 份氢氧化钙至林区生态监测站用于水质调节实验。",
+        "targetDeliverSubstance": {
+          "substanceId": "calcium_hydroxide",
+          "amount": 2
+        },
+        "reward": { "coins": 85, "researchPoints": 22, "experience": 45 }
+      }
+    ]
+  },
+  {
+    "id": "mountains",
+    "name": "矿石山脉",
+    "en": "MINERAL MOUNTAINS",
+    "playable": true,
+    "themeColor": "#e09b52",
+    "tagline": "富集石灰岩、铁铜矿石与氧化物的山岳地质带。",
+    "description": "蕴含丰富金属矿脉、碳酸钙岩层与含硫矿床的高地山脉，是金属冶炼与酸碱盐原料的核心来源。",
+    "mapCoord": { "x": 465, "y": 195 },
+    "unlockRequirement": {
+      "techIds": ["tech_mountain_survey"]
+    },
+    "nodes": [
+      {
+        "id": "node_mtn_limestone",
+        "name": "白垩石灰岩采石场",
+        "description": "开采高纯度石灰石与碳酸钙矿样。",
+        "x": 410,
+        "y": 175,
+        "costCoins": 14,
+        "yields": [
+          { "substanceId": "calcium_carbonate", "amount": 3 },
+          { "substanceId": "calcium_oxide", "amount": 2 }
+        ],
+        "experienceGain": 18
+      },
+      {
+        "id": "node_mtn_ore",
+        "name": "赤铁与铜矿坑",
+        "description": "采集铁矿石、氧化铜与锌矿，支撑金属还原与置换实验。",
+        "x": 515,
+        "y": 160,
+        "costCoins": 20,
+        "yields": [
+          { "substanceId": "iron", "amount": 2 },
+          { "substanceId": "iron_oxide", "amount": 2 },
+          { "substanceId": "copper_oxide", "amount": 2 },
+          { "substanceId": "zinc", "amount": 2 }
+        ],
+        "experienceGain": 22
+      },
+      {
+        "id": "node_mtn_sulfur",
+        "name": "山谷硫磺矿脉",
+        "description": "采集单质硫、环状硫分子（S₈）与天然二氧化锰矿石。",
+        "x": 490,
+        "y": 248,
+        "costCoins": 22,
+        "yields": [
+          { "substanceId": "sulfur", "amount": 2 },
+          { "substanceId": "kb_S8", "amount": 1 },
+          { "substanceId": "manganese_dioxide", "amount": 1 }
+        ],
+        "experienceGain": 24
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task_mtn_1",
+        "title": "山岳矿脉勘察",
+        "description": "在矿石山脉完成 3 次矿样采集。",
+        "targetGatherCount": 3,
+        "reward": { "coins": 110, "researchPoints": 28, "experience": 55 }
+      },
+      {
+        "id": "task_mtn_2",
+        "title": "矿区湿法炼铜样",
+        "description": "向矿山化验室交付 2 份单质铜试样。",
+        "targetDeliverSubstance": { "substanceId": "copper", "amount": 2 },
+        "reward": { "coins": 145, "researchPoints": 34, "experience": 70 }
+      }
+    ]
+  },
+  {
+    "id": "ocean",
+    "name": "海洋与盐湖",
+    "en": "OCEAN & SALT FLATS",
+    "playable": true,
+    "themeColor": "#53b8f3",
+    "tagline": "广袤的卤水盐滩、海盐晶体与碱金属化合物宝库。",
+    "description": "富含氯化钠卤水、碳酸氢钠盐碱层与镁盐矿物的海岸盐湖带，为蒸发结晶、酸碱盐与电化学提供稳定原料。",
+    "mapCoord": { "x": 455, "y": 405 },
+    "unlockRequirement": {
+      "labLevel": 2,
+      "techIds": ["tech_salt_crystallization"]
+    },
+    "nodes": [
+      {
+        "id": "node_ocean_brine",
+        "name": "日晒卤水盐池",
+        "description": "抽取浓盐水与粗氯化钠，可直接用于结晶与电解制备。",
+        "x": 385,
+        "y": 415,
+        "costCoins": 16,
+        "yields": [
+          { "substanceId": "brine", "amount": 3 },
+          { "substanceId": "sodium_chloride", "amount": 3 },
+          { "substanceId": "water", "amount": 2 }
+        ],
+        "experienceGain": 20
+      },
+      {
+        "id": "node_ocean_soda",
+        "name": "天然碱湖结晶滩",
+        "description": "采集碳酸氢钠、碳酸钠与镁盐，用于纯碱和硫酸镁制备。",
+        "x": 510,
+        "y": 385,
+        "costCoins": 22,
+        "yields": [
+          { "substanceId": "sodium_bicarbonate", "amount": 3 },
+          { "substanceId": "sodium_carbonate", "amount": 2 },
+          { "substanceId": "magnesium", "amount": 2 }
+        ],
+        "experienceGain": 25
+      },
+      {
+        "id": "node_ocean_reagents",
+        "name": "海岸化学补给站",
+        "description": "交换获取盐酸、硫酸与过氧化氢等常用实验室试剂。",
+        "x": 465,
+        "y": 465,
+        "costCoins": 26,
+        "yields": [
+          { "substanceId": "hydrochloric_acid", "amount": 3 },
+          { "substanceId": "sulfuric_acid", "amount": 2 },
+          { "substanceId": "peroxide", "amount": 2 }
+        ],
+        "experienceGain": 25
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task_ocean_1",
+        "title": "盐湖水文取样",
+        "description": "在海洋与盐湖完成 3 次样本采集。",
+        "targetGatherCount": 3,
+        "reward": { "coins": 135, "researchPoints": 32, "experience": 65 }
+      },
+      {
+        "id": "task_ocean_2",
+        "title": "精制食盐结晶检验",
+        "description": "向海岸观测站交付 2 份食盐晶体。",
+        "targetDeliverSubstance": {
+          "substanceId": "salt_crystal",
+          "amount": 2
+        },
+        "reward": { "coins": 165, "researchPoints": 38, "experience": 80 }
+      }
+    ]
+  },
+  {
+    "id": "volcano",
+    "name": "火山地带",
+    "en": "VOLCANIC CALDERA · LOCKED",
+    "playable": false,
+    "themeColor": "#ef6b51",
+    "tagline": "地热硫化物与极端高温矿物区域（V1.7 预告）。",
+    "description": "活跃火山口与热泉带，计划在 V1.7 开放耐高温采样装备、地热能源接口与硫化工原料采集。",
+    "mapCoord": { "x": 745, "y": 175 },
+    "unlockRequirement": { "labLevel": 4 },
+    "nodes": [],
+    "tasks": [],
+    "teasedNote": "V1.7 地热与高温化工版本开放"
+  },
+  {
+    "id": "industrial_ruins",
+    "name": "工业遗址",
+    "en": "INDUSTRIAL RUINS · LOCKED",
+    "playable": false,
+    "themeColor": "#9d8cf2",
+    "tagline": "旧冶炼厂、化工反应塔与合金材料勘探区（V1.7 预告）。",
+    "description": "保留着早期连续化工设备与特种合金样本的工业遗迹，将在 V1.7 工业文明模式开放。",
+    "mapCoord": { "x": 790, "y": 325 },
+    "unlockRequirement": { "labLevel": 4 },
+    "nodes": [],
+    "tasks": [],
+    "teasedNote": "V1.7 工业文明与产线系统开放"
+  },
+  {
+    "id": "future_city",
+    "name": "未来科技城",
+    "en": "FUTURE SCIENCE CITY · LOCKED",
+    "playable": false,
+    "themeColor": "#45d9d0",
+    "tagline": "现代材料合成中心与新能源实验室（V2.0 预告）。",
+    "description": "聚合精密虚拟实验室、新能源电池与自动化合成单元的未来科研都市，将在 V2.0 开放。",
+    "mapCoord": { "x": 850, "y": 455 },
+    "unlockRequirement": { "labLevel": 5 },
+    "nodes": [],
+    "tasks": [],
+    "teasedNote": "V2.0 困难模式与现代科学研究院开放"
+  }
+]

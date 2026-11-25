@@ -1,0 +1,152 @@
+[
+  {
+    "id": "ev_forest_quartz",
+    "regionId": "forest",
+    "title": "溪床石英砾石",
+    "description": "在清澈溪水中发现晶莹的石英鹅卵石，可提取高纯度二氧化硅试样。",
+    "eventType": "bonus_material",
+    "reward": {
+      "items": { "silica": 2 },
+      "researchPoints": 5,
+      "experience": 12
+    },
+    "weight": 3,
+    "scientificNote": "天然石英的主要成分是二氧化硅（SiO₂），呈共价网络结构。"
+  },
+  {
+    "id": "ev_forest_dew",
+    "regionId": "forest",
+    "title": "晨露气象笔记",
+    "description": "记录了林间水蒸气夜间遇冷液化的观测数据，获得额外研究点。",
+    "eventType": "field_note",
+    "reward": { "researchPoints": 10, "experience": 15 },
+    "weight": 3,
+    "scientificNote": "气态水遇冷液化属于物理物态变化，水分子（H₂O）化学组成不变。"
+  },
+  {
+    "id": "ev_forest_bog_iron",
+    "regionId": "forest",
+    "title": "沼铁矿结核",
+    "description": "在林地湿地边缘采集到少量天然含铁沉积样本。",
+    "eventType": "mineral_vein",
+    "reward": { "items": { "iron": 2 }, "coins": 15, "experience": 14 },
+    "weight": 2,
+    "scientificNote": "古代冶铁常利用湿地沉积形成的沼铁矿作为早期铁源。"
+  },
+  {
+    "id": "ev_forest_lime",
+    "regionId": "forest",
+    "title": "古窑残留灰块",
+    "description": "在旧炭窑旁找到保存完好的碳酸钙石块与木炭。",
+    "eventType": "bonus_material",
+    "reward": {
+      "items": { "calcium_carbonate": 2, "charcoal": 1 },
+      "experience": 14
+    },
+    "weight": 2,
+    "scientificNote": "历史上常用木炭窑或石灰窑在高温下煅烧石灰石获取生石灰。"
+  },
+  {
+    "id": "ev_mtn_malachite",
+    "regionId": "mountains",
+    "title": "孔雀石伴生铜矿",
+    "description": "在裂隙岩壁发现绿色含铜矿带，整理后得到氧化铜试样与研究笔记。",
+    "eventType": "mineral_vein",
+    "reward": {
+      "items": { "copper_oxide": 2 },
+      "researchPoints": 12,
+      "experience": 20
+    },
+    "weight": 3,
+    "scientificNote": "含铜矿物经焙烧与碳还原后可冶炼得到单质铜。"
+  },
+  {
+    "id": "ev_mtn_hematite",
+    "regionId": "mountains",
+    "title": "赤铁矿层剖面",
+    "description": "采集到致密的红褐色氧化铁岩样，适合高温冶金实验。",
+    "eventType": "bonus_material",
+    "reward": { "items": { "iron_oxide": 2 }, "coins": 25, "experience": 20 },
+    "weight": 3,
+    "scientificNote": "赤铁矿主要成分为氧化铁（Fe₂O₃），是现代高炉炼铁的核心原料。"
+  },
+  {
+    "id": "ev_mtn_catalyst",
+    "regionId": "mountains",
+    "title": "软锰矿晶体标本",
+    "description": "发现天然黑色二氧化锰矿块，是过氧化氢分解的经典多相催化剂。",
+    "eventType": "equipment_tip",
+    "reward": {
+      "items": { "manganese_dioxide": 1 },
+      "researchPoints": 12,
+      "experience": 22
+    },
+    "weight": 2,
+    "scientificNote": "二氧化锰（MnO₂）在过氧化氢分解中提供催化活性位点，反应前后质量与化学性质不变。"
+  },
+  {
+    "id": "ev_mtn_calcite",
+    "regionId": "mountains",
+    "title": "方解石菱形晶簇",
+    "description": "测量了方解石（碳酸钙）的解理角度并留存标准矿样。",
+    "eventType": "field_note",
+    "reward": {
+      "items": { "calcium_carbonate": 2 },
+      "researchPoints": 14,
+      "experience": 20
+    },
+    "weight": 2,
+    "scientificNote": "方解石与大理石的主要化学成分均为碳酸钙（CaCO₃）。"
+  },
+  {
+    "id": "ev_ocean_halite",
+    "regionId": "ocean",
+    "title": "立方石盐晶簇",
+    "description": "在浅滩发现规则立方体结构的天然氯化钠晶体。",
+    "eventType": "mineral_vein",
+    "reward": {
+      "items": { "sodium_chloride": 3 },
+      "researchPoints": 12,
+      "experience": 22
+    },
+    "weight": 3,
+    "scientificNote": "氯化钠晶体由 Na⁺ 与 Cl⁻ 交替排列形成离子晶体，宏观上常呈现立方体晶形。"
+  },
+  {
+    "id": "ev_ocean_trona",
+    "regionId": "ocean",
+    "title": "天然碱盐结壳",
+    "description": "盐湖旱季析出白色碳酸钠与碳酸氢钠混合盐霜。",
+    "eventType": "bonus_material",
+    "reward": {
+      "items": { "sodium_carbonate": 2, "sodium_bicarbonate": 2 },
+      "experience": 24
+    },
+    "weight": 3,
+    "scientificNote": "碱湖中常富集天然碱，是制取纯碱（Na₂CO₃）的重要天然资源。"
+  },
+  {
+    "id": "ev_ocean_magnesium",
+    "regionId": "ocean",
+    "title": "海盐苦卤镁盐层",
+    "description": "从浓缩卤水副产物中记录了镁离子的富集特征，获得经费与研究点。",
+    "eventType": "field_note",
+    "reward": { "coins": 35, "researchPoints": 16, "experience": 24 },
+    "weight": 2,
+    "scientificNote": "海水中溶解有大量镁离子，现代工业可从海水中提取氢氧化镁并进一步制取金属镁。"
+  },
+  {
+    "id": "ev_ocean_distill",
+    "regionId": "ocean",
+    "title": "海水淡化记录",
+    "description": "观测盐湖太阳蒸发冷凝现象，总结出蒸馏分离盐与水的操作要点。",
+    "eventType": "equipment_tip",
+    "reward": {
+      "items": { "water": 4 },
+      "researchPoints": 15,
+      "experience": 22
+    },
+    "weight": 2,
+    "scientificNote": "蒸馏利用水与溶解盐沸点差异分离混合物，属于物理分离过程。"
+  }
+]
