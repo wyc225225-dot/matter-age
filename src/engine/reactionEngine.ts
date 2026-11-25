@@ -118,7 +118,7 @@ export function execute(
       !missingConditions.length &&
       !missingCatalysts.length
         ? "当前反应不需要所选催化剂，请取消催化剂后再试。"
-        : "组合有已收录路径，请调整反应条件或催化剂。";
+        : "组合有已收录路径，但缺少所需反应条件或催化剂，请调整后再试。";
 
     return {
       status: "missing",
@@ -132,7 +132,7 @@ export function execute(
   return {
     status: "unmatched",
     message: input.substances.length
-      ? "当前组合未匹配已收录规则。你可以调整材料或条件；这不代表现实中绝对不会发生变化。"
+      ? "当前组合尚未收录可玩规则。你可以调整材料或条件；这不代表现实中绝对不会发生变化。"
       : "先从物质仓库添加材料。",
   };
 }
@@ -207,7 +207,7 @@ export function executeAdvanced(
     return {
       status: "unmatched",
       message:
-        "当前组合未匹配已收录规则。你可以调整材料或条件；这不代表现实中绝对不会发生变化。",
+        "当前组合尚未收录可玩规则。你可以调整材料或条件；这不代表现实中绝对不会发生变化。",
     };
   }
 
@@ -215,10 +215,17 @@ export function executeAdvanced(
     (r) => r.stoichiometrySupported && r.supportedModes.includes("advanced"),
   );
   if (!applicable.length) {
+    const r0 = setMatched[0];
+    const isEquilibriumMixture =
+      r0.reactionType === "equilibrium" &&
+      r0.reversible &&
+      r0.calculationStrategy === "mixture_unsupported";
     return {
       status: "unsupported_strategy",
-      reaction: setMatched[0],
-      message: `「${setMatched[0].name}」属于混合物、溶液分离或材料加工规则，不适用纯物质整数化学计量计算；请在简单模式中探索该过程。`,
+      reaction: r0,
+      message: isEquilibriumMixture
+        ? `「${r0.name}」属于可逆平衡混合体系（不默认按 100% 完全转化计算），不适用纯物质整数化学计量；请在简单模式中观察该平衡体系。`
+        : `「${r0.name}」属于混合物、溶液分离或材料加工规则，不适用纯物质整数化学计量计算；请在简单模式中探索该过程。`,
     };
   }
 
@@ -283,7 +290,7 @@ export function executeAdvanced(
       !missingConditions.length &&
       !missingCatalysts.length
         ? "当前反应不需要所选催化剂，请取消催化剂后再试。"
-        : "组合有已收录路径，请调整反应条件或催化剂。";
+        : "组合有已收录路径，但缺少所需反应条件或催化剂，请调整后再试。";
 
     return {
       status: "missing",
@@ -414,6 +421,13 @@ export interface ExtraReactantCandidate {
   missingCatalysts: string[];
 }
 
+export interface UnopenedKnowledgeHint {
+  id: string;
+  equation: string;
+  chineseSummary: string;
+  reasonLabel: string;
+}
+
 export type FailureDiagnostic =
   | {
       kind: "catalyst_in_reactants";
@@ -436,6 +450,11 @@ export type FailureDiagnostic =
       kind: "extra_reactants";
       summary: string;
       candidates: ExtraReactantCandidate[];
+    }
+  | {
+      kind: "unopened_knowledge_path";
+      summary: string;
+      paths: UnopenedKnowledgeHint[];
     }
   | {
       kind: "unsupported_strategy";
@@ -461,6 +480,7 @@ export interface DiagnoseFailureInput {
 export interface DiagnoseFailureOptions {
   channel?: "preview" | "release";
   labelCondition?: (c: Condition) => string;
+  unopenedKnowledgePaths?: UnopenedKnowledgeHint[];
 }
 
 /**
@@ -606,7 +626,18 @@ export function diagnoseExperimentFailure(
       };
     }
 
-    // 2. Check strict extra-reactant candidates (removing extra non-catalyst material matches a rule)
+    // 2. Distinguish "unopened knowledge-base path" (exact reactant set match) before generic subset checks
+    const unopened = options.unopenedKnowledgePaths ?? [];
+    if (unopened.length > 0) {
+      const sample = unopened[0];
+      return {
+        kind: "unopened_knowledge_path",
+        summary: `未收录可玩规则：知识库中存在相关资料路径（如「${sample.chineseSummary}」），但该资料路径尚未开放实验台模拟。`,
+        paths: unopened.slice(0, 3),
+      };
+    }
+
+    // 3. Check strict extra-reactant candidates (removing extra non-catalyst material matches a rule)
     if (input.substances.length >= 2) {
       const subSet = new Set(input.substances);
       const extraCandidates: ExtraReactantCandidate[] = [];

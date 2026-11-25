@@ -38,6 +38,13 @@ import {
   type FailureDiagnostic,
   type MisplacedCatalystCandidate,
 } from "../engine/reactionEngine";
+import { findUnopenedKnowledgePathsForReactants } from "../engine/knowledgeCoverage";
+import rawKnowledgeSpecies from "../data/knowledgeSubstances.json";
+import rawKnowledgeTransformations from "../data/knowledgeTransformations.json";
+import type {
+  KnowledgeSpeciesRecord,
+  KnowledgeTransformationRecord,
+} from "../utils/knowledgeNames";
 import { getHint } from "../engine/hintEngine";
 import { rateChallenge } from "../engine/challengeEngine";
 import { ADVANCED_LIMITS } from "../config/modes";
@@ -59,6 +66,13 @@ import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula, fmt } from "../components/Shared";
 import "../styles/mobile-laboratory.css";
+
+const knowledgeSpecies =
+  rawKnowledgeSpecies as unknown as KnowledgeSpeciesRecord[];
+const knowledgeTransformations =
+  rawKnowledgeTransformations as unknown as KnowledgeTransformationRecord[];
+const knowledgeSpeciesById: Record<string, KnowledgeSpeciesRecord> =
+  Object.fromEntries(knowledgeSpecies.map((s) => [s.id, s]));
 
 function playDiscovery() {
   try {
@@ -480,7 +494,20 @@ export default function Laboratory({
             res,
             allowedAdvancedRules,
             byId,
-            { channel: "preview", labelCondition: conditionName },
+            {
+              channel: "preview",
+              labelCondition: conditionName,
+              unopenedKnowledgePaths:
+                res.status === "unmatched"
+                  ? findUnopenedKnowledgePathsForReactants(
+                      slots,
+                      knowledgeTransformations,
+                      knowledgeSpeciesById,
+                      substances,
+                      allowedAdvancedRules,
+                    )
+                  : [],
+            },
           ),
         );
       }
@@ -526,7 +553,20 @@ export default function Laboratory({
           res,
           allowedSimpleRules,
           byId,
-          { channel: "preview", labelCondition: conditionName },
+          {
+            channel: "preview",
+            labelCondition: conditionName,
+            unopenedKnowledgePaths:
+              res.status === "unmatched"
+                ? findUnopenedKnowledgePathsForReactants(
+                    slots,
+                    knowledgeTransformations,
+                    knowledgeSpeciesById,
+                    substances,
+                    allowedSimpleRules,
+                  )
+                : [],
+          },
         ),
       );
     }
@@ -1261,32 +1301,33 @@ export default function Laboratory({
                   {isAdvanced ? "STOICHIOMETRY 1.5" : "WORKSPACE 01"}
                 </span>
               </h2>
-              <button className="text-button muted" onClick={clearBench}>
-                <Trash2 size={14} />
-                清空台面
-              </button>
+              <div className="bench-title-actions">
+                {isMobilePortrait && (
+                  <button
+                    type="button"
+                    className="text-button bench-hint-btn"
+                    aria-label="获取实验提示"
+                    disabled={!!run?.complete || !!qRun?.complete}
+                    onClick={requestHint}
+                  >
+                    <Lightbulb size={14} />
+                    提示{hintLevel ? ` ${hintLevel}/3` : ""}
+                  </button>
+                )}
+                <button className="text-button muted" onClick={clearBench}>
+                  <Trash2 size={14} />
+                  清空台面
+                </button>
+              </div>
             </div>
             <div className="workspace">
               <div className="workspace-grid" />
-              {isMobilePortrait && (
-                <button
-                  className="mobile-material-launcher"
-                  onClick={() => setPickerOpen(true)}
-                >
-                  <Plus size={19} />
-                  <strong>
-                    {slots.length ? "继续选择物质" : "选择实验物质"}
-                  </strong>
-                  <span>{slots.length}/4</span>
-                  <ChevronRight size={17} />
-                </button>
-              )}
               <div className="workbench-instruction">
                 <span className="status-dot" />
                 {isAdvanced
                   ? "添加材料默认 1 份，重复点击或使用 +/- / 数字输入调整投入份数（自由探索不扣全局库存）"
                   : isMobile
-                    ? "点空槽或选物质添加材料，再选择条件开始实验"
+                    ? "点击空槽添加材料，选好条件开始实验"
                     : "点击或拖入物质到槽位，再选定条件开始实验"}
               </div>
               <div className={`slots ${isAdvanced ? "advanced-slots" : ""}`}>
@@ -1538,6 +1579,19 @@ export default function Laboratory({
                                 </button>
                               );
                             })}
+                          </div>
+                        )}
+                        {diagnostic.kind === "unopened_knowledge_path" && (
+                          <div className="unopened-path-list">
+                            <span className="unopened-path-tag">
+                              资料路径 · 尚未开放实验台模拟
+                            </span>
+                            {diagnostic.paths.map((kp) => (
+                              <div className="unopened-path-item" key={kp.id}>
+                                <strong>{kp.chineseSummary}</strong>
+                                <small>{kp.reasonLabel}</small>
+                              </div>
+                            ))}
                           </div>
                         )}
                         {diagnostic.kind === "missing_requirements" && (
@@ -1924,27 +1978,13 @@ export default function Laboratory({
                   setPickerOpen(true);
                 }}
               >
-                <LayoutGrid size={19} />
+                <LayoutGrid size={18} />
                 <span>
-                  选物质<small>已选 {slots.length}/4</small>
+                  选物质<small>{slots.length}/4</small>
                 </span>
               </button>
               <button
-                type="button"
-                className="dock-hint"
-                aria-label="获取实验提示"
-                disabled={!!run?.complete || !!qRun?.complete}
-                onClick={() => {
-                  setMobileLabPane("bench");
-                  requestHint();
-                }}
-              >
-                <Lightbulb size={17} />
-                <small>{hintLevel ? `${hintLevel}/3` : "提示"}</small>
-              </button>
-              <button
                 className="primary dock-run"
-                aria-label="执行当前实验"
                 disabled={
                   !slots.length ||
                   animating ||

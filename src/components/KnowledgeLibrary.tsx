@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Search,
   ArrowLeft,
@@ -7,9 +7,13 @@ import {
   Check,
   BookOpen,
 } from "lucide-react";
+import type { MobileDetailBar } from "../types/navigation";
 import elements from "../data/elements.json";
 import rawSpecies from "../data/knowledgeSubstances.json";
 import rawTransformations from "../data/knowledgeTransformations.json";
+import { conditionName, reactions, substances } from "../data";
+import { summarizeKnowledgeCoverage } from "../engine/knowledgeCoverage";
+import { useViewport } from "../hooks/useViewport";
 import { Formula } from "./Shared";
 import { ArchiveTabs, type ArchiveView } from "./ArchiveTabs";
 import {
@@ -32,6 +36,13 @@ const transformations =
 const speciesById: Record<string, KnowledgeSpeciesRecord> = Object.fromEntries(
   species.map((s) => [s.id, s]),
 );
+const coverageReport = summarizeKnowledgeCoverage(
+  transformations,
+  speciesById,
+  substances,
+  reactions,
+  conditionName,
+);
 
 const questions = transformations
   .filter(
@@ -48,14 +59,18 @@ const questions = transformations
 export function KnowledgeLibrary({
   view,
   onChange,
+  onMobileDetailBar,
 }: {
   view: Exclude<ArchiveView, "collection">;
   onChange: (v: ArchiveView) => void;
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
 }) {
+  const vp = useViewport();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("全部");
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
+  const savedScrollY = useRef(0);
   const q = query.trim().toLowerCase();
   const title = {
     elements: "元素资料库",
@@ -63,6 +78,36 @@ export function KnowledgeLibrary({
     transformations: "物质转化路径",
     lessons: "知识学习任务",
   }[view];
+
+  const openDetail = useCallback((id: string) => {
+    savedScrollY.current = window.scrollY;
+    setSelected(id);
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, []);
+
+  const closeDetail = useCallback(() => {
+    setSelected(null);
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: savedScrollY.current,
+        behavior: "instant" as ScrollBehavior,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!onMobileDetailBar) return;
+    if (selected) {
+      onMobileDetailBar({
+        parentLabel: "知识库",
+        title,
+        onBack: closeDetail,
+      });
+    } else {
+      onMobileDetailBar(null);
+    }
+    return () => onMobileDetailBar(null);
+  }, [selected, title, closeDetail, onMobileDetailBar]);
 
   const elementRows = elements.filter(
     (e) =>
@@ -72,12 +117,19 @@ export function KnowledgeLibrary({
         .includes(q),
   );
   const speciesRows = species.filter((s) => speciesSearchText(s).includes(q));
-  const reactionRows = transformations.filter(
-    (r) =>
-      (category === "全部" ||
-        (category === "仅方程式资料"
-          ? r.sourceExecution === "equation-only"
-          : r.sourceExecution !== "equation-only")) &&
+  const reactionRows = transformations.filter((r) => {
+    const cov = coverageReport.byTransformationId[r.id];
+    const matchCategory =
+      category === "全部" ||
+      (category === "已开放实验台"
+        ? cov?.playable
+        : category === "资料路径（未开放模拟）"
+          ? !cov?.playable
+          : category === "仅方程式资料"
+            ? r.sourceExecution === "equation-only"
+            : r.sourceExecution !== "equation-only");
+    return (
+      matchCategory &&
       `${r.equation} ${formatTransformationChinese(r, speciesById)} ${r.reactants
         .concat(r.products)
         .map((p) =>
@@ -85,8 +137,9 @@ export function KnowledgeLibrary({
         )
         .join(" ")}`
         .toLowerCase()
-        .includes(q),
-  );
+        .includes(q)
+    );
+  });
 
   const size = 24;
   const total =
@@ -100,82 +153,119 @@ export function KnowledgeLibrary({
   const material = species.find((s) => s.id === selected);
   const reaction = transformations.find((r) => r.id === selected);
 
+  const hideListChrome = vp.isMobile && Boolean(selected);
+  const knowledgeSubTabs: [Exclude<ArchiveView, "collection">, string][] = [
+    ["species", "物质资料"],
+    ["transformations", "转化路径"],
+    ["elements", "118 种元素"],
+    ["lessons", "学习任务"],
+  ];
+
   return (
     <div className="page-width standard-page">
-      <div className="page-heading">
-        <div>
-          <p className="eyebrow">OPEN CHEMISTRY · LOCAL KNOWLEDGE ARCHIVE</p>
-          <h1>{title}</h1>
-          <p>
-            {elements.length} 种元素 · {species.length} 个物质资料记录 ·{" "}
-            {transformations.length} 条转化资料
-          </p>
-        </div>
-      </div>
-
-      <div className="mobile-sticky-bar archive-sticky-bar">
-        <ArchiveTabs view={view} onChange={onChange} />
-        {view !== "lessons" && (
-          <div className="archive-toolbar">
-            <label className="search-box">
-              <Search size={16} />
-              <input
-                aria-label="知识库搜索"
-                placeholder={
-                  view === "elements"
-                    ? "搜索中文名、英文名、元素符号或原子序数"
-                    : "搜索中文名称、别名、化学式或英文名"
-                }
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setPage(0);
-                  setSelected(null);
-                }}
-              />
-            </label>
-            {view !== "species" && (
-              <select
-                aria-label="知识库筛选"
-                value={category}
-                onChange={(e) => {
-                  setCategory(e.target.value);
-                  setPage(0);
-                  setSelected(null);
-                }}
-              >
-                {(view === "elements"
-                  ? ["全部", ...new Set(elements.map((e) => e.groupName))]
-                  : ["全部", "含变化情境", "仅方程式资料"]
-                ).map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-            )}
-            <span>{total} 条结果</span>
+      {!hideListChrome && (
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">OPEN CHEMISTRY · LOCAL KNOWLEDGE ARCHIVE</p>
+            <h1>{title}</h1>
+            <p>
+              {elements.length} 种元素 · {species.length} 个物质资料记录 ·{" "}
+              {transformations.length} 条转化资料
+            </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {!hideListChrome && (
+        <div className="mobile-sticky-bar archive-sticky-bar">
+          {vp.isMobile ? (
+            <nav
+              className="archive-tabs knowledge-subtabs"
+              aria-label="知识库分类"
+            >
+              {knowledgeSubTabs.map(([id, label]) => (
+                <button
+                  key={id}
+                  className={view === id ? "active" : ""}
+                  onClick={() => onChange(id)}
+                >
+                  {label}
+                </button>
+              ))}
+            </nav>
+          ) : (
+            <ArchiveTabs view={view} onChange={onChange} />
+          )}
+          {view !== "lessons" && (
+            <div className="archive-toolbar">
+              <label className="search-box">
+                <Search size={16} />
+                <input
+                  aria-label="知识库搜索"
+                  placeholder={
+                    view === "elements"
+                      ? "搜索中文名、英文名、元素符号或原子序数"
+                      : "搜索中文名称、别名、化学式或英文名"
+                  }
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setPage(0);
+                    setSelected(null);
+                  }}
+                />
+              </label>
+              {view !== "species" && (
+                <select
+                  aria-label="知识库筛选"
+                  value={category}
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                    setPage(0);
+                    setSelected(null);
+                  }}
+                >
+                  {(view === "elements"
+                    ? ["全部", ...new Set(elements.map((e) => e.groupName))]
+                    : [
+                        "全部",
+                        "已开放实验台",
+                        "资料路径（未开放模拟）",
+                        "含变化情境",
+                        "仅方程式资料",
+                      ]
+                  ).map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+              )}
+              <span>{total} 条结果</span>
+            </div>
+          )}
+        </div>
+      )}
 
       {view === "lessons" ? (
         <KnowledgeLessons />
       ) : (
         <>
-          <div className="archive-note">
-            <BookOpen size={17} />
-            <p>
-              {view === "elements"
-                ? "元素是原子核电荷相同的一类原子；氢元素 H、氢气 H₂ 和水中的氢不能视作同一个游戏物品。"
-                : view === "species"
-                  ? "资料条目按化学实体与物态独立命名（如氯化氢气体与盐酸、水与水蒸气）；支持中文、别名、化学式与英文检索。"
-                  : "每条转化同时给出结构化中文物质关系与配平方程式；仅方程式条目用于知识学习。"}
-            </p>
-          </div>
+          {!hideListChrome && (
+            <div className="archive-note">
+              <BookOpen size={17} />
+              <p>
+                {view === "elements"
+                  ? "元素是原子核电荷相同的一类原子；氢元素 H、氢气 H₂ 和水中的氢不能视作同一个游戏物品。"
+                  : view === "species"
+                    ? "按化学实体与物态独立命名（如氯化氢气体与盐酸、水与水蒸气）；支持中文、别名、化学式检索。"
+                    : `共收录 ${coverageReport.summary.total} 条转化资料：当前实验台已开放 ${coverageReport.summary.playable} 条模拟，其余 ${coverageReport.summary.notOpen} 条为资料路径（尚未开放实验台模拟），点击条目可查看原因与条件要求。`}
+              </p>
+            </div>
+          )}
           {selected && (
             <section className="archive-detail panel">
-              <button className="text-button" onClick={() => setSelected(null)}>
+              <button className="text-button" onClick={closeDetail}>
                 <ArrowLeft size={14} />
-                返回列表
+                {vp.isMobile ? "返回知识库" : "返回列表"}
               </button>
               {view === "elements" && element && (
                 <>
@@ -269,63 +359,95 @@ export function KnowledgeLibrary({
                   {transformations
                     .filter((r) => material.referenceRecordIds.includes(r.id))
                     .slice(0, 10)
-                    .map((r) => (
-                      <div className="archive-equation" key={r.id}>
-                        <strong className="archive-eq-zh">
-                          {formatTransformationChinese(r, speciesById)}
-                        </strong>
-                        <Formula value={r.equation} />
+                    .map((r) => {
+                      const cov = coverageReport.byTransformationId[r.id];
+                      return (
+                        <div className="archive-equation" key={r.id}>
+                          <div className="archive-eq-head">
+                            <strong className="archive-eq-zh">
+                              {formatTransformationChinese(r, speciesById)}
+                            </strong>
+                            <span
+                              className={`coverage-badge ${cov?.playable ? "playable" : "not-open"}`}
+                            >
+                              {cov?.playable
+                                ? cov.statusBadge
+                                : "资料路径·未开放模拟"}
+                            </span>
+                          </div>
+                          <Formula value={r.equation} />
+                        </div>
+                      );
+                    })}
+                </>
+              )}
+              {view === "transformations" &&
+                reaction &&
+                (() => {
+                  const cov = coverageReport.byTransformationId[reaction.id];
+                  return (
+                    <>
+                      <h2>
+                        {formatTransformationChinese(reaction, speciesById)}
+                      </h2>
+                      <p className="archive-detail-formula">
+                        <Formula value={reaction.equation} />
+                      </p>
+                      <div
+                        className={`knowledge-coverage-box ${cov?.playable ? "playable" : "not-open"}`}
+                      >
+                        <span
+                          className={`coverage-badge ${cov?.playable ? "playable" : "not-open"}`}
+                        >
+                          {cov?.playable
+                            ? "实验台已开放模拟"
+                            : "资料路径 · 尚未开放实验台模拟"}
+                        </span>
+                        <p>{cov?.detail}</p>
+                        {cov?.stateSimplificationNote && (
+                          <p className="coverage-subnote">
+                            {cov.stateSimplificationNote}
+                          </p>
+                        )}
                       </div>
-                    ))}
-                </>
-              )}
-              {view === "transformations" && reaction && (
-                <>
-                  <h2>{formatTransformationChinese(reaction, speciesById)}</h2>
-                  <p className="archive-detail-formula">
-                    <Formula value={reaction.equation} />
-                  </p>
-                  <p>
-                    {formatKnowledgeKind(reaction.kind)} ·{" "}
-                    {formatKnowledgeOutcome(reaction.outcome)} ·{" "}
-                    {reaction.sourceExecution === "equation-only"
-                      ? "仅方程式资料"
-                      : "含变化情境"}{" "}
-                    · 原子与电荷数量
-                    {reaction.atomBalanced ? "守恒" : "待核对"}
-                  </p>
-                  <div className="archive-chips">
-                    {reaction.activation.map((a) => (
-                      <span key={a}>{formatKnowledgeActivation(a)}</span>
-                    ))}
-                    {reaction.atmosphere && (
-                      <span>
-                        气氛：{formatKnowledgeAtmosphere(reaction.atmosphere)}
-                      </span>
-                    )}
-                  </div>
-                  <h3>参与物质（按物态区分）</h3>
-                  <div className="archive-chips">
-                    {[...reaction.reactants, ...reaction.products].map(
-                      (p, idx) => {
-                        const sp = speciesById[p.id];
-                        return (
-                          <span key={`${p.id}-${idx}`}>
-                            {resolveSpeciesDisplayName(sp, p.id)}（
-                            {sp?.displayFormula ?? p.id} ·{" "}
-                            {sp ? formatKnowledgeState(sp.state) : ""}）
+                      <p>
+                        {formatKnowledgeKind(reaction.kind)} ·{" "}
+                        {formatKnowledgeOutcome(reaction.outcome)} ·{" "}
+                        {reaction.sourceExecution === "equation-only"
+                          ? "仅方程式资料"
+                          : "含变化情境"}{" "}
+                        · 原子与电荷数量
+                        {reaction.atomBalanced ? "守恒" : "待核对"}
+                      </p>
+                      <div className="archive-chips">
+                        {reaction.activation.map((a) => (
+                          <span key={a}>{formatKnowledgeActivation(a)}</span>
+                        ))}
+                        {reaction.atmosphere && (
+                          <span>
+                            气氛：
+                            {formatKnowledgeAtmosphere(reaction.atmosphere)}
                           </span>
-                        );
-                      },
-                    )}
-                  </div>
-                  <p>
-                    {reaction.sourceExecution === "equation-only"
-                      ? "此条目用于方程式学习，暂未接入实验台。"
-                      : "比较反应物、生成物与变化条件，理解物质之间的转化。"}
-                  </p>
-                </>
-              )}
+                        )}
+                      </div>
+                      <h3>参与物质（按物态区分）</h3>
+                      <div className="archive-chips">
+                        {[...reaction.reactants, ...reaction.products].map(
+                          (p, idx) => {
+                            const sp = speciesById[p.id];
+                            return (
+                              <span key={`${p.id}-${idx}`}>
+                                {resolveSpeciesDisplayName(sp, p.id)}（
+                                {sp?.displayFormula ?? p.id} ·{" "}
+                                {sp ? formatKnowledgeState(sp.state) : ""}）
+                              </span>
+                            );
+                          },
+                        )}
+                      </div>
+                    </>
+                  );
+                })()}
             </section>
           )}
           {!selected && (
@@ -338,7 +460,7 @@ export function KnowledgeLibrary({
                       <button
                         key={e.symbol}
                         className="element-library-card"
-                        onClick={() => setSelected(e.symbol)}
+                        onClick={() => openDetail(e.symbol)}
                       >
                         <small>{e.atomicNumber}</small>
                         <strong>{e.symbol}</strong>
@@ -354,13 +476,14 @@ export function KnowledgeLibrary({
                   {speciesRows
                     .slice(page * size, (page + 1) * size)
                     .map((s) => (
-                      <button key={s.id} onClick={() => setSelected(s.id)}>
+                      <button key={s.id} onClick={() => openDetail(s.id)}>
                         <Atom size={22} />
                         <strong>{s.nameZh}</strong>
                         <Formula value={s.formula} />
                         <small>
-                          {formatKnowledgeState(s.state)} ·{" "}
-                          {s.referenceRecordIds.length} 条路径
+                          {formatKnowledgeState(s.state)}
+                          {!vp.isMobile &&
+                            ` · ${s.referenceRecordIds.length} 条路径`}
                         </small>
                       </button>
                     ))}
@@ -369,22 +492,25 @@ export function KnowledgeLibrary({
                 <div className="knowledge-reaction-list">
                   {reactionRows
                     .slice(page * size, (page + 1) * size)
-                    .map((r) => (
-                      <button key={r.id} onClick={() => setSelected(r.id)}>
-                        <div className="reaction-row-main">
-                          <strong className="reaction-zh-line">
-                            {formatTransformationChinese(r, speciesById)}
-                          </strong>
-                          <Formula value={r.equation} />
-                        </div>
-                        <small>
-                          {r.sourceExecution === "equation-only"
-                            ? "仅方程式"
-                            : "变化情境"}
-                        </small>
-                        <ArrowRight size={15} />
-                      </button>
-                    ))}
+                    .map((r) => {
+                      const cov = coverageReport.byTransformationId[r.id];
+                      return (
+                        <button key={r.id} onClick={() => openDetail(r.id)}>
+                          <div className="reaction-row-main">
+                            <strong className="reaction-zh-line">
+                              {formatTransformationChinese(r, speciesById)}
+                            </strong>
+                            <Formula value={r.equation} />
+                          </div>
+                          <span
+                            className={`coverage-badge ${cov?.playable ? "playable" : "not-open"}`}
+                          >
+                            {cov?.statusBadge ?? "资料路径·未开放模拟"}
+                          </span>
+                          <ArrowRight size={15} />
+                        </button>
+                      );
+                    })}
                 </div>
               )}
               {!total && <p className="empty">没有找到匹配资料。</p>}

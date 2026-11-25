@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { X, Star, Lock, Check, Scale } from "lucide-react";
+import { X, Star, Lock, Check, Scale, ChevronLeft } from "lucide-react";
 import type { Substance } from "../types";
 import { substances, reactions } from "../data";
 import { useGame } from "../stores/game";
@@ -15,10 +15,12 @@ export default function Detail({
   s,
   close,
   onSelect,
+  parentLabel = "图鉴",
 }: {
   s: Substance;
   close: () => void;
   onSelect?: (next: Substance) => void;
+  parentLabel?: string;
 }) {
   const game = useGame();
   const fav = game.save.favorites.includes(s.id);
@@ -88,6 +90,14 @@ export default function Detail({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-sticky-head">
+          <button
+            type="button"
+            className="mobile-parent-back modal-back-btn"
+            onClick={close}
+          >
+            <ChevronLeft size={16} />
+            <span>返回{parentLabel}</span>
+          </button>
           <div className="modal-head-title">
             <span className="eyebrow">
               SUBSTANCE {String(substances.indexOf(s) + 1).padStart(3, "0")}

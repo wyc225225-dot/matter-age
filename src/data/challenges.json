@@ -311,6 +311,26 @@
   },
   {
     "id": "github_c2",
+    "name": "新物质：氯化镁（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["magnesium", "hydrochloric_acid"],
+    "conditions": ["mix"],
+    "target": "kb_MgCl2",
+    "limit": 2
+  },
+  {
+    "id": "github_c3",
+    "name": "新物质：氯化钠（溶液）",
+    "description": "利用来源明确的新物质路径完成一次转化。",
+    "group": "基础探索",
+    "initial": ["hydrochloric_acid", "kb_NaOH"],
+    "conditions": ["mix"],
+    "target": "kb_NaCl",
+    "limit": 2
+  },
+  {
+    "id": "github_c4",
     "name": "新物质：硝酸铜（溶液）",
     "description": "利用来源明确的新物质路径完成一次转化。",
     "group": "基础探索",
@@ -320,7 +340,7 @@
     "limit": 2
   },
   {
-    "id": "github_c3",
+    "id": "github_c5",
     "name": "新物质：氢氧化钠（溶液）",
     "description": "利用来源明确的新物质路径完成一次转化。",
     "group": "基础探索",
@@ -330,33 +350,13 @@
     "limit": 2
   },
   {
-    "id": "github_c4",
+    "id": "github_c6",
     "name": "新物质：碘化铅",
     "description": "利用来源明确的新物质路径完成一次转化。",
     "group": "基础探索",
     "initial": ["kb_KI", "kb_Pb_NO3_2"],
     "conditions": ["mix"],
     "target": "kb_PbI2",
-    "limit": 2
-  },
-  {
-    "id": "github_c5",
-    "name": "新物质：氢溴酸（溶液）",
-    "description": "利用来源明确的新物质路径完成一次转化。",
-    "group": "基础探索",
-    "initial": ["kb_Br2_aq", "kb_HI"],
-    "conditions": ["mix"],
-    "target": "kb_HBr",
-    "limit": 2
-  },
-  {
-    "id": "github_c6",
-    "name": "新物质：碳酸钾（溶液）",
-    "description": "利用来源明确的新物质路径完成一次转化。",
-    "group": "基础探索",
-    "initial": ["kb_KHCO3", "kb_KOH"],
-    "conditions": ["mix"],
-    "target": "kb_K2CO3",
     "limit": 2
   }
 ]

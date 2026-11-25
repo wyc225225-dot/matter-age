@@ -1,6 +1,15 @@
-import { useState } from "react";
-import { Award, Calendar, Landmark, Lock, Sparkles, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Award,
+  Calendar,
+  ChevronLeft,
+  Landmark,
+  Lock,
+  Sparkles,
+  X,
+} from "lucide-react";
 import type { MuseumCategory, MuseumItemDef } from "../types";
+import type { MobileDetailBar } from "../types/navigation";
 import { museumItems } from "../data";
 import { useGame } from "../stores/game";
 
@@ -135,10 +144,28 @@ function ExhibitGraphic({
   );
 }
 
-export default function Museum() {
+export default function Museum({
+  onMobileDetailBar,
+}: {
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
+}) {
   const save = useGame((s) => s.save);
   const [cat, setCat] = useState<MuseumCategory | "all">("all");
   const [selected, setSelected] = useState<MuseumItemDef | null>(null);
+
+  useEffect(() => {
+    if (!onMobileDetailBar) return;
+    if (selected) {
+      onMobileDetailBar({
+        parentLabel: "博物馆",
+        title: selected.name,
+        onBack: () => setSelected(null),
+      });
+    } else {
+      onMobileDetailBar(null);
+    }
+    return () => onMobileDetailBar(null);
+  }, [selected, onMobileDetailBar]);
 
   const unlockedCount = Object.keys(save.museumUnlocked).length;
   const visible =
@@ -223,39 +250,53 @@ export default function Museum() {
             aria-label={selected.name}
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              className="close icon-button"
-              aria-label="关闭展品档案"
-              onClick={() => setSelected(null)}
-            >
-              <X />
-            </button>
-            <p className="eyebrow">{selected.en}</p>
-            <h2>{selected.name}</h2>
-            <ExhibitGraphic
-              item={selected}
-              unlocked={Boolean(save.museumUnlocked[selected.id])}
-            />
-            {save.museumUnlocked[selected.id] ? (
-              <>
-                <p>{selected.description}</p>
+            <div className="modal-sticky-head">
+              <button
+                type="button"
+                className="mobile-parent-back modal-back-btn"
+                onClick={() => setSelected(null)}
+              >
+                <ChevronLeft size={16} />
+                <span>返回博物馆</span>
+              </button>
+              <button
+                className="close icon-button"
+                aria-label="关闭展品档案"
+                onClick={() => setSelected(null)}
+              >
+                <X />
+              </button>
+            </div>
+            <div className="modal-scroll-body">
+              <p className="eyebrow">{selected.en}</p>
+              <h2>{selected.name}</h2>
+              <ExhibitGraphic
+                item={selected}
+                unlocked={Boolean(save.museumUnlocked[selected.id])}
+              />
+              {save.museumUnlocked[selected.id] ? (
+                <>
+                  <p>{selected.description}</p>
+                  <div className="note-box">
+                    <h4>
+                      <Award size={14} /> 科学意义
+                    </h4>
+                    <p>{selected.scientificSignificance}</p>
+                  </div>
+                  <p className="muted">
+                    <Calendar size={13} /> 馆藏记录时间：
+                    {new Date(
+                      save.museumUnlocked[selected.id],
+                    ).toLocaleString()}
+                  </p>
+                </>
+              ) : (
                 <div className="note-box">
-                  <h4>
-                    <Award size={14} /> 科学意义
-                  </h4>
-                  <p>{selected.scientificSignificance}</p>
+                  <h4>尚未点亮</h4>
+                  <p>解锁条件：{selected.unlockHint}</p>
                 </div>
-                <p className="muted">
-                  <Calendar size={13} /> 馆藏记录时间：
-                  {new Date(save.museumUnlocked[selected.id]).toLocaleString()}
-                </p>
-              </>
-            ) : (
-              <div className="note-box">
-                <h4>尚未点亮</h4>
-                <p>解锁条件：{selected.unlockHint}</p>
-              </div>
-            )}
+              )}
+            </div>
           </section>
         </div>
       )}

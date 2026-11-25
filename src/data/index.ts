@@ -32,6 +32,7 @@ export const conditions: { id: Condition; name: string; symbol: string }[] = [
   { id: "ignite", name: "点燃", symbol: "✦" },
   { id: "high_heat", name: "高温", symbol: "≋" },
   { id: "electricity", name: "通电", symbol: "ϟ" },
+  { id: "light", name: "光照", symbol: "☀" },
   { id: "cool", name: "冷却", symbol: "❄" },
   { id: "grind", name: "研磨", symbol: "⋈" },
   { id: "mix", name: "混合", symbol: "⤨" },

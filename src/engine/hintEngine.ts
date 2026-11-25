@@ -6,6 +6,7 @@ const defaultConditionLabels: Record<Condition, string> = {
   ignite: "点燃",
   high_heat: "高温",
   electricity: "通电",
+  light: "光照",
   cool: "冷却",
   grind: "研磨",
   mix: "混合",

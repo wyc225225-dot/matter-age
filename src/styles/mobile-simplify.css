@@ -1,0 +1,642 @@
+/* ==================== Matter Age Production Mobile Simplification ====================
+ * Implements the authorized simplified mobile IA, reduced copy density, 4-item L1 nav,
+ * top-right settings, parent-named L3 back bar, single-primary-action workbench & history,
+ * and list-summary -> detail-expand patterns across Management, World, Tech, Museum & Book.
+ * Zero desktop/tablet regression.
+ */
+
+/* Shared helpers (desktop safe defaults) */
+.mobile-parent-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 34px;
+  padding: 4px 10px 4px 6px;
+  border-radius: 999px;
+  background: rgba(24, 39, 56, 0.94);
+  border: 1px solid rgba(131, 205, 233, 0.34);
+  color: #e6f2fc;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mobile-parent-back:active {
+  background: rgba(34, 56, 80, 0.96);
+}
+
+.modal-back-btn {
+  display: none;
+}
+
+.mobile-back-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobile-back-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #a8c0d6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bench-title-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bench-hint-btn {
+  color: var(--gold) !important;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.history-step-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(234, 196, 119, 0.16);
+  border: 1px solid rgba(234, 196, 119, 0.45);
+  color: #f9dc9e;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.history-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mgmt-mobile-utilities {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mgmt-mobile-utilities button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 30px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.tech-node-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tech-node-actions > button:first-child {
+  flex: 1;
+}
+
+.tech-detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.compact-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.growth-mode-tabs {
+  margin-top: 8px;
+}
+
+/* ==================== MOBILE SIMPLIFIED LOBBY (PORTRAIT + LANDSCAPE) ==================== */
+.home-mobile-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: calc(
+    var(--mobile-nav-h, 58px) + 18px + env(safe-area-inset-bottom)
+  );
+}
+
+.home-simple-primary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-profile-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #162332;
+  border: 1px solid rgba(131, 205, 233, 0.24);
+  text-align: left;
+  min-height: 54px;
+}
+
+.mobile-profile-strip:active {
+  background: #1e3044;
+}
+
+.profile-lv-badge {
+  min-width: 44px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1.5px solid var(--blue);
+  background: rgba(131, 205, 233, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #e6f6ff;
+  flex-shrink: 0;
+}
+
+.profile-strip-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.profile-strip-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-strip-top strong {
+  font-size: 13.5px;
+  color: #edf5ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-era-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(131, 205, 233, 0.14);
+  color: #9dd9f0;
+  flex-shrink: 0;
+}
+
+.profile-strip-metrics {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #93abbf;
+}
+
+.profile-strip-metrics span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.profile-chevron {
+  color: #7c97ae;
+  flex-shrink: 0;
+}
+
+.mobile-focus-card {
+  background: linear-gradient(
+    160deg,
+    rgba(28, 46, 66, 0.96),
+    rgba(17, 29, 43, 0.98)
+  );
+  border: 1px solid rgba(131, 205, 233, 0.36);
+  border-radius: 16px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-focus-card .focus-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #83cde9;
+}
+
+.mobile-focus-card h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #f0f7ff;
+}
+
+.mobile-focus-card p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #9db4c9;
+}
+
+.mobile-focus-cta {
+  margin-top: 4px;
+  width: 100%;
+  min-height: 46px;
+  font-size: 15px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.mobile-difficulty-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 4px;
+  border-radius: 11px;
+  background: rgba(15, 25, 38, 0.92);
+  border: 1px solid rgba(131, 205, 233, 0.2);
+}
+
+.mobile-difficulty-strip button {
+  min-height: 34px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #93abbf;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.mobile-difficulty-strip button.active {
+  background: rgba(131, 205, 233, 0.2);
+  color: #eff9ff;
+  border: 1px solid rgba(131, 205, 233, 0.48);
+}
+
+.mobile-difficulty-strip button.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.home-simple-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-quick-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #162332;
+  border: 1px solid rgba(131, 205, 233, 0.2);
+  text-align: left;
+  color: #e6eef8;
+}
+
+.mobile-quick-row:active {
+  background: #1f3145;
+}
+
+.quick-row-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-row-icon.copper {
+  background: rgba(232, 162, 95, 0.16);
+  color: #f0b67a;
+}
+
+.quick-row-icon.emerald {
+  background: rgba(129, 201, 163, 0.16);
+  color: #8dd8b0;
+}
+
+.quick-row-icon.amber {
+  background: rgba(234, 196, 119, 0.16);
+  color: #f2cf84;
+}
+
+.quick-row-icon.sky {
+  background: rgba(131, 205, 233, 0.16);
+  color: #8ad3ef;
+}
+
+.quick-row-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quick-row-body strong {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-row-body small {
+  font-size: 11.5px;
+  color: #8fa6bc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==================== MOBILE PORTRAIT SIMPLIFICATION ==================== */
+@media (max-width: 760px) and (min-height: 521px), (max-width: 479px) {
+  /* 4-item streamlined L1 bottom navigation */
+  .mobile-bottom-nav {
+    display: grid !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+  }
+
+  /* L3 Detail Mode: Hide bottom primary nav to eliminate double fixed bars! */
+  .app.in-detail-mode .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  /* Clean mobile topbar: brand/back on left + settings gear ONLY on right */
+  header.topbar .top-actions {
+    margin-left: auto;
+  }
+
+  header.topbar .top-hud-chip,
+  header.topbar .icon-button:not(.top-settings-btn) {
+    display: none !important;
+  }
+
+  .preview-bar {
+    display: none !important;
+  }
+
+  .modal-back-btn {
+    display: inline-flex;
+  }
+
+  .app.in-detail-mode .standard-page {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  /* Fixed bottom action bars sit cleanly at bottom: 0 when in L3 detail mode */
+  .app.in-detail-mode .history-sticky-dock,
+  .app.in-detail-mode .runner-sticky-footer {
+    bottom: 0 !important;
+    padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .app.in-detail-mode .history-active-chapter,
+  .app.in-detail-mode .special-runner {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .app.in-detail-mode footer {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .app.in-detail-mode .toast {
+    bottom: calc(74px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* Compact 1-line page heading on mobile portrait (keeps semantic H1 visible without text clutter) */
+  .page-heading {
+    padding: 6px 0 4px;
+    gap: 4px;
+  }
+
+  .page-heading .eyebrow,
+  .page-heading p:not(.eyebrow),
+  .lab > .page-heading .lab-progress {
+    display: none !important;
+  }
+
+  .page-heading h1 {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .lab .workbench-instruction,
+  .lab .workspace-coordinate,
+  .lab .conditions-panel .experiment-actions,
+  .lab .lab-mode-bar .locked-mode {
+    display: none !important;
+  }
+
+  .lab .lab-mode-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 6px;
+    padding: 4px;
+    margin-bottom: 8px;
+  }
+
+  .lab .lab-mode-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lab .lab-mode-bar > button,
+  .lab .lab-mode-bar .advanced-subtabs {
+    flex-shrink: 0;
+  }
+
+  .lab .conditions-title span {
+    display: none;
+  }
+
+  .lab .catalyst-row span small {
+    display: none;
+  }
+
+  .lab .workspace {
+    padding: 10px 8px;
+  }
+
+  .lab .slots {
+    gap: 6px;
+  }
+
+  .lab .slot {
+    min-height: 92px;
+    padding: 6px 4px;
+  }
+
+  .lab .workspace-dashes {
+    margin: 6px 0;
+  }
+
+  .lab .result-area {
+    min-height: 82px;
+    padding: 10px;
+  }
+
+  /* Simplified History Timeline & Active Chapter */
+  .history-focus-banner .history-scene-svg {
+    display: none;
+  }
+
+  .history-mobile-chrome .history-stepper {
+    display: none !important;
+  }
+
+  .history-active-chapter .exp-header-row h2 {
+    font-size: 14px;
+  }
+
+  .history-active-chapter .exp-header-row p {
+    font-size: 11.5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .history-dock-pair.passed {
+    grid-template-columns: auto 1fr;
+  }
+
+  /* Concise List Summaries in Management / World / Tech / Museum / Challenges / Knowledge */
+  .order-card > p.muted,
+  .mgmt-section > p.muted,
+  .mgmt-section .section-heading .muted,
+  .challenge-desc,
+  .challenge-materials {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .archive-note {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    font-size: 11.5px;
+  }
+
+  .archive-detail > .text-button {
+    display: none;
+  }
+}
+
+/* ==================== MOBILE LANDSCAPE SIMPLIFICATION (e.g. 844x390, 800x360) ==================== */
+@media (max-height: 520px) and (min-width: 480px) and (max-width: 960px) {
+  /* Clean landscape topbar: brand/back + inline L2 subnav + settings gear only */
+  header.topbar .top-actions {
+    margin-left: auto;
+  }
+
+  header.topbar .top-hud-chip,
+  header.topbar .icon-button:not(.top-settings-btn) {
+    display: none !important;
+  }
+
+  .preview-bar {
+    display: none !important;
+  }
+
+  .modal-back-btn {
+    display: inline-flex;
+  }
+
+  /* Recover 20px vertical height from hidden preview bar */
+  .home-mobile-simple.home-simple-landscape {
+    display: grid;
+    grid-template-columns: 0.96fr 1.04fr;
+    gap: 10px;
+    height: calc(100dvh - 38px);
+    overflow: hidden;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .home-simple-landscape .home-simple-primary,
+  .home-simple-landscape .home-simple-list {
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .home-simple-landscape .mobile-focus-card {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .home-simple-landscape .mobile-focus-card h1 {
+    font-size: 18px;
+  }
+
+  .home-simple-landscape .mobile-focus-cta {
+    min-height: 40px;
+    font-size: 13.5px;
+  }
+
+  .home-simple-landscape .mobile-quick-row {
+    min-height: 48px;
+    padding: 8px 10px;
+  }
+
+  .lab.lab-landscape-mode,
+  .world-page,
+  .mgmt-landscape-split,
+  .history-timeline-landscape,
+  .history-chapter-landscape,
+  .tech-landscape-split {
+    height: calc(100dvh - 38px) !important;
+  }
+
+  .history-chapter-landscape .history-mobile-chrome .history-stepper {
+    display: flex;
+  }
+
+  .archive-detail > .text-button {
+    display: none;
+  }
+}

@@ -5,7 +5,7 @@ import type {
   Reaction,
   Substance,
 } from "../../src/types/index";
-import { OPENSTAX, RSC } from "./references";
+import { HARVARD, OPENSTAX, RSC } from "./references";
 
 interface ReactionDef {
   name: string;
@@ -16,6 +16,7 @@ interface ReactionDef {
   explanation: string;
   observations: string[];
   references: string[];
+  equation?: string;
   physical?: boolean;
   reversible?: boolean;
   reactionType?: string;
@@ -72,9 +73,10 @@ export function buildReactions(substances: Substance[]): Reaction[] {
     );
     const hasMaterialProcess =
       def.reactionType === "material_process" ||
-      [...reactants, ...products].some((p) =>
-        ["material", "mixture"].includes(byId[p.substanceId]?.category || ""),
-      );
+      (def.reactionType !== "equilibrium" &&
+        [...reactants, ...products].some((p) =>
+          ["material", "mixture"].includes(byId[p.substanceId]?.category || ""),
+        ));
 
     let calculationStrategy: CalculationStrategy;
     if (!allFormulaBearing) {
@@ -100,7 +102,8 @@ export function buildReactions(substances: Substance[]): Reaction[] {
       catalysts: [...(def.catalysts ?? [])],
       reactionType,
       changeType,
-      equation: `${formatSide(reactants)} → ${formatSide(products)}`,
+      equation:
+        def.equation ?? `${formatSide(reactants)} → ${formatSide(products)}`,
       animation: def.animation,
       energyType:
         def.energyType ||
@@ -1543,6 +1546,87 @@ export function buildReactions(substances: Substance[]): Reaction[] {
       "安全提示：涉及剧毒氯气与极活泼金属钠，现实操作极其危险，本游戏仅作虚拟演示。",
     ],
     references: [OPENSTAX.halogens, OPENSTAX.repMetals],
+  });
+
+  // r101 - r103: 光化学与气态氯化氢路径
+  add({
+    name: "氢气与氯气光化学反应",
+    reactants: "hydrogen chlorine",
+    products: "hydrogen_chloride:2",
+    conditions: ["light"],
+    animation: "energy_release",
+    reactionType: "combination",
+    energyType: "exothermic",
+    explanation:
+      "氢气与氯气在适宜短波光照（紫外光或蓝紫光）引发下发生自由基链式化合反应，光子打断键能约 243 kJ/mol 的 Cl–Cl 键产生氯自由基（Cl₂ + hν → 2Cl·），剧烈放热并直接生成气态氯化氢（HCl(g)）。直接产物为气态氯化氢，不能直接等同于液态盐酸溶液。",
+    observations: [
+      "在短波紫外或蓝紫强光照射下瞬间发生剧烈放热反应，黄绿色氯气迅速褪去，生成无色刺激性氯化氢气体。",
+    ],
+    notes: [
+      "光源波长边界：光照不等于所有任意光源；红光、黄光等低能量长波光不足以打断 Cl–Cl 键，需紫外光或蓝紫光等足够高能量的短波光子引发自由基链式反应。",
+      "产物物态区分：本反应直接生成气态氯化氢（HCl(g)），不等同于液态盐酸（HCl 水溶液）；氯化氢需进一步溶于水才形成盐酸。",
+      "安全提示：氢气与氯气混合受短波强光照射可发生剧烈爆炸，现实实验极度危险，本游戏仅作虚拟演示。",
+    ],
+    references: [
+      HARVARD.photochemicalH2Cl2,
+      OPENSTAX.halogens,
+      OPENSTAX.hydrogen,
+    ],
+  });
+  add({
+    name: "氢气在氯气中燃烧",
+    reactants: "hydrogen chlorine",
+    products: "hydrogen_chloride:2",
+    conditions: ["ignite"],
+    animation: "energy_release",
+    reactionType: "combination",
+    energyType: "exothermic",
+    explanation:
+      "纯净氢气在氯气中点燃可安静燃烧并发出苍白色火焰，直接化合生成气态氯化氢（HCl(g)）。该热引发燃烧路径与短波光化学引发路径（光照）相互独立，无需同时施加点燃与光照。",
+    observations: [
+      "氢气在氯气中发出苍白色火焰并放出热量，黄绿色逐渐褪去，生成无色氯化氢气体并在潮湿空气中形成白雾。",
+    ],
+    notes: [
+      "路径独立性：点燃燃烧与短波光照是两种独立的引发路径，不可随意合并为必须同时满足的条件。",
+      "产物物态区分：直接产物为气态氯化氢（HCl(g)），不等同于液态盐酸水溶液。",
+    ],
+    references: [OPENSTAX.halogens, OPENSTAX.hydrogen],
+  });
+  add({
+    name: "气态氯化氢与氨气化合",
+    reactants: "ammonia hydrogen_chloride",
+    products: "ammonium_chloride",
+    conditions: ["mix"],
+    animation: "precipitate",
+    reactionType: "combination",
+    energyType: "exothermic",
+    explanation:
+      "无色氨气与气态氯化氢在常温下相遇即可发生气相化合反应，迅速凝结形成大量白色氯化铵固体微粒（白烟）。",
+    observations: [
+      "两种无色刺激性气体接触瞬间产生浓密白色烟雾，并在容器壁附着白色氯化铵粉末。",
+    ],
+    references: [OPENSTAX.acidsBases, OPENSTAX.nitrogen],
+  });
+  add({
+    name: "氯气溶于水（可逆平衡体系）",
+    reactants: "chlorine water",
+    products: "chlorine_water",
+    conditions: ["mix"],
+    animation: "dissolve",
+    reactionType: "equilibrium",
+    reversible: true,
+    energyType: "exothermic",
+    equation: "Cl2 + H2O ⇌ 氯水（含溶解 Cl2、HCl、HClO 平衡混合体系）",
+    explanation:
+      "氯气通入水中首先物理溶解，同时一部分氯气与水发生可逆歧化反应（Cl₂ + H₂O ⇌ HCl + HClO，离子式 Cl₂(aq) + 2H₂O ⇌ HClO + H₃O⁺ + Cl⁻），形成淡黄绿色的氯水混合体系。常温下该可逆平衡转化不完全，体系中同时共存未反应的溶解 Cl₂、H₂O 与部分生成的 HClO、H₃O⁺、Cl⁻，不能默认按 100% 完全转化计算。",
+    observations: [
+      "黄绿色氯气部分溶于水，液体变为淡黄绿色并散发刺激性气味，形成含溶解 Cl₂、HCl 与 HClO 的平衡混合体系。",
+    ],
+    notes: [
+      "可逆平衡边界：氯气与水在常温下建立化学平衡（Cl₂ + H₂O ⇌ HCl + HClO），不能把可逆平衡默认视作 100% 完全转化为纯产物，因此不适用进阶模式的 100% 纯物质整数化学计量。",
+      "混合体系简化：新制氯水同时包含溶解 Cl₂、H₂O、HClO、H₃O⁺、Cl⁻ 等多种物种，本游戏在简单模式中以混合物收集项「氯水」表征该平衡体系。",
+    ],
+    references: [OPENSTAX.halogens, OPENSTAX.solubility],
   });
 
   return list;

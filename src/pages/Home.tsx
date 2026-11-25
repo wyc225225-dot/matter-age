@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ArrowRight,
   Building2,
@@ -16,6 +15,7 @@ import {
   ScrollText,
   Sparkles,
   Target,
+  Trophy,
 } from "lucide-react";
 import type { Substance } from "../types";
 import type { Page } from "../types/navigation";
@@ -38,9 +38,10 @@ import {
 import { GAME_MODES } from "../config/modes";
 import { useGame } from "../stores/game";
 import { useViewport } from "../hooks/useViewport";
-import { currentEra } from "../engine/achievementEngine";
+import { currentEra, detailedAchievements } from "../engine/achievementEngine";
 import { getResearchLevelStatus } from "../engine/progressionEngine";
 import { getTechUnlockStatus } from "../engine/technologyEngine";
+import { canDeliverOrder } from "../engine/orderEngine";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula } from "../components/Shared";
 
@@ -55,9 +56,6 @@ export default function Home({
 }) {
   const game = useGame();
   const vp = useViewport();
-  const [lobbyTab, setLobbyTab] = useState<"modes" | "missions" | "archive">(
-    "modes",
-  );
   const save = game.save;
   const quantSolved = Object.keys(save.quantitativeChallengeBest).length;
   const specialSolved = Object.keys(save.specialChallengeBest).length;
@@ -70,10 +68,22 @@ export default function Home({
   const currentLab =
     labLevels.find((l) => l.level === save.labLevel) ?? labLevels[0];
 
+  const allAchievements = detailedAchievements(save);
+  const earnedAchCount = allAchievements.filter((a) => a.earned).length;
+
   // Real save-driven mission board recommendations (never fake static tasks)
   const nextOrder = save.activeOrderIds
     .map((id) => orderById[id])
     .find(Boolean);
+  const readyOrderCount = save.activeOrderIds
+    .map((id) => orderById[id])
+    .filter((o) => o && canDeliverOrder(save, o, byId).ok).length;
+  const ongoingHistory = historyChapters.find(
+    (c) =>
+      c.playable &&
+      save.historyProgress[c.id]?.session &&
+      save.historyProgress[c.id]?.session?.stage !== "discovery",
+  );
   const nextHistory = historyChapters.find(
     (c) => c.playable && !save.historyProgress[c.id]?.completed,
   );
@@ -82,14 +92,231 @@ export default function Home({
   );
   const forestGathers = save.regionProgress.forest?.gatherCount ?? 0;
 
-  const showModes = !vp.isMobile || lobbyTab === "modes";
-  const showMissions = !vp.isMobile || lobbyTab === "missions";
-  const showArchive = !vp.isMobile || lobbyTab === "archive";
+  if (vp.isMobile) {
+    const isNewPlayer =
+      save.totalExperiments === 0 &&
+      !ongoingHistory &&
+      !save.challengeRun &&
+      !save.quantitativeChallengeRun;
+
+    const focusAction = isNewPlayer
+      ? {
+          kicker: "新手实验",
+          title: "水会变成什么？",
+          desc: "把水放进实验台，试试加热、冷却或通电。",
+          cta: "开始第一次实验",
+          onClick: () => go("lab"),
+        }
+      : ongoingHistory
+        ? {
+            kicker: "继续历史研究",
+            title: ongoingHistory.title,
+            desc: `${ongoingHistory.eraYear} · 已保存进度，可随时续玩。`,
+            cta: `继续：${ongoingHistory.title}`,
+            onClick: () => {
+              game.openHistoryChapter(ongoingHistory.id);
+              location.hash = `history/${ongoingHistory.id}`;
+            },
+          }
+        : save.challengeRun || save.quantitativeChallengeRun
+          ? {
+              kicker: "进行中的挑战",
+              title: save.quantitativeChallengeRun
+                ? "进阶定量挑战"
+                : "探索目标挑战",
+              desc: "已保存当前关卡进度，回到实验台继续。",
+              cta: "继续当前实验",
+              onClick: () => go("lab"),
+            }
+          : {
+              kicker: "继续当前任务",
+              title:
+                save.currentMode === "advanced" ? "定量实验台" : "自由实验台",
+              desc: `已发现 ${count}/${substances.length} 种物质 · 已验证 ${save.completed.length} 条反应`,
+              cta: "继续实验",
+              onClick: () => go("lab"),
+            };
+
+    return (
+      <div
+        className={`home-mobile-simple page-width ${vp.isMobileLandscape ? "home-simple-landscape" : ""}`}
+      >
+        <div className="home-simple-primary">
+          <button
+            type="button"
+            className="mobile-profile-strip"
+            aria-label="查看成就与成长"
+            onClick={() => go("achievements")}
+          >
+            <span
+              className="profile-lv-badge"
+              style={{ borderColor: levelInfo.current.badgeColor }}
+            >
+              LV.{levelInfo.current.level}
+            </span>
+            <div className="profile-strip-body">
+              <div className="profile-strip-top">
+                <strong>{levelInfo.current.title}</strong>
+                <span className="profile-era-tag">{era.name}</span>
+              </div>
+              <div className="profile-strip-metrics">
+                <span>
+                  发现 {count}/{substances.length}
+                </span>
+                <span>
+                  <Coins size={11} /> {save.coins}
+                </span>
+                <span>
+                  <Sparkles size={11} /> {save.researchPoints} RP
+                </span>
+                <span>
+                  <Trophy size={11} /> {earnedAchCount}/{allAchievements.length}
+                </span>
+              </div>
+            </div>
+            <ChevronRight size={16} className="profile-chevron" />
+          </button>
+
+          <section className="mobile-focus-card" aria-label="当前主任务">
+            <span className="focus-kicker">
+              <FlaskConical size={13} />
+              {focusAction.kicker}
+            </span>
+            <h1>{focusAction.title}</h1>
+            <p>{focusAction.desc}</p>
+            <button
+              type="button"
+              className="primary mobile-focus-cta"
+              onClick={focusAction.onClick}
+            >
+              {focusAction.cta}
+              <ArrowRight size={17} />
+            </button>
+          </section>
+
+          <div
+            className="mobile-difficulty-strip"
+            role="group"
+            aria-label="实验难度选择"
+          >
+            {GAME_MODES.map((m) => (
+              <button
+                key={m.id}
+                type="button"
+                disabled={m.locked}
+                className={`${save.currentMode === m.id ? "active" : ""} ${m.locked ? "locked" : ""}`}
+                onClick={() => {
+                  if (m.id === "simple" || m.id === "advanced") {
+                    game.setMode(m.id);
+                    go("lab");
+                  }
+                }}
+              >
+                {m.locked ? <Lock size={11} /> : null}
+                <span>
+                  {m.id === "simple"
+                    ? "简单探索"
+                    : m.id === "advanced"
+                      ? "进阶定量"
+                      : "困难(预告)"}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <section className="home-simple-list" aria-label="快捷进度">
+          <button
+            type="button"
+            className="mobile-quick-row"
+            onClick={() => go("history")}
+          >
+            <span className="quick-row-icon copper">
+              <ScrollText size={16} />
+            </span>
+            <div className="quick-row-body">
+              <strong>
+                挑战历史 · {nextHistory ? nextHistory.title : "5 章已通关"}
+              </strong>
+              <small>
+                已通关 {historyDone}/5 章 ·{" "}
+                {nextHistory ? nextHistory.eraYear : "可冲刺进阶三星"}
+              </small>
+            </div>
+            <ChevronRight size={16} />
+          </button>
+
+          <button
+            type="button"
+            className="mobile-quick-row"
+            onClick={() => go("management")}
+          >
+            <span className="quick-row-icon emerald">
+              <Building2 size={16} />
+            </span>
+            <div className="quick-row-body">
+              <strong>
+                经营订单 · {nextOrder ? nextOrder.title : "暂无待办"}
+              </strong>
+              <small>
+                Lv.{save.labLevel} {currentLab.name}
+                {readyOrderCount > 0 ? ` · ${readyOrderCount} 单可交付` : ""}
+              </small>
+            </div>
+            <ChevronRight size={16} />
+          </button>
+
+          <button
+            type="button"
+            className="mobile-quick-row"
+            onClick={() => go("challenge")}
+          >
+            <span className="quick-row-icon amber">
+              <Target size={16} />
+            </span>
+            <div className="quick-row-body">
+              <strong>关卡挑战</strong>
+              <small>
+                已解{" "}
+                {Object.keys(save.challengeBest).length +
+                  quantSolved +
+                  specialSolved}
+                /
+                {challenges.length +
+                  quantitativeChallenges.length +
+                  specialChallenges.length}{" "}
+                关
+              </small>
+            </div>
+            <ChevronRight size={16} />
+          </button>
+
+          <button
+            type="button"
+            className="mobile-quick-row"
+            onClick={() => go("tech")}
+          >
+            <span className="quick-row-icon sky">
+              <Cpu size={16} />
+            </span>
+            <div className="quick-row-body">
+              <strong>
+                科技研究 · {nextTech ? nextTech.name : "已研究科技树"}
+              </strong>
+              <small>
+                {save.unlockedTechIds.length}/{technologies.length} 项 · 馆藏{" "}
+                {museumCount}/{museumItems.length}
+              </small>
+            </div>
+            <ChevronRight size={16} />
+          </button>
+        </section>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`home page-width ${vp.isMobileLandscape ? "home-landscape-split" : ""}`}
-    >
+    <div className="home page-width">
       <div className="home-primary-pane">
         {/* Live Researcher Lobby Status HUD */}
         <section className="lobby-hud" aria-label="研究者状态栏">
@@ -159,7 +386,7 @@ export default function Home({
               <br />到<span>万物的可能。</span>
             </h1>
             <p className="hero-description">
-              探索 129 种物质与 134
+              探索 {substances.length} 种物质与 {reactions.length}{" "}
               条反应规则，经营你的化学实验室，重返改变人类认知的科学史现场，在世界地图中勘探元素与矿物来源。
             </p>
             <div className="hero-buttons">
@@ -279,370 +506,316 @@ export default function Home({
       </div>
 
       <div className="home-secondary-pane">
-        {vp.isMobile && (
-          <div
-            className="mobile-seg-tabs home-mobile-tabs"
-            role="tablist"
-            aria-label="大厅视图切换"
-          >
-            <button
-              type="button"
-              role="tab"
-              aria-selected={lobbyTab === "modes"}
-              className={lobbyTab === "modes" ? "active" : ""}
-              onClick={() => setLobbyTab("modes")}
-            >
-              玩法大厅 (6)
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={lobbyTab === "missions"}
-              className={lobbyTab === "missions" ? "active" : ""}
-              onClick={() => setLobbyTab("missions")}
-            >
-              任务与难度
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={lobbyTab === "archive"}
-              className={lobbyTab === "archive" ? "active" : ""}
-              onClick={() => setLobbyTab("archive")}
-            >
-              档案与收藏
-            </button>
-          </div>
-        )}
-
         <div className="home-tab-scroll">
           {/* 6 Core Game Mode Portal Cards (Cleanly separated from Difficulty Mode) */}
-          {showModes && (
-            <section className="lobby-modes" aria-label="六大玩法模式">
-              <div className="section-heading">
-                <h2>
-                  玩法模式入口 <span>GAME MODES</span>
-                </h2>
-                <span className="muted">
-                  玩法入口与实验难度解耦：自由探索与实验室经营严格区分库存边界
+          <section className="lobby-modes" aria-label="六大玩法模式">
+            <div className="section-heading">
+              <h2>
+                玩法模式入口 <span>GAME MODES</span>
+              </h2>
+              <span className="muted">
+                玩法入口与实验难度解耦：自由探索与实验室经营严格区分库存边界
+              </span>
+            </div>
+            <div className="six-mode-grid">
+              <button className="portal-card cyan" onClick={() => go("lab")}>
+                <div className="portal-top">
+                  <FlaskConical size={22} />
+                  <span className="tag-pill">无限实验台</span>
+                </div>
+                <h3>自由探索</h3>
+                <p>
+                  组合 {substances.length}{" "}
+                  种物质、自由切换简单/进阶定量模式与方程式配平。
+                </p>
+                <span className="portal-meta">
+                  已发现 {count}/{substances.length} · 全部条件开放 →
                 </span>
-              </div>
-              <div className="six-mode-grid">
-                <button className="portal-card cyan" onClick={() => go("lab")}>
-                  <div className="portal-top">
-                    <FlaskConical size={22} />
-                    <span className="tag-pill">无限实验台</span>
-                  </div>
-                  <h3>自由探索</h3>
-                  <p>
-                    组合 129 种物质、自由切换简单/进阶定量模式与方程式配平。
-                  </p>
-                  <span className="portal-meta">
-                    已发现 {count}/{substances.length} · 全部条件开放 →
-                  </span>
-                </button>
+              </button>
 
-                <button
-                  className="portal-card emerald"
-                  onClick={() => go("management")}
-                >
-                  <div className="portal-top">
-                    <Building2 size={22} />
-                    <span className="tag-pill">Lv.{save.labLevel} 经营</span>
-                  </div>
-                  <h3>实验室经营</h3>
-                  <p>
-                    有限库存生产、30 项研究订单、8 台设备工坊与 2D
-                    等距实验台升级。
-                  </p>
-                  <span className="portal-meta">
-                    已交付 {save.completedOrderIds.length} 单 · 设备{" "}
-                    {Object.keys(save.equipmentLevels).length}/8 →
-                  </span>
-                </button>
+              <button
+                className="portal-card emerald"
+                onClick={() => go("management")}
+              >
+                <div className="portal-top">
+                  <Building2 size={22} />
+                  <span className="tag-pill">Lv.{save.labLevel} 经营</span>
+                </div>
+                <h3>实验室经营</h3>
+                <p>
+                  有限库存生产、30 项研究订单、8 台设备工坊与 2D
+                  等距实验台升级。
+                </p>
+                <span className="portal-meta">
+                  已交付 {save.completedOrderIds.length} 单 · 设备{" "}
+                  {Object.keys(save.equipmentLevels).length}/8 →
+                </span>
+              </button>
 
-                <button
-                  className="portal-card amber"
-                  onClick={() => go("challenge")}
-                >
-                  <div className="portal-top">
-                    <Target size={22} />
-                    <span className="tag-pill">87 道关卡</span>
-                  </div>
-                  <h3>目标挑战</h3>
-                  <p>
-                    {challenges.length} 简单 + {quantitativeChallenges.length}{" "}
-                    定量 + {specialChallenges.length} 特殊推理挑战。
-                  </p>
-                  <span className="portal-meta">
-                    已完成{" "}
-                    {Object.keys(save.challengeBest).length +
-                      quantSolved +
-                      specialSolved}{" "}
-                    关 →
-                  </span>
-                </button>
+              <button
+                className="portal-card amber"
+                onClick={() => go("challenge")}
+              >
+                <div className="portal-top">
+                  <Target size={22} />
+                  <span className="tag-pill">87 道关卡</span>
+                </div>
+                <h3>目标挑战</h3>
+                <p>
+                  {challenges.length} 简单 + {quantitativeChallenges.length}{" "}
+                  定量 + {specialChallenges.length} 特殊推理挑战。
+                </p>
+                <span className="portal-meta">
+                  已完成{" "}
+                  {Object.keys(save.challengeBest).length +
+                    quantSolved +
+                    specialSolved}{" "}
+                  关 →
+                </span>
+              </button>
 
-                <button
-                  className="portal-card copper"
-                  onClick={() => go("history")}
-                >
-                  <div className="portal-top">
-                    <ScrollText size={22} />
-                    <span className="tag-pill">5 章可玩 / 10 章时间线</span>
-                  </div>
-                  <h3>挑战历史</h3>
-                  <p>
-                    氧气发现、质量守恒、水的组成、伏打电堆与门捷列夫周期表 5
-                    大独立谜题。
-                  </p>
-                  <span className="portal-meta">
-                    已通关 {historyDone}/5 章 · 解锁博物馆展品 →
-                  </span>
-                </button>
+              <button
+                className="portal-card copper"
+                onClick={() => go("history")}
+              >
+                <div className="portal-top">
+                  <ScrollText size={22} />
+                  <span className="tag-pill">5 章可玩 / 10 章时间线</span>
+                </div>
+                <h3>挑战历史</h3>
+                <p>
+                  氧气发现、质量守恒、水的组成、伏打电堆与门捷列夫周期表 5
+                  大独立谜题。
+                </p>
+                <span className="portal-meta">
+                  已通关 {historyDone}/5 章 · 解锁博物馆展品 →
+                </span>
+              </button>
 
-                <button className="portal-card sky" onClick={() => go("world")}>
-                  <div className="portal-top">
-                    <Compass size={22} />
-                    <span className="tag-pill">2D 区域地图</span>
-                  </div>
-                  <h3>世界探索</h3>
-                  <p>
-                    原始森林免费采集、矿石山脉与海洋盐湖资源节点、区域任务与野外奇遇。
-                  </p>
-                  <span className="portal-meta">
-                    已解锁 {save.unlockedRegionIds.length}/3 可玩区域 →
-                  </span>
-                </button>
+              <button className="portal-card sky" onClick={() => go("world")}>
+                <div className="portal-top">
+                  <Compass size={22} />
+                  <span className="tag-pill">2D 区域地图</span>
+                </div>
+                <h3>世界探索</h3>
+                <p>
+                  原始森林免费采集、矿石山脉与海洋盐湖资源节点、区域任务与野外奇遇。
+                </p>
+                <span className="portal-meta">
+                  已解锁 {save.unlockedRegionIds.length}/3 可玩区域 →
+                </span>
+              </button>
 
-                <button className="portal-card locked" disabled>
-                  <div className="portal-top">
-                    <Factory size={22} />
-                    <span className="tag-pill">
-                      <Lock size={11} /> V1.7 锁定
-                    </span>
-                  </div>
-                  <h3>工业文明</h3>
-                  <p>
-                    连续化工产线、能源管网与自动化反应单元（已预留底层接口）。
-                  </p>
-                  <span className="portal-meta">V1.7 / V2.0 即将推出</span>
-                </button>
-              </div>
-            </section>
-          )}
+              <button className="portal-card locked" disabled>
+                <div className="portal-top">
+                  <Factory size={22} />
+                  <span className="tag-pill">
+                    <Lock size={11} /> V1.7 锁定
+                  </span>
+                </div>
+                <h3>工业文明</h3>
+                <p>
+                  连续化工产线、能源管网与自动化反应单元（已预留底层接口）。
+                </p>
+                <span className="portal-meta">V1.7 / V2.0 即将推出</span>
+              </button>
+            </div>
+          </section>
 
           {/* Real Save-Driven Mission Board */}
-          {showMissions && (
-            <>
-              <section
-                className="panel mission-board"
-                aria-label="实时研究任务板"
-              >
-                <div className="section-heading">
-                  <h2>
-                    当前研究任务板 <span>LIVE MISSION BOARD</span>
-                  </h2>
-                  <span className="muted">全部由你的真实存档状态实时驱动</span>
-                </div>
-                <div className="mission-grid">
-                  <button
-                    className="mission-item"
-                    onClick={() => go("management")}
-                  >
-                    <span className="eyebrow">活跃研究订单</span>
-                    <strong>
-                      {nextOrder ? nextOrder.title : "当前订单已清空"}
-                    </strong>
-                    <p className="muted">
-                      {nextOrder
-                        ? `${nextOrder.client} · 奖励 +${nextOrder.reward.coins} 金币 / +${nextOrder.reward.researchPoints} RP`
-                        : "前往实验室经营查看新委托"}
-                    </p>
-                  </button>
-                  <button
-                    className="mission-item"
-                    onClick={() => go("history")}
-                  >
-                    <span className="eyebrow">推荐科学史章节</span>
-                    <strong>
-                      {nextHistory
-                        ? nextHistory.title
-                        : "全部 5 个可玩章节已通关！"}
-                    </strong>
-                    <p className="muted">
-                      {nextHistory
-                        ? `${nextHistory.eraYear} · 首通奖励 +${nextHistory.firstReward.researchPoints} RP`
-                        : "可重复挑战进阶模式冲击满星"}
-                    </p>
-                  </button>
-                  <button className="mission-item" onClick={() => go("tech")}>
-                    <span className="eyebrow">下一项可研究科技</span>
-                    <strong>
-                      {nextTech ? nextTech.name : "积攒研究点解锁新分支"}
-                    </strong>
-                    <p className="muted">
-                      {nextTech
-                        ? `消耗 ${nextTech.costRP} RP · ${nextTech.unlocks.bonusNote ?? nextTech.description}`
-                        : `当前持有 ${save.researchPoints} RP · 已研究 ${save.unlockedTechIds.length}/${technologies.length}`}
-                    </p>
-                  </button>
-                  <button className="mission-item" onClick={() => go("world")}>
-                    <span className="eyebrow">野外探索进度</span>
-                    <strong>
-                      {forestGathers < 3
-                        ? `原始森林采样（${forestGathers}/3）`
-                        : "继续勘探矿石山脉与盐湖"}
-                    </strong>
-                    <p className="muted">
-                      原始森林含永久免费采集点，随时零成本补充水、木炭与基础原料。
-                    </p>
-                  </button>
-                </div>
-              </section>
+          <section className="panel mission-board" aria-label="实时研究任务板">
+            <div className="section-heading">
+              <h2>
+                当前研究任务板 <span>LIVE MISSION BOARD</span>
+              </h2>
+              <span className="muted">全部由你的真实存档状态实时驱动</span>
+            </div>
+            <div className="mission-grid">
+              <button className="mission-item" onClick={() => go("management")}>
+                <span className="eyebrow">活跃研究订单</span>
+                <strong>
+                  {nextOrder ? nextOrder.title : "当前订单已清空"}
+                </strong>
+                <p className="muted">
+                  {nextOrder
+                    ? `${nextOrder.client} · 奖励 +${nextOrder.reward.coins} 金币 / +${nextOrder.reward.researchPoints} RP`
+                    : "前往实验室经营查看新委托"}
+                </p>
+              </button>
+              <button className="mission-item" onClick={() => go("history")}>
+                <span className="eyebrow">推荐科学史章节</span>
+                <strong>
+                  {nextHistory
+                    ? nextHistory.title
+                    : "全部 5 个可玩章节已通关！"}
+                </strong>
+                <p className="muted">
+                  {nextHistory
+                    ? `${nextHistory.eraYear} · 首通奖励 +${nextHistory.firstReward.researchPoints} RP`
+                    : "可重复挑战进阶模式冲击满星"}
+                </p>
+              </button>
+              <button className="mission-item" onClick={() => go("tech")}>
+                <span className="eyebrow">下一项可研究科技</span>
+                <strong>
+                  {nextTech ? nextTech.name : "积攒研究点解锁新分支"}
+                </strong>
+                <p className="muted">
+                  {nextTech
+                    ? `消耗 ${nextTech.costRP} RP · ${nextTech.unlocks.bonusNote ?? nextTech.description}`
+                    : `当前持有 ${save.researchPoints} RP · 已研究 ${save.unlockedTechIds.length}/${technologies.length}`}
+                </p>
+              </button>
+              <button className="mission-item" onClick={() => go("world")}>
+                <span className="eyebrow">野外探索进度</span>
+                <strong>
+                  {forestGathers < 3
+                    ? `原始森林采样（${forestGathers}/3）`
+                    : "继续勘探矿石山脉与盐湖"}
+                </strong>
+                <p className="muted">
+                  原始森林含永久免费采集点，随时零成本补充水、木炭与基础原料。
+                </p>
+              </button>
+            </div>
+          </section>
 
-              {/* Difficulty Selection Section (Preserves exact V1.5 controls & selectors) */}
-              <section className="mode-section" aria-label="游戏难度选择">
-                <div className="section-heading">
-                  <h2>
-                    实验难度与化学模型 <span>DIFFICULTY MODES</span>
-                  </h2>
-                  <span className="mode-gate-note">
-                    开发预览可用定量规则：
-                    {reactions.filter((r) => r.stoichiometrySupported).length} /
-                    {reactions.length}（开发预览）
-                  </span>
-                </div>
-                <div className="mode-grid">
-                  {GAME_MODES.map((m) => {
-                    const active = save.currentMode === m.id;
-                    return (
-                      <button
-                        key={m.id}
-                        type="button"
-                        disabled={m.locked}
-                        className={`mode-card ${active ? "active" : ""} ${m.locked ? "locked" : ""}`}
-                        onClick={() => {
-                          if (m.id === "simple" || m.id === "advanced") {
-                            game.setMode(m.id);
-                            go("lab");
-                          }
-                        }}
-                      >
-                        <div className="mode-card-top">
-                          <span className="mode-kicker">{m.en}</span>
-                          <span className="mode-pill">
-                            {m.locked ? (
-                              <Lock size={11} />
-                            ) : m.id === "advanced" ? (
-                              <Scale size={11} />
-                            ) : (
-                              <Sparkles size={11} />
-                            )}
-                            {m.badge}
-                          </span>
-                        </div>
-                        <h3>{m.name}</h3>
-                        <p>{m.tagline}</p>
-                        <span className="mode-action">
-                          {m.locked
-                            ? "V2.0 锁定预告"
-                            : active
-                              ? "当前模式 · 进入实验台 →"
-                              : `切换至${m.name} →`}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </section>
-            </>
-          )}
+          {/* Difficulty Selection Section (Preserves exact V1.5 controls & selectors) */}
+          <section className="mode-section" aria-label="游戏难度选择">
+            <div className="section-heading">
+              <h2>
+                实验难度与化学模型 <span>DIFFICULTY MODES</span>
+              </h2>
+              <span className="mode-gate-note">
+                开发预览可用定量规则：
+                {reactions.filter((r) => r.stoichiometrySupported).length} /
+                {reactions.length}（开发预览）
+              </span>
+            </div>
+            <div className="mode-grid">
+              {GAME_MODES.map((m) => {
+                const active = save.currentMode === m.id;
+                return (
+                  <button
+                    key={m.id}
+                    type="button"
+                    disabled={m.locked}
+                    className={`mode-card ${active ? "active" : ""} ${m.locked ? "locked" : ""}`}
+                    onClick={() => {
+                      if (m.id === "simple" || m.id === "advanced") {
+                        game.setMode(m.id);
+                        go("lab");
+                      }
+                    }}
+                  >
+                    <div className="mode-card-top">
+                      <span className="mode-kicker">{m.en}</span>
+                      <span className="mode-pill">
+                        {m.locked ? (
+                          <Lock size={11} />
+                        ) : m.id === "advanced" ? (
+                          <Scale size={11} />
+                        ) : (
+                          <Sparkles size={11} />
+                        )}
+                        {m.badge}
+                      </span>
+                    </div>
+                    <h3>{m.name}</h3>
+                    <p>{m.tagline}</p>
+                    <span className="mode-action">
+                      {m.locked
+                        ? "V2.0 锁定预告"
+                        : active
+                          ? "当前模式 · 进入实验台 →"
+                          : `切换至${m.name} →`}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
 
           {/* Quick Knowledge & Archive Shortcuts */}
-          {showArchive && (
-            <>
-              <div className="home-cards">
-                <button className="feature-card" onClick={() => go("tech")}>
-                  <span className="feature-icon amber">
-                    <Cpu />
-                  </span>
-                  <div>
-                    <span className="card-kicker">TECH TREE · DAG</span>
-                    <h3>科技研究树</h3>
-                    <p>
-                      6 大分支 {technologies.length}{" "}
-                      项无环科技，解锁设备、区域与实验室升级。
-                    </p>
-                  </div>
-                  <ArrowRight size={19} />
-                  <span className="card-bottom">
-                    已研究 {save.unlockedTechIds.length}/{technologies.length}
-                    <span>展开科技树 →</span>
-                  </span>
-                </button>
-                <button className="feature-card" onClick={() => go("tree")}>
-                  <span className="feature-icon blue">
-                    <Network />
-                  </span>
-                  <div>
-                    <span className="card-kicker">DISCOVERY NETWORK</span>
-                    <h3>科学发现网络</h3>
-                    <p>独立于科技树的物质合成图谱，查看配比与反应节点关联。</p>
-                  </div>
-                  <ArrowRight size={19} />
-                  <span className="card-bottom">
-                    研究等级与反应比率<span>探索网络 →</span>
-                  </span>
-                </button>
-                <button className="feature-card" onClick={() => go("museum")}>
-                  <span className="feature-icon green">
-                    <Landmark />
-                  </span>
-                  <div>
-                    <span className="card-kicker">SCIENCE MUSEUM</span>
-                    <h3>科学博物馆</h3>
-                    <p>
-                      点亮 {museumItems.length}{" "}
-                      件科学史里程碑、仪器标本与实验室荣誉藏品。
-                    </p>
-                  </div>
-                  <ArrowRight size={19} />
-                  <span className="card-bottom">
-                    已点亮 {museumCount}/{museumItems.length} 件
-                    <span>进入展厅 →</span>
-                  </span>
-                </button>
+          <div className="home-cards">
+            <button className="feature-card" onClick={() => go("tech")}>
+              <span className="feature-icon amber">
+                <Cpu />
+              </span>
+              <div>
+                <span className="card-kicker">TECH TREE · DAG</span>
+                <h3>科技研究树</h3>
+                <p>
+                  6 大分支 {technologies.length}{" "}
+                  项无环科技，解锁设备、区域与实验室升级。
+                </p>
               </div>
+              <ArrowRight size={19} />
+              <span className="card-bottom">
+                已研究 {save.unlockedTechIds.length}/{technologies.length}
+                <span>展开科技树 →</span>
+              </span>
+            </button>
+            <button className="feature-card" onClick={() => go("tree")}>
+              <span className="feature-icon blue">
+                <Network />
+              </span>
+              <div>
+                <span className="card-kicker">DISCOVERY NETWORK</span>
+                <h3>科学发现网络</h3>
+                <p>独立于科技树的物质合成图谱，查看配比与反应节点关联。</p>
+              </div>
+              <ArrowRight size={19} />
+              <span className="card-bottom">
+                研究等级与反应比率<span>探索网络 →</span>
+              </span>
+            </button>
+            <button className="feature-card" onClick={() => go("museum")}>
+              <span className="feature-icon green">
+                <Landmark />
+              </span>
+              <div>
+                <span className="card-kicker">SCIENCE MUSEUM</span>
+                <h3>科学博物馆</h3>
+                <p>
+                  点亮 {museumItems.length}{" "}
+                  件科学史里程碑、仪器标本与实验室荣誉藏品。
+                </p>
+              </div>
+              <ArrowRight size={19} />
+              <span className="card-bottom">
+                已点亮 {museumCount}/{museumItems.length} 件
+                <span>进入展厅 →</span>
+              </span>
+            </button>
+          </div>
 
-              <section className="recent-section">
-                <div className="section-heading">
-                  <h2>
-                    你的物质收藏 <span>MY COLLECTION</span>
-                  </h2>
-                  <button className="text-button" onClick={() => go("book")}>
-                    全部图鉴 <ArrowRight size={15} />
+          <section className="recent-section">
+            <div className="section-heading">
+              <h2>
+                你的物质收藏 <span>MY COLLECTION</span>
+              </h2>
+              <button className="text-button" onClick={() => go("book")}>
+                全部图鉴 <ArrowRight size={15} />
+              </button>
+            </div>
+            <div className="home-substances">
+              {Object.keys(save.discovered)
+                .slice(-8)
+                .map((id) => (
+                  <button key={id} onClick={() => setDetail(byId[id])}>
+                    <SubstanceIcon s={byId[id]} />
+                    <span>{byId[id].name}</span>
+                    <Formula value={byId[id].formula} />
                   </button>
-                </div>
-                <div className="home-substances">
-                  {Object.keys(save.discovered)
-                    .slice(-8)
-                    .map((id) => (
-                      <button key={id} onClick={() => setDetail(byId[id])}>
-                        <SubstanceIcon s={byId[id]} />
-                        <span>{byId[id].name}</span>
-                        <Formula value={byId[id].formula} />
-                      </button>
-                    ))}
-                  <button className="discover-more" onClick={() => go("lab")}>
-                    <Plus size={28} />
-                    <span>下一个发现</span>
-                    <small>会是什么？</small>
-                  </button>
-                </div>
-              </section>
-            </>
-          )}
+                ))}
+              <button className="discover-more" onClick={() => go("lab")}>
+                <Plus size={28} />
+                <span>下一个发现</span>
+                <small>会是什么？</small>
+              </button>
+            </div>
+          </section>
         </div>
       </div>
     </div>

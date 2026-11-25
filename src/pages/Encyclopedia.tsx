@@ -1,8 +1,10 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { Search, Star, Scale } from "lucide-react";
 import type { Substance } from "../types";
+import type { BookSubMode, MobileDetailBar } from "../types/navigation";
 import { substances } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula } from "../components/Shared";
 import { ArchiveTabs, type ArchiveView } from "../components/ArchiveTabs";
@@ -15,15 +17,50 @@ const KnowledgeLibrary = lazy(() =>
 
 export default function Encyclopedia({
   setDetail,
+  controlledBookMode,
+  onBookModeChange,
+  onMobileDetailBar,
 }: {
   setDetail: (s: Substance) => void;
+  controlledBookMode?: BookSubMode;
+  onBookModeChange?: (m: BookSubMode) => void;
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
 }) {
   const save = useGame((s) => s.save);
-  const [archiveView, setArchiveView] = useState<ArchiveView>("collection");
+  const vp = useViewport();
+  const [archiveView, setArchiveView] = useState<ArchiveView>(() =>
+    controlledBookMode === "knowledge" ? "species" : "collection",
+  );
+  const [lastKnowledgeTab, setLastKnowledgeTab] =
+    useState<Exclude<ArchiveView, "collection">>("species");
   const [filter, setFilter] = useState("全部物质");
   const [search, setSearch] = useState("");
   const [group, setGroup] = useState("全部类别");
   const [sort, setSort] = useState("number");
+
+  useEffect(() => {
+    if (!controlledBookMode) return;
+    if (controlledBookMode === "collection" && archiveView !== "collection") {
+      setArchiveView("collection");
+      onMobileDetailBar?.(null);
+    } else if (
+      controlledBookMode === "knowledge" &&
+      archiveView === "collection"
+    ) {
+      setArchiveView(lastKnowledgeTab);
+    }
+  }, [controlledBookMode, archiveView, lastKnowledgeTab, onMobileDetailBar]);
+
+  const handleArchiveChange = (v: ArchiveView) => {
+    setArchiveView(v);
+    if (v === "collection") {
+      onBookModeChange?.("collection");
+      onMobileDetailBar?.(null);
+    } else {
+      setLastKnowledgeTab(v);
+      onBookModeChange?.("knowledge");
+    }
+  };
   const discoveredCount = Object.keys(save.discovered).length;
   const quantResearchedCount = Object.values(save.research).filter(
     (r) => r.quantitativeResearchCompleted,
@@ -60,7 +97,8 @@ export default function Encyclopedia({
         <KnowledgeLibrary
           key={archiveView}
           view={archiveView}
-          onChange={setArchiveView}
+          onChange={handleArchiveChange}
+          onMobileDetailBar={onMobileDetailBar}
         />
       </Suspense>
     );
@@ -91,7 +129,9 @@ export default function Encyclopedia({
       </div>
 
       <div className="mobile-sticky-bar book-sticky-bar">
-        <ArchiveTabs view={archiveView} onChange={setArchiveView} />
+        {!vp.isMobile && (
+          <ArchiveTabs view={archiveView} onChange={handleArchiveChange} />
+        )}
         <div className="book-toolbar">
           <div className="segmented mobile-scroll-strip">
             {["全部物质", "已发现", "已定量研究", "未发现", "收藏"].map((f) => (

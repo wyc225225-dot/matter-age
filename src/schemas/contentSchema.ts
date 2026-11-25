@@ -6,6 +6,7 @@ export const conditionSchema = z.enum([
   "ignite",
   "high_heat",
   "electricity",
+  "light",
   "cool",
   "grind",
   "mix",

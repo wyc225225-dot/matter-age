@@ -192,7 +192,7 @@ for (const c of challenges) {
         );
       }
       if (
-        /\b(heat|ignite|high_heat|electricity|cool|mix|evaporate|distill|grind|filter)\b/.test(
+        /\b(heat|ignite|high_heat|electricity|light|cool|mix|evaporate|distill|grind|filter)\b/.test(
           h.message,
         )
       ) {
@@ -475,6 +475,7 @@ function refLabel(url: string) {
     return num ? `OpenStax §${num}` : "OpenStax";
   }
   if (url.includes("rsc.org")) return "RSC Education";
+  if (url.includes("harvard.edu")) return "Harvard Lecture Demonstrations";
   if (url.includes("pubchem.ncbi.nlm.nih.gov")) return "PubChem";
   return "参考资料";
 }

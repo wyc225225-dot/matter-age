@@ -1,6 +1,16 @@
-import { useState } from "react";
-import { CheckCircle2, Coins, Cpu, Lock, Sparkles } from "lucide-react";
-import type { TechCategory } from "../types";
+import { useEffect, useState } from "react";
+import {
+  CheckCircle2,
+  ChevronLeft,
+  Coins,
+  Cpu,
+  Info,
+  Lock,
+  Sparkles,
+  X,
+} from "lucide-react";
+import type { TechCategory, TechnologyDef } from "../types";
+import type { MobileDetailBar } from "../types/navigation";
 import { techById, technologies } from "../data";
 import { useGame } from "../stores/game";
 import { useViewport } from "../hooks/useViewport";
@@ -24,13 +34,34 @@ const categoryOrder: TechCategory[] = [
   "laboratory_engineering",
 ];
 
-export default function Technology({ toast }: { toast: (s: string) => void }) {
+export default function Technology({
+  toast,
+  onMobileDetailBar,
+}: {
+  toast: (s: string) => void;
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
+}) {
   const game = useGame();
   const vp = useViewport();
   const save = game.save;
   const [filter, setFilter] = useState<TechCategory | "all" | "available">(
     "all",
   );
+  const [detailTech, setDetailTech] = useState<TechnologyDef | null>(null);
+
+  useEffect(() => {
+    if (!onMobileDetailBar) return;
+    if (detailTech) {
+      onMobileDetailBar({
+        parentLabel: "科技",
+        title: detailTech.name,
+        onBack: () => setDetailTech(null),
+      });
+    } else {
+      onMobileDetailBar(null);
+    }
+    return () => onMobileDetailBar(null);
+  }, [detailTech, onMobileDetailBar]);
 
   const availableTechs = technologies.filter(
     (t) => getTechUnlockStatus(save, t, techById).status === "available",
@@ -174,39 +205,61 @@ export default function Technology({ toast }: { toast: (s: string) => void }) {
                           )}
                         </div>
                         <h3>{tech.name}</h3>
-                        <p className="muted">{tech.description}</p>
-                        {tech.prereqTechIds.length > 0 && (
-                          <p className="tech-prereqs">
-                            前置：
-                            {tech.prereqTechIds
-                              .map((pid) => techById[pid]?.name ?? pid)
-                              .join(" + ")}
+                        {!vp.isMobile && (
+                          <>
+                            <p className="muted">{tech.description}</p>
+                            {tech.prereqTechIds.length > 0 && (
+                              <p className="tech-prereqs">
+                                前置：
+                                {tech.prereqTechIds
+                                  .map((pid) => techById[pid]?.name ?? pid)
+                                  .join(" + ")}
+                              </p>
+                            )}
+                            {tech.unlocks.bonusNote && (
+                              <p className="tech-unlock-note">
+                                解锁效果：{tech.unlocks.bonusNote}
+                              </p>
+                            )}
+                          </>
+                        )}
+                        {vp.isMobile && tech.unlocks.bonusNote && (
+                          <p className="tech-unlock-note compact-clamp">
+                            {tech.unlocks.bonusNote}
                           </p>
                         )}
-                        {tech.unlocks.bonusNote && (
-                          <p className="tech-unlock-note">
-                            解锁效果：{tech.unlocks.bonusNote}
-                          </p>
-                        )}
-                        {status.status === "unlocked" ? (
-                          <button className="secondary small" disabled>
-                            研究已完成
-                          </button>
-                        ) : (
-                          <button
-                            className={
-                              status.status === "available"
-                                ? "primary small"
-                                : "secondary small"
-                            }
-                            disabled={status.status !== "available"}
-                            onClick={() =>
-                              toast(game.unlockTechAction(tech.id).message)
-                            }
-                          >
-                            研究（{tech.costRP} RP · {tech.costCoins} 金币）
-                          </button>
-                        )}
+                        <div className="tech-node-actions">
+                          {status.status === "unlocked" ? (
+                            <button className="secondary small" disabled>
+                              已完成
+                            </button>
+                          ) : (
+                            <button
+                              className={
+                                status.status === "available"
+                                  ? "primary small"
+                                  : "secondary small"
+                              }
+                              disabled={status.status !== "available"}
+                              onClick={() =>
+                                toast(game.unlockTechAction(tech.id).message)
+                              }
+                            >
+                              研究（{tech.costRP} RP · {tech.costCoins} 金币）
+                            </button>
+                          )}
+                          {vp.isMobile && (
+                            <button
+                              type="button"
+                              className="secondary small tech-detail-btn"
+                              aria-label={`查看${tech.name}详情`}
+                              onClick={() => setDetailTech(tech)}
+                            >
+                              <Info size={13} />
+                              详情
+                            </button>
+                          )}
+                        </div>
                         {status.status === "locked" &&
                           status.reasons.length > 0 && (
                             <small className="tech-lock-reason">
@@ -230,6 +283,88 @@ export default function Technology({ toast }: { toast: (s: string) => void }) {
           )}
         </div>
       </div>
+
+      {detailTech &&
+        (() => {
+          const st = getTechUnlockStatus(save, detailTech, techById);
+          return (
+            <div className="modal-backdrop" onClick={() => setDetailTech(null)}>
+              <section
+                className="modal tech-detail-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-label={detailTech.name}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="modal-sticky-head">
+                  <button
+                    type="button"
+                    className="mobile-parent-back modal-back-btn"
+                    onClick={() => setDetailTech(null)}
+                  >
+                    <ChevronLeft size={16} />
+                    <span>返回科技</span>
+                  </button>
+                  <button
+                    className="close icon-button"
+                    aria-label="关闭科技详情"
+                    onClick={() => setDetailTech(null)}
+                  >
+                    <X />
+                  </button>
+                </div>
+                <div className="modal-scroll-body">
+                  <span className="tag-pill">
+                    T{detailTech.tier} · 需 Lv.{detailTech.requiredLabLevel}{" "}
+                    实验室
+                  </span>
+                  <h2 style={{ marginTop: 8 }}>{detailTech.name}</h2>
+                  <p className="muted">{detailTech.description}</p>
+                  {detailTech.prereqTechIds.length > 0 && (
+                    <p className="tech-prereqs">
+                      前置科技：
+                      {detailTech.prereqTechIds
+                        .map((pid) => techById[pid]?.name ?? pid)
+                        .join(" + ")}
+                    </p>
+                  )}
+                  {detailTech.unlocks.bonusNote && (
+                    <p className="tech-unlock-note">
+                      解锁效果：{detailTech.unlocks.bonusNote}
+                    </p>
+                  )}
+                  {st.status === "locked" && st.reasons.length > 0 && (
+                    <div className="note-box">
+                      <h4>解锁条件</h4>
+                      {st.reasons.map((r) => (
+                        <p key={r}>{r}</p>
+                      ))}
+                    </div>
+                  )}
+                  <div style={{ marginTop: 14 }}>
+                    {st.status === "unlocked" ? (
+                      <button className="secondary full" disabled>
+                        研究已完成
+                      </button>
+                    ) : (
+                      <button
+                        className="primary full"
+                        disabled={st.status !== "available"}
+                        onClick={() => {
+                          toast(game.unlockTechAction(detailTech.id).message);
+                          setDetailTech(null);
+                        }}
+                      >
+                        立即研究（{detailTech.costRP} RP ·{" "}
+                        {detailTech.costCoins} 金币）
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </section>
+            </div>
+          );
+        })()}
     </div>
   );
 }

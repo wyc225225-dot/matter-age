@@ -241,21 +241,18 @@ test("V1.6 responsive verification at 360px, 390px and 768px with mobile bottom 
     fullPage: true,
   });
 
-  // Mobile 390px bottom nav + drawer navigation & screenshots
+  // Mobile 390px 4-item bottom nav + L2 subnav navigation & screenshots
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#home");
-  await expect(
-    page.getByRole("navigation", { name: "移动端主导航" }),
-  ).toBeVisible();
+  const mobileNav = page.getByRole("navigation", { name: "移动端主导航" });
+  await expect(mobileNav).toBeVisible();
+  await expect(mobileNav.getByRole("button")).toHaveCount(4);
   await page.screenshot({
     path: "output/playwright/v16/mobile-lobby.png",
     fullPage: true,
   });
 
-  await page
-    .getByRole("navigation", { name: "移动端主导航" })
-    .getByRole("button", { name: "经营" })
-    .click();
+  await mobileNav.getByRole("button", { name: "经营" }).click();
   await expect(
     page.getByRole("heading", { name: "实验室经营中心" }),
   ).toBeVisible();
@@ -265,15 +262,8 @@ test("V1.6 responsive verification at 360px, 390px and 768px with mobile bottom 
   });
 
   await page
-    .getByRole("navigation", { name: "移动端主导航" })
-    .getByRole("button", { name: "更多" })
-    .click();
-  await expect(
-    page.getByRole("dialog", { name: "更多功能与档案导航" }),
-  ).toBeVisible();
-  await page
-    .getByRole("dialog", { name: "更多功能与档案导航" })
-    .getByRole("button", { name: /世界探索/ })
+    .getByRole("navigation", { name: "二级模式导航" })
+    .getByRole("button", { name: "野外采集", exact: true })
     .click();
   await expect(
     page.getByRole("heading", { name: "世界探索地图" }),

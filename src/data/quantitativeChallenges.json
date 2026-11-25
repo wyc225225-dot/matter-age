@@ -956,6 +956,66 @@
   },
   {
     "id": "github_q2",
+    "name": "精确份数：氯化镁（溶液）",
+    "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
+    "group": "基础份数",
+    "kind": "synthesis",
+    "initialInventory": {
+      "magnesium": 1,
+      "hydrochloric_acid": 2
+    },
+    "catalysts": [],
+    "conditions": ["mix"],
+    "target": {
+      "substanceId": "kb_MgCl2",
+      "minAmount": 1,
+      "exactZeroLeftover": true
+    },
+    "limit": 2,
+    "solutionSteps": [
+      {
+        "reactionId": "github_magnesium_acid",
+        "inputs": {
+          "magnesium": 1,
+          "hydrochloric_acid": 2
+        },
+        "conditions": ["mix"],
+        "catalysts": []
+      }
+    ]
+  },
+  {
+    "id": "github_q3",
+    "name": "精确份数：氯化钠（溶液）",
+    "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
+    "group": "基础份数",
+    "kind": "synthesis",
+    "initialInventory": {
+      "hydrochloric_acid": 1,
+      "kb_NaOH": 1
+    },
+    "catalysts": [],
+    "conditions": ["mix"],
+    "target": {
+      "substanceId": "kb_NaCl",
+      "minAmount": 1,
+      "exactZeroLeftover": true
+    },
+    "limit": 2,
+    "solutionSteps": [
+      {
+        "reactionId": "github_neutralization",
+        "inputs": {
+          "hydrochloric_acid": 1,
+          "kb_NaOH": 1
+        },
+        "conditions": ["mix"],
+        "catalysts": []
+      }
+    ]
+  },
+  {
+    "id": "github_q4",
     "name": "精确份数：硝酸铜（溶液）",
     "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
     "group": "基础份数",
@@ -985,7 +1045,7 @@
     ]
   },
   {
-    "id": "github_q3",
+    "id": "github_q5",
     "name": "精确份数：氢氧化钠（溶液）",
     "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
     "group": "基础份数",
@@ -1015,7 +1075,7 @@
     ]
   },
   {
-    "id": "github_q4",
+    "id": "github_q6",
     "name": "精确份数：碘化铅",
     "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
     "group": "基础份数",
@@ -1038,66 +1098,6 @@
         "inputs": {
           "kb_KI": 2,
           "kb_Pb_NO3_2": 1
-        },
-        "conditions": ["mix"],
-        "catalysts": []
-      }
-    ]
-  },
-  {
-    "id": "github_q5",
-    "name": "精确份数：氢溴酸（溶液）",
-    "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
-    "group": "基础份数",
-    "kind": "synthesis",
-    "initialInventory": {
-      "kb_Br2_aq": 1,
-      "kb_HI": 2
-    },
-    "catalysts": [],
-    "conditions": ["mix"],
-    "target": {
-      "substanceId": "kb_HBr",
-      "minAmount": 2,
-      "exactZeroLeftover": true
-    },
-    "limit": 2,
-    "solutionSteps": [
-      {
-        "reactionId": "github_bromine_iodide",
-        "inputs": {
-          "kb_Br2_aq": 1,
-          "kb_HI": 2
-        },
-        "conditions": ["mix"],
-        "catalysts": []
-      }
-    ]
-  },
-  {
-    "id": "github_q6",
-    "name": "精确份数：碳酸钾（溶液）",
-    "description": "按最简方程式系数配置投入，在有限库存内形成目标产物。",
-    "group": "基础份数",
-    "kind": "synthesis",
-    "initialInventory": {
-      "kb_KHCO3": 1,
-      "kb_KOH": 1
-    },
-    "catalysts": [],
-    "conditions": ["mix"],
-    "target": {
-      "substanceId": "kb_K2CO3",
-      "minAmount": 1,
-      "exactZeroLeftover": true
-    },
-    "limit": 2,
-    "solutionSteps": [
-      {
-        "reactionId": "github_potassium_bicarbonate_base",
-        "inputs": {
-          "kb_KHCO3": 1,
-          "kb_KOH": 1
         },
         "conditions": ["mix"],
         "catalysts": []

@@ -304,6 +304,57 @@
 .archive-equation .formula {
   font-size: 13px;
 }
+.archive-eq-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.coverage-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.coverage-badge.playable {
+  background: rgba(129, 201, 163, 0.16);
+  border: 1px solid rgba(129, 201, 163, 0.45);
+  color: #a9e5c3;
+}
+.coverage-badge.not-open {
+  background: rgba(145, 173, 192, 0.14);
+  border: 1px solid rgba(145, 173, 192, 0.35);
+  color: #b4c8d8;
+}
+.knowledge-coverage-box {
+  margin: 14px 0 18px;
+  padding: 13px 15px;
+  border-radius: 8px;
+  border: 1px solid #355264;
+  background: #142431;
+}
+.knowledge-coverage-box.playable {
+  border-color: rgba(129, 201, 163, 0.45);
+  background: rgba(25, 53, 46, 0.42);
+}
+.knowledge-coverage-box.not-open {
+  border-color: rgba(234, 196, 119, 0.36);
+  background: rgba(54, 46, 28, 0.28);
+}
+.knowledge-coverage-box p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #cfe0ec;
+}
+.knowledge-coverage-box .coverage-subnote {
+  font-size: 11px;
+  color: #9ab5c7;
+}
 .archive-attribution {
   font-size: 10px;
   color: #718fa5;

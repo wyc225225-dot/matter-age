@@ -207,7 +207,7 @@ describe("content, P0 knowledge quality, reachability and multi-step challenges"
             ].every((id) => inv.includes(id)),
           ).toBe(true);
           expect(h.message).not.toMatch(
-            /\b(heat|ignite|high_heat|electricity|cool|mix|evaporate|distill)\b/,
+            /\b(heat|ignite|high_heat|electricity|light|cool|mix|evaporate|distill|grind|filter)\b/,
           );
         }
         for (const p of step.products) {

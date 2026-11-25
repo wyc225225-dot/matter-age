@@ -1,9 +1,8 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpCircle,
   Building2,
   CheckCircle2,
-  ChevronRight,
   ClipboardList,
   Coins,
   Compass,
@@ -15,7 +14,7 @@ import {
   Sparkles,
   Wrench,
 } from "lucide-react";
-import type { Page } from "../types/navigation";
+import type { ManagementTab, MobileDetailBar, Page } from "../types/navigation";
 import {
   byId,
   conditionName,
@@ -41,19 +40,32 @@ import { IsometricLabBench } from "../components/IsometricLabBench";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { Formula } from "../components/Shared";
 
-type Tab = "orders" | "produce" | "equipment" | "market" | "overview";
+type Tab = ManagementTab;
 
 export default function Management({
   go,
   toast,
+  controlledTab,
+  onTabChange,
+  onMobileDetailBar,
 }: {
   go: (p: Page) => void;
   toast: (msg: string) => void;
+  controlledTab?: ManagementTab;
+  onTabChange?: (t: ManagementTab) => void;
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
 }) {
   const game = useGame();
   const vp = useViewport();
   const save = game.save;
-  const [tab, setTab] = useState<Tab>("orders");
+  const [internalTab, setInternalTab] = useState<Tab>(
+    controlledTab ?? "orders",
+  );
+  const tab: Tab = controlledTab ?? internalTab;
+  const setTab = (next: Tab) => {
+    setInternalTab(next);
+    onTabChange?.(next);
+  };
   const [selectedEqId, setSelectedEqId] = useState<string | null>(
     "eq_basic_bench",
   );
@@ -66,6 +78,20 @@ export default function Management({
 
   const effectiveTab: Tab =
     !vp.isMobilePortrait && tab === "overview" ? "orders" : tab;
+
+  useEffect(() => {
+    if (!onMobileDetailBar || !vp.isMobile) return;
+    if (effectiveTab === "market" || effectiveTab === "overview") {
+      onMobileDetailBar({
+        parentLabel: "经营",
+        title: effectiveTab === "market" ? "库存与原料市场" : "2D 实验台与升级",
+        onBack: () => setTab("orders"),
+      });
+    } else {
+      onMobileDetailBar(null);
+    }
+    return () => onMobileDetailBar(null);
+  }, [effectiveTab, vp.isMobile, onMobileDetailBar]);
 
   const currentLab =
     labLevels.find((l) => l.level === save.labLevel) ?? labLevels[0];
@@ -312,12 +338,12 @@ export default function Management({
         )}
 
         <div className="mgmt-ops-pane">
-          {/* Sub-navigation Tabs (Sticky on mobile with compact resource strip) */}
+          {/* Sub-navigation Tabs (Desktop full tabs; Mobile uses L2 subnav + compact utility bar) */}
           <div className="mobile-sticky-bar mgmt-sticky-bar">
             {vp.isMobile && (
               <div className="compact-hud-row">
                 <span className="tag-pill">
-                  <Building2 size={12} /> Lv.{save.labLevel} {currentLab.name}
+                  <Building2 size={12} /> Lv.{save.labLevel}
                 </span>
                 <span className="tag-pill">
                   <Coins size={12} /> {save.coins}
@@ -325,79 +351,77 @@ export default function Management({
                 <span className="tag-pill free">
                   <Sparkles size={12} /> {save.researchPoints} RP
                 </span>
-                {vp.isMobilePortrait && effectiveTab !== "overview" && (
-                  <button
-                    type="button"
-                    className="secondary small mgmt-lab-jump"
-                    onClick={() => setTab("overview")}
-                  >
-                    2D 实验台 / 升级
-                    <ChevronRight size={13} />
-                  </button>
-                )}
+                <div className="mgmt-mobile-utilities">
+                  {effectiveTab !== "market" && (
+                    <button
+                      type="button"
+                      className="secondary small"
+                      onClick={() => setTab("market")}
+                    >
+                      <ShoppingCart size={12} />
+                      库存市场
+                    </button>
+                  )}
+                  {vp.isMobilePortrait && effectiveTab !== "overview" && (
+                    <button
+                      type="button"
+                      className="secondary small mgmt-lab-jump"
+                      onClick={() => setTab("overview")}
+                    >
+                      实验台/升级
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
-            <div
-              className="mgmt-tabs mobile-scroll-strip"
-              role="tablist"
-              aria-label="实验室经营模块"
-            >
-              <button
-                role="tab"
-                aria-selected={effectiveTab === "orders"}
-                className={effectiveTab === "orders" ? "active" : ""}
-                onClick={() => setTab("orders")}
+            {!vp.isMobile && (
+              <div
+                className="mgmt-tabs mobile-scroll-strip"
+                role="tablist"
+                aria-label="实验室经营模块"
               >
-                <ClipboardList size={15} />
-                {vp.isMobile
-                  ? `研究订单 (${activeOrders.length})`
-                  : `研究订单（${activeOrders.length} 活跃 / ${orders.length} 模板）`}
-                {readyOrderCount > 0 && (
-                  <span className="tab-dot-badge">{readyOrderCount}</span>
-                )}
-              </button>
-              <button
-                role="tab"
-                aria-selected={effectiveTab === "produce"}
-                className={effectiveTab === "produce" ? "active" : ""}
-                onClick={() => setTab("produce")}
-              >
-                <FlaskConical size={15} />
-                有限库存制备
-              </button>
-              <button
-                role="tab"
-                aria-selected={effectiveTab === "equipment"}
-                className={effectiveTab === "equipment" ? "active" : ""}
-                onClick={() => setTab("equipment")}
-              >
-                <Wrench size={15} />
-                {vp.isMobile
-                  ? `实验设备工坊 (${Object.keys(save.equipmentLevels).length}/8)`
-                  : `实验设备工坊（${Object.keys(save.equipmentLevels).length}/8）`}
-              </button>
-              <button
-                role="tab"
-                aria-selected={effectiveTab === "market"}
-                className={effectiveTab === "market" ? "active" : ""}
-                onClick={() => setTab("market")}
-              >
-                <ShoppingCart size={15} />
-                库存与原料市场
-              </button>
-              {vp.isMobilePortrait && (
                 <button
                   role="tab"
-                  aria-selected={effectiveTab === "overview"}
-                  className={effectiveTab === "overview" ? "active" : ""}
-                  onClick={() => setTab("overview")}
+                  aria-selected={effectiveTab === "orders"}
+                  className={effectiveTab === "orders" ? "active" : ""}
+                  onClick={() => setTab("orders")}
                 >
-                  <Building2 size={15} />
-                  实验台与升级
+                  <ClipboardList size={15} />
+                  {`研究订单（${activeOrders.length} 活跃 / ${orders.length} 模板）`}
+                  {readyOrderCount > 0 && (
+                    <span className="tab-dot-badge">{readyOrderCount}</span>
+                  )}
                 </button>
-              )}
-            </div>
+                <button
+                  role="tab"
+                  aria-selected={effectiveTab === "produce"}
+                  className={effectiveTab === "produce" ? "active" : ""}
+                  onClick={() => setTab("produce")}
+                >
+                  <FlaskConical size={15} />
+                  有限库存制备
+                </button>
+                <button
+                  role="tab"
+                  aria-selected={effectiveTab === "equipment"}
+                  className={effectiveTab === "equipment" ? "active" : ""}
+                  onClick={() => setTab("equipment")}
+                >
+                  <Wrench size={15} />
+                  {`实验设备工坊（${Object.keys(save.equipmentLevels).length}/8）`}
+                </button>
+                <button
+                  role="tab"
+                  aria-selected={effectiveTab === "market"}
+                  className={effectiveTab === "market" ? "active" : ""}
+                  onClick={() => setTab("market")}
+                >
+                  <ShoppingCart size={15} />
+                  库存与原料市场
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="mgmt-ops-scroll">

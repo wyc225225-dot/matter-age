@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { CheckCircle2, Coins, Sparkles, Trophy } from "lucide-react";
+import type { Page } from "../types/navigation";
 import {
   detailedAchievements,
   type AchievementCategory,
 } from "../engine/achievementEngine";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { PageHeading } from "../components/Shared";
 
 const catLabels: Record<AchievementCategory | "all", string> = {
@@ -19,10 +21,13 @@ const catLabels: Record<AchievementCategory | "all", string> = {
 
 export default function Achievements({
   toast,
+  go,
 }: {
   toast?: (s: string) => void;
+  go?: (p: Page) => void;
 }) {
   const game = useGame();
+  const vp = useViewport();
   const save = game.save;
   const [cat, setCat] = useState<AchievementCategory | "all" | "claimable">(
     "all",
@@ -44,6 +49,25 @@ export default function Achievements({
 
   return (
     <div className="page-width standard-page">
+      {vp.isMobile && go && (
+        <div
+          className="mobile-seg-tabs growth-mode-tabs"
+          role="tablist"
+          aria-label="成就与成长切换"
+        >
+          <button type="button" role="tab" aria-selected className="active">
+            探索成就 ({earnedCount}/{all.length})
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={false}
+            onClick={() => go("eras")}
+          >
+            科技演进
+          </button>
+        </div>
+      )}
       <div className="page-heading">
         <PageHeading
           kicker="MILESTONES OF CURIOSITY · V1.6"

@@ -17,7 +17,7 @@ import {
 
 /**
  * Computes conditions allowed inside Management Production Mode ONLY.
- * Free Exploration Mode keeps all 10 conditions unrestricted.
+ * Free Exploration Mode keeps all 11 conditions unrestricted.
  */
 export function getManagementAllowedConditions(
   save: Save,

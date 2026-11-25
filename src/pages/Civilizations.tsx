@@ -1,17 +1,39 @@
 import { Check, Atom } from "lucide-react";
+import type { Page } from "../types/navigation";
 import { currentEra } from "../engine/achievementEngine";
 
 import { byId, eras } from "../data";
 import { useGame } from "../stores/game";
+import { useViewport } from "../hooks/useViewport";
 import { SubstanceIcon } from "../components/SubstanceIcon";
 import { PageHeading } from "../components/Shared";
 import { learningTracks } from "../data/learningTracks";
 
-export default function Civilizations() {
+export default function Civilizations({ go }: { go?: (p: Page) => void }) {
   const save = useGame((s) => s.save);
+  const vp = useViewport();
   const era = currentEra(save);
   return (
     <div className="page-width standard-page">
+      {vp.isMobile && go && (
+        <div
+          className="mobile-seg-tabs growth-mode-tabs"
+          role="tablist"
+          aria-label="成就与成长切换"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={false}
+            onClick={() => go("achievements")}
+          >
+            探索成就
+          </button>
+          <button type="button" role="tab" aria-selected className="active">
+            科技演进
+          </button>
+        </div>
+      )}
       <PageHeading
         kicker="CIVILIZATION THROUGH MATTER"
         title="科技演进"

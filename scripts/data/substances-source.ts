@@ -1,6 +1,6 @@
 import type { Category, ModelKind, Substance } from "../../src/types/index";
 import { parseFormula, parseIon } from "../../src/engine/formulaParser";
-import { OPENSTAX, RSC, pubchem } from "./references";
+import { HARVARD, OPENSTAX, RSC, pubchem } from "./references";
 
 export const groups = [
   "自然材料",
@@ -430,6 +430,35 @@ const entries: SubstanceAuthorEntry[] = [
       "剧毒腐蚀性氧化气体，吸入可致严重肺部损伤，严禁在现实中自行制取或混合清洁剂；仅作虚拟模拟。",
     ],
     references: [pubchem(24526), OPENSTAX.halogens],
+  },
+  {
+    id: "hydrogen_chloride",
+    chemicalEntityId: "HCl",
+    name: "氯化氢",
+    nameEn: "Hydrogen chloride",
+    formula: "HCl",
+    groupIndex: 1,
+    category: "compound",
+    state: "gas",
+    color: "#b4e1cc",
+    appearance:
+      "常温常压下为无色、具有强烈刺激性酸味的气体，在潮湿空气中迅速吸收水汽形成白雾。",
+    density: null,
+    aliases: ["氯化氢气体", "气态氯化氢"],
+    properties: [
+      "由共价分子 HCl 构成的纯气体化合物，本身不等同于液态盐酸；极易溶于水并完全电离后才形成盐酸溶液（HCl(aq)）。",
+      "可由氢气与氯气在适宜短波光照（紫外/蓝紫光）引发或点燃条件下化合生成，遇氨气会立即化合产生白色氯化铵烟雾。",
+    ],
+    uses: [
+      "溶于水制备实验室与工业盐酸、合成氯乙烯（PVC 单体）以及多种含氯化工中间体。",
+    ],
+    sources: [
+      "工业上常由氯碱工业副产氢气与氯气化合制取；游戏内可通过氢气与氯气在光照或点燃条件下合成。",
+    ],
+    hazards: [
+      "剧烈腐蚀性与刺激性有毒气体，接触呼吸道、皮肤与眼部黏膜会造成严重灼伤；本游戏仅作虚拟演示。",
+    ],
+    references: [pubchem(313), OPENSTAX.halogens, HARVARD.photochemicalH2Cl2],
   },
 
   // ── 2. 金属与单质 (10) ───────────────────────────────────────────
@@ -1927,6 +1956,32 @@ const entries: SubstanceAuthorEntry[] = [
     hazards: ["低毒日常晶体，避免接触伤口或过量食用。"],
     references: [pubchem(5234), OPENSTAX.solubility],
   },
+  {
+    id: "chlorine_water",
+    chemicalEntityId: "mixture:chlorine_water",
+    name: "氯水",
+    nameEn: "Chlorine water",
+    formula: null,
+    groupIndex: 7,
+    category: "mixture",
+    state: "liquid",
+    color: "#c8df9c",
+    appearance: "淡黄绿色透明水溶液，带有刺激性氯气气味。",
+    density: null,
+    aliases: ["新制氯水", "氯气水溶液"],
+    properties: [
+      "氯气通入水中溶解并部分发生可逆歧化反应（Cl₂ + H₂O ⇌ HCl + HClO，离子形式 Cl₂(aq) + 2H₂O ⇌ HClO + H₃O⁺ + Cl⁻），形成含溶解 Cl₂、H₂O、HClO、H⁺ 与 Cl⁻ 的可逆平衡混合体系。",
+      "常温下该平衡转化不完全，体系内仍存在大量未反应的溶解氯分子，不能视作 100% 完全转化或赋予单一纯化合物分子式与摩尔质量。",
+    ],
+    uses: ["饮用水与泳池消毒原理教学、次氯酸漂白氧化演示与化学平衡教学。"],
+    sources: [
+      "常温下将氯气通入水中混合制得；新制氯水需避光保存（光照会促使其中的次氯酸分解放出氧气）。",
+    ],
+    hazards: [
+      "含溶解氯气与氧化性次氯酸，具刺激性与腐蚀性，避免吸入挥发气体或接触皮肤与眼部，严禁与氨水或酸性清洁剂混用。",
+    ],
+    references: [OPENSTAX.halogens, OPENSTAX.solubility],
+  },
 ];
 
 const INITIAL_IDS = new Set(["water", "air", "wood", "sand", "iron"]);
@@ -1955,6 +2010,7 @@ const MOLECULAR_IDS = new Set([
   "sulfur_dioxide",
   "ammonia",
   "chlorine",
+  "hydrogen_chloride",
   "sulfur",
   "sulfur_trioxide",
   "peroxide",

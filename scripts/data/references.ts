@@ -68,3 +68,8 @@ export const RSC = {
   electrolysis:
     "https://portal.ed.rsc.org/resources/identifying-the-products-of-electrolysis/110637",
 } as const;
+
+export const HARVARD = {
+  photochemicalH2Cl2:
+    "https://sciencedemonstrations.fas.harvard.edu/presentations/photochemical-reaction-hydrogen-and-chlorine",
+} as const;

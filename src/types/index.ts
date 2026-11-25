@@ -5,6 +5,7 @@ export type Condition =
   | "ignite"
   | "high_heat"
   | "electricity"
+  | "light"
   | "cool"
   | "grind"
   | "mix"

@@ -1,23 +1,25 @@
-import { useEffect, useState, Suspense, lazy } from "react";
+import { useCallback, useEffect, useState, Suspense, lazy } from "react";
 import {
   Atom,
   BookOpen,
   Building2,
   Check,
+  ChevronLeft,
   Coins,
   Compass,
   Cpu,
   FlaskConical,
   Home as HomeIcon,
   Landmark,
-  Menu,
   Network,
   Plus,
   ScrollText,
   Settings,
-  Sparkles,
   Target,
   Trophy,
+  Wrench,
+  ClipboardList,
+  BookMarked,
   X,
 } from "lucide-react";
 import { useGame } from "./stores/game";
@@ -25,7 +27,12 @@ import { useViewport } from "./hooks/useViewport";
 import { substances } from "./data";
 import { SubstanceIcon } from "./components/SubstanceIcon";
 import type { Substance } from "./types";
-import type { Page } from "./types/navigation";
+import type {
+  BookSubMode,
+  ManagementTab,
+  MobileDetailBar,
+  Page,
+} from "./types/navigation";
 import Home from "./pages/Home";
 import Laboratory from "./pages/Laboratory";
 import Management from "./pages/Management";
@@ -79,110 +86,46 @@ const desktopPrimaryNav: { id: Page; name: string; icon: typeof Atom }[] = [
   { id: "tree", name: "发现网络", icon: Network },
 ];
 
-type PrimaryPillar = "home" | "experiment" | "manage" | "archive" | "more";
-
-const domainSubNav: Record<
-  Exclude<PrimaryPillar, "home">,
-  { id: Page; name: string; icon: typeof Atom }[]
-> = {
-  experiment: [
-    { id: "lab", name: "自由实验", icon: FlaskConical },
-    { id: "challenge", name: "目标挑战", icon: Target },
-    { id: "history", name: "挑战历史", icon: ScrollText },
-  ],
-  manage: [
-    { id: "management", name: "实验室经营", icon: Building2 },
-    { id: "tech", name: "科技研究", icon: Cpu },
-    { id: "world", name: "世界探索", icon: Compass },
-  ],
-  archive: [
-    { id: "book", name: "物质图鉴", icon: BookOpen },
-    { id: "tree", name: "发现网络", icon: Network },
-    { id: "museum", name: "科学博物馆", icon: Landmark },
-  ],
-  more: [
-    { id: "eras", name: "科技演进", icon: Sparkles },
-    { id: "achievements", name: "探索成就", icon: Trophy },
-    { id: "settings", name: "实验室设置", icon: Settings },
-  ],
-};
+type PrimaryPillar = "home" | "experiment" | "manage" | "archive";
 
 function getPrimaryPillar(p: Page): PrimaryPillar {
-  if (p === "home") return "home";
   if (p === "lab" || p === "challenge" || p === "history") return "experiment";
   if (p === "management" || p === "tech" || p === "world") return "manage";
   if (p === "book" || p === "tree" || p === "museum") return "archive";
-  return "more";
+  return "home";
 }
 
-const archiveDrawerItems: {
-  id: Page;
-  name: string;
-  desc: string;
-  group: "里程碑与系统" | "玩法快捷直达";
-  icon: typeof Atom;
-}[] = [
-  {
-    id: "eras",
-    name: "科技演进",
-    desc: "四大化学文明时代与研究路线",
-    group: "里程碑与系统",
-    icon: Sparkles,
-  },
-  {
-    id: "achievements",
-    name: "探索成就",
-    desc: "34 项科学成就与幂等奖励",
-    group: "里程碑与系统",
-    icon: Trophy,
-  },
-  {
-    id: "settings",
-    name: "实验室设置",
-    desc: "音效动画、存档导入导出 v3",
-    group: "里程碑与系统",
-    icon: Settings,
-  },
-  {
-    id: "history",
-    name: "挑战历史",
-    desc: "实验域 · 10 章时间线（5 章可玩）",
-    group: "玩法快捷直达",
-    icon: ScrollText,
-  },
-  {
-    id: "world",
-    name: "世界探索",
-    desc: "经营域 · 2D 区域地图与采集",
-    group: "玩法快捷直达",
-    icon: Compass,
-  },
-  {
-    id: "tech",
-    name: "科技研究",
-    desc: "经营域 · 24 项无环科技树",
-    group: "玩法快捷直达",
-    icon: Cpu,
-  },
-  {
-    id: "museum",
-    name: "科学博物馆",
-    desc: "图鉴域 · 16 件成就里程碑馆藏",
-    group: "玩法快捷直达",
-    icon: Landmark,
-  },
-];
+const pageReturnLabels: Record<Page, string> = {
+  home: "大厅",
+  lab: "自由实验",
+  management: "经营",
+  challenge: "关卡挑战",
+  history: "挑战历史",
+  world: "野外采集",
+  book: "图鉴",
+  tech: "科技",
+  tree: "发现网络",
+  museum: "博物馆",
+  eras: "大厅",
+  achievements: "大厅",
+  settings: "大厅",
+};
 
 export default function App() {
   const game = useGame();
   const vp = useViewport();
   const [page, setPage] = useState<Page>(() => parseHashState().page);
+  const [returnPage, setReturnPage] = useState<Page>("home");
   const [deepHistoryId, setDeepHistoryId] = useState<string | null>(
     () => parseHashState().chapterId,
   );
+  const [mgmtTab, setMgmtTab] = useState<ManagementTab>("orders");
+  const [bookMode, setBookMode] = useState<BookSubMode>("collection");
   const [detail, setDetail] = useState<Substance | null>(null);
+  const [pageDetailBar, setPageDetailBar] = useState<MobileDetailBar | null>(
+    null,
+  );
   const [supply, setSupply] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [toast, setToast] = useState("");
 
   useEffect(() => {
@@ -191,26 +134,20 @@ export default function App() {
       const parsed = parseHashState();
       setPage(parsed.page);
       setDeepHistoryId(parsed.chapterId);
+      setPageDetailBar(null);
     };
     addEventListener("hashchange", fn);
     return () => removeEventListener("hashchange", fn);
   }, []);
 
   useEffect(() => {
-    if (!drawerOpen && !supply) return;
+    if (!supply) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (supply) setSupply(false);
-        else if (drawerOpen) setDrawerOpen(false);
-      }
+      if (e.key === "Escape") setSupply(false);
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [drawerOpen, supply]);
-
-  useEffect(() => {
-    if (!vp.isMobile && drawerOpen) setDrawerOpen(false);
-  }, [vp.isMobile, drawerOpen]);
+  }, [supply]);
 
   useEffect(() => {
     if (toast) {
@@ -219,19 +156,247 @@ export default function App() {
     }
   }, [toast]);
 
-  function go(p: Page) {
-    location.hash = p;
-    setPage(p);
-    setDrawerOpen(false);
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-  }
+  const go = useCallback(
+    (p: Page) => {
+      if (p === "settings" && page !== "settings") {
+        setReturnPage(page);
+      } else if (
+        (p === "achievements" || p === "eras") &&
+        page !== "achievements" &&
+        page !== "eras"
+      ) {
+        setReturnPage(page);
+      }
+      setPageDetailBar(null);
+      if (location.hash !== `#${p}`) {
+        location.hash = p;
+      }
+      setPage(p);
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    },
+    [page],
+  );
 
   const count = Object.keys(game.save.discovered).length;
   const activePillar = getPrimaryPillar(page);
-  const subNavItems =
-    activePillar === "home" ? null : domainSubNav[activePillar];
-  const hideSubNavInActiveHistory =
+  const isUtilityL3Page =
+    page === "settings" || page === "achievements" || page === "eras";
+  const isActiveHistoryChapter =
     page === "history" && Boolean(game.save.activeHistoryChapterId);
+
+  const activeMobileBack: MobileDetailBar | null = vp.isMobile
+    ? pageDetailBar
+      ? pageDetailBar
+      : page === "settings"
+        ? {
+            parentLabel: pageReturnLabels[returnPage] ?? "大厅",
+            title: "设置",
+            onBack: () => go(returnPage),
+          }
+        : page === "achievements" || page === "eras"
+          ? {
+              parentLabel: "大厅",
+              title: "成就与成长",
+              onBack: () => go("home"),
+            }
+          : null
+    : null;
+
+  const inDetailMode =
+    vp.isMobile &&
+    (Boolean(pageDetailBar) ||
+      isUtilityL3Page ||
+      isActiveHistoryChapter ||
+      Boolean(detail));
+
+  const showL2Subnav =
+    vp.isMobile &&
+    !inDetailMode &&
+    activePillar !== "home" &&
+    !isActiveHistoryChapter;
+
+  const renderL2SubnavButtons = () => {
+    if (activePillar === "experiment") {
+      return (
+        <>
+          <button
+            type="button"
+            aria-current={page === "lab" ? "page" : undefined}
+            className={page === "lab" ? "active" : ""}
+            onClick={() => go("lab")}
+          >
+            <FlaskConical size={13} />
+            <span>自由实验</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "challenge" ? "page" : undefined}
+            className={page === "challenge" ? "active" : ""}
+            onClick={() => go("challenge")}
+          >
+            <Target size={13} />
+            <span>关卡挑战</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "history" ? "page" : undefined}
+            className={page === "history" ? "active" : ""}
+            onClick={() => go("history")}
+          >
+            <ScrollText size={13} />
+            <span>挑战历史</span>
+          </button>
+        </>
+      );
+    }
+
+    if (activePillar === "manage") {
+      return (
+        <>
+          <button
+            type="button"
+            aria-current={
+              page === "management" && mgmtTab === "produce"
+                ? "page"
+                : undefined
+            }
+            className={
+              page === "management" && mgmtTab === "produce" ? "active" : ""
+            }
+            onClick={() => {
+              setMgmtTab("produce");
+              go("management");
+            }}
+          >
+            <FlaskConical size={13} />
+            <span>生产</span>
+          </button>
+          <button
+            type="button"
+            aria-current={
+              page === "management" && mgmtTab === "orders" ? "page" : undefined
+            }
+            className={
+              page === "management" && mgmtTab === "orders" ? "active" : ""
+            }
+            onClick={() => {
+              setMgmtTab("orders");
+              go("management");
+            }}
+          >
+            <ClipboardList size={13} />
+            <span>订单</span>
+          </button>
+          <button
+            type="button"
+            aria-current={
+              page === "management" && mgmtTab === "equipment"
+                ? "page"
+                : undefined
+            }
+            className={
+              page === "management" && mgmtTab === "equipment" ? "active" : ""
+            }
+            onClick={() => {
+              setMgmtTab("equipment");
+              go("management");
+            }}
+          >
+            <Wrench size={13} />
+            <span>设备</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "world" ? "page" : undefined}
+            className={page === "world" ? "active" : ""}
+            onClick={() => go("world")}
+          >
+            <Compass size={13} />
+            <span>野外采集</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "tech" ? "page" : undefined}
+            className={page === "tech" ? "active" : ""}
+            onClick={() => go("tech")}
+          >
+            <Cpu size={13} />
+            <span>科技</span>
+          </button>
+        </>
+      );
+    }
+
+    if (activePillar === "archive") {
+      return (
+        <>
+          <button
+            type="button"
+            aria-current={
+              page === "book" && bookMode === "collection" ? "page" : undefined
+            }
+            className={
+              page === "book" && bookMode === "collection" ? "active" : ""
+            }
+            onClick={() => {
+              setBookMode("collection");
+              go("book");
+            }}
+          >
+            <BookOpen size={13} />
+            <span>我的物质</span>
+          </button>
+          <button
+            type="button"
+            aria-current={
+              page === "book" && bookMode === "knowledge" ? "page" : undefined
+            }
+            className={
+              page === "book" && bookMode === "knowledge" ? "active" : ""
+            }
+            onClick={() => {
+              setBookMode("knowledge");
+              go("book");
+            }}
+          >
+            <BookMarked size={13} />
+            <span>知识库</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "tree" ? "page" : undefined}
+            className={page === "tree" ? "active" : ""}
+            onClick={() => go("tree")}
+          >
+            <Network size={13} />
+            <span>发现网络</span>
+          </button>
+          <button
+            type="button"
+            aria-current={page === "museum" ? "page" : undefined}
+            className={page === "museum" ? "active" : ""}
+            onClick={() => go("museum")}
+          >
+            <Landmark size={13} />
+            <span>博物馆</span>
+          </button>
+        </>
+      );
+    }
+
+    return null;
+  };
+
+  const detailParentLabel =
+    page === "book"
+      ? bookMode === "knowledge"
+        ? "知识库"
+        : "我的物质"
+      : page === "tree"
+        ? "发现网络"
+        : page === "lab"
+          ? "自由实验"
+          : (pageReturnLabels[page] ?? "返回");
 
   if (!game.ready)
     return (
@@ -243,37 +408,44 @@ export default function App() {
 
   return (
     <div
-      className={`app ${game.save.settings.motion ? "" : "reduce-motion"}`}
+      className={`app ${game.save.settings.motion ? "" : "reduce-motion"} ${inDetailMode ? "in-detail-mode" : ""}`}
       data-viewport={vp.mode}
       data-page={page}
     >
       <header className="topbar">
-        <button className="brand" onClick={() => go("home")}>
-          <span className="brand-mark">
-            <Atom size={26} />
-          </span>
-          <span>
-            物质纪元<small>MATTER AGE</small>
-          </span>
-        </button>
+        {vp.isMobile && activeMobileBack ? (
+          <div className="mobile-back-header">
+            <button
+              type="button"
+              className="mobile-parent-back"
+              onClick={activeMobileBack.onBack}
+            >
+              <ChevronLeft size={16} />
+              <span>返回{activeMobileBack.parentLabel}</span>
+            </button>
+            {activeMobileBack.title && (
+              <span className="mobile-back-title">
+                {activeMobileBack.title}
+              </span>
+            )}
+          </div>
+        ) : (
+          <button className="brand" onClick={() => go("home")}>
+            <span className="brand-mark">
+              <Atom size={26} />
+            </span>
+            <span>
+              物质纪元<small>MATTER AGE</small>
+            </span>
+          </button>
+        )}
 
-        {vp.isMobileLandscape && subNavItems && !hideSubNavInActiveHistory && (
+        {vp.isMobileLandscape && showL2Subnav && (
           <nav
             className="domain-subnav inline-landscape-subnav mobile-scroll-strip"
             aria-label="二级模式导航"
           >
-            {subNavItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-current={page === item.id ? "page" : undefined}
-                className={page === item.id ? "active" : ""}
-                onClick={() => go(item.id)}
-              >
-                <item.icon size={13} />
-                <span>{item.name}</span>
-              </button>
-            ))}
+            {renderL2SubnavButtons()}
           </nav>
         )}
 
@@ -324,7 +496,7 @@ export default function App() {
             <Trophy size={18} />
           </button>
           <button
-            className={`icon-button ${page === "settings" ? "active" : ""}`}
+            className={`icon-button top-settings-btn ${page === "settings" ? "active" : ""}`}
             aria-label="设置"
             title="实验室设置"
             onClick={() => go("settings")}
@@ -343,23 +515,12 @@ export default function App() {
         </span>
       </div>
 
-      {vp.isMobilePortrait && subNavItems && !hideSubNavInActiveHistory && (
+      {vp.isMobilePortrait && showL2Subnav && (
         <nav
           className="domain-subnav portrait-domain-subnav mobile-scroll-strip"
           aria-label="二级模式导航"
         >
-          {subNavItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-current={page === item.id ? "page" : undefined}
-              className={page === item.id ? "active" : ""}
-              onClick={() => go(item.id)}
-            >
-              <item.icon size={14} />
-              <span>{item.name}</span>
-            </button>
-          ))}
+          {renderL2SubnavButtons()}
         </nav>
       )}
 
@@ -379,17 +540,28 @@ export default function App() {
             toast={setToast}
           />
         ) : page === "management" ? (
-          <Management go={go} toast={setToast} />
+          <Management
+            go={go}
+            toast={setToast}
+            controlledTab={vp.isMobile ? mgmtTab : undefined}
+            onTabChange={setMgmtTab}
+            onMobileDetailBar={setPageDetailBar}
+          />
         ) : page === "tech" ? (
-          <Technology toast={setToast} />
+          <Technology toast={setToast} onMobileDetailBar={setPageDetailBar} />
         ) : page === "world" ? (
           <WorldMap toast={setToast} />
         ) : page === "history" ? (
           <History go={go} toast={setToast} deepChapterId={deepHistoryId} />
         ) : page === "museum" ? (
-          <Museum />
+          <Museum onMobileDetailBar={setPageDetailBar} />
         ) : page === "book" ? (
-          <Encyclopedia setDetail={setDetail} />
+          <Encyclopedia
+            setDetail={setDetail}
+            controlledBookMode={vp.isMobile ? bookMode : undefined}
+            onBookModeChange={setBookMode}
+            onMobileDetailBar={setPageDetailBar}
+          />
         ) : page === "settings" ? (
           <SettingsPage toast={setToast} />
         ) : page === "tree" ? (
@@ -397,11 +569,15 @@ export default function App() {
             <DiscoveryTree setDetail={setDetail} />
           </Suspense>
         ) : page === "challenge" ? (
-          <Challenges go={go} toast={setToast} />
+          <Challenges
+            go={go}
+            toast={setToast}
+            onMobileDetailBar={setPageDetailBar}
+          />
         ) : page === "eras" ? (
-          <Civilizations />
+          <Civilizations go={go} />
         ) : page === "achievements" ? (
-          <Achievements toast={setToast} />
+          <Achievements toast={setToast} go={go} />
         ) : (
           <Home count={count} go={go} setDetail={setDetail} />
         )}
@@ -414,10 +590,10 @@ export default function App() {
         <span>V1.6 开发预览 · 探索 / 经营 / 科学史 / 世界地图 · 本地离线</span>
       </footer>
 
-      {/* Mobile Bottom Navigation Bar / Landscape Left Rail (5 stable L1 player goals) */}
+      {/* Mobile Bottom Navigation Bar / Landscape Left Rail (4 streamlined L1 player goals) */}
       <nav className="mobile-bottom-nav" aria-label="移动端主导航">
         <button
-          className={activePillar === "home" && !drawerOpen ? "active" : ""}
+          className={activePillar === "home" ? "active" : ""}
           aria-current={activePillar === "home" ? "page" : undefined}
           onClick={() => go("home")}
         >
@@ -425,9 +601,7 @@ export default function App() {
           <span>大厅</span>
         </button>
         <button
-          className={
-            activePillar === "experiment" && !drawerOpen ? "active" : ""
-          }
+          className={activePillar === "experiment" ? "active" : ""}
           aria-current={activePillar === "experiment" ? "page" : undefined}
           onClick={() => go("lab")}
         >
@@ -435,7 +609,7 @@ export default function App() {
           <span>实验</span>
         </button>
         <button
-          className={activePillar === "manage" && !drawerOpen ? "active" : ""}
+          className={activePillar === "manage" ? "active" : ""}
           aria-current={activePillar === "manage" ? "page" : undefined}
           onClick={() => go("management")}
         >
@@ -443,74 +617,21 @@ export default function App() {
           <span>经营</span>
         </button>
         <button
-          className={activePillar === "archive" && !drawerOpen ? "active" : ""}
+          className={activePillar === "archive" ? "active" : ""}
           aria-current={activePillar === "archive" ? "page" : undefined}
           onClick={() => go("book")}
         >
           <BookOpen size={18} />
           <span>图鉴</span>
         </button>
-        <button
-          className={drawerOpen || activePillar === "more" ? "active" : ""}
-          aria-expanded={drawerOpen}
-          onClick={() => setDrawerOpen((v) => !v)}
-        >
-          <Menu size={18} />
-          <span>更多</span>
-        </button>
       </nav>
-
-      {/* Mobile / Archive Drawer */}
-      {drawerOpen && (
-        <div className="drawer-backdrop" onClick={() => setDrawerOpen(false)}>
-          <section
-            className="mobile-drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label="更多功能与档案导航"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="drawer-head">
-              <strong>更多功能与模式直达</strong>
-              <button
-                className="icon-button"
-                aria-label="关闭导航抽屉"
-                onClick={() => setDrawerOpen(false)}
-              >
-                <X size={18} />
-              </button>
-            </div>
-            {(["里程碑与系统", "玩法快捷直达"] as const).map((group) => (
-              <div className="drawer-group" key={group}>
-                <p className="drawer-group-label">{group}</p>
-                <div className="drawer-grid">
-                  {archiveDrawerItems
-                    .filter((item) => item.group === group)
-                    .map((item) => (
-                      <button
-                        key={item.id}
-                        className={`drawer-item ${page === item.id ? "active" : ""}`}
-                        onClick={() => go(item.id)}
-                      >
-                        <item.icon size={18} />
-                        <div>
-                          <strong>{item.name}</strong>
-                          <small>{item.desc}</small>
-                        </div>
-                      </button>
-                    ))}
-                </div>
-              </div>
-            ))}
-          </section>
-        </div>
-      )}
 
       {detail && (
         <Detail
           s={detail}
           close={() => setDetail(null)}
           onSelect={(next) => setDetail(next)}
+          parentLabel={detailParentLabel}
         />
       )}
 

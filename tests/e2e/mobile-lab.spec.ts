@@ -27,9 +27,9 @@ test("mobile selection keeps materials in view and returns to the workbench", as
   await page.getByRole("button", { name: "冷却", exact: true }).click();
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await expect(
-    page.getByRole("button", { name: "执行当前实验", exact: true }),
+    page.getByRole("button", { name: "开始实验", exact: true }),
   ).toBeInViewport();
-  await page.getByRole("button", { name: "执行当前实验", exact: true }).click();
+  await page.getByRole("button", { name: "开始实验", exact: true }).click();
   await expect(page.getByText("发现新物质", { exact: true })).toBeVisible();
   await page.screenshot({ path: "output/playwright/mobile-workbench.png" });
   await page.locator(".dock-materials").click();

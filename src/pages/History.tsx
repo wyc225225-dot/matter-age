@@ -845,29 +845,35 @@ export default function History({
           <ChevronRight size={16} />
         </button>
       )}
-      {session.stage === "experiment" && (
-        <div className="history-dock-pair">
-          <button className="primary" onClick={runExperimentCheck}>
+      {session.stage === "experiment" &&
+        (session.stageCompleted.experiment ? (
+          <div className="history-dock-pair passed">
+            <button
+              className="secondary"
+              aria-label="提交实验检验"
+              onClick={runExperimentCheck}
+            >
+              重新检验
+            </button>
+            <button
+              className="primary"
+              onClick={() =>
+                patchSession((cur) => ({
+                  ...cur,
+                  stage: "analysis",
+                  feedback: "",
+                }))
+              }
+            >
+              进入第 4/5 步：证据分析
+              <ChevronRight size={15} />
+            </button>
+          </div>
+        ) : (
+          <button className="primary full" onClick={runExperimentCheck}>
             提交实验检验
           </button>
-          <button
-            className={
-              session.stageCompleted.experiment ? "primary" : "secondary"
-            }
-            disabled={!session.stageCompleted.experiment}
-            onClick={() =>
-              patchSession((cur) => ({
-                ...cur,
-                stage: "analysis",
-                feedback: "",
-              }))
-            }
-          >
-            进入阶段 4：证据分析
-            <ChevronRight size={15} />
-          </button>
-        </div>
-      )}
+        ))}
       {session.stage === "analysis" && (
         <button
           className="primary full"
@@ -896,6 +902,8 @@ export default function History({
       ? (exp.periodicCards.find((c) => c.symbol === selectedCard) ?? null)
       : null;
 
+  const stageIndex = HISTORY_STAGE_ORDER.indexOf(session.stage) + 1;
+
   return (
     <div
       className={`page-width standard-page history-page history-active-chapter ${vp.isMobileLandscape ? "history-chapter-landscape" : ""}`}
@@ -904,38 +912,17 @@ export default function History({
         <div className="history-mobile-chrome">
           <div className="history-mobile-toprow">
             <button
-              className="secondary small"
-              aria-label="返回时间线（保留当前进度）"
+              className="secondary small history-back-btn"
+              aria-label="返回挑战历史（保留当前进度）"
               onClick={returnToTimeline}
             >
               <ChevronLeft size={15} />
-              时间线
+              返回挑战历史
             </button>
             <div className="history-mobile-title">
               <h1>{activeChapter.title}</h1>
-              <small>
-                CH.{String(activeChapter.number).padStart(2, "0")} ·{" "}
-                {activeChapter.eraYear}
-              </small>
             </div>
-            <div
-              className="difficulty-toggle compact"
-              role="group"
-              aria-label="历史章节难度"
-            >
-              <button
-                className={session.difficulty === "simple" ? "active" : ""}
-                onClick={() => handleSwitchDifficulty("simple")}
-              >
-                简单模式
-              </button>
-              <button
-                className={session.difficulty === "advanced" ? "active" : ""}
-                onClick={() => handleSwitchDifficulty("advanced")}
-              >
-                进阶定量模式
-              </button>
-            </div>
+            <span className="history-step-badge">第 {stageIndex}/5 步</span>
             <button
               type="button"
               className={`secondary small history-info-btn ${infoOpen ? "active-cond" : ""}`}
@@ -944,7 +931,7 @@ export default function History({
               onClick={() => setInfoOpen((v) => !v)}
             >
               <Info size={14} />
-              <span>材料</span>
+              <span>背景 ▾</span>
             </button>
           </div>
           {stageStepper}
@@ -1077,6 +1064,25 @@ export default function History({
             <p className="muted" style={{ marginBottom: 10 }}>
               {activeChapter.subtitle}
             </p>
+            <div
+              className="difficulty-toggle"
+              role="group"
+              aria-label="历史章节难度"
+              style={{ marginBottom: 10 }}
+            >
+              <button
+                className={session.difficulty === "simple" ? "active" : ""}
+                onClick={() => handleSwitchDifficulty("simple")}
+              >
+                简单模式
+              </button>
+              <button
+                className={session.difficulty === "advanced" ? "active" : ""}
+                onClick={() => handleSwitchDifficulty("advanced")}
+              >
+                进阶定量模式
+              </button>
+            </div>
             <HistoryChapterScene chapterId={activeChapter.id} />
             <div
               className="chapter-materials-strip"

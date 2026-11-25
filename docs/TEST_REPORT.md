@@ -98,3 +98,62 @@
 本轮所有移动竖屏（`360×800` / `390×844`）与横屏（`844×390` / `800×360`）验证均运行于 Windows 上 Playwright Chromium 视口模拟环境；尚未在实体 iOS Safari / Android Chrome 真机上实测真实物理触控、手势惯性滚动、刘海屏安全区及软键盘弹出时的可视视口变化。
 
 线上复核：809fba8已成功部署Pages；390×844触控浏览器验证二级导航、氯化氢中文搜索与中文转化路径，844×390横屏切换通过，无运行时错误。
+
+---
+
+## 实验台规则与知识库路径断层修复验证（2026-11-25）
+
+### 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 8 个测试文件，**254 / 254** 通过（新增 `tests/unit/reaction-gaps.test.ts` 8 组回归测试） |
+| 数据与闭环校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**；**130** 物质（130/130 可达）/ **148** 规则（140 守恒 + 8 人工核验）/ 87 挑战 / 24 科技 DAG / 102 步 Lv.1→Lv.3 模拟 / 532 中文物质与 435 转化零缺失 |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 严格阻断 `pending` 科学、知识库与科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite 构建 + Workbox 预缓存 22 项资产 |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+| 端到端与截图审阅 | `npm run test:e2e` | **通过（exit 0）** | **17 / 17** Playwright 用例通过（原有 15 组全回归 + 新增 `tests/e2e/reaction-gaps.spec.ts` 2 组全链路） |
+
+### 2. 新增测试覆盖明细
+
+- **单元测试 `tests/unit/reaction-gaps.test.ts`（8 项）**：
+  - `light`（光照）条件注册、气态 `hydrogen_chloride`（氯化氢）与液态 `hydrochloric_acid`（盐酸）严格分离、零重复 `kb_HCl_g`、可达性与 `pending` 状态；
+  - `H2 + Cl2` 无条件报缺 `light`、单选 `light` 触发 `r101`、单选 `ignite` 触发独立 `r102`、同选 `light + ignite` 报多规则冲突（不强制捆绑）、`release` 通道严格阻断；
+  - 进阶定量 `1 H2 + 1 Cl2 + light → 2 HCl(g)`（1:1:2、原子/电荷/1 mol 基准质量守恒）；
+  - 经营模式设备条件映射（初始仅 `mix`、`eq_electrolyzer` 解锁 `light` 后可制备 `r101`）；
+  - 11 条新增常见明确缺项与 `r103`（`NH3 + HCl(g) → NH4Cl`）简单/定量双模式守恒回归；
+  - 纯引擎 `summarizeKnowledgeCoverage` 诚实分类 435 条转化（74 已开放 / 361 未开放，不宣称全可玩，审慎排除 `Na+O2→Na2O`、`O3→O+O2` 与 `equation-only`）；
+  - 失败诊断精确区分缺条件（`missing_requirements`）、资料路径未开放模拟（`unopened_knowledge_path`）与完全未收录（`unmatched`）；
+  - v2→v3 迁移与 v3/v4 存档校验兼容。
+- **端到端 `tests/e2e/reaction-gaps.spec.ts`（2 组）**：
+  1. 桌面真实入口（电解水制氢 + 标本补给领氯气/钙）：`H2 + Cl2` 无光照→提示「缺少：光照」并高亮按钮→选「光照」→发现气态「氯化氢」（非盐酸，配平 `H2 + Cl2 → 2HCl`）；`Ca + Cl2` 区分「尚未收录可玩规则」与「资料路径 · 尚未开放实验台模拟」；进阶模式验证 1:1:2 完全反应与质量守恒；知识库转化路径核验 `74 / 435` 已开放与 `361 / 435` 未开放徽章及零溯源泄露；
+  2. 手机竖屏（`390×844`、`360×800`）与横屏（`844×390`）验证 `光照` 条件按钮完整可见、零横向溢出并完成 `氢气 + 氯气 + 光照 → 氯化氢` 全流程。
+
+### 3. 目视截图审阅（`output/playwright/reaction-gaps/`）
+
+已逐张检查全部 7 张截图（`desktop-h2-cl2-missing-light.png`、`desktop-h2-cl2-light-success.png`、`desktop-h2-cl2-advanced-112.png`、`desktop-kb-h2-cl2-playable.png`、`desktop-kb-o3-unopened.png`、`portrait-390-light-condition.png`、`landscape-844-light-condition.png`）：桌面 6+5、竖屏 4+4+3、横屏 3+3+3+2 条件网格均无截断、无遮挡、无横向溢出。详细缺项与修复清单见 `docs/AGY_REACTION_GAPS_RESULT.md`。
+
+---
+
+## 正式工程手机简化改版与氯气加水平衡体系验证（2026-11-25）
+
+### 1. 命令执行总表
+
+| 检查项 | 命令 | 实际结果 | 关键指标 |
+|---|---|---|---|
+| 单元测试 | `npm test` | **通过（exit 0）** | 8 个测试文件，**256 / 256** 通过（`reaction-gaps.test.ts` 新增氯气加水平衡混合体系与非 100% 转化回归） |
+| 数据与闭环校验 | `npm run validate` | **通过（exit 0）** | 自动错误 **0**；**131** 物质（131/131 可达）/ **149** 规则（140 守恒 + 9 混合物/材料加工）/ 87 挑战 / 24 科技 DAG / 102 步 Lv.1→Lv.3 模拟 / 532 中文物质与 435 转化零缺失 |
+| 正式发布门禁 | `npm run validate:release` | **预期拒绝（exit 1）** | 严格阻断全部 `pending` 科学、知识库与科学史内容 |
+| 生产构建与 PWA | `npm run build` | **通过（exit 0）** | `tsc -b` 0 错误；Vite + Workbox 预缓存 22 项资产 |
+| 代码格式检查 | `npm run format:check` | **通过（exit 0）** | Prettier 全部文件格式一致 |
+| 端到端与视觉验证 | `npm run test:e2e` | **通过（exit 0）** | **17 / 17** Playwright 用例全通过（零桌面回归，覆盖 4 项一级入口、全二级模式、三级父级返回隐藏底栏、知识库详情返回恢复查询、氯气加水简/进反馈及 5 视口零溢出矩阵） |
+
+### 2. 目视截图审阅与现场修复（`output/playwright/mobile-ux/`）
+
+逐张目视审阅 `390×844`、`360×800` 与 `844×390` 主要模式截图（大厅新手/老玩家/横屏、简单与进阶实验台、失败催化诊断、伏打电堆 L3 竖/横屏、知识库氯化氢列表与详情、经营/世界/科技/博物馆）：
+1. 发现 `portrait-360-lab-advanced.png` 中 `.lab-mode-bar` 因 `styles.css` 级联顺序折行 → 改为单行横向滚动并在窄竖屏隐藏已在大厅展示的锁定困难模式占位按钮；
+2. 发现 `portrait-390-history-ch04.png` 中旧 `.history-stepper` 被 `.mobile-scroll-strip` 的 `!important` 覆盖未隐藏 → 补齐 `!important` 释放 40px 纵向空间，仅保留 `第 X/5 步` 与 `背景 ▾`；
+3. 发现横屏大厅与历史顶栏右上设置按钮未贴右对齐 → 补充 `header.topbar .top-actions { margin-left: auto; }`；
+4. 发现 `食盐溶解`（物理溶解）误命中可逆化学平衡提示文案 → 在纯引擎精确限定 `reactionType === "equilibrium"`，严格区分物理溶解与化学平衡混合体系。
+
+以上 4 项均已修复并重跑全量 `npm test`、`npm run validate`、`npm run format:check`、`npm run test:e2e` 及二次截图复查确认。详细交付报告见 `docs/AGY_IMPLEMENT_SIMPLIFY_RESULT.md`。

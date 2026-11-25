@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Star,
   ChevronRight,
@@ -7,7 +7,7 @@ import {
   FlaskConical,
   Sparkles,
 } from "lucide-react";
-import type { Page } from "../types/navigation";
+import type { MobileDetailBar, Page } from "../types/navigation";
 import type { SpecialChallengeDef } from "../types";
 import {
   byId,
@@ -67,9 +67,11 @@ const specialTypeMeta: Record<string, { badge: string; hint: string }> = {
 export default function Challenges({
   go,
   toast,
+  onMobileDetailBar,
 }: {
   go: (p: Page) => void;
   toast?: (s: string) => void;
+  onMobileDetailBar?: (bar: MobileDetailBar | null) => void;
 }) {
   const game = useGame();
   const vp = useViewport();
@@ -79,6 +81,20 @@ export default function Challenges({
   const [groupFilter, setGroupFilter] = useState<string>("auto");
   const [activeSpecial, setActiveSpecial] =
     useState<SpecialChallengeDef | null>(null);
+
+  useEffect(() => {
+    if (!onMobileDetailBar) return;
+    if (activeSpecial) {
+      onMobileDetailBar({
+        parentLabel: "关卡挑战",
+        title: activeSpecial.name,
+        onBack: () => setActiveSpecial(null),
+      });
+    } else {
+      onMobileDetailBar(null);
+    }
+    return () => onMobileDetailBar(null);
+  }, [activeSpecial, onMobileDetailBar]);
 
   const simpleGroups = ["基础探索", "组合实验", "科学推演"] as const;
   const quantGroups = ["基础份数", "剩余物质", "定量推演"] as const;

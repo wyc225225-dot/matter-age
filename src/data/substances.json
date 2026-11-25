@@ -579,6 +579,51 @@
     "reviewStatus": "pending"
   },
   {
+    "id": "hydrogen_chloride",
+    "chemicalEntityId": "HCl",
+    "name": "氯化氢",
+    "nameEn": "Hydrogen chloride",
+    "formula": "HCl",
+    "category": "compound",
+    "group": "气体",
+    "state": "gas",
+    "iconId": "gas",
+    "color": "#b4e1cc",
+    "eraId": 0,
+    "initialUnlocked": false,
+    "supply": false,
+    "appearance": "常温常压下为无色、具有强烈刺激性酸味的气体，在潮湿空气中迅速吸收水汽形成白雾。",
+    "molarMass": 36.458,
+    "density": null,
+    "elementComposition": {
+      "H": 1,
+      "Cl": 1
+    },
+    "charge": 0,
+    "modelKind": "molecule",
+    "quantitativeResearchEligible": true,
+    "aliases": ["氯化氢气体", "气态氯化氢"],
+    "properties": [
+      "由共价分子 HCl 构成的纯气体化合物，本身不等同于液态盐酸；极易溶于水并完全电离后才形成盐酸溶液（HCl(aq)）。",
+      "可由氢气与氯气在适宜短波光照（紫外/蓝紫光）引发或点燃条件下化合生成，遇氨气会立即化合产生白色氯化铵烟雾。"
+    ],
+    "uses": [
+      "溶于水制备实验室与工业盐酸、合成氯乙烯（PVC 单体）以及多种含氯化工中间体。"
+    ],
+    "sources": [
+      "工业上常由氯碱工业副产氢气与氯气化合制取；游戏内可通过氢气与氯气在光照或点燃条件下合成。"
+    ],
+    "hazards": [
+      "剧烈腐蚀性与刺激性有毒气体，接触呼吸道、皮肤与眼部黏膜会造成严重灼伤；本游戏仅作虚拟演示。"
+    ],
+    "references": [
+      "https://pubchem.ncbi.nlm.nih.gov/compound/313",
+      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+      "https://sciencedemonstrations.fas.harvard.edu/presentations/photochemical-reaction-hydrogen-and-chlorine"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
     "id": "iron",
     "chemicalEntityId": "Fe",
     "name": "铁",
@@ -3122,6 +3167,45 @@
     "reviewStatus": "pending"
   },
   {
+    "id": "chlorine_water",
+    "chemicalEntityId": "mixture:chlorine_water",
+    "name": "氯水",
+    "nameEn": "Chlorine water",
+    "formula": null,
+    "category": "mixture",
+    "group": "材料与状态",
+    "state": "liquid",
+    "iconId": "liquid",
+    "color": "#c8df9c",
+    "eraId": 1,
+    "initialUnlocked": false,
+    "supply": false,
+    "appearance": "淡黄绿色透明水溶液，带有刺激性氯气气味。",
+    "molarMass": null,
+    "density": null,
+    "elementComposition": null,
+    "charge": null,
+    "modelKind": "mixture_schematic",
+    "quantitativeResearchEligible": false,
+    "aliases": ["新制氯水", "氯气水溶液"],
+    "properties": [
+      "氯气通入水中溶解并部分发生可逆歧化反应（Cl₂ + H₂O ⇌ HCl + HClO，离子形式 Cl₂(aq) + 2H₂O ⇌ HClO + H₃O⁺ + Cl⁻），形成含溶解 Cl₂、H₂O、HClO、H⁺ 与 Cl⁻ 的可逆平衡混合体系。",
+      "常温下该平衡转化不完全，体系内仍存在大量未反应的溶解氯分子，不能视作 100% 完全转化或赋予单一纯化合物分子式与摩尔质量。"
+    ],
+    "uses": ["饮用水与泳池消毒原理教学、次氯酸漂白氧化演示与化学平衡教学。"],
+    "sources": [
+      "常温下将氯气通入水中混合制得；新制氯水需避光保存（光照会促使其中的次氯酸分解放出氧气）。"
+    ],
+    "hazards": [
+      "含溶解氯气与氧化性次氯酸，具刺激性与腐蚀性，避免吸入挥发气体或接触皮肤与眼部，严禁与氨水或酸性清洁剂混用。"
+    ],
+    "references": [
+      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+      "https://openstax.org/books/chemistry-2e/pages/11-3-solubility"
+    ],
+    "reviewStatus": "pending"
+  },
+  {
     "id": "kb_S8",
     "name": "环状硫分子（S₈）",
     "nameEn": "Sulfur (S₈)",
@@ -3160,7 +3244,9 @@
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://scilearn.sydney.edu.au/fychemistry/demonstrations/files/8.11.pdf"
+      "https://scilearn.sydney.edu.au/fychemistry/demonstrations/files/8.11.pdf",
+      "https://openstax.org/books/chemistry-2e/pages/5-3-enthalpy",
+      "https://edu.rsc.org/properties-of-elements-and-compounds/the-reaction-between-zinc-powder-and-sulfur/714.article"
     ],
     "reviewStatus": "pending"
   },
@@ -3219,7 +3305,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": false,
+    "supply": true,
     "appearance": "资料所列相态：水溶液。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 39.997,
     "density": null,
@@ -3240,12 +3326,15 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
+      "游戏可通过实验室标本补给获取此起点。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
+      "https://www2.chem.wisc.edu/deptfiles/genchem/demonstrations/Gen_Chem_Pages/06thermopage/heat_of_neutralization.htm",
+      "https://edu.rsc.org/experiments/exothermic-or-endothermic-classifying-reactions/406.article",
       "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
       "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
       "https://openstax.org/books/chemistry-2e/pages/4-exercises"
@@ -3337,7 +3426,8 @@
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://intro.chem.okstate.edu/ChemSource/ChemRx/chemrx8.htm"
+      "https://intro.chem.okstate.edu/ChemSource/ChemRx/chemrx8.htm",
+      "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen"
     ],
     "reviewStatus": "pending"
   },
@@ -3354,7 +3444,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": true,
+    "supply": false,
     "appearance": "资料所列相态：水溶液。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 58.44,
     "density": null,
@@ -3374,15 +3464,17 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
-      "游戏可通过实验室标本补给获取此起点。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
+      "https://www2.chem.wisc.edu/deptfiles/genchem/demonstrations/Gen_Chem_Pages/06thermopage/heat_of_neutralization.htm",
+      "https://edu.rsc.org/experiments/exothermic-or-endothermic-classifying-reactions/406.article",
       "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
-      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens"
+      "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+      "https://openstax.org/books/chemistry-2e/pages/4-exercises"
     ],
     "reviewStatus": "pending"
   },
@@ -3467,7 +3559,11 @@
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
-    "references": ["https://openstax.org/books/chemistry-2e/pages/4-exercises"],
+    "references": [
+      "https://edu.rsc.org/experiments/the-rate-of-reaction-of-magnesium-with-hydrochloric-acid/1916.article",
+      "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+      "https://openstax.org/books/chemistry-2e/pages/4-exercises"
+    ],
     "reviewStatus": "pending"
   },
   {
@@ -3747,7 +3843,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": false,
+    "supply": true,
     "appearance": "资料所列相态：水溶液。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 63.012,
     "density": null,
@@ -3768,7 +3864,8 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
+      "游戏可通过实验室标本补给获取此起点。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
@@ -3969,7 +4066,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": true,
+    "supply": false,
     "appearance": "资料所列相态：固体。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 100.929,
     "density": null,
@@ -3989,14 +4086,14 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
-      "游戏可通过实验室标本补给获取此起点。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen"
+      "https://openstax.org/books/chemistry-2e/pages/18-5-occurrence-preparation-and-compounds-of-hydrogen",
+      "https://www.webelements.com/magnesium/chemistry.html"
     ],
     "reviewStatus": "pending"
   },
@@ -4321,7 +4418,7 @@
     "color": "#9bcbdc",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": true,
+    "supply": false,
     "appearance": "资料所列相态：气体。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 30.006,
     "density": null,
@@ -4341,8 +4438,7 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
-      "游戏可通过实验室标本补给获取此起点。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
@@ -4523,7 +4619,9 @@
     ],
     "references": [
       "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen",
-      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+      "https://www.webelements.com/lithium/chemistry.html",
+      "https://edu.rsc.org/experiments/heating-group-1-metals-in-air-and-in-chlorine/732.article"
     ],
     "reviewStatus": "pending"
   },
@@ -4759,7 +4857,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": true,
+    "supply": false,
     "appearance": "资料所列相态：固体。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 29.879,
     "density": null,
@@ -4779,14 +4877,15 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
-      "游戏可通过实验室标本补给获取此起点。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+      "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+      "https://www.webelements.com/lithium/chemistry.html",
+      "https://edu.rsc.org/experiments/heating-group-1-metals-in-air-and-in-chlorine/732.article"
     ],
     "reviewStatus": "pending"
   },
@@ -5397,7 +5496,7 @@
     "color": "#9eb9d2",
     "eraId": 3,
     "initialUnlocked": false,
-    "supply": true,
+    "supply": false,
     "appearance": "资料所列相态：固体。卡片配色为游戏编码，具体颜色须参照所引物质资料。",
     "molarMass": 97.44,
     "density": null,
@@ -5417,14 +5516,14 @@
       "作为来源明确的教学物质，参与本次扩展的氧化还原、酸碱或沉淀路径。"
     ],
     "sources": [
-      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。",
-      "游戏可通过实验室标本补给获取此起点。"
+      "GitHub 来源目录的结构化化学事实；游戏获取途径由补给与对应反应共同记录。"
     ],
     "hazards": [
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://edu.rsc.org/properties-of-elements-and-compounds/the-reaction-between-zinc-powder-and-sulfur/714.article"
     ],
     "reviewStatus": "pending"
   },
@@ -5468,7 +5567,8 @@
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://www.webelements.com/tin/chemistry.html"
     ],
     "reviewStatus": "pending"
   },
@@ -5510,7 +5610,8 @@
       "仅作虚拟化学学习，不能据游戏进行现实制备。含铅、镍、卤素及部分气体的条目存在特定毒性或反应危险，具体风险见所引来源。"
     ],
     "references": [
-      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals"
+      "https://openstax.org/books/chemistry-2e/pages/18-2-occurrence-and-preparation-of-the-representative-metals",
+      "https://www.webelements.com/tin/chemistry.html"
     ],
     "reviewStatus": "pending"
   },

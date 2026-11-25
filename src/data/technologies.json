@@ -275,15 +275,15 @@
     "en": "ELECTROLYSIS",
     "category": "electrochemistry",
     "tier": 2,
-    "description": "利用持续直流电流分解稳定化合物，解锁经营模式「电解设备」。",
+    "description": "利用持续直流电流分解稳定化合物并配套短波光化学光源，解锁经营模式「电解设备（含通电与光照条件）」。",
     "costRP": 28,
     "costCoins": 65,
     "prereqTechIds": ["tech_lab_expansion_2"],
     "requiredLabLevel": 2,
     "unlocks": {
-      "conditions": ["electricity"],
+      "conditions": ["electricity", "light"],
       "equipmentIds": ["eq_electrolyzer"],
-      "bonusNote": "可在 Lv.2 实验室建造电解设备"
+      "bonusNote": "可在 Lv.2 实验室建造电解设备（解锁通电与短波光照条件）"
     },
     "position": { "col": 1, "row": 4 }
   },

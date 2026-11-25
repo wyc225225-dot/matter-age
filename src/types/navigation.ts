@@ -12,3 +12,14 @@ export type Page =
   | "eras"
   | "achievements"
   | "settings";
+
+export type ManagementTab =
+  "orders" | "produce" | "equipment" | "market" | "overview";
+
+export type BookSubMode = "collection" | "knowledge";
+
+export interface MobileDetailBar {
+  parentLabel: string;
+  title?: string;
+  onBack: () => void;
+}

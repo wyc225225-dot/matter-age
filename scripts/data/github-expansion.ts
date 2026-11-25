@@ -88,6 +88,18 @@ const selected = new Set([
   "elements-no2-dimerization",
   "elements-magnesium-silicon",
   "elements-sulfur-dioxide-oxidation",
+  // Curated scientifically unambiguous common reactions whose reactants & products already exist
+  "magnesium-acid",
+  "magnesium-oxide-acid",
+  "magnesium-hydroxide-acid",
+  "neutralization",
+  "magnesium-hydroxide-sodium",
+  "sulfur-combustion",
+  "copper-dilute-nitric",
+  "binary-lithium-o2-li2o",
+  "binary-magnesium-n2-mg3n2",
+  "binary-tin-o2-sno2",
+  "common-zinc-sulfur",
 ]);
 const chinese: Record<string, string> = {
   CH4: "甲烷",
@@ -162,6 +174,7 @@ const activation: Record<string, Condition> = {
   heat: "heat",
   ignition: "ignite",
   electricity: "electricity",
+  light: "light",
   cooling: "cool",
 };
 export function expandGithubCatalog(original: Substance[], base: Reaction[]) {
